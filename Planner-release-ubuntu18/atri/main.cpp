@@ -5,11 +5,11 @@
  * Affiliation: Multi-Agent Systems Lab.
  *              University of Science and Technology of China
  */
-#include "devil.hpp"
+#include "atri.hpp"
 
 int main()
 {
-    _home::Devil devil;
-    devil.Run();
+    _home::ATRI atri;
+    atri.Run();
     return 0;
 }

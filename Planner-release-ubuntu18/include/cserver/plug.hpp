@@ -19,7 +19,7 @@ namespace _home
 {
     class Message;
 
-    /** 
+    /**
      * @class Plug
      * defines a common entry for platform of Home Simulation.
      */
@@ -30,22 +30,22 @@ namespace _home
         typedef boost::shared_ptr<Message> MessagePtr;
 
     public:
-        /** 
+        /**
          * Destructor
          */
         virtual ~Plug();
 
-        /** 
+        /**
          * Run the client's event processing loop for the test.
          */
         void Run();
 
     protected:
-        /** 
+        /**
          * Constructor
          * @param _name is the team name
          */
-        Plug(const std::string& _name);
+        Plug(const std::string &_name);
 
         /**
          * The processing of a plan should be implemented in this function.
@@ -61,73 +61,73 @@ namespace _home
         /**
          * Gets the team name.
          */
-        const std::string& GetName() const { return mName; }
+        const std::string &GetName() const { return mName; }
 
         /**
          * Gets the name of the test
          */
-        const std::string& GetTestName() const { return mTestName; }
+        const std::string &GetTestName() const { return mTestName; }
 
         /**
          * Gets the description of the environment.
          */
-        const std::string& GetEnvDes() const { return mEnvDes; }
+        const std::string &GetEnvDes() const { return mEnvDes; }
 
         /**
          * Gets the description of the task.
          */
-        const std::string& GetTaskDes() const { return mTaskDes; }
+        const std::string &GetTaskDes() const { return mTaskDes; }
 
-        /** 
+        /**
          * Atomic action Move
          * @param x location number
          * @return if the action is successful or not
          */
         bool Move(unsigned int x);
 
-        /** 
+        /**
          * Atomic action PickUp
          * @param a object number
          * @return if the action is successful or not
          */
         bool PickUp(unsigned int a);
 
-        /** 
+        /**
          * Atomic action PutDown
          * @param a object number
          * @return if the action is successful or not
          */
         bool PutDown(unsigned int a);
 
-        /** 
+        /**
          * Atomic action ToPlate
          * @param a object number
          * @return if the action is successful or not
          */
         bool ToPlate(unsigned int a);
 
-        /** 
+        /**
          * Atomic action FromPlate
          * @param a object number
          * @return if the action is successful or not
          */
         bool FromPlate(unsigned int a);
 
-        /** 
+        /**
          * Atomic action Open
          * @param a object number
          * @return if the action is successful or not
          */
         bool Open(unsigned int a);
 
-        /** 
+        /**
          * Atomic action Close
          * @param a object number
          * @return if the action is successful or not
          */
         bool Close(unsigned int a);
 
-        /** 
+        /**
          * Atomic action PutIn
          * @param a small object number
          * @param b big object number
@@ -135,7 +135,7 @@ namespace _home
          */
         bool PutIn(unsigned int a, unsigned int b);
 
-        /** 
+        /**
          * Atomic action TakeOut
          * @param a small object number
          * @param b big object number
@@ -143,7 +143,7 @@ namespace _home
          */
         bool TakeOut(unsigned int a, unsigned int b);
 
-        /** 
+        /**
          * Atomic action AskLoc
          * @param a object number
          * @return "not_known" means don't know where 'a' is
@@ -156,7 +156,7 @@ namespace _home
          * Atomic action Sense
          * @param A_ return set of numbers for the object observed
          */
-        void Sense(std::vector<unsigned int>& A_);
+        void Sense(std::vector<unsigned int> &A_);
 
     private:
         /**
@@ -164,10 +164,10 @@ namespace _home
          */
         bool Conncet();
 
-        /** 
+        /**
          * Communicate with the server.
          */
-        MessagePtr SendMsg(const MessagePtr& msg);
+        MessagePtr SendMsg(const MessagePtr &msg);
 
     private:
         std::string mName;
@@ -178,12 +178,12 @@ namespace _home
 
         std::string mTaskDes;
 
-        TKernel* mKernel;
+        TKernel *mKernel;
 
         boost::array<boost::uint8_t, 4> mMsgLen;
-    };//Plug
+    }; // Plug
 
-}//_home
+} //_home
 
-#endif//__home_plug_HPP__
-//end of file
+#endif //__home_plug_HPP__
+// end of file
