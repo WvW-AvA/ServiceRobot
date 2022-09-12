@@ -1,4 +1,10 @@
 {
     "diffEditor.wordWrap": "inherit",
-    "editor.wordWrapColumn": 1024
+    "editor.wordWrapColumn": 1024,
+    "files.associations": {
+        "*.template": "c",
+        "main.h": "c",
+        "stm32f1xx_hal_conf.h": "c",
+        "iosfwd": "cpp"
+    }
 }
