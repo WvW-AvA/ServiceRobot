@@ -43,6 +43,7 @@ namespace _home
         }
         ~Robot() {}
     };
+
     class SmallObject : public Object
     {
     public:
@@ -95,10 +96,19 @@ namespace _home
         ~Container() {}
     };
 
-    class ATRI : public Plug
+    struct SyntaxNode
+    {
+        string value;
+        vector<SyntaxNode *> sons;
+    };
+
+    class ATRI : public Plug,
+                 public Robot,
+                 public enable_shared_from_this<ATRI>
     {
     public:
         ATRI();
+        void Init();
 
     protected:
         void Plan();
@@ -106,8 +116,9 @@ namespace _home
         vector<shared_ptr<SmallObject>> smallObjects;
         vector<shared_ptr<Container>> containers;
         vector<shared_ptr<BigObject>> bigObjects;
-        shared_ptr<Robot> robot;
+
         bool PraseEnv(const string &env);
+        bool PraseTask(const string &task);
         bool PraseEnvSentence(const string &str);
         void Fini();
     }; // Plug

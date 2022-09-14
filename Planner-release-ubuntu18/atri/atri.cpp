@@ -9,15 +9,19 @@ ostream &operator<<(ostream &os, shared_ptr<Object> obj);
 //////////////////////////////////////////////////////////////////////////
 ATRI::ATRI() : Plug("ATRI")
 {
-    robot = make_shared<Robot>();
-    objects.push_back(robot);
 }
 
+void ATRI::Init()
+{
+    objects.push_back(shared_from_this());
+}
 //////////////////////////////////////////////////////////////////////////
 void ATRI::Plan()
 {
     //此处添加测试代码
     PraseEnv(GetEnvDes());
+    cout << GetTaskDes() << endl;
+    PraseTask(GetTaskDes());
 }
 
 bool ATRI::PraseEnvSentence(const string &str)
@@ -37,11 +41,11 @@ bool ATRI::PraseEnvSentence(const string &str)
 
     if (words[0] == "hold")
     {
-        robot->hold = stoi(words[1]);
+        this->hold = stoi(words[1]);
     }
     else if (words[0] == "plate")
     {
-        robot->plate = stoi(words[1]);
+        this->plate = stoi(words[1]);
     }
     else
     {
@@ -115,6 +119,10 @@ bool ATRI::PraseEnvSentence(const string &str)
     return true;
 }
 
+bool ATRI::PraseTask(const string &task)
+{
+}
+
 bool ATRI::PraseEnv(const string &env)
 {
     regex reg("\\(.*?\\)");
@@ -124,7 +132,6 @@ bool ATRI::PraseEnv(const string &env)
     for (; regex_search(pos, end, m, reg); pos = m.suffix().first)
     {
         string str = m.str();
-        cout << str << endl;
         if (PraseEnvSentence(str) == false)
             return false;
     }
@@ -157,6 +164,7 @@ void ATRI::Fini()
 {
     cout << "#(ATRI): Fini" << endl;
 }
+
 ostream &operator<<(ostream &os, shared_ptr<Object> obj)
 {
     if (dynamic_pointer_cast<SmallObject>(obj) != nullptr)
@@ -165,7 +173,7 @@ ostream &operator<<(ostream &os, shared_ptr<Object> obj)
     }
     else if (dynamic_pointer_cast<Robot>(obj) != nullptr)
     {
-        os << "Robot " << dynamic_pointer_cast<Robot>(obj)->ToString();
+        os << "this " << dynamic_pointer_cast<Robot>(obj)->ToString();
     }
     else if (dynamic_pointer_cast<BigObject>(obj) != nullptr)
     {

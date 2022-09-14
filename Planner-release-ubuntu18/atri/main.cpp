@@ -9,7 +9,14 @@
 
 int main()
 {
+    auto atri = make_shared<_home::ATRI>();
+    atri->Init();
+    atri->Run();
+    return 0;
+    /*
     _home::ATRI atri;
+    atri.Init();
     atri.Run();
     return 0;
+    */
 }
