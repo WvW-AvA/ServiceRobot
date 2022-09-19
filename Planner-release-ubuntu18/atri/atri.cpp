@@ -5,6 +5,7 @@ using namespace _home;
 using namespace std;
 
 ostream &operator<<(ostream &os, shared_ptr<Object> obj);
+ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn);
 
 //////////////////////////////////////////////////////////////////////////
 ATRI::ATRI() : Plug("ATRI")
@@ -19,9 +20,46 @@ void ATRI::Init()
 void ATRI::Plan()
 {
     //此处添加测试代码
-    PraseEnv(GetEnvDes());
-    cout << GetTaskDes() << endl;
+    // PraseEnv(GetEnvDes());
+    // PrintEnv();
     PraseTask(GetTaskDes());
+    // Move(1);
+    // Move(2);
+    // Move(3);
+    // Move(4);
+}
+bool ATRI::PraseTask(const string &taskDis)
+{
+    shared_ptr<SyntaxNode> root = make_shared<SyntaxNode>();
+    vector<shared_ptr<SyntaxNode>> leaf_path;
+    shared_ptr<SyntaxNode> curr_leaf = root;
+    leaf_path.push_back(curr_leaf);
+    int tag1 = 0, tag2 = 0;
+    for (int i = 0; i < taskDis.size(); i++)
+    {
+        if (taskDis[i] == '(')
+        {
+            curr_leaf->value += taskDis.substr(tag1, i - tag1);
+            tag1 = i + 1;
+            auto p = make_shared<SyntaxNode>();
+            curr_leaf->sons.push_back(p);
+            curr_leaf = p;
+            leaf_path.push_back(curr_leaf);
+        }
+        else if (taskDis[i] == ')')
+        {
+            curr_leaf->value += taskDis.substr(tag1, i - tag1);
+            tag1 = i + 1;
+            curr_leaf = *(leaf_path.end() - 1);
+            leaf_path.pop_back();
+        }
+    }
+    cout << root;
+    for (int i = 0; i < root->sons.size(); i++)
+    {
+        // TODO:
+    }
+    return true;
 }
 
 bool ATRI::PraseEnvSentence(const string &str)
@@ -41,11 +79,11 @@ bool ATRI::PraseEnvSentence(const string &str)
 
     if (words[0] == "hold")
     {
-        this->hold = stoi(words[1]);
+        this->hold_id = stoi(words[1]);
     }
     else if (words[0] == "plate")
     {
-        this->plate = stoi(words[1]);
+        this->plate_id = stoi(words[1]);
     }
     else
     {
@@ -119,10 +157,6 @@ bool ATRI::PraseEnvSentence(const string &str)
     return true;
 }
 
-bool ATRI::PraseTask(const string &task)
-{
-}
-
 bool ATRI::PraseEnv(const string &env)
 {
     regex reg("\\(.*?\\)");
@@ -135,6 +169,9 @@ bool ATRI::PraseEnv(const string &env)
         if (PraseEnvSentence(str) == false)
             return false;
     }
+    hold = dynamic_pointer_cast<SmallObject>(objects[hold_id]);
+    plate = dynamic_pointer_cast<SmallObject>(objects[plate_id]);
+
     for (int i = 0; i < smallObjects.size(); i++)
     {
         if (smallObjects[i]->inside != UNKNOWN)
@@ -163,6 +200,113 @@ bool ATRI::PraseEnv(const string &env)
 void ATRI::Fini()
 {
     cout << "#(ATRI): Fini" << endl;
+}
+
+void ATRI::PrintEnv()
+{
+    vector<vector<shared_ptr<Object>>> objPos;
+    vector<shared_ptr<Object>> unknownPos;
+    for (auto v : objects)
+    {
+        if (v->location == UNKNOWN)
+        {
+            unknownPos.push_back(v);
+            continue;
+        }
+        if (v->location >= objPos.size())
+            objPos.resize(v->location + 1);
+        objPos[v->location].push_back(v);
+    }
+    for (int i = 0; i < objPos.size(); i++)
+    {
+        cout << "Pos" << i << ":";
+        for (auto v : objPos[i])
+        {
+            if (v->sort == "robot")
+                cout << GREEN << "(" << v->id << " " << v->sort << ")" << RESET;
+            else
+                cout << "(" << v->id << " " << v->sort << ")";
+        }
+        cout << endl;
+    }
+    cout << "UnknownPos:";
+    for (auto v : unknownPos)
+    {
+        cout << RED << "(" << v->id << " " << v->sort << ")" << RESET;
+    }
+    cout << endl;
+}
+
+bool ATRI::TakeOut(unsigned int a, unsigned int b)
+{
+    bool res = Plug::TakeOut(a, b);
+    cout << "TakeOut:" << res << endl;
+    return res;
+}
+bool ATRI::PutIn(unsigned int a, unsigned int b)
+{
+    bool res = Plug::PutIn(a, b);
+    cout << "PutIn:" << res << endl;
+    return res;
+}
+bool ATRI::Close(unsigned int a)
+{
+    bool res = Plug::Close(a);
+    cout << "Close:" << res << endl;
+    return res;
+}
+bool ATRI::Open(unsigned int a)
+{
+    bool res = Plug::Open(a);
+    cout << "Open:" << res << endl;
+    return res;
+}
+bool ATRI::FromPlate(unsigned int a)
+{
+    bool res = Plug::FromPlate(a);
+    cout << "FromPlate:" << res << endl;
+    return res;
+}
+bool ATRI::ToPlate(unsigned int a)
+{
+    bool res = Plug::ToPlate(a);
+    cout << "ToPlate:" << res << endl;
+    return res;
+}
+bool ATRI::PutDown(unsigned int a)
+{
+    bool res = Plug::PutDown(a);
+    cout << "PutDown:" << res << endl;
+    return res;
+}
+bool ATRI::PickUp(unsigned int a)
+{
+    bool res = Plug::PickUp(a);
+
+    cout << "PickUp:" << res << endl;
+    return res;
+}
+bool ATRI::Move(unsigned int a)
+{
+    bool res = Plug::Move(a);
+    if (res)
+    {
+        location = a;
+        hold->location = a;
+        plate->location = a;
+    }
+    cout << "Move:" << res << endl;
+    return res;
+}
+
+ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
+{
+    os << sn->value << endl;
+    for (int i = 0; i < sn->sons.size(); i++)
+    {
+        os << sn->sons[i];
+    }
+    return os;
 }
 
 ostream &operator<<(ostream &os, shared_ptr<Object> obj)

@@ -83,49 +83,49 @@ namespace _home
          * @param x location number
          * @return if the action is successful or not
          */
-        bool Move(unsigned int x);
+        bool virtual Move(unsigned int x);
 
         /**
          * Atomic action PickUp
          * @param a object number
          * @return if the action is successful or not
          */
-        bool PickUp(unsigned int a);
+        bool virtual PickUp(unsigned int a);
 
         /**
          * Atomic action PutDown
          * @param a object number
          * @return if the action is successful or not
          */
-        bool PutDown(unsigned int a);
+        bool virtual PutDown(unsigned int a);
 
         /**
          * Atomic action ToPlate
          * @param a object number
          * @return if the action is successful or not
          */
-        bool ToPlate(unsigned int a);
+        bool virtual ToPlate(unsigned int a);
 
         /**
          * Atomic action FromPlate
          * @param a object number
          * @return if the action is successful or not
          */
-        bool FromPlate(unsigned int a);
+        bool virtual FromPlate(unsigned int a);
 
         /**
          * Atomic action Open
          * @param a object number
          * @return if the action is successful or not
          */
-        bool Open(unsigned int a);
+        bool virtual Open(unsigned int a);
 
         /**
          * Atomic action Close
          * @param a object number
          * @return if the action is successful or not
          */
-        bool Close(unsigned int a);
+        bool virtual Close(unsigned int a);
 
         /**
          * Atomic action PutIn
@@ -133,7 +133,7 @@ namespace _home
          * @param b big object number
          * @return if the action is successful or not
          */
-        bool PutIn(unsigned int a, unsigned int b);
+        bool virtual PutIn(unsigned int a, unsigned int b);
 
         /**
          * Atomic action TakeOut
@@ -141,7 +141,7 @@ namespace _home
          * @param b big object number
          * @return if the action is successful or not
          */
-        bool TakeOut(unsigned int a, unsigned int b);
+        bool virtual TakeOut(unsigned int a, unsigned int b);
 
         /**
          * Atomic action AskLoc

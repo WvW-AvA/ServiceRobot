@@ -11,6 +11,14 @@
 #include "string"
 #include "unordered_map"
 using namespace std;
+
+#define RESET "\033[0m"
+#define BLACK "\033[30m"  /* Black */
+#define RED "\033[31m"    /* Red */
+#define GREEN "\033[32m"  /* Green */
+#define YELLOW "\033[33m" /* Yellow */
+#define BLUE "\033[34m"   /* Blue */
+
 #define UNKNOWN -1
 namespace _home
 {
@@ -27,21 +35,6 @@ namespace _home
             return "id:" + to_string(id) + "    at:" + to_string(location) + "     sort:" + sort + "\n";
         }
         ~Object() {}
-    };
-
-    class Robot : public Object
-    {
-    public:
-        int hold;
-        int plate;
-
-        Robot(int id, int location = UNKNOWN, int hold = UNKNOWN, int plate = UNKNOWN) : Object(id, "robot", location), hold(hold), plate(plate) {}
-        Robot() : Robot(0) {}
-        virtual string ToString() override
-        {
-            return Object::ToString() + "hold:" + to_string(hold) + "     plate:" + to_string(plate) + "\n";
-        }
-        ~Robot() {}
     };
 
     class SmallObject : public Object
@@ -96,10 +89,45 @@ namespace _home
         ~Container() {}
     };
 
+    class Robot : public Object
+    {
+    public:
+        shared_ptr<SmallObject> hold;
+        shared_ptr<SmallObject> plate;
+
+        int hold_id, plate_id;
+
+        Robot(int id, int location = UNKNOWN) : Object(id, "robot", location) {}
+        Robot() : Robot(0) {}
+        virtual string ToString() override
+        {
+            return Object::ToString() + "hold:\n" + hold->ToString() + "plate:\n" + plate->ToString();
+        }
+        ~Robot() {}
+    };
+
     struct SyntaxNode
     {
         string value;
-        vector<SyntaxNode *> sons;
+        vector<shared_ptr<SyntaxNode>> sons;
+    };
+
+    enum class Constraint : uint64_t
+    {
+        Info = 0x01,
+        Task = 0x01 << 1,
+
+        Constraint_Not = 0x01 << 2,
+        Constraint_NotNot = 0x01 << 3,
+
+        Info_Not = Info | Constraint_Not,
+        Task_Not = Task | Constraint_Not,
+        Info_NotNot = Info | Constraint_NotNot
+    };
+
+    class Instruction
+    {
+        Constraint constraint;
     };
 
     class ATRI : public Plug,
@@ -120,7 +148,73 @@ namespace _home
         bool PraseEnv(const string &env);
         bool PraseTask(const string &task);
         bool PraseEnvSentence(const string &str);
+        void PrintEnv();
         void Fini();
+
+        /**
+         * Atomic action Move
+         * @param x location number
+         * @return if the action is successful or not
+         */
+        bool virtual Move(unsigned int x) override;
+
+        /**
+         * Atomic action PickUp
+         * @param a object number
+         * @return if the action is successful or not
+         */
+        bool virtual PickUp(unsigned int a) override;
+
+        /**
+         * Atomic action PutDown
+         * @param a object number
+         * @return if the action is successful or not
+         */
+        bool virtual PutDown(unsigned int a) override;
+
+        /**
+         * Atomic action ToPlate
+         * @param a object number
+         * @return if the action is successful or not
+         */
+        bool virtual ToPlate(unsigned int a) override;
+
+        /**
+         * Atomic action FromPlate
+         * @param a object number
+         * @return if the action is successful or not
+         */
+        bool virtual FromPlate(unsigned int a) override;
+
+        /**
+         * Atomic action Open
+         * @param a object number
+         * @return if the action is successful or not
+         */
+        bool virtual Open(unsigned int a) override;
+
+        /**
+         * Atomic action Close
+         * @param a object number
+         * @return if the action is successful or not
+         */
+        bool virtual Close(unsigned int a) override;
+
+        /**
+         * Atomic action PutIn
+         * @param a small object number
+         * @param b big object number
+         * @return if the action is successful or not
+         */
+        bool virtual PutIn(unsigned int a, unsigned int b) override;
+
+        /**
+         * Atomic action TakeOut
+         * @param a small object number
+         * @param b big object number
+         * @return if the action is successful or not
+         */
+        bool virtual TakeOut(unsigned int a, unsigned int b) override;
     }; // Plug
 
 } //_home

@@ -1,0 +1,1 @@
+occurs(move(4), 1).
