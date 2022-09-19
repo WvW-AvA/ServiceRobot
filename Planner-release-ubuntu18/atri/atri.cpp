@@ -41,7 +41,7 @@ bool ATRI::PraseInstruction(const string &taskDis)
         if (taskDis[i] == '(')
         {
             curr_leaf->value += taskDis.substr(tag1, i - tag1);
-            tag1 = i + 1;
+            tag1 = i;
             auto p = make_shared<SyntaxNode>();
             curr_leaf->sons.push_back(p);
             curr_leaf = p;
@@ -58,7 +58,32 @@ bool ATRI::PraseInstruction(const string &taskDis)
     cout << root;
     for (auto v : root->sons)
     {
+        if (v->value == ":task")
+            tasks.push_back(Instruction(v));
+        else if (v->value == ":cons_not")
+        {
+            if (v->sons[0]->value == ":task")
+                not_taskConstrains.push_back(Instruction(v->sons[0]));
+            else if (v->sons[0]->value == ":info")
+                not_infoConstrains.push_back(Instruction(v->sons[0]));
+        }
+        else if (v->value == ":cons_notnot")
+        {
+            if (v->sons[0]->value == ":task")
+                not_taskConstrains.push_back(Instruction(v->sons[0]));
+            else if (v->sons[0]->value == ":info")
+                not_infoConstrains.push_back(Instruction(v->sons[0]));
+        }
     }
+
+    for (auto v : tasks)
+        cout << v.ToString();
+    for (auto v : not_infoConstrains)
+        cout << v.ToString();
+    for (auto v : not_taskConstrains)
+        cout << v.ToString();
+    for (auto v : notnot_infoCosntrains)
+        cout << v.ToString();
     return true;
 }
 bool ATRI::PraseEnvSentence(const string &str)
@@ -306,19 +331,40 @@ void split_string(vector<string> out, const string &str_source, char mark)
         }
     }
 }
+string Condition::ToString()
+{
+    return "(Sort:" + sort + ",Color:" + color + ")";
+}
 
-Instruction::Instruction(shared_ptr<SyntaxNode> node)
+Instruction::Instruction(const shared_ptr<SyntaxNode> &node)
 {
     vector<string> disc;
+
     split_string(disc, node->sons[0]->value, ' ');
-    if (disc.size() == 2)
+    behave = disc[0];
+
+    for (auto n : node->sons[1]->sons)
     {
-    }
-    else if (disc.size() == 3)
-    {
+        vector<string> temp;
+        split_string(temp, n->value, ' ');
+        Condition &con = conditionX;
+        if (temp[1] == "Y")
+            con = conditionY;
+        if (temp[0] == "color")
+        {
+            con.color = temp[2];
+        }
+        else if (temp[0] == "sort")
+        {
+            con.sort = temp[2];
+        }
     }
 }
-void Instruction::SearchConditionObject(shared_ptr<ATRI> atri)
+string Instruction::ToString()
+{
+    return "Behave:" + behave + "\nConditionX:" + conditionX.ToString() + "\nConditionY:" + conditionY.ToString() + "\n";
+}
+void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
 {
 }
 

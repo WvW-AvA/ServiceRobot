@@ -116,15 +116,22 @@ namespace _home
     {
         string sort = "";
         string color = "";
+
+        string ToString();
     };
     class Instruction
     {
         class ATRI;
-        string discription;
+        string behave;
         Condition conditionX, conditionY;
         vector<shared_ptr<Object>> X, Y;
-        Instruction(shared_ptr<SyntaxNode> node);
-        void SearchConditionObject(shared_ptr<ATRI> atri);
+
+    public:
+        Instruction(const shared_ptr<SyntaxNode> &node);
+        void SearchConditionObject(const shared_ptr<ATRI> &atri);
+        string ToString();
+
+    private:
     };
 
     class ATRI : public Plug,
