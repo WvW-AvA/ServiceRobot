@@ -22,13 +22,14 @@ void ATRI::Plan()
     //此处添加测试代码
     // PraseEnv(GetEnvDes());
     // PrintEnv();
-    PraseTask(GetTaskDes());
+    PraseInstruction(GetTaskDes());
     // Move(1);
     // Move(2);
     // Move(3);
     // Move(4);
 }
-bool ATRI::PraseTask(const string &taskDis)
+
+bool ATRI::PraseInstruction(const string &taskDis)
 {
     shared_ptr<SyntaxNode> root = make_shared<SyntaxNode>();
     vector<shared_ptr<SyntaxNode>> leaf_path;
@@ -55,13 +56,11 @@ bool ATRI::PraseTask(const string &taskDis)
         }
     }
     cout << root;
-    for (int i = 0; i < root->sons.size(); i++)
+    for (auto v : root->sons)
     {
-        // TODO:
     }
     return true;
 }
-
 bool ATRI::PraseEnvSentence(const string &str)
 {
     int pos = 1;
@@ -156,7 +155,6 @@ bool ATRI::PraseEnvSentence(const string &str)
     }
     return true;
 }
-
 bool ATRI::PraseEnv(const string &env)
 {
     regex reg("\\(.*?\\)");
@@ -196,12 +194,10 @@ bool ATRI::PraseEnv(const string &env)
     }
     return true;
 }
-
 void ATRI::Fini()
 {
     cout << "#(ATRI): Fini" << endl;
 }
-
 void ATRI::PrintEnv()
 {
     vector<vector<shared_ptr<Object>>> objPos;
@@ -236,7 +232,6 @@ void ATRI::PrintEnv()
     }
     cout << endl;
 }
-
 bool ATRI::TakeOut(unsigned int a, unsigned int b)
 {
     bool res = Plug::TakeOut(a, b);
@@ -299,6 +294,34 @@ bool ATRI::Move(unsigned int a)
     return res;
 }
 
+void split_string(vector<string> out, const string &str_source, char mark)
+{
+    int last = 0;
+    for (int i = 0; i < str_source.size(); i++)
+    {
+        if (str_source[i] == mark)
+        {
+            out.push_back(str_source.substr(last, i - last));
+            last = i;
+        }
+    }
+}
+
+Instruction::Instruction(shared_ptr<SyntaxNode> node)
+{
+    vector<string> disc;
+    split_string(disc, node->sons[0]->value, ' ');
+    if (disc.size() == 2)
+    {
+    }
+    else if (disc.size() == 3)
+    {
+    }
+}
+void Instruction::SearchConditionObject(shared_ptr<ATRI> atri)
+{
+}
+
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
 {
     os << sn->value << endl;
@@ -308,7 +331,6 @@ ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
     }
     return os;
 }
-
 ostream &operator<<(ostream &os, shared_ptr<Object> obj)
 {
     if (dynamic_pointer_cast<SmallObject>(obj) != nullptr)

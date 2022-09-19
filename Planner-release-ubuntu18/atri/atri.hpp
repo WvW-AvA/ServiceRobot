@@ -112,22 +112,19 @@ namespace _home
         vector<shared_ptr<SyntaxNode>> sons;
     };
 
-    enum class Constraint : uint64_t
+    struct Condition
     {
-        Info = 0x01,
-        Task = 0x01 << 1,
-
-        Constraint_Not = 0x01 << 2,
-        Constraint_NotNot = 0x01 << 3,
-
-        Info_Not = Info | Constraint_Not,
-        Task_Not = Task | Constraint_Not,
-        Info_NotNot = Info | Constraint_NotNot
+        string sort = "";
+        string color = "";
     };
-
     class Instruction
     {
-        Constraint constraint;
+        class ATRI;
+        string discription;
+        Condition conditionX, conditionY;
+        vector<shared_ptr<Object>> X, Y;
+        Instruction(shared_ptr<SyntaxNode> node);
+        void SearchConditionObject(shared_ptr<ATRI> atri);
     };
 
     class ATRI : public Plug,
@@ -145,12 +142,18 @@ namespace _home
         vector<shared_ptr<Container>> containers;
         vector<shared_ptr<BigObject>> bigObjects;
 
+        vector<Instruction> tasks;
+        vector<Instruction> not_taskConstrains;
+        vector<Instruction> not_infoConstrains;
+        vector<Instruction> notnot_infoCosntrains;
+
         bool PraseEnv(const string &env);
-        bool PraseTask(const string &task);
-        bool PraseEnvSentence(const string &str);
+        bool PraseInstruction(const string &task);
         void PrintEnv();
         void Fini();
 
+    private:
+        bool PraseEnvSentence(const string &str);
         /**
          * Atomic action Move
          * @param x location number
