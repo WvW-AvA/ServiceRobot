@@ -22,6 +22,7 @@ using namespace std;
 #define UNKNOWN -1
 namespace _home
 {
+    class Instruction;
     class Object
     {
     public:
@@ -117,21 +118,8 @@ namespace _home
         string sort = "";
         string color = "";
 
-        string ToString();
-    };
-    class Instruction
-    {
-        class ATRI;
-        string behave;
-        Condition conditionX, conditionY;
-        vector<shared_ptr<Object>> X, Y;
-
-    public:
-        Instruction(const shared_ptr<SyntaxNode> &node);
-        void SearchConditionObject(const shared_ptr<ATRI> &atri);
-        string ToString();
-
-    private:
+        string ToString() const;
+        bool IsObjectSatisfy(const shared_ptr<Object> &target) const;
     };
 
     class ATRI : public Plug,
@@ -142,7 +130,6 @@ namespace _home
         ATRI();
         void Init();
 
-    protected:
         void Plan();
         vector<shared_ptr<Object>> objects;
         vector<shared_ptr<SmallObject>> smallObjects;
@@ -150,9 +137,10 @@ namespace _home
         vector<shared_ptr<BigObject>> bigObjects;
 
         vector<Instruction> tasks;
+        vector<Instruction> infos;
         vector<Instruction> not_taskConstrains;
         vector<Instruction> not_infoConstrains;
-        vector<Instruction> notnot_infoCosntrains;
+        vector<Instruction> notnot_infoConstrains;
 
         bool PraseEnv(const string &env);
         bool PraseInstruction(const string &task);
@@ -226,7 +214,18 @@ namespace _home
          */
         bool virtual TakeOut(unsigned int a, unsigned int b) override;
     }; // Plug
+    class Instruction
+    {
+    public:
+        string behave;
+        Condition conditionX, conditionY;
+        vector<shared_ptr<Object>> X, Y;
+        bool isUseY = false;
+        Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<ATRI> &atri);
+        void SearchConditionObject(const shared_ptr<ATRI> &atri);
+        string ToString() const;
+
+    private:
+    };
 
 } //_home
-
-// end of file

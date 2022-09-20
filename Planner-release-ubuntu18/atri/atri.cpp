@@ -6,6 +6,7 @@ using namespace std;
 
 ostream &operator<<(ostream &os, shared_ptr<Object> obj);
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn);
+ostream &operator<<(ostream &os, const Instruction &instr);
 
 //////////////////////////////////////////////////////////////////////////
 ATRI::ATRI() : Plug("ATRI")
@@ -20,13 +21,9 @@ void ATRI::Init()
 void ATRI::Plan()
 {
     //此处添加测试代码
-    // PraseEnv(GetEnvDes());
-    // PrintEnv();
+    PraseEnv(GetEnvDes());
+    PrintEnv();
     PraseInstruction(GetTaskDes());
-    // Move(1);
-    // Move(2);
-    // Move(3);
-    // Move(4);
 }
 
 bool ATRI::PraseInstruction(const string &taskDis)
@@ -40,8 +37,8 @@ bool ATRI::PraseInstruction(const string &taskDis)
     {
         if (taskDis[i] == '(')
         {
-            curr_leaf->value += taskDis.substr(tag1, i - tag1);
-            tag1 = i;
+            curr_leaf->value += *(taskDis.substr(tag1, i - tag1).end() - 1) == ' ' ? taskDis.substr(tag1, i - tag1 - 1) : taskDis.substr(tag1, i - tag1);
+            tag1 = i + 1;
             auto p = make_shared<SyntaxNode>();
             curr_leaf->sons.push_back(p);
             curr_leaf = p;
@@ -49,41 +46,48 @@ bool ATRI::PraseInstruction(const string &taskDis)
         }
         else if (taskDis[i] == ')')
         {
-            curr_leaf->value += taskDis.substr(tag1, i - tag1);
+            curr_leaf->value += *(taskDis.substr(tag1, i - tag1).end() - 1) == ' ' ? taskDis.substr(tag1, i - tag1 - 1) : taskDis.substr(tag1, i - tag1);
             tag1 = i + 1;
-            curr_leaf = *(leaf_path.end() - 1);
+            curr_leaf = *(leaf_path.end() - 2);
             leaf_path.pop_back();
         }
     }
-    cout << root;
-    for (auto v : root->sons)
+    for (auto v : root->sons[0]->sons)
     {
         if (v->value == ":task")
-            tasks.push_back(Instruction(v));
+            tasks.push_back(Instruction(v, shared_from_this()));
         else if (v->value == ":cons_not")
         {
             if (v->sons[0]->value == ":task")
-                not_taskConstrains.push_back(Instruction(v->sons[0]));
+                not_taskConstrains.push_back(Instruction(v->sons[0], shared_from_this()));
             else if (v->sons[0]->value == ":info")
-                not_infoConstrains.push_back(Instruction(v->sons[0]));
+                not_infoConstrains.push_back(Instruction(v->sons[0], shared_from_this()));
         }
         else if (v->value == ":cons_notnot")
         {
-            if (v->sons[0]->value == ":task")
-                not_taskConstrains.push_back(Instruction(v->sons[0]));
-            else if (v->sons[0]->value == ":info")
-                not_infoConstrains.push_back(Instruction(v->sons[0]));
+            if (v->sons[0]->value == ":info")
+                notnot_infoConstrains.push_back(Instruction(v->sons[0], shared_from_this()));
+        }
+        else if (v->value == ":info")
+        {
+            infos.push_back(Instruction(v, shared_from_this()));
         }
     }
-
+    cout << "Task:\n";
     for (auto v : tasks)
-        cout << v.ToString();
+        cout << v;
+    cout << "\nInfo:\n";
+    for (auto v : infos)
+        cout << v;
+    cout << "\nNot_Info:\n";
     for (auto v : not_infoConstrains)
-        cout << v.ToString();
+        cout << v;
+    cout << "\nNot_Task:\n";
     for (auto v : not_taskConstrains)
-        cout << v.ToString();
-    for (auto v : notnot_infoCosntrains)
-        cout << v.ToString();
+        cout << v;
+    cout << "\nNotNot_Info:\n";
+    for (auto v : notnot_infoConstrains)
+        cout << v;
     return true;
 }
 bool ATRI::PraseEnvSentence(const string &str)
@@ -213,10 +217,6 @@ bool ATRI::PraseEnv(const string &env)
             }
         }
     }
-    for (int i = 0; i < objects.size(); i++)
-    {
-        cout << objects[i] << endl;
-    }
     return true;
 }
 void ATRI::Fini()
@@ -318,8 +318,7 @@ bool ATRI::Move(unsigned int a)
     cout << "Move:" << res << endl;
     return res;
 }
-
-void split_string(vector<string> out, const string &str_source, char mark)
+void split_string(vector<string> &out, const string &str_source, char mark)
 {
     int last = 0;
     for (int i = 0; i < str_source.size(); i++)
@@ -327,54 +326,91 @@ void split_string(vector<string> out, const string &str_source, char mark)
         if (str_source[i] == mark)
         {
             out.push_back(str_source.substr(last, i - last));
-            last = i;
+            last = i + 1;
         }
     }
+    out.push_back(str_source.substr(last, str_source.size() - 1));
 }
-string Condition::ToString()
+string Condition::ToString() const
 {
     return "(Sort:" + sort + ",Color:" + color + ")";
 }
-
-Instruction::Instruction(const shared_ptr<SyntaxNode> &node)
+bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
+{
+    bool ret = true;
+    if (sort != "" && sort != target->sort)
+        ret *= false;
+    if (color != "")
+    {
+        auto tem = dynamic_pointer_cast<SmallObject>(target);
+        if (tem && tem->color != color)
+            ret *= false;
+    }
+    return ret;
+}
+Instruction::Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<ATRI> &atri)
 {
     vector<string> disc;
-
     split_string(disc, node->sons[0]->value, ' ');
     behave = disc[0];
-
     for (auto n : node->sons[1]->sons)
     {
         vector<string> temp;
         split_string(temp, n->value, ' ');
-        Condition &con = conditionX;
+        Condition *con = &conditionX;
         if (temp[1] == "Y")
-            con = conditionY;
+        {
+            isUseY = true;
+            con = &conditionY;
+        }
         if (temp[0] == "color")
-        {
-            con.color = temp[2];
-        }
+            con->color = temp[2];
         else if (temp[0] == "sort")
-        {
-            con.sort = temp[2];
-        }
+            con->sort = temp[2];
     }
-}
-string Instruction::ToString()
-{
-    return "Behave:" + behave + "\nConditionX:" + conditionX.ToString() + "\nConditionY:" + conditionY.ToString() + "\n";
+    SearchConditionObject(atri);
 }
 void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
 {
+    for (auto v : atri->objects)
+    {
+        if (conditionX.IsObjectSatisfy(v))
+            X.push_back(v);
+        if (isUseY && conditionY.IsObjectSatisfy(v))
+            Y.push_back(v);
+    }
+}
+string Instruction::ToString() const
+{
+    return "Behave:" + behave + "\nConditionX:" + conditionX.ToString() + "\nConditionY:" + conditionY.ToString() + "\n";
 }
 
+ostream &operator<<(ostream &os, const Instruction &instr)
+{
+    os << instr.ToString();
+    os << "X:\n";
+    for (auto v : instr.X)
+        os << v;
+    if (instr.isUseY)
+    {
+        os << "Y:\n";
+        for (auto v : instr.Y)
+            os << v;
+    }
+    return os;
+}
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
 {
-    os << sn->value << endl;
+    static int layer = 0;
+    for (int i = 0; i < layer; i++)
+        os << "-";
+    os << sn->value << '|' << endl;
+    layer++;
     for (int i = 0; i < sn->sons.size(); i++)
     {
         os << sn->sons[i];
     }
+    layer--;
     return os;
 }
 ostream &operator<<(ostream &os, shared_ptr<Object> obj)
