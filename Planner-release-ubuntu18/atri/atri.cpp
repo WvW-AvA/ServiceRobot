@@ -21,12 +21,12 @@ void ATRI::Init()
 void ATRI::Plan()
 {
     //此处添加测试代码
-    PraseEnv(GetEnvDes());
+    ParseEnv(GetEnvDes());
     PrintEnv();
-    PraseInstruction(GetTaskDes());
+    ParseInstruction(GetTaskDes());
 }
 
-bool ATRI::PraseInstruction(const string &taskDis)
+bool ATRI::ParseInstruction(const string &taskDis)
 {
     shared_ptr<SyntaxNode> root = make_shared<SyntaxNode>();
     vector<shared_ptr<SyntaxNode>> leaf_path;
@@ -90,7 +90,7 @@ bool ATRI::PraseInstruction(const string &taskDis)
         cout << v;
     return true;
 }
-bool ATRI::PraseEnvSentence(const string &str)
+bool ATRI::ParseEnvSentence(const string &str)
 {
     int pos = 1;
     vector<string> words;
@@ -184,7 +184,7 @@ bool ATRI::PraseEnvSentence(const string &str)
     }
     return true;
 }
-bool ATRI::PraseEnv(const string &env)
+bool ATRI::ParseEnv(const string &env)
 {
     regex reg("\\(.*?\\)");
     cmatch m;
@@ -193,7 +193,7 @@ bool ATRI::PraseEnv(const string &env)
     for (; regex_search(pos, end, m, reg); pos = m.suffix().first)
     {
         string str = m.str();
-        if (PraseEnvSentence(str) == false)
+        if (ParseEnvSentence(str) == false)
             return false;
     }
     hold = dynamic_pointer_cast<SmallObject>(objects[hold_id]);

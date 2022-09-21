@@ -142,13 +142,13 @@ namespace _home
         vector<Instruction> not_infoConstrains;
         vector<Instruction> notnot_infoConstrains;
 
-        bool PraseEnv(const string &env);
-        bool PraseInstruction(const string &task);
+        bool ParseEnv(const string &env);
+        bool ParseInstruction(const string &task);
         void PrintEnv();
         void Fini();
 
     private:
-        bool PraseEnvSentence(const string &str);
+        bool ParseEnvSentence(const string &str);
         /**
          * Atomic action Move
          * @param x location number
