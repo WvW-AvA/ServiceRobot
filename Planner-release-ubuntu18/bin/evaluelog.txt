@@ -2,269 +2,227 @@ Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
-Start for a new team: ATRI
-The initial score is 0.
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+Computed answer set is 
 ATRI's score is : 100
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+Computed answer set is 
 ATRI's score is : 100
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+Computed answer set is 
 ATRI's score is : 100
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+Computed answer set is 
 ATRI's score is : 100
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+Computed answer set is 
 ATRI's score is : 100
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+Computed answer set is 
 ATRI's score is : 100
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 100
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 100
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 100
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 200
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+Computed answer set is 
+ATRI's score is : 0
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+ATRI's score is : 0
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+ATRI's score is : 0
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+ATRI's score is : 0
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+ATRI's score is : 0
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+ATRI's score is : 98
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+ATRI's score is : 98
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+ATRI's score is : 0
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+ATRI's score is : 0
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+ATRI's score is : 98

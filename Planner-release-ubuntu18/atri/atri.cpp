@@ -21,7 +21,10 @@ void ATRI::Init()
 void ATRI::Plan()
 {
     //此处添加测试代码
-    ParseEnv(GetEnvDes());
+    if (ParseEnv(GetEnvDes()) == false)
+    {
+        return;
+    }
     PrintEnv();
     ParseInstruction(GetTaskDes());
 }
@@ -90,6 +93,7 @@ bool ATRI::ParseInstruction(const string &taskDis)
         cout << v;
     return true;
 }
+
 bool ATRI::ParseEnvSentence(const string &str)
 {
     int pos = 1;
@@ -103,8 +107,11 @@ bool ATRI::ParseEnvSentence(const string &str)
         }
     }
     if (words.size() != 2 && words.size() != 3)
+    {
+        cout << RED << "Env Sentence error\n"
+             << RESET;
         return false;
-
+    }
     if (words[0] == "hold")
     {
         this->hold_id = stoi(words[1]);
@@ -125,17 +132,25 @@ bool ATRI::ParseEnvSentence(const string &str)
         {
             auto p = dynamic_pointer_cast<Container>(objects[ind]);
             if (p == nullptr)
-                return false;
+            {
+                auto p = make_shared<Container>(objects[ind]);
+                containers.push_back(p);
+                objects[ind] = p;
+            }
             p->isOpen = true;
         }
         else if (words[0] == "closed")
         {
             auto p = dynamic_pointer_cast<Container>(objects[ind]);
             if (p == nullptr)
-                return false;
+            {
+                auto p = make_shared<Container>(objects[ind]);
+                containers.push_back(p);
+                objects[ind] = p;
+            }
             p->isOpen = false;
         }
-        if (words[0] == "at")
+        else if (words[0] == "at")
         {
             objects[ind]->location = stoi(words[2]);
         }
@@ -147,43 +162,61 @@ bool ATRI::ParseEnvSentence(const string &str)
         {
             if (words[2] == "big")
             {
-                auto p = make_shared<BigObject>(objects[ind]);
-                bigObjects.push_back(p);
-                objects[ind] = p;
+                if (dynamic_pointer_cast<BigObject>(objects[ind]) == nullptr)
+                {
+                    auto p = make_shared<BigObject>(objects[ind]);
+                    bigObjects.push_back(p);
+                    objects[ind] = p;
+                }
             }
             else if (words[2] == "small")
             {
-                auto p = make_shared<SmallObject>(objects[ind]);
-                smallObjects.push_back(p);
-                objects[ind] = p;
+                if (dynamic_pointer_cast<SmallObject>(objects[ind]) == nullptr)
+                {
+                    auto p = make_shared<SmallObject>(objects[ind]);
+                    smallObjects.push_back(p);
+                    objects[ind] = p;
+                }
             }
         }
         else if (words[0] == "color")
         {
             auto p = dynamic_pointer_cast<SmallObject>(objects[ind]);
             if (p == nullptr)
-                return false;
+            {
+                p = make_shared<SmallObject>(objects[ind]);
+                smallObjects.push_back(p);
+                objects[ind] = p;
+            }
             p->color = words[2];
         }
         else if (words[0] == "inside")
         {
             auto p = dynamic_pointer_cast<SmallObject>(objects[ind]);
             if (p == nullptr)
-                return false;
+            {
+                p = make_shared<SmallObject>(objects[ind]);
+                smallObjects.push_back(p);
+                objects[ind] = p;
+            }
             p->inside = stoi(words[2]);
         }
         else if (words[0] == "type")
         {
             if (words[2] == "container")
             {
-                auto p = make_shared<Container>(objects[ind]);
-                containers.push_back(p);
-                objects[ind] = p;
+                if (dynamic_pointer_cast<Container>(objects[ind]) == nullptr)
+                {
+                    auto p = make_shared<Container>(objects[ind]);
+                    containers.push_back(p);
+                    objects[ind] = p;
+                }
             }
         }
     }
     return true;
 }
+
 bool ATRI::ParseEnv(const string &env)
 {
     regex reg("\\(.*?\\)");
@@ -196,14 +229,22 @@ bool ATRI::ParseEnv(const string &env)
         if (ParseEnvSentence(str) == false)
             return false;
     }
-    hold = dynamic_pointer_cast<SmallObject>(objects[hold_id]);
-    plate = dynamic_pointer_cast<SmallObject>(objects[plate_id]);
+    if (hold_id != NONE)
+        hold = dynamic_pointer_cast<SmallObject>(objects[hold_id]);
+    if (plate_id != NONE)
+        plate = dynamic_pointer_cast<SmallObject>(objects[plate_id]);
 
     for (int i = 0; i < smallObjects.size(); i++)
     {
         if (smallObjects[i]->inside != UNKNOWN)
         {
-            dynamic_pointer_cast<Container>(objects[smallObjects[i]->inside])->smallObjectsInside.push_back(smallObjects[i]);
+            auto p = dynamic_pointer_cast<Container>(objects[smallObjects[i]->inside]);
+            if (p)
+                p->smallObjectsInside.push_back(smallObjects[i]);
+            else
+            {
+                cout << p << endl;
+            }
         }
         if (smallObjects[i]->location != UNKNOWN)
         {
@@ -217,11 +258,32 @@ bool ATRI::ParseEnv(const string &env)
             }
         }
     }
+
+    for (auto v : objects)
+        cout << v;
+
     return true;
 }
-void ATRI::Fini()
+void ATRI::ParseInfo(const Instruction &info)
 {
-    cout << "#(ATRI): Fini" << endl;
+    if (info.behave == "on")
+    {
+    }
+    else if (info.behave == "near")
+    {
+    }
+    else if (info.behave == "plate")
+    {
+    }
+    else if (info.behave == "inside")
+    {
+    }
+    else if (info.behave == "opened")
+    {
+    }
+    else if (info.behave == "closed")
+    {
+    }
 }
 void ATRI::PrintEnv()
 {
@@ -253,10 +315,16 @@ void ATRI::PrintEnv()
     cout << "UnknownPos:";
     for (auto v : unknownPos)
     {
-        cout << RED << "(" << v->id << " " << v->sort << ")" << RESET;
+        cout << BLUE << "(" << v->id << " " << v->sort << ")" << RESET;
     }
     cout << endl;
 }
+
+void ATRI::Fini()
+{
+    cout << "#(ATRI): Fini" << endl;
+}
+#pragma region override_ATRI_AtomBehavious
 bool ATRI::TakeOut(unsigned int a, unsigned int b)
 {
     bool res = Plug::TakeOut(a, b);
@@ -318,6 +386,8 @@ bool ATRI::Move(unsigned int a)
     cout << "Move:" << res << endl;
     return res;
 }
+#pragma endregion
+
 void split_string(vector<string> &out, const string &str_source, char mark)
 {
     int last = 0;
@@ -348,6 +418,7 @@ bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
     }
     return ret;
 }
+
 Instruction::Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<ATRI> &atri)
 {
     vector<string> disc;

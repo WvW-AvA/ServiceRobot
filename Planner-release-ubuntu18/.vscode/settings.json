@@ -6,6 +6,7 @@
         "main.h": "c",
         "stm32f1xx_hal_conf.h": "c",
         "iosfwd": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "ostream": "cpp"
     }
 }

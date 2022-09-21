@@ -18,8 +18,8 @@ using namespace std;
 #define GREEN "\033[32m"  /* Green */
 #define YELLOW "\033[33m" /* Yellow */
 #define BLUE "\033[34m"   /* Blue */
-
 #define UNKNOWN -1
+#define NONE 0
 namespace _home
 {
     class Instruction;
@@ -74,7 +74,7 @@ namespace _home
     {
     public:
         vector<shared_ptr<SmallObject>> smallObjectsInside;
-        bool isOpen;
+        int isOpen;
         Container(int id, int location = UNKNOWN, bool isOpen = true, string sort = "") : BigObject(id, location, sort), isOpen(isOpen) {}
         Container(shared_ptr<Object> obj) : BigObject(obj) {}
         Container(shared_ptr<BigObject> obj) : BigObject(*obj) {}
@@ -96,13 +96,13 @@ namespace _home
         shared_ptr<SmallObject> hold;
         shared_ptr<SmallObject> plate;
 
-        int hold_id, plate_id;
+        int hold_id = NONE, plate_id = NONE;
 
         Robot(int id, int location = UNKNOWN) : Object(id, "robot", location) {}
         Robot() : Robot(0) {}
         virtual string ToString() override
         {
-            return Object::ToString() + "hold:\n" + hold->ToString() + "plate:\n" + plate->ToString();
+            return Object::ToString() + "hold:\n" + (hold != nullptr ? hold->ToString() : "") + "plate:\n" + (plate != nullptr ? plate->ToString() : "");
         }
         ~Robot() {}
     };
@@ -144,6 +144,9 @@ namespace _home
 
         bool ParseEnv(const string &env);
         bool ParseInstruction(const string &task);
+        void ParseInfo(const Instruction &info);
+        void DoTask(const Instruction &task);
+
         void PrintEnv();
         void Fini();
 
