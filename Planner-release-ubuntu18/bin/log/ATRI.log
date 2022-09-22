@@ -14,7 +14,7 @@ Grader path: ../lib/libasp
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:info (opened X) (:cond (sort X refrigerator)))) (:cons_not (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y closet)))) (:cons_notnot (:info (on X Y) (:cond (sort X bottle) (color X green) (sort Y desk)))) (:task (puton X Y) (:cond (sort X can) (sort Y bed))) (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y television))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard))) (:task (pickup X) (:cond (sort X bottle))) (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y table))) (:task (puton X Y) (:cond (sort X book) (sort Y table))) (:task (give human X) (:cond (sort X book) (color X white))) (:task (goto X) (:cond (sort X sofa))) )
 # Results:
 
-# Time: 0
-# Score: 200
+# Time: 0.005
+# Score: 0
 
-Total Score: 200
+Total Score: 0
