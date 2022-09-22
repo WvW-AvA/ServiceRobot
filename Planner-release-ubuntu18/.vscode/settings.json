@@ -7,6 +7,13 @@
         "stm32f1xx_hal_conf.h": "c",
         "iosfwd": "cpp",
         "random": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "*.ipp": "cpp",
+        "*.tcc": "cpp",
+        "unordered_map": "cpp",
+        "fstream": "cpp",
+        "istream": "cpp",
+        "numeric": "cpp",
+        "sstream": "cpp"
     }
 }

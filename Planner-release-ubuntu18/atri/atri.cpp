@@ -28,11 +28,11 @@ void ATRI::Plan()
              << RESET;
         return;
     }
+    Move(1);
     PrintEnv();
     cout << endl;
     ParseInstruction(GetTaskDes());
-    Move(1);
-    PrintEnv();
+    PrintInstruction();
 }
 
 bool ATRI::ParseInstruction(const string &taskDis)
@@ -247,17 +247,18 @@ bool ATRI::ParseEnv(const string &env)
                      << RESET;
             }
         }
-        if (smallObjects[i]->location != UNKNOWN)
-        {
-            for (auto big : bigObjects)
-            {
-                if (big->location == smallObjects[i]->location)
-                {
-                    big->smallObjectsOn.push_back(smallObjects[i]);
-                    break;
-                }
-            }
-        }
+        //同一位置不一定就在上面
+        // if (smallObjects[i]->location != UNKNOWN)
+        // {
+        //     for (auto big : bigObjects)
+        //     {
+        //         if (big->location == smallObjects[i]->location)
+        //         {
+        //             big->smallObjectsOn.push_back(smallObjects[i]);
+        //             break;
+        //         }
+        //     }
+        // }
     }
 
     // for (auto v : objects)
@@ -270,9 +271,16 @@ void ATRI::ParseInfo(const Instruction &info)
 {
     if (info.behave == "on")
     {
+        for (auto v : info.X)
+        {
+            v->location = info.Y[0]->location;
+            dynamic_pointer_cast<BigObject>(info.Y[0])->smallObjectsOn.push_back(dynamic_pointer_cast<SmallObject>(v));
+        }
     }
     else if (info.behave == "near")
     {
+        for (auto v : info.X)
+            v->location = info.Y[0]->location;
     }
     else if (info.behave == "plate")
     {
