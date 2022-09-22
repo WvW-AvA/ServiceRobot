@@ -14,8 +14,8 @@ Grader path: ../lib/libasp
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:info (opened X) (:cond (sort X refrigerator)))) (:cons_not (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y closet)))) (:cons_notnot (:info (on X Y) (:cond (sort X bottle) (color X green) (sort Y desk)))) (:task (puton X Y) (:cond (sort X can) (sort Y bed))) (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y television))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard))) (:task (pickup X) (:cond (sort X bottle))) (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y table))) (:task (puton X Y) (:cond (sort X book) (sort Y table))) (:task (give human X) (:cond (sort X book) (color X white))) (:task (goto X) (:cond (sort X sofa))) )
 # Results:
 
-# Time: 0.001
-# Score: 198
+# Time: 0
+# Score: 200
 
 <02.xml>
 # Environment Description:
@@ -34,8 +34,8 @@ Grader path: ../lib/libasp
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (inside X Y) (:cond (sort X remotecontrol) (sort Y washmachine))) (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X red) (sort Y chair)))) (:task (puton X Y) (:cond (sort X can) (sort Y bed))) (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y cupboard))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y washmachine))) (:task (give human X) (:cond (sort X book))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y desk))) (:task (putin X Y) (:cond (sort X cup) (sort Y microwave))) )
 # Results:
 
-# Time: 0.001
-# Score: 98
+# Time: 0
+# Score: 100
 
 <04.xml>
 # Environment Description:
@@ -54,8 +54,8 @@ Grader path: ../lib/libasp
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:task (open X) (:cond (sort X refrigerator)))) (:task (puton X Y) (:cond (sort X book) (sort Y bed))) (:task (putin X Y) (:cond (sort X bottle) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair))) (:task (pickup X) (:cond (sort X can))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard))) (:task (putin X Y) (:cond (sort X cup) (sort Y microwave))) )
 # Results:
 
-# Time: 0
-# Score: 160
+# Time: 0.001
+# Score: 158
 
 <06.xml>
 # Environment Description:
@@ -84,7 +84,7 @@ Grader path: ../lib/libasp
 (:ins (:info (on X Y) (:cond (sort X book) (color X yellow) (sort Y plant))) (:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y closet))) (:task (close X) (:cond (sort X washmachine))) (:task (puton X Y) (:cond (sort X can) (color X black) (sort Y plant))) (:task (putin X Y) (:cond (sort X bottle) (sort Y refrigerator))) (:task (pickup X) (:cond (sort X remotecontrol) (color X white))) (:cons_not (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator)))) (:cons_not (:info (on X Y) (:cond (color X yellow) (sort X cup) (sort Y worktable)))) (:cons_not (:info (opened X) (:cond (sort X closet)))) )
 # Results:
 
-# Time: 0
+# Time: 0.001
 # Score: 0
 
 <09.xml>
@@ -104,8 +104,8 @@ Grader path: ../lib/libasp
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:task (open X) (:cond (sort X refrigerator)))) (:task (puton X Y) (:cond (sort X book) (sort Y bed))) (:task (putin X Y) (:cond (sort X bottle) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair))) (:task (pickup X) (:cond (sort X can))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard))) (:task (putin X Y) (:cond (sort X cup) (sort Y microwave))) )
 # Results:
 
-# Time: 0
-# Score: 160
+# Time: 0.001
+# Score: 158
 
 <11.xml>
 # Environment Description:
@@ -114,8 +114,8 @@ Grader path: ../lib/libasp
 (:ins (:task (pickup X) (:cond (sort X remotecontrol))) (:task (pickup X) (:cond (color X black) (sort X remotecontrol))) (:task (puton X Y) (:cond (sort X can) (sort Y worktable))) (:task (puton X Y) (:cond (sort X cup) (sort Y worktable))) (:task (goto X) (:cond (sort X chair))) (:cons_notnot (:info (on X Y) (:cond (sort X remotecontrol) (color X yellow) (sort Y teapoy)))) )
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <12.xml>
 # Environment Description:
@@ -154,8 +154,8 @@ Grader path: ../lib/libasp
 (:ins (:info (inside X Y) (:cond (sort X bottle) (sort Y refrigerator))) (:info (closed X) (:cond (sort X closet))) (:task (open X) (:cond (sort X cupboard))) (:task (goto X) (:cond (sort X plant))) (:task (pickup X) (:cond (sort X cup))) (:task (putin X Y) (:cond (sort X can) (color X yellow) (sort Y refrigerator))) (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X green) (sort Y cupboard)))) (:cons_not (:task (goto X) (:cond (sort X couch)))) )
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <16.xml>
 # Environment Description:
@@ -174,8 +174,8 @@ Grader path: ../lib/libasp
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y refrigerator))) (:cons_not (:task (goto X) (:cond (sort X human)))) (:cons_not (:task (goto X) (:cond (sort X bed)))) (:cons_not (:task (goto X) (:cond (sort X microwave)))) (:cons_not (:task (goto X) (:cond (sort X cupboard)))) )
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <18.xml>
 # Environment Description:
@@ -214,8 +214,8 @@ Grader path: ../lib/libasp
 (:ins (:cons_not (:task (pickup X) (:cond (sort X book) (color X red)))) (:cons_not (:task (pickup X) (:cond (sort X cup) (color X red)))) (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X black) (sort Y couch)))) (:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X blue) (sort Y refrigerator)))) (:task (puton X Y) (:cond (sort X cup) (color X blue) (sort Y table))) (:task (putin X Y) (:cond (sort X cup) (color X green) (sort Y refrigerator))) (:task (open X) (:cond (sort X refrigerator))) (:task (putin X Y) (:cond (sort X can) (color X white) (sort Y refrigerator))) (:task (puton X Y) (:cond (sort X book) (sort Y desk))) )
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <22.xml>
 # Environment Description:
@@ -224,8 +224,8 @@ Grader path: ../lib/libasp
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (putin X Y) (:cond (sort X can) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X bottle) (sort Y airconditioner))) (:task (goto X) (:cond (sort X sofa))) (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y television))) (:cons_notnot (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator)))) )
 # Results:
 
-# Time: 0.001
-# Score: 98
+# Time: 0
+# Score: 100
 
 <23.xml>
 # Environment Description:
@@ -314,8 +314,8 @@ Grader path: ../lib/libasp
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_notnot (:info (plate X) (:cond (sort X can)))) (:cons_notnot (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y closet)))) (:cons_not (:info (inside X Y) (:cond (sort X book) (color X yellow) (sort Y closet)))) (:cons_not (:info (inside X Y) (:cond (sort X book) (color X green) (sort Y closet)))) (:task (putin X Y) (:cond (sort X book) (sort Y closet))) (:task (goto X) (:cond (sort X human))) (:task (puton X Y) (:cond (sort X bottle) (sort Y microwave))) (:task (pickup X) (:cond (sort X remotecontrol))) )
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <32.xml>
 # Environment Description:
@@ -354,8 +354,8 @@ Grader path: ../lib/libasp
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (putin X Y) (:cond (sort X can) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y sofa))) (:task (goto X) (:cond (sort X sofa))) (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y television))) (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y sofa))) (:task (close X) (:cond (sort X microwave))) )
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <36.xml>
 # Environment Description:
@@ -384,8 +384,8 @@ Grader path: ../lib/libasp
 (:ins (:task (putdown X) (:cond (sort X remotecontrol) (color X red))) (:task (puton X Y) (:cond (sort X cup) (color X white) (type Y container) (sort Y closet))) (:task (putin X Y) (:cond (sort X cup) (sort Y washmachine) (type Y container))) (:task (goto X) (:cond (sort X workspace))) (:task (pickup X) (:cond (sort X book) (color X black))) )
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <39.xml>
 # Environment Description:
@@ -494,8 +494,8 @@ Grader path: ../lib/libasp
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (putin X Y) (:cond (sort X can) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y airconditioner))) (:task (goto X) (:cond (sort X sofa))) (:task (puton X Y) (:cond (sort X book) (sort Y sofa))) (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y television))) (:task (close X) (:cond (sort X microwave))) (:cons_notnot (:info (plate X) (:cond (sort X bottle) (color X yellow)))) )
 # Results:
 
-# Time: 0.001
-# Score: 98
+# Time: 0
+# Score: 100
 
 <50.xml>
 # Environment Description:
@@ -504,7 +504,7 @@ Grader path: ../lib/libasp
 (:ins (:task (goto X) (:cond (sort X desk))) (:task (pickup X) (:cond (color X red) (sort X remotecontrol))) (:task (puton X Y) (:cond (color X blue) (sort X cup) (sort Y airconditioner))) (:info (on X Y) (:cond (color X red) (sort X cup) (sort Y teapoy))) (:info (closed X) (:cond (type X container) (sort X cupboard))) (:cons_notnot (:info (opened X) (:cond (type X container) (sort X closet)))) )
 # Results:
 
-# Time: 0.001
-# Score: 98
+# Time: 0
+# Score: 100
 
-Total Score: 5696
+Total Score: 5688
