@@ -147,6 +147,7 @@ namespace _home
         void ParseInfo(const Instruction &info);
         void DoTask(const Instruction &task);
 
+        void PrintInstruction();
         void PrintEnv();
         void Fini();
 

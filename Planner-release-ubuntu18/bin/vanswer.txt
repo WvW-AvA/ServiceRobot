@@ -2,7 +2,7 @@ Answer: 1
 
 SATISFIABLE
 
-Models      : 1+    
+Models      : 1     
 Time        : 0.000
   Prepare   : 0.000
   Prepro.   : 0.000

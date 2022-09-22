@@ -21,12 +21,17 @@ void ATRI::Init()
 void ATRI::Plan()
 {
     //此处添加测试代码
+    // cout << GetEnvDes() << endl;
     if (ParseEnv(GetEnvDes()) == false)
     {
+        cout << RED << "Env Prase Error\n"
+             << RESET;
         return;
     }
     PrintEnv();
+    cout << endl;
     ParseInstruction(GetTaskDes());
+    PrintInstruction();
 }
 
 bool ATRI::ParseInstruction(const string &taskDis)
@@ -76,21 +81,6 @@ bool ATRI::ParseInstruction(const string &taskDis)
             infos.push_back(Instruction(v, shared_from_this()));
         }
     }
-    cout << "Task:\n";
-    for (auto v : tasks)
-        cout << v;
-    cout << "\nInfo:\n";
-    for (auto v : infos)
-        cout << v;
-    cout << "\nNot_Info:\n";
-    for (auto v : not_infoConstrains)
-        cout << v;
-    cout << "\nNot_Task:\n";
-    for (auto v : not_taskConstrains)
-        cout << v;
-    cout << "\nNotNot_Info:\n";
-    for (auto v : notnot_infoConstrains)
-        cout << v;
     return true;
 }
 
@@ -227,7 +217,11 @@ bool ATRI::ParseEnv(const string &env)
     {
         string str = m.str();
         if (ParseEnvSentence(str) == false)
+        {
+            cout << RED << "Parse Env Sentence ERROR\n"
+                 << RESET;
             return false;
+        }
     }
     if (hold_id != NONE)
         hold = dynamic_pointer_cast<SmallObject>(objects[hold_id]);
@@ -240,10 +234,16 @@ bool ATRI::ParseEnv(const string &env)
         {
             auto p = dynamic_pointer_cast<Container>(objects[smallObjects[i]->inside]);
             if (p)
+            {
                 p->smallObjectsInside.push_back(smallObjects[i]);
+                smallObjects[i]->location = p->location;
+            }
             else
             {
-                cout << p << endl;
+                cout << RED << "Type ERROR\n";
+                cout << dynamic_pointer_cast<Object>(smallObjects[i]) << endl;
+                cout << objects[smallObjects[i]->inside] << endl
+                     << RESET;
             }
         }
         if (smallObjects[i]->location != UNKNOWN)
@@ -259,11 +259,12 @@ bool ATRI::ParseEnv(const string &env)
         }
     }
 
-    for (auto v : objects)
-        cout << v;
+    // for (auto v : objects)
+    //   cout << v;
 
     return true;
 }
+
 void ATRI::ParseInfo(const Instruction &info)
 {
     if (info.behave == "on")
@@ -284,6 +285,25 @@ void ATRI::ParseInfo(const Instruction &info)
     else if (info.behave == "closed")
     {
     }
+}
+
+void ATRI::PrintInstruction()
+{
+    cout << "Task:\n";
+    for (auto v : tasks)
+        cout << v;
+    cout << "\nInfo:\n";
+    for (auto v : infos)
+        cout << v;
+    cout << "\nNot_Info:\n";
+    for (auto v : not_infoConstrains)
+        cout << v;
+    cout << "\nNot_Task:\n";
+    for (auto v : not_taskConstrains)
+        cout << v;
+    cout << "\nNotNot_Info:\n";
+    for (auto v : notnot_infoConstrains)
+        cout << v;
 }
 void ATRI::PrintEnv()
 {
@@ -307,6 +327,23 @@ void ATRI::PrintEnv()
         {
             if (v->sort == "robot")
                 cout << GREEN << "(" << v->id << " " << v->sort << ")" << RESET;
+            else if (dynamic_pointer_cast<BigObject>(v))
+            {
+                auto p = dynamic_pointer_cast<BigObject>(v);
+                cout << YELLOW << "(" << p->id << " " << p->sort << " on:[";
+                for (int c = 0; c < p->smallObjectsOn.size(); c++)
+                    cout << (c == 0 ? "" : ",") << p->smallObjectsOn[c]->id;
+                cout << "]";
+                if (dynamic_pointer_cast<Container>(v))
+                {
+                    auto p = dynamic_pointer_cast<Container>(v);
+                    cout << " inside:[";
+                    for (int c = 0; c < p->smallObjectsInside.size(); c++)
+                        cout << (c == 0 ? "" : ",") << p->smallObjectsInside[c]->id;
+                    cout << "]";
+                }
+                cout << ")" << RESET;
+            }
             else
                 cout << "(" << v->id << " " << v->sort << ")";
         }
@@ -323,7 +360,19 @@ void ATRI::PrintEnv()
 void ATRI::Fini()
 {
     cout << "#(ATRI): Fini" << endl;
+    objects.clear();
+    smallObjects.clear();
+    bigObjects.clear();
+    containers.clear();
+    tasks.clear();
+    infos.clear();
+    not_infoConstrains.clear();
+    not_taskConstrains.clear();
+    notnot_infoConstrains.clear();
+
+    objects.push_back(shared_from_this());
 }
+
 #pragma region override_ATRI_AtomBehavious
 bool ATRI::TakeOut(unsigned int a, unsigned int b)
 {
@@ -401,10 +450,12 @@ void split_string(vector<string> &out, const string &str_source, char mark)
     }
     out.push_back(str_source.substr(last, str_source.size() - 1));
 }
+
 string Condition::ToString() const
 {
     return "(Sort:" + sort + ",Color:" + color + ")";
 }
+
 bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
 {
     bool ret = true;
@@ -441,6 +492,7 @@ Instruction::Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<AT
     }
     SearchConditionObject(atri);
 }
+
 void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
 {
     for (auto v : atri->objects)
@@ -451,6 +503,7 @@ void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
             Y.push_back(v);
     }
 }
+
 string Instruction::ToString() const
 {
     return "Behave:" + behave + "\nConditionX:" + conditionX.ToString() + "\nConditionY:" + conditionY.ToString() + "\n";
