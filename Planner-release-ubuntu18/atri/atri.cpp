@@ -260,7 +260,7 @@ bool ATRI::ParseEnv(const string &env)
     }
 
     // for (auto v : objects)
-    //   cout << v;
+    //    cout << v;
 
     return true;
 }
@@ -305,6 +305,7 @@ void ATRI::PrintInstruction()
     for (auto v : notnot_infoConstrains)
         cout << v;
 }
+
 void ATRI::PrintEnv()
 {
     vector<vector<shared_ptr<Object>>> objPos;
