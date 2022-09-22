@@ -29,10 +29,11 @@ void ATRI::Plan()
         return;
     }
     Move(1);
+    PickUp(13);
     PrintEnv();
     cout << endl;
-    ParseInstruction(GetTaskDes());
-    PrintInstruction();
+    //ParseInstruction(GetTaskDes());
+    //PrintInstruction();
 }
 
 bool ATRI::ParseInstruction(const string &taskDis)

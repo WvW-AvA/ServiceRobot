@@ -1,1 +1,1 @@
-occurs(move(1), 1).
+occurs(pickup(13), 1).
