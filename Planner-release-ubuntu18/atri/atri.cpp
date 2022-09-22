@@ -336,7 +336,7 @@ void ATRI::PrintEnv()
         for (auto v : objPos[i])
         {
             if (v->sort == "robot")
-                cout << GREEN << "(" << v->id << " " << v->sort << ")" << RESET;
+                cout << GREEN << "(" << v->sort << " hold:" << hold_id << " plate:" << plate_id << ")" << RESET;
             else if (dynamic_pointer_cast<BigObject>(v))
             {
                 auto p = dynamic_pointer_cast<BigObject>(v);
