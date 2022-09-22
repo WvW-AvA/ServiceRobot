@@ -1,1 +1,1 @@
-./vruntask.sh: line 2: ./iclingo: cannot execute binary file: Exec format error
+% warning: false/2 is never defined

@@ -31,7 +31,8 @@ void ATRI::Plan()
     PrintEnv();
     cout << endl;
     ParseInstruction(GetTaskDes());
-    PrintInstruction();
+    Move(1);
+    PrintEnv();
 }
 
 bool ATRI::ParseInstruction(const string &taskDis)
@@ -378,120 +379,145 @@ void ATRI::Fini()
 bool ATRI::TakeOut(unsigned int a, unsigned int b)
 {
     bool res = Plug::TakeOut(a, b);
-    if(res)
+    if (res)
     {
-        if(location == dynamic_pointer_cast<Container>(objects[b])->location && hold_id == UNKNOWN && dynamic_pointer_cast<SmallObject>(objects[a])->inside)
+        if (location == dynamic_pointer_cast<Container>(objects[b])->location && hold_id == UNKNOWN && dynamic_pointer_cast<SmallObject>(objects[a])->inside)
         {
             dynamic_pointer_cast<SmallObject>(objects[a])->inside = false;
             hold_id = a;
             cout << "TakeOut:" << res << endl;
         }
     }
-    cout << "TakeOutfailed"<< endl;
+    else
+    {
+        cout << "TakeOutfailed" << endl;
+    }
     return res;
 }
 bool ATRI::PutIn(unsigned int a, unsigned int b)
 {
     bool res = Plug::PutIn(a, b);
-    if(res)
+    if (res)
     {
-        if(location == dynamic_pointer_cast<Container>(objects[b])->location && hold_id == a && dynamic_pointer_cast<Container>(objects[b])->isOpen)
+        if (location == dynamic_pointer_cast<Container>(objects[b])->location && hold_id == a && dynamic_pointer_cast<Container>(objects[b])->isOpen)
         {
             dynamic_pointer_cast<SmallObject>(objects[a])->inside = true;
             hold_id = UNKNOWN;
             cout << "PutIn:" << res << endl;
         }
     }
-    cout << "PutInfailed" << endl;
+    else
+    {
+        cout << "PutInfailed" << endl;
+    }
     return res;
 }
 bool ATRI::Close(unsigned int a)
 {
     bool res = Plug::Close(a);
-    shared_ptr<Container> container1 = dynamic_pointer_cast<Container>(objects[a]);\
-    if(container1 != nullptr){
-    if(res)
+    shared_ptr<Container> container1 = dynamic_pointer_cast<Container>(objects[a]);
+    if (container1 != nullptr)
+    {
+        if (res)
         {
-            if(dynamic_pointer_cast<Container>(objects[a])->isOpen = true && hold_id == UNKNOWN &&location == dynamic_pointer_cast<Container>(objects[a])->location)
+            if (dynamic_pointer_cast<Container>(objects[a])->isOpen = true && hold_id == UNKNOWN && location == dynamic_pointer_cast<Container>(objects[a])->location)
             {
                 dynamic_pointer_cast<Container>(objects[a])->isOpen = false;
                 cout << "Close:" << res << endl;
             }
         }
     }
-    cout << "Closefailed" << endl;
+    else
+    {
+        cout << "Closefailed" << endl;
+    }
     return res;
 }
 bool ATRI::Open(unsigned int a)
 {
     bool res = Plug::Open(a);
-    if(res)
+    if (res)
     {
-        if(dynamic_pointer_cast<Container>(objects[a])->isOpen = false && hold_id == UNKNOWN && location == dynamic_pointer_cast<Container>(objects[a])->location)
+        if (dynamic_pointer_cast<Container>(objects[a])->isOpen = false && hold_id == UNKNOWN && location == dynamic_pointer_cast<Container>(objects[a])->location)
         {
             dynamic_pointer_cast<Container>(objects[a])->isOpen = true;
             cout << "Open:" << res << endl;
         }
     }
-    cout << "Openfailed" << endl;
+    else
+    {
+        cout << "Openfailed" << endl;
+    }
     return res;
 }
 bool ATRI::FromPlate(unsigned int a)
 {
     bool res = Plug::FromPlate(a);
-    if(res)
+    if (res)
     {
-        if(plate_id == a && hold_id == UNKNOWN)
+        if (plate_id == a && hold_id == UNKNOWN)
         {
             hold_id = a;
             plate_id = UNKNOWN;
             cout << "FromPlate:" << res << endl;
         }
     }
-    cout << "FromPlatefailed" << endl;
+    else
+    {
+        cout << "FromPlatefailed" << endl;
+    }
     return res;
 }
 bool ATRI::ToPlate(unsigned int a)
 {
     bool res = Plug::ToPlate(a);
-    if(res)
+    if (res)
     {
-        if(hold_id == a && plate_id == UNKNOWN)
+        if (hold_id == a && plate_id == UNKNOWN)
         {
             hold_id = UNKNOWN;
             plate_id = a;
             cout << "ToPlate:" << res << endl;
         }
     }
-    cout << "ToPlatefailed" << endl;
+    else
+    {
+        cout << "ToPlatefailed" << endl;
+    }
     return res;
 }
 bool ATRI::PutDown(unsigned int a)
 {
     bool res = Plug::PutDown(a);
-    if(res)
+    if (res)
     {
-        if(hold_id == a)
+        if (hold_id == a)
         {
             hold_id = UNKNOWN;
             cout << "PutDown:" << res << endl;
         }
     }
-    cout << "PutDownfailed" << endl;
+    else
+    {
+        cout << "PutDownfailed" << endl;
+    }
     return res;
 }
 bool ATRI::PickUp(unsigned int a)
 {
     bool res = Plug::PickUp(a);
-    if(res)
+    if (res)
     {
-        if(((objects[a]) == smallObjects[a]) && hold_id == UNKNOWN && (!dynamic_pointer_cast<SmallObject>(objects[a])->inside))
+        if (((objects[a]) == smallObjects[a]) && hold_id == UNKNOWN && (!dynamic_pointer_cast<SmallObject>(objects[a])->inside))
         {
             hold_id = a;
             cout << "PickUp:" << res << endl;
         }
     }
-    cout << "PickUpfailed" << endl;
+    else
+    {
+        cout << "PickUpfailed" << endl;
+    }
     return res;
 }
 bool ATRI::Move(unsigned int a)
@@ -504,7 +530,10 @@ bool ATRI::Move(unsigned int a)
         plate->location = a;
         cout << "Move:" << res << endl;
     }
-    cout << "Movefailed" << endl;
+    else
+    {
+        cout << "Movefailed" << endl;
+    }
     return res;
 }
 #pragma endregion
