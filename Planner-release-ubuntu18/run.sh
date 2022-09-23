@@ -1,6 +1,6 @@
 #!/bin/bash
 cd build 
-make -j16
+make 
 cd ../bin 
 ./atri 
 cd ..

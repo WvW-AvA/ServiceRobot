@@ -1,1 +1,1 @@
-occurs(toplate(18), 1).
+occurs(takeout(13, 8), 1).

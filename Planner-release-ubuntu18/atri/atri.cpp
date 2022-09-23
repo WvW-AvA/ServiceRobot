@@ -455,9 +455,10 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
     bool res = Plug::TakeOut(a, b);
     if (res)
     {
-        if (location == ObjectPtrCast<Container>(objects[b])->location && hold_id == UNKNOWN && dynamic_pointer_cast<SmallObject>(objects[a])->inside)
+        if (location == ObjectPtrCast<Container>(objects[b])->location && hold == nullptr && ObjectPtrCast<SmallObject>(objects[a])->inside)
         {
             ObjectPtrCast<SmallObject>(objects[a])->inside = false;
+            hold = ObjectPtrCast<SmallObject>(objects[a]);
             hold_id = a;
             cout << "TakeOut:" << res << endl;
         }
@@ -473,10 +474,11 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
     bool res = Plug::PutIn(a, b);
     if (res)
     {
-        if (location == ObjectPtrCast<Container>(objects[b])->location && hold_id == a && ObjectPtrCast<Container>(objects[b])->isOpen)
+        if (location == ObjectPtrCast<Container>(objects[b])->location && hold == ObjectPtrCast<SmallObject>(objects[a]) && ObjectPtrCast<Container>(objects[b])->isOpen)
         {
             ObjectPtrCast<SmallObject>(objects[a])->inside = true;
-            hold_id = UNKNOWN;
+            hold = nullptr;
+            hold_id = 0;
             cout << "PutIn:" << res << endl;
         }
     }
@@ -494,7 +496,7 @@ bool ATRI::Close(unsigned int a)
     {
         if (res)
         {
-            if (ObjectPtrCast<Container>(objects[a])->isOpen = true && hold_id == UNKNOWN && location == ObjectPtrCast<Container>(objects[a])->location)
+            if (ObjectPtrCast<Container>(objects[a])->isOpen = true && hold == nullptr && location == ObjectPtrCast<Container>(objects[a])->location)
             {
                 ObjectPtrCast<Container>(objects[a])->isOpen = false;
                 cout << "Close:" << res << endl;
@@ -510,12 +512,16 @@ bool ATRI::Close(unsigned int a)
 bool ATRI::Open(unsigned int a)
 {
     bool res = Plug::Open(a);
-    if (res)
+    shared_ptr<Container> container1 = ObjectPtrCast<Container>(objects[a]);
+    if(container1 != nullptr)
     {
-        if (ObjectPtrCast<Container>(objects[a])->isOpen = false && hold_id == UNKNOWN && location == ObjectPtrCast<Container>(objects[a])->location)
+        if (res)
         {
-            ObjectPtrCast<Container>(objects[a])->isOpen = true;
-            cout << "Open:" << res << endl;
+            if (ObjectPtrCast<Container>(objects[a])->isOpen = false && hold == nullptr && location == ObjectPtrCast<Container>(objects[a])->location)
+            {
+                ObjectPtrCast<Container>(objects[a])->isOpen = true;
+                cout << "Open:" << res << endl;
+            }
         }
     }
     else
@@ -529,10 +535,12 @@ bool ATRI::FromPlate(unsigned int a)
     bool res = Plug::FromPlate(a);
     if (res)
     {
-        if (plate_id == a && hold_id == UNKNOWN)
+        if (plate == ObjectPtrCast<SmallObject>(objects[a]) && hold == nullptr)
         {
-            hold_id = a;
-            plate_id = UNKNOWN;
+            hold_id = plate_id;
+            plate_id = 0;
+            hold = plate;
+            plate = nullptr;
             cout << "FromPlate:" << res << endl;
         }
     }
@@ -547,10 +555,12 @@ bool ATRI::ToPlate(unsigned int a)
     bool res = Plug::ToPlate(a);
     if (res)
     {
-        if (hold_id == a && plate_id == UNKNOWN)
+        if (hold  && plate == nullptr)
         {
-            hold_id = UNKNOWN;
-            plate_id = a;
+            plate = hold;
+            hold = nullptr;
+            plate_id = hold_id;
+            hold_id = 0;
             cout << "ToPlate:" << res << endl;
         }
     }
@@ -565,9 +575,10 @@ bool ATRI::PutDown(unsigned int a)
     bool res = Plug::PutDown(a);
     if (res)
     {
-        if (hold_id == a)
+        if (hold == ObjectPtrCast<SmallObject>(objects[a]))
         {
-            hold_id = UNKNOWN;
+            hold_id = 0;
+            hold = nullptr;
             cout << "PutDown:" << res << endl;
         }
     }
@@ -582,9 +593,10 @@ bool ATRI::PickUp(unsigned int a)
     bool res = Plug::PickUp(a);
     if (res)
     {
-        if (((objects[a]) == smallObjects[a]) && hold_id == UNKNOWN && (!ObjectPtrCast<SmallObject>(objects[a])->inside))
+        if (hold == nullptr)
         {
             hold_id = a;
+            hold = ObjectPtrCast<SmallObject>(objects[a]);
             cout << "PickUp:" << res << endl;
         }
     }
