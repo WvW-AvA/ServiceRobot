@@ -10,14 +10,10 @@
 #include "cserver/plug.hpp"
 #include "string"
 #include "unordered_map"
+#include "debuglog.hpp"
+
 using namespace std;
 
-#define RESET "\033[0m"
-#define BLACK "\033[30m"  /* Black */
-#define RED "\033[31m"    /* Red */
-#define GREEN "\033[32m"  /* Green */
-#define YELLOW "\033[33m" /* Yellow */
-#define BLUE "\033[34m"   /* Blue */
 #define UNKNOWN -1
 #define NONE 0
 namespace _home
@@ -106,6 +102,20 @@ namespace _home
         }
         ~Robot() {}
     };
+
+    //安全的Object转换，保证返回不为nullptr
+    template <class T>
+    __inline__ __attribute__((always_inline)) shared_ptr<T> ObjectPtrCast(const shared_ptr<Object> &obj)
+    {
+        auto p = dynamic_pointer_cast<T>(obj);
+        if (p == nullptr)
+        {
+            LOG_ERROR("Object (%d %s) cast error.", obj->id, obj->sort.c_str());
+            backtrace();
+            throw("Abort");
+        }
+        return p;
+    }
 
     struct SyntaxNode
     {
