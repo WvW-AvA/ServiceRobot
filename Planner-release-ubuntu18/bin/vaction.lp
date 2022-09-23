@@ -1,1 +1,1 @@
-occurs(putdown(20), 1).
+occurs(toplate(18), 1).

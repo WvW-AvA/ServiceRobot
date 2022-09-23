@@ -4,6 +4,7 @@
 using namespace _home;
 using namespace std;
 
+void split_string(vector<string> &out, const string &str_source, char mark);
 ostream &operator<<(ostream &os, shared_ptr<Object> obj);
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn);
 ostream &operator<<(ostream &os, const Instruction &instr);
@@ -20,25 +21,22 @@ void ATRI::Init()
 //////////////////////////////////////////////////////////////////////////
 void ATRI::Plan()
 {
-    //此处添加测试代码
-    // cout << GetEnvDes() << endl;
     if (ParseEnv(GetEnvDes()) == false)
     {
-        cout << RED << "Env Prase Error\n"
-             << RESET;
+        LOG_ERROR("Env Prase Error");
         return;
     }
     PrintEnv();
-    Move(5);
-    PutDown(13);
-    FromPlate(20);
+    ParseInstruction(GetTaskDes());
+
+    for (auto v : infos)
+    {
+        cout << v << endl;
+        ParseInfo(v);
+    }
     PrintEnv();
-    //Move(2);
-    PutDown(20);
-    PrintEnv();
-    cout << endl;
-    //ParseInstruction(GetTaskDes());
-    //PrintInstruction();
+    TestAutoBehave();
+    // PrintInstruction();
 }
 
 bool ATRI::ParseInstruction(const string &taskDis)
@@ -105,8 +103,7 @@ bool ATRI::ParseEnvSentence(const string &str)
     }
     if (words.size() != 2 && words.size() != 3)
     {
-        cout << RED << "Env Sentence error\n"
-             << RESET;
+        LOG_ERROR("Env Sentence error");
         return false;
     }
     if (words[0] == "hold")
@@ -225,33 +222,22 @@ bool ATRI::ParseEnv(const string &env)
         string str = m.str();
         if (ParseEnvSentence(str) == false)
         {
-            cout << RED << "Parse Env Sentence ERROR\n"
-                 << RESET;
+            LOG_ERROR("Parse Env Sentence ERROR");
             return false;
         }
     }
     if (hold_id != NONE)
-        hold = dynamic_pointer_cast<SmallObject>(objects[hold_id]);
+        hold = ObjectPtrCast<SmallObject>(objects[hold_id]);
     if (plate_id != NONE)
-        plate = dynamic_pointer_cast<SmallObject>(objects[plate_id]);
+        plate = ObjectPtrCast<SmallObject>(objects[plate_id]);
 
     for (int i = 0; i < smallObjects.size(); i++)
     {
         if (smallObjects[i]->inside != UNKNOWN)
         {
             auto p = dynamic_pointer_cast<Container>(objects[smallObjects[i]->inside]);
-            if (p)
-            {
-                p->smallObjectsInside.push_back(smallObjects[i]);
-                smallObjects[i]->location = p->location;
-            }
-            else
-            {
-                cout << RED << "Type ERROR\n";
-                cout << dynamic_pointer_cast<Object>(smallObjects[i]) << endl;
-                cout << objects[smallObjects[i]->inside] << endl
-                     << RESET;
-            }
+            p->smallObjectsInside.push_back(smallObjects[i]);
+            smallObjects[i]->location = p->location;
         }
         //同一位置不一定就在上面
         // if (smallObjects[i]->location != UNKNOWN)
@@ -280,26 +266,85 @@ void ATRI::ParseInfo(const Instruction &info)
         for (auto v : info.X)
         {
             v->location = info.Y[0]->location;
-            dynamic_pointer_cast<BigObject>(info.Y[0])->smallObjectsOn.push_back(dynamic_pointer_cast<SmallObject>(v));
+            ObjectPtrCast<BigObject>(info.Y[0])->smallObjectsOn.push_back(ObjectPtrCast<SmallObject>(v));
         }
     }
     else if (info.behave == "near")
     {
-        for (auto v : info.X)
-            v->location = info.Y[0]->location;
+        if (info.Y[0]->location != UNKNOWN)
+            for (auto v : info.X)
+                v->location = info.Y[0]->location;
+        else if (info.X[0]->location != UNKNOWN)
+        {
+            for (auto v : info.Y)
+                v->location = info.X[0]->location;
+        }
     }
     else if (info.behave == "plate")
     {
+        if (plate == nullptr)
+        {
+            plate = ObjectPtrCast<SmallObject>(info.X[0]);
+            plate_id = info.X[0]->id;
+        }
+        else
+        {
+            LOG_ERROR("The plate already have small object (%d %s)", plate->id, plate->sort.c_str());
+        }
     }
     else if (info.behave == "inside")
     {
+        auto c = ObjectPtrCast<Container>(info.Y[0]);
+        for (auto v : info.X)
+        {
+            auto p = ObjectPtrCast<SmallObject>(v);
+            p->inside = c->id;
+            c->smallObjectsInside.push_back(p);
+        }
     }
     else if (info.behave == "opened")
     {
+        for (auto v : info.X)
+        {
+            auto p = ObjectPtrCast<Container>(v);
+            p->isOpen = true;
+        }
     }
     else if (info.behave == "closed")
     {
+        for (auto v : info.X)
+        {
+            auto p = ObjectPtrCast<Container>(v);
+            p->isOpen = false;
+        }
     }
+}
+
+bool ATRI::DoBehavious(const string &behavious, unsigned int x)
+{
+    if (behavious == "move" || behavious == "Move")
+        return Move(x);
+    else if (behavious == "pickup" || behavious == "PickUp")
+        return PickUp(x);
+    else if (behavious == "close" || behavious == "Close")
+        return Close(x);
+    else if (behavious == "open" || behavious == "Open")
+        return Open(x);
+    else if (behavious == "fromplate" || behavious == "FromPlate")
+        return FromPlate(x);
+    else if (behavious == "toplate" || behavious == "ToPlate")
+        return ToPlate(x);
+    else if (behavious == "putdown" || behavious == "PutDown")
+        return PutDown(x);
+    return false;
+}
+bool ATRI::DoBehavious(const string &behavious, unsigned int x, unsigned int y)
+{
+    if (behavious == "putin" || behavious == "PutIn")
+        return PutIn(x, y);
+    else if (behavious == "takeout" || behavious == "TakeOut")
+        return TakeOut(x, y);
+    return false;
 }
 
 void ATRI::PrintInstruction()
@@ -356,7 +401,7 @@ void ATRI::PrintEnv()
                     cout << " inside:[";
                     for (int c = 0; c < p->smallObjectsInside.size(); c++)
                         cout << (c == 0 ? "" : ",") << p->smallObjectsInside[c]->id;
-                    cout << "]";
+                    cout << "]" << p->isOpen;
                 }
                 cout << ")" << RESET;
             }
@@ -385,19 +430,34 @@ void ATRI::Fini()
     not_infoConstrains.clear();
     not_taskConstrains.clear();
     notnot_infoConstrains.clear();
-
     objects.push_back(shared_from_this());
 }
 
+void ATRI::TestAutoBehave()
+{
+    string inp;
+    while (true)
+    {
+        getline(cin, inp);
+        inp.push_back(' ');
+        vector<string> temp;
+        split_string(temp, inp, ' ');
+        if (temp.size() == 2)
+            DoBehavious(temp[0], stoi(temp[1]));
+        else if (temp.size() == 3)
+            DoBehavious(temp[0], stoi(temp[1]), stoi(temp[2]));
+        PrintEnv();
+    }
+}
 #pragma region override_ATRI_AtomBehavious
 bool ATRI::TakeOut(unsigned int a, unsigned int b)
 {
     bool res = Plug::TakeOut(a, b);
     if (res)
     {
-        if (location == dynamic_pointer_cast<Container>(objects[b])->location && hold_id == UNKNOWN && dynamic_pointer_cast<SmallObject>(objects[a])->inside)
+        if (location == ObjectPtrCast<Container>(objects[b])->location && hold_id == UNKNOWN && dynamic_pointer_cast<SmallObject>(objects[a])->inside)
         {
-            dynamic_pointer_cast<SmallObject>(objects[a])->inside = false;
+            ObjectPtrCast<SmallObject>(objects[a])->inside = false;
             hold_id = a;
             cout << "TakeOut:" << res << endl;
         }
@@ -413,9 +473,9 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
     bool res = Plug::PutIn(a, b);
     if (res)
     {
-        if (location == dynamic_pointer_cast<Container>(objects[b])->location && hold_id == a && dynamic_pointer_cast<Container>(objects[b])->isOpen)
+        if (location == ObjectPtrCast<Container>(objects[b])->location && hold_id == a && ObjectPtrCast<Container>(objects[b])->isOpen)
         {
-            dynamic_pointer_cast<SmallObject>(objects[a])->inside = true;
+            ObjectPtrCast<SmallObject>(objects[a])->inside = true;
             hold_id = UNKNOWN;
             cout << "PutIn:" << res << endl;
         }
@@ -429,14 +489,14 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
 bool ATRI::Close(unsigned int a)
 {
     bool res = Plug::Close(a);
-    shared_ptr<Container> container1 = dynamic_pointer_cast<Container>(objects[a]);
+    shared_ptr<Container> container1 = ObjectPtrCast<Container>(objects[a]);
     if (container1 != nullptr)
     {
         if (res)
         {
-            if (dynamic_pointer_cast<Container>(objects[a])->isOpen = true && hold_id == UNKNOWN && location == dynamic_pointer_cast<Container>(objects[a])->location)
+            if (ObjectPtrCast<Container>(objects[a])->isOpen = true && hold_id == UNKNOWN && location == ObjectPtrCast<Container>(objects[a])->location)
             {
-                dynamic_pointer_cast<Container>(objects[a])->isOpen = false;
+                ObjectPtrCast<Container>(objects[a])->isOpen = false;
                 cout << "Close:" << res << endl;
             }
         }
@@ -452,9 +512,9 @@ bool ATRI::Open(unsigned int a)
     bool res = Plug::Open(a);
     if (res)
     {
-        if (dynamic_pointer_cast<Container>(objects[a])->isOpen = false && hold_id == UNKNOWN && location == dynamic_pointer_cast<Container>(objects[a])->location)
+        if (ObjectPtrCast<Container>(objects[a])->isOpen = false && hold_id == UNKNOWN && location == ObjectPtrCast<Container>(objects[a])->location)
         {
-            dynamic_pointer_cast<Container>(objects[a])->isOpen = true;
+            ObjectPtrCast<Container>(objects[a])->isOpen = true;
             cout << "Open:" << res << endl;
         }
     }
@@ -522,7 +582,7 @@ bool ATRI::PickUp(unsigned int a)
     bool res = Plug::PickUp(a);
     if (res)
     {
-        if (((objects[a]) == smallObjects[a]) && hold_id == UNKNOWN && (!dynamic_pointer_cast<SmallObject>(objects[a])->inside))
+        if (((objects[a]) == smallObjects[a]) && hold_id == UNKNOWN && (!ObjectPtrCast<SmallObject>(objects[a])->inside))
         {
             hold_id = a;
             cout << "PickUp:" << res << endl;
@@ -540,8 +600,10 @@ bool ATRI::Move(unsigned int a)
     if (res)
     {
         location = a;
-        hold->location = a;
-        plate->location = a;
+        if (hold)
+            hold->location = a;
+        if (plate)
+            plate->location = a;
         cout << "Move:" << res << endl;
     }
     else
@@ -563,7 +625,8 @@ void split_string(vector<string> &out, const string &str_source, char mark)
             last = i + 1;
         }
     }
-    out.push_back(str_source.substr(last, str_source.size() - 1));
+    if (last != str_source.size())
+        out.push_back(str_source.substr(last, str_source.size() - 1));
 }
 
 string Condition::ToString() const
@@ -621,21 +684,21 @@ void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
 
 string Instruction::ToString() const
 {
-    return "Behave:" + behave + "\nConditionX:" + conditionX.ToString() + "\nConditionY:" + conditionY.ToString() + "\n";
+    return "Behave:" MAGENTA + behave + RESET "\nConditionX:" MAGENTA + conditionX.ToString() + RESET "\nConditionY:" MAGENTA + conditionY.ToString() + RESET "\n";
 }
 
 ostream &operator<<(ostream &os, const Instruction &instr)
 {
     os << instr.ToString();
-    os << "X:\n";
-    for (auto v : instr.X)
-        os << v;
-    if (instr.isUseY)
-    {
-        os << "Y:\n";
-        for (auto v : instr.Y)
-            os << v;
-    }
+    // os << "X:\n";
+    // for (auto v : instr.X)
+    //     os << v;
+    // if (instr.isUseY)
+    // {
+    //     os << "Y:\n";
+    //     for (auto v : instr.Y)
+    //         os << v;
+    // }
     return os;
 }
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
