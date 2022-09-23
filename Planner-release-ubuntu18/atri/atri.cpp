@@ -28,8 +28,13 @@ void ATRI::Plan()
              << RESET;
         return;
     }
-    Move(1);
-    PickUp(13);
+    PrintEnv();
+    Move(5);
+    PutDown(13);
+    FromPlate(20);
+    PrintEnv();
+    //Move(2);
+    PutDown(20);
     PrintEnv();
     cout << endl;
     //ParseInstruction(GetTaskDes());
@@ -337,7 +342,7 @@ void ATRI::PrintEnv()
         for (auto v : objPos[i])
         {
             if (v->sort == "robot")
-                cout << GREEN << "(" << v->id << " " << v->sort << ")" << RESET;
+                cout << GREEN << "(" << v->sort << " hold:" << hold_id << " plate:" << plate_id << ")" << RESET;
             else if (dynamic_pointer_cast<BigObject>(v))
             {
                 auto p = dynamic_pointer_cast<BigObject>(v);
