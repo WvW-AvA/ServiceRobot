@@ -1,1 +1,1 @@
-occurs(move(1), 1).
+occurs(toplate(18), 1).

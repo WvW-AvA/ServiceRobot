@@ -43,7 +43,7 @@ public:
                 mPort(7932),
                 mIOService(),
                 mSocket(),
-                mTimeout(1)
+                mTimeout(0)
     {
     }
 
@@ -158,6 +158,8 @@ void Plug::Run()
                 {
                     try
                     {
+                        cout << "Join Plan mTimeout:" << mKernel->mTimeout << endl;
+
                         planner.timed_join(posix_time::milliseconds(mKernel->mTimeout));
                     }
                     catch (boost::thread_interrupted *)

@@ -11,7 +11,6 @@
 #include <cstring>
 #include <cstdio>
 
-
 #ifdef WIN32
 #define SSCANF sscanf_s
 #else
@@ -22,7 +21,7 @@ using namespace boost;
 using namespace std;
 using namespace _home;
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     // reading the parameters
     unsigned int port = 7932;
@@ -90,7 +89,7 @@ int main(int argc, char* argv[])
                 if (++i < argc && argv[i][0] != '-')
                 {
                     SSCANF(argv[i], "%d", &timeout);
-                    if (timeout == 0) timeout = 5000;
+                    // if (timeout == 0) timeout = 5000;
                 }
             }
             else if (strcmp(argv[i], "-cheat") == 0)
@@ -124,7 +123,7 @@ int main(int argc, char* argv[])
                 }
             }
             else if (strcmp(argv[i], "-help") == 0 ||
-                strcmp(argv[i], "-?") == 0)
+                     strcmp(argv[i], "-?") == 0)
             {
                 cout << "cserver [-port digit] [-td dir] [-mode 'nt'|'it'] [-test id|'all'] [-to time] [-cheat] [-log [dir]] [-eval [path [agr]]] [-help | -?]" << endl;
                 cout << " -port digit\t sets the port for the network conversation, default 7932" << endl;
