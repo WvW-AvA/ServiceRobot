@@ -4,6 +4,7 @@
 using namespace _home;
 using namespace std;
 
+void split_string(vector<string> &out, const string &str_source, char mark);
 ostream &operator<<(ostream &os, shared_ptr<Object> obj);
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn);
 ostream &operator<<(ostream &os, const Instruction &instr);
@@ -20,18 +21,22 @@ void ATRI::Init()
 //////////////////////////////////////////////////////////////////////////
 void ATRI::Plan()
 {
-    //此处添加测试代码
-    // cout << GetEnvDes() << endl;
     if (ParseEnv(GetEnvDes()) == false)
     {
         LOG_ERROR("Env Prase Error");
         return;
     }
-    Move(1);
     PrintEnv();
-    cout << endl;
     ParseInstruction(GetTaskDes());
-    PrintInstruction();
+
+    for (auto v : infos)
+    {
+        cout << v << endl;
+        ParseInfo(v);
+    }
+    PrintEnv();
+    TestAutoBehave();
+    // PrintInstruction();
 }
 
 bool ATRI::ParseInstruction(const string &taskDis)
@@ -299,10 +304,47 @@ void ATRI::ParseInfo(const Instruction &info)
     }
     else if (info.behave == "opened")
     {
+        for (auto v : info.X)
+        {
+            auto p = ObjectPtrCast<Container>(v);
+            p->isOpen = true;
+        }
     }
     else if (info.behave == "closed")
     {
+        for (auto v : info.X)
+        {
+            auto p = ObjectPtrCast<Container>(v);
+            p->isOpen = false;
+        }
     }
+}
+
+bool ATRI::DoBehavious(const string &behavious, unsigned int x)
+{
+    if (behavious == "move" || behavious == "Move")
+        return Move(x);
+    else if (behavious == "pickup" || behavious == "PickUp")
+        return PickUp(x);
+    else if (behavious == "close" || behavious == "Close")
+        return Close(x);
+    else if (behavious == "open" || behavious == "Open")
+        return Open(x);
+    else if (behavious == "fromplate" || behavious == "FromPlate")
+        return FromPlate(x);
+    else if (behavious == "toplate" || behavious == "ToPlate")
+        return ToPlate(x);
+    else if (behavious == "putdown" || behavious == "PutDown")
+        return PutDown(x);
+    return false;
+}
+bool ATRI::DoBehavious(const string &behavious, unsigned int x, unsigned int y)
+{
+    if (behavious == "putin" || behavious == "PutIn")
+        return PutIn(x, y);
+    else if (behavious == "takeout" || behavious == "TakeOut")
+        return TakeOut(x, y);
+    return false;
 }
 
 void ATRI::PrintInstruction()
@@ -359,7 +401,7 @@ void ATRI::PrintEnv()
                     cout << " inside:[";
                     for (int c = 0; c < p->smallObjectsInside.size(); c++)
                         cout << (c == 0 ? "" : ",") << p->smallObjectsInside[c]->id;
-                    cout << "]";
+                    cout << "]" << p->isOpen;
                 }
                 cout << ")" << RESET;
             }
@@ -391,6 +433,22 @@ void ATRI::Fini()
     objects.push_back(shared_from_this());
 }
 
+void ATRI::TestAutoBehave()
+{
+    string inp;
+    while (true)
+    {
+        getline(cin, inp);
+        inp.push_back(' ');
+        vector<string> temp;
+        split_string(temp, inp, ' ');
+        if (temp.size() == 2)
+            DoBehavious(temp[0], stoi(temp[1]));
+        else if (temp.size() == 3)
+            DoBehavious(temp[0], stoi(temp[1]), stoi(temp[2]));
+        PrintEnv();
+    }
+}
 #pragma region override_ATRI_AtomBehavious
 bool ATRI::TakeOut(unsigned int a, unsigned int b)
 {
@@ -542,8 +600,10 @@ bool ATRI::Move(unsigned int a)
     if (res)
     {
         location = a;
-        hold->location = a;
-        plate->location = a;
+        if (hold)
+            hold->location = a;
+        if (plate)
+            plate->location = a;
         cout << "Move:" << res << endl;
     }
     else
@@ -565,7 +625,8 @@ void split_string(vector<string> &out, const string &str_source, char mark)
             last = i + 1;
         }
     }
-    out.push_back(str_source.substr(last, str_source.size() - 1));
+    if (last != str_source.size())
+        out.push_back(str_source.substr(last, str_source.size() - 1));
 }
 
 string Condition::ToString() const
@@ -623,21 +684,21 @@ void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
 
 string Instruction::ToString() const
 {
-    return "Behave:" + behave + "\nConditionX:" + conditionX.ToString() + "\nConditionY:" + conditionY.ToString() + "\n";
+    return "Behave:" MAGENTA + behave + RESET "\nConditionX:" MAGENTA + conditionX.ToString() + RESET "\nConditionY:" MAGENTA + conditionY.ToString() + RESET "\n";
 }
 
 ostream &operator<<(ostream &os, const Instruction &instr)
 {
     os << instr.ToString();
-    os << "X:\n";
-    for (auto v : instr.X)
-        os << v;
-    if (instr.isUseY)
-    {
-        os << "Y:\n";
-        for (auto v : instr.Y)
-            os << v;
-    }
+    // os << "X:\n";
+    // for (auto v : instr.X)
+    //     os << v;
+    // if (instr.isUseY)
+    // {
+    //     os << "Y:\n";
+    //     for (auto v : instr.Y)
+    //         os << v;
+    // }
     return os;
 }
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
