@@ -38,6 +38,7 @@ namespace _home
     {
     public:
         string color = "";
+        //小物品所在容器id
         int inside = UNKNOWN;
         SmallObject(int id, int location = UNKNOWN, const string &sort = "", const string &color = "") : Object(location, sort, id), color(color) {}
         SmallObject(shared_ptr<Object> obj) : Object(*obj) {}
@@ -54,6 +55,17 @@ namespace _home
         vector<shared_ptr<SmallObject>> smallObjectsOn;
         BigObject(int id, int location = UNKNOWN, string sort = "") : Object(location, sort, id) {}
         BigObject(shared_ptr<Object> obj) : Object(*obj) {}
+
+        void DeleteObjectOn(shared_ptr<SmallObject> target)
+        {
+            for (int i = 0; i < smallObjectsOn.size(); i++)
+            {
+                if (smallObjectsOn[i]->id == target->id)
+                {
+                    smallObjectsOn.erase(smallObjectsOn.begin() + i);
+                }
+            }
+        }
         virtual string ToString() override
         {
             string out = Object::ToString() + "Small Objects On:\n";
@@ -74,6 +86,18 @@ namespace _home
         Container(int id, int location = UNKNOWN, bool isOpen = true, string sort = "") : BigObject(id, location, sort), isOpen(isOpen) {}
         Container(shared_ptr<Object> obj) : BigObject(obj), isOpen(UNKNOWN) {}
         Container(shared_ptr<BigObject> obj) : BigObject(*obj), isOpen(UNKNOWN) {}
+
+        void DeleteObjectInside(shared_ptr<SmallObject> target)
+        {
+            for (int i = 0; i < smallObjectsInside.size(); i++)
+            {
+                if (smallObjectsInside[i]->id == target->id)
+                {
+                    smallObjectsInside.erase(smallObjectsInside.begin() + i);
+                }
+            }
+        }
+
         virtual string ToString() override
         {
             string out = BigObject::ToString() + "Small Objects Inside:\n";
@@ -96,6 +120,32 @@ namespace _home
 
         Robot(int id, int location = UNKNOWN) : Object(id, "robot", location) {}
         Robot() : Robot(0) {}
+
+        void SetHold(const shared_ptr<SmallObject> &hold)
+        {
+            this->hold = hold;
+            if (hold != nullptr)
+            {
+                this->hold->location = location;
+                hold_id = hold->id;
+            }
+            else
+                hold_id = NONE;
+        }
+
+        void SetPlate(const shared_ptr<SmallObject> &plate)
+        {
+
+            this->plate = plate;
+            if (plate != nullptr)
+            {
+                this->plate->location = location;
+                plate_id = plate->id;
+            }
+            else
+                plate_id = NONE;
+        }
+
         virtual string ToString() override
         {
             return Object::ToString() + "hold:\n" + (hold != nullptr ? hold->ToString() : "") + "plate:\n" + (plate != nullptr ? plate->ToString() : "");

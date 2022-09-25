@@ -9,7 +9,6 @@ ostream &operator<<(ostream &os, shared_ptr<Object> obj);
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn);
 ostream &operator<<(ostream &os, const Instruction &instr);
 
-//////////////////////////////////////////////////////////////////////////
 ATRI::ATRI() : Plug("ATRI")
 {
 }
@@ -18,7 +17,7 @@ void ATRI::Init()
 {
     objects.push_back(shared_from_this());
 }
-//////////////////////////////////////////////////////////////////////////
+
 void ATRI::Plan()
 {
     if (ParseEnv(GetEnvDes()) == false)
@@ -226,10 +225,14 @@ bool ATRI::ParseEnv(const string &env)
             return false;
         }
     }
-    if (hold_id != NONE)
-        hold = ObjectPtrCast<SmallObject>(objects[hold_id]);
-    if (plate_id != NONE)
-        plate = ObjectPtrCast<SmallObject>(objects[plate_id]);
+    if (hold_id > 0)
+    {
+        SetHold(ObjectPtrCast<SmallObject>(objects[hold_id]));
+    }
+    if (plate_id > 0)
+    {
+        SetPlate(ObjectPtrCast<SmallObject>(objects[plate_id]));
+    }
 
     for (int i = 0; i < smallObjects.size(); i++)
     {
@@ -455,11 +458,13 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
     bool res = Plug::TakeOut(a, b);
     if (res)
     {
-        if (location == ObjectPtrCast<Container>(objects[b])->location && hold == nullptr && ObjectPtrCast<SmallObject>(objects[a])->inside)
+        auto small = ObjectPtrCast<SmallObject>(objects[a]);
+        auto cont = ObjectPtrCast<Container>(objects[b]);
+        if (location == objects[b]->location && hold == nullptr && small->inside == cont->id)
         {
-            ObjectPtrCast<SmallObject>(objects[a])->inside = false;
-            hold = ObjectPtrCast<SmallObject>(objects[a]);
-            hold_id = a;
+            small->inside = false;
+            cont->DeleteObjectInside(small);
+            SetHold(small);
             cout << "TakeOut:" << res << endl;
         }
     }
@@ -474,11 +479,13 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
     bool res = Plug::PutIn(a, b);
     if (res)
     {
-        if (location == ObjectPtrCast<Container>(objects[b])->location && hold == ObjectPtrCast<SmallObject>(objects[a]) && ObjectPtrCast<Container>(objects[b])->isOpen)
+        auto cont = ObjectPtrCast<Container>(objects[b]);
+        auto small = ObjectPtrCast<SmallObject>(objects[a]);
+        if (location == cont->location && hold == small && cont->isOpen)
         {
-            ObjectPtrCast<SmallObject>(objects[a])->inside = true;
-            hold = nullptr;
-            hold_id = 0;
+            small->inside = b;
+            SetHold(nullptr);
+            cont->smallObjectsInside.push_back(small);
             cout << "PutIn:" << res << endl;
         }
     }
@@ -491,14 +498,14 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
 bool ATRI::Close(unsigned int a)
 {
     bool res = Plug::Close(a);
-    shared_ptr<Container> container1 = ObjectPtrCast<Container>(objects[a]);
-    if (container1 != nullptr)
+    if (res)
     {
-        if (res)
+        shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
+        if (container != nullptr)
         {
-            if (ObjectPtrCast<Container>(objects[a])->isOpen = true && hold == nullptr && location == ObjectPtrCast<Container>(objects[a])->location)
+            if (container->isOpen = true && hold == nullptr && location == container->location)
             {
-                ObjectPtrCast<Container>(objects[a])->isOpen = false;
+                container->isOpen = false;
                 cout << "Close:" << res << endl;
             }
         }
@@ -512,14 +519,14 @@ bool ATRI::Close(unsigned int a)
 bool ATRI::Open(unsigned int a)
 {
     bool res = Plug::Open(a);
-    shared_ptr<Container> container1 = ObjectPtrCast<Container>(objects[a]);
-    if(container1 != nullptr)
+    if (res)
     {
-        if (res)
+        shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
+        if (container != nullptr)
         {
-            if (ObjectPtrCast<Container>(objects[a])->isOpen = false && hold == nullptr && location == ObjectPtrCast<Container>(objects[a])->location)
+            if (container->isOpen != true && hold == nullptr && location == container->location)
             {
-                ObjectPtrCast<Container>(objects[a])->isOpen = true;
+                container->isOpen = true;
                 cout << "Open:" << res << endl;
             }
         }
@@ -537,10 +544,8 @@ bool ATRI::FromPlate(unsigned int a)
     {
         if (plate == ObjectPtrCast<SmallObject>(objects[a]) && hold == nullptr)
         {
-            hold_id = plate_id;
-            plate_id = 0;
-            hold = plate;
-            plate = nullptr;
+            SetHold(plate);
+            SetPlate(nullptr);
             cout << "FromPlate:" << res << endl;
         }
     }
@@ -555,12 +560,10 @@ bool ATRI::ToPlate(unsigned int a)
     bool res = Plug::ToPlate(a);
     if (res)
     {
-        if (hold  && plate == nullptr)
+        if (hold == ObjectPtrCast<SmallObject>(objects[a]) && plate == nullptr)
         {
-            plate = hold;
-            hold = nullptr;
-            plate_id = hold_id;
-            hold_id = 0;
+            SetPlate(hold);
+            SetHold(nullptr);
             cout << "ToPlate:" << res << endl;
         }
     }
@@ -577,8 +580,7 @@ bool ATRI::PutDown(unsigned int a)
     {
         if (hold == ObjectPtrCast<SmallObject>(objects[a]))
         {
-            hold_id = 0;
-            hold = nullptr;
+            SetHold(nullptr);
             cout << "PutDown:" << res << endl;
         }
     }
@@ -595,8 +597,7 @@ bool ATRI::PickUp(unsigned int a)
     {
         if (hold == nullptr)
         {
-            hold_id = a;
-            hold = ObjectPtrCast<SmallObject>(objects[a]);
+            SetHold(ObjectPtrCast<SmallObject>(objects[a]));
             cout << "PickUp:" << res << endl;
         }
     }

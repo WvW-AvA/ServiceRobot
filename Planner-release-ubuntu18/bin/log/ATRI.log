@@ -15,8 +15,20 @@ Grader path: ../lib/libasp
 # Results:
 	[PutIn 13 8|true]
 	[TakeOut 13 8|true]
+	[Move 9|true]
+	[PutIn 13 9|true]
+	[TakeOut 13 9|true]
+	[Move 6|true]
+	[Open 6|false]
+	[PutDown 13|true]
+	[Open 6|true]
+	[FromPlate 20|true]
+	[PutIn 20 6|true]
+	[PickUp 18|true]
+	[PutIn 18 6|true]
+	[TakeOut 20 6|true]
 
 # Time: 0
-# Score: 196
+# Score: 148
 
-Total Score: 196
+Total Score: 148

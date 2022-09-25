@@ -1,1 +1,1 @@
-occurs(takeout(13, 8), 1).
+occurs(takeout(20, 6), 1).
