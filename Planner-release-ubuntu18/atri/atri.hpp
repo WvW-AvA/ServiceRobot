@@ -52,29 +52,9 @@ namespace _home
     class BigObject : public Object
     {
     public:
-        vector<shared_ptr<SmallObject>> smallObjectsOn;
         BigObject(int id, int location = UNKNOWN, string sort = "") : Object(location, sort, id) {}
         BigObject(shared_ptr<Object> obj) : Object(*obj) {}
 
-        void DeleteObjectOn(shared_ptr<SmallObject> target)
-        {
-            for (int i = 0; i < smallObjectsOn.size(); i++)
-            {
-                if (smallObjectsOn[i]->id == target->id)
-                {
-                    smallObjectsOn.erase(smallObjectsOn.begin() + i);
-                }
-            }
-        }
-        virtual string ToString() override
-        {
-            string out = Object::ToString() + "Small Objects On:\n";
-            for (int i = 0; i < smallObjectsOn.size(); i++)
-            {
-                out += to_string(i) + " " + smallObjectsOn[i]->ToString();
-            }
-            return out;
-        }
         ~BigObject() {}
     };
 
@@ -115,6 +95,9 @@ namespace _home
     public:
         shared_ptr<SmallObject> hold;
         shared_ptr<SmallObject> plate;
+
+        int cost;
+        int score;
 
         int hold_id = NONE, plate_id = NONE;
 
@@ -210,6 +193,8 @@ namespace _home
         //必须维护的约束list
         vector<Instruction> notnot_infoConstrains;
 
+        int score;
+
         //环境解析
         bool ParseEnv(const string &env);
         //指令解析
@@ -221,9 +206,8 @@ namespace _home
 
         //解析补充info list
         void ParseInfo(const Instruction &info);
-        //完成一项任务
-        void SolveTask(const Instruction &task);
 
+        void SolveTask(const Instruction &task);
         //测试原子行为
         void TestAutoBehave();
         //输出所有指令
@@ -301,8 +285,25 @@ namespace _home
          * @return if the action is successful or not
          */
         bool virtual TakeOut(unsigned int a, unsigned int b) override;
+        /**
+         * Atomic action AskLoc
+         * @param a object number
+         * @return "not_known" means don't know where 'a' is
+         *  "(on a b)", "(near a b)", or "(inside a b)" means
+         *  the spacial relation with 'b'
+         */
+        std::string virtual AskLoc(unsigned int a) override;
+
+        /**
+         * Atomic action Sense
+         * @param A_ return set of numbers for the object observed
+         */
+        void virtual Sense(std::vector<unsigned int> &A_) override;
+
+        void FindObjectLocation(shared_ptr<SmallObject> ptr);
 #pragma endregion
     }; // Plug
+
     class Instruction
     {
     public:
@@ -317,4 +318,14 @@ namespace _home
     private:
     };
 
+    class TaskSolution
+    {
+        shared_ptr<SmallObject> plate;
+        shared_ptr<BigObject> hand;
+
+        int score = 40;
+        //完成一项任务
+        int SolveOneTaskCost(const Instruction &task);
+        TaskSolution(shared_ptr<ATRI> atri) {}
+    };
 } //_home

@@ -150,13 +150,13 @@ namespace _home
          *  "(on a b)", "(near a b)", or "(inside a b)" means
          *  the spacial relation with 'b'
          */
-        std::string AskLoc(unsigned int a);
+        std::string virtual AskLoc(unsigned int a);
 
         /**
          * Atomic action Sense
          * @param A_ return set of numbers for the object observed
          */
-        void Sense(std::vector<unsigned int> &A_);
+        void virtual Sense(std::vector<unsigned int> &A_);
 
     private:
         /**

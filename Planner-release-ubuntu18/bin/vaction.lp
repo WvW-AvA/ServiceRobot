@@ -1,1 +1,1 @@
-occurs(takeout(20, 6), 1).
+occurs(askloc(12), 1).

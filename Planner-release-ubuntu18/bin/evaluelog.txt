@@ -1,80 +1,9 @@
 Start for a new team: ATRI
 The initial score is 0.
-Executing the action: move(1) score -4
-Current socre is: -4
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(at(0,1),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(13),1) h(at(13,1),1) h(plate(20),1) h(at(20,1),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: move(2) score -4
-Current socre is: -8
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(at(0,2),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(hold(13),1) h(at(13,2),1) h(plate(20),1) h(at(20,2),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: move(6) score -4
-Current socre is: -12
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(at(0,6),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(13),1) h(at(13,6),1) h(plate(20),1) h(at(20,6),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: open(6) score -2
-Current socre is: -14
-running the batch for asp: ./vrunact.sh
-Execution failed!
 running the batch for asp: ./vruntask.sh
 Execution success!
 Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 186
-Start for a new team: ATRI
-The initial score is 0.
-Executing the action: move(6) score -4
-Current socre is: -4
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(at(0,6),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(13),1) h(at(13,6),1) h(plate(20),1) h(at(20,6),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: putdown(13) score -2
-Current socre is: -6
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(hold(0),1) h(at(0,6),1) h(at(20,6),1) h(at(13,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: open(6) score -2
-Current socre is: -8
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(opened(6),1) h(at(0,6),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(at(13,6),1) h(at(20,6),1) h(hold(0),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) false(1,cons) 
-Executing the action: move(1) score -4
-Current socre is: -12
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(at(0,1),1) h(at(13,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(hold(0),1) h(plate(20),1) h(at(20,1),1) h(opened(9),1) h(opened(8),1) h(opened(6),1) h(closed(7),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: move(6) score -4
-Current socre is: -16
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(at(0,6),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(at(13,6),1) h(hold(0),1) h(plate(20),1) h(at(20,6),1) h(opened(9),1) h(opened(8),1) h(opened(6),1) h(closed(7),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: close(6) score -2
-Current socre is: -18
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(closed(6),1) h(at(0,6),1) h(at(20,6),1) h(at(13,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(hold(0),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: open(6) score -2
-Current socre is: -20
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(opened(6),1) h(at(0,6),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(at(13,6),1) h(at(20,6),1) h(hold(0),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(2,20) value(3,20) 
-ATRI's score is : 160
-Start for a new team: ATRI
-The initial score is 0.
-Executing the action: putdown(13) score -2
-Current socre is: -2
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(hold(0),1) h(at(0,8),1) h(at(20,8),1) h(at(13,8),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 198
+ATRI's score is : 200
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
@@ -83,49 +12,10 @@ Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20
 ATRI's score is : 200
 Start for a new team: ATRI
 The initial score is 0.
-Executing the action: putdown(13) score -2
-Current socre is: -2
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(hold(0),1) h(at(0,8),1) h(at(20,8),1) h(at(13,8),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: close(8) score -2
-Current socre is: -4
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(closed(8),1) h(at(0,8),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(at(13,8),1) h(at(20,8),1) h(hold(0),1) h(plate(20),1) h(opened(9),1) h(closed(7),1) h(closed(6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: open(8) score -2
-Current socre is: -6
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(opened(8),1) h(at(0,8),1) h(at(20,8),1) h(at(13,8),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(0),1) h(plate(20),1) h(opened(9),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
 running the batch for asp: ./vruntask.sh
 Execution success!
 Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 194
-Start for a new team: ATRI
-The initial score is 0.
-Executing the action: move(1) score -4
-Current socre is: -4
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(at(0,1),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(13),1) h(at(13,1),1) h(plate(20),1) h(at(20,1),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: move(6) score -4
-Current socre is: -8
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(at(0,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(hold(13),1) h(at(13,6),1) h(plate(20),1) h(at(20,6),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: open(6) score -2
-Current socre is: -10
-running the batch for asp: ./vrunact.sh
-Execution failed!
-Executing the action: close(6) score -2
-Current socre is: -12
-running the batch for asp: ./vrunact.sh
-Execution failed!
-running the batch for asp: ./vruntask.sh
-Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
-ATRI's score is : 188
+ATRI's score is : 200
 Start for a new team: ATRI
 The initial score is 0.
 running the batch for asp: ./vruntask.sh
@@ -134,150 +24,151 @@ Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20
 ATRI's score is : 200
 Start for a new team: ATRI
 The initial score is 0.
-Executing the action: move(6) score -4
-Current socre is: -4
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(at(0,6),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(13),1) h(at(13,6),1) h(plate(20),1) h(at(20,6),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: open(6) score -2
-Current socre is: -6
-running the batch for asp: ./vrunact.sh
-Execution failed!
-Executing the action: close(6) score -2
-Current socre is: -8
-running the batch for asp: ./vrunact.sh
-Execution failed!
-Executing the action: putdown(13) score -2
-Current socre is: -10
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(hold(0),1) h(at(0,6),1) h(at(20,6),1) h(at(13,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: open(6) score -2
-Current socre is: -12
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(opened(6),1) h(at(0,6),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(at(13,6),1) h(at(20,6),1) h(hold(0),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) false(1,cons) 
-Executing the action: close(6) score -2
-Current socre is: -14
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(closed(6),1) h(at(0,6),1) h(at(20,6),1) h(at(13,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(hold(0),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: move(1) score -4
-Current socre is: -18
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(at(0,1),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(at(13,6),1) h(hold(0),1) h(plate(20),1) h(at(20,1),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: toplate(20) score -2
-Current socre is: -20
-running the batch for asp: ./vrunact.sh
-Execution failed!
-Executing the action: fromplate(20) score -2
-Current socre is: -22
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(hold(20),1) h(plate(0),1) h(at(0,1),1) h(at(20,1),1) h(at(13,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(2,20) value(3,20) 
-ATRI's score is : 158
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
 Start for a new team: ATRI
 The initial score is 0.
-Executing the action: move(7) score -4
-Current socre is: -4
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(at(0,7),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(13),1) h(at(13,7),1) h(plate(20),1) h(at(20,7),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: putdown(13) score -2
-Current socre is: -6
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(hold(0),1) h(at(0,7),1) h(at(20,7),1) h(at(13,7),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) false(2,cons) 
-Executing the action: open(7) score -2
-Current socre is: -8
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(2,cons) h(opened(7),1) h(at(0,7),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(at(13,7),1) h(at(20,7),1) h(hold(0),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: takeout(19, 7) score -2
-Current socre is: -10
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(2,cons) h(hold(19),1) h(at(0,7),1) h(at(19,7),1) h(at(20,7),1) h(at(13,7),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(opened(7),1) h(closed(6),1) h(inside(12,6),1) h(inside(16,6),1) 
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(1,20) value(3,20) 
-ATRI's score is : 170
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
 Start for a new team: ATRI
 The initial score is 0.
-Executing the action: putin(13, 8) score -2
-Current socre is: -2
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(inside(13,8),1) h(hold(0),1) h(at(0,8),1) h(at(20,8),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: takeout(13, 8) score -2
-Current socre is: -4
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(hold(13),1) h(at(0,8),1) h(at(13,8),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(at(20,8),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: move(9) score -4
-Current socre is: -8
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(at(0,9),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(hold(13),1) h(at(13,9),1) h(plate(20),1) h(at(20,9),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: putin(13, 9) score -2
-Current socre is: -10
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(inside(13,9),1) h(hold(0),1) h(at(0,9),1) h(at(20,9),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: takeout(13, 9) score -2
-Current socre is: -12
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(hold(13),1) h(at(0,9),1) h(at(13,9),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(at(20,9),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: move(6) score -4
-Current socre is: -16
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(at(0,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(hold(13),1) h(at(13,6),1) h(plate(20),1) h(at(20,6),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: open(6) score -2
-Current socre is: -18
-running the batch for asp: ./vrunact.sh
-Execution failed!
-Executing the action: putdown(13) score -2
-Current socre is: -20
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(hold(0),1) h(at(0,6),1) h(at(20,6),1) h(at(13,6),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(closed(6),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: open(6) score -2
-Current socre is: -22
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is h(opened(6),1) h(at(0,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(at(13,6),1) h(at(20,6),1) h(hold(0),1) h(plate(20),1) h(opened(9),1) h(opened(8),1) h(closed(7),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) false(1,cons) 
-Executing the action: fromplate(20) score -2
-Current socre is: -24
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(hold(20),1) h(plate(0),1) h(at(0,6),1) h(at(20,6),1) h(at(13,6),1) h(at(18,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(opened(9),1) h(opened(8),1) h(opened(6),1) h(closed(7),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) 
-Executing the action: putin(20, 6) score -2
-Current socre is: -26
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(inside(20,6),1) h(hold(0),1) h(at(0,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(18,6),1) h(at(13,6),1) h(plate(0),1) h(opened(9),1) h(opened(8),1) h(opened(6),1) h(closed(7),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: pickup(18) score -2
-Current socre is: -28
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(hold(18),1) h(at(0,6),1) h(at(18,6),1) h(at(13,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(0),1) h(opened(9),1) h(opened(8),1) h(opened(6),1) h(closed(7),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) h(inside(20,6),1) 
-Executing the action: putin(18, 6) score -2
-Current socre is: -30
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(inside(18,6),1) h(hold(0),1) h(at(0,6),1) h(at(1,1),1) h(at(2,2),1) h(at(3,3),1) h(at(4,4),1) h(at(5,5),1) h(at(6,6),1) h(at(7,7),1) h(at(8,8),1) h(at(9,9),1) h(at(10,10),1) h(at(11,11),1) h(at(15,2),1) h(at(22,9),1) h(at(17,11),1) h(at(14,2),1) h(at(13,6),1) h(plate(0),1) h(opened(9),1) h(opened(8),1) h(opened(6),1) h(closed(7),1) h(inside(20,6),1) h(inside(19,7),1) h(inside(12,6),1) h(inside(16,6),1) 
-Executing the action: takeout(20, 6) score -2
-Current socre is: -32
-running the batch for asp: ./vrunact.sh
-Execution success!
-Computed answer set is false(1,cons) h(hold(20),1) h(at(0,6),1) h(at(20,6),1) h(at(13,6),1) h(at(14,2),1) h(at(17,11),1) h(at(22,9),1) h(at(15,2),1) h(at(11,11),1) h(at(10,10),1) h(at(9,9),1) h(at(8,8),1) h(at(7,7),1) h(at(6,6),1) h(at(5,5),1) h(at(4,4),1) h(at(3,3),1) h(at(2,2),1) h(at(1,1),1) h(plate(0),1) h(opened(9),1) h(opened(8),1) h(opened(6),1) h(closed(7),1) h(inside(16,6),1) h(inside(12,6),1) h(inside(19,7),1) h(inside(18,6),1) 
 running the batch for asp: ./vruntask.sh
 Execution success!
-Computed answer set is value(6,40) true(goal) value(2,20) value(3,20) 
-ATRI's score is : 148
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200
+Start for a new team: ATRI
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(6,40) true(goal) value(1,20) value(2,20) value(3,20) 
+ATRI's score is : 200

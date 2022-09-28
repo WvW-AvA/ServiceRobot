@@ -17,8 +17,8 @@
 #define GREEN "\033[32m"     /* Green */
 #define YELLOW "\033[33m"    /* Yellow */
 #define BLUE "\033[34m"      /* Blue */
-#define MAGENTA "\033[35m"   /* Blue */
-#define CYAN_BLUE "\033[36m" /* Blue */
+#define MAGENTA "\033[35m"   /* Magenta */
+#define CYAN_BLUE "\033[36m" /* Cyan_Blue */
 
 static void backtrace()
 {

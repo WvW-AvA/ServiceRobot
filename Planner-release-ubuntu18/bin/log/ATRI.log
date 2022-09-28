@@ -13,22 +13,8 @@ Grader path: ../lib/libasp
 # Task Description:
 (:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:info (opened X) (:cond (sort X refrigerator)))) (:cons_not (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y closet)))) (:cons_notnot (:info (on X Y) (:cond (sort X bottle) (color X green) (sort Y desk)))) (:task (puton X Y) (:cond (sort X can) (sort Y bed))) (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y television))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard))) (:task (pickup X) (:cond (sort X bottle))) (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y table))) (:task (puton X Y) (:cond (sort X book) (sort Y table))) (:task (give human X) (:cond (sort X book) (color X white))) (:task (goto X) (:cond (sort X sofa))) )
 # Results:
-	[PutIn 13 8|true]
-	[TakeOut 13 8|true]
-	[Move 9|true]
-	[PutIn 13 9|true]
-	[TakeOut 13 9|true]
-	[Move 6|true]
-	[Open 6|false]
-	[PutDown 13|true]
-	[Open 6|true]
-	[FromPlate 20|true]
-	[PutIn 20 6|true]
-	[PickUp 18|true]
-	[PutIn 18 6|true]
-	[TakeOut 20 6|true]
 
 # Time: 0
-# Score: 148
+# Score: 200
 
-Total Score: 148
+Total Score: 200
