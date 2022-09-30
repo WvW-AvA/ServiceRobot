@@ -44,7 +44,7 @@ void ATRI::Plan()
     // PrintInstruction();
     for (auto t : tasks)
         SolveTask(t);
-    TestAutoBehave();
+    // TestAutoBehave();
 }
 
 bool ATRI::ParseInstruction(const string &taskDis)
@@ -242,18 +242,26 @@ bool ATRI::ParseEnv(const string &env)
     if (plate_id > 0)
         SetPlate(ObjectPtrCast<SmallObject>(objects[plate_id]));
 
-    for (int i = 0; i < smallObjects.size(); i++)
+    for (const auto &s : smallObjects)
     {
-        if (smallObjects[i] == plate || smallObjects[i] == hold)
+        if (s == plate || s == hold)
             continue;
-        if (smallObjects[i]->inside != UNKNOWN)
+        if (s->inside != UNKNOWN && s->inside != NONE)
         {
-            auto p = dynamic_pointer_cast<Container>(objects[smallObjects[i]->inside]);
-            p->smallObjectsInside.push_back(smallObjects[i]);
-            smallObjects[i]->location = p->location;
+            auto p = dynamic_pointer_cast<Container>(objects[s->inside]);
+            if (p != nullptr)
+            {
+                p->smallObjectsInside.push_back(s);
+                s->location = p->location;
+            }
+            else
+            {
+                s->location = UNKNOWN;
+                s->inside = UNKNOWN;
+            }
         }
-        else if (smallObjects[i]->location != UNKNOWN)
-            smallObjects[i]->inside = NONE;
+        else if (s->location != UNKNOWN)
+            s->inside = NONE;
     }
 
     // for (auto v : objects)
@@ -449,6 +457,8 @@ void ATRI::Fini()
 {
     cout << "#(ATRI): Fini" << endl;
     human = nullptr;
+    plate = nullptr;
+    hold = nullptr;
     objects.clear();
     smallObjects.clear();
     bigObjects.clear();
@@ -750,7 +760,7 @@ bool ATRI::HoldSmallObject(unsigned int a)
         return true;
     if (plate && plate->id == a)
         return FromPlate(a);
-    if (small->location == UNKNOWN)
+    if (small->location == UNKNOWN || small->inside == UNKNOWN)
     {
         GetSmallObjectStatus(a);
         return HoldSmallObject(a);
@@ -828,6 +838,9 @@ void ATRI::Sense()
     //只有纠错模式启动且当前位置未被纠错过才Sense
     if ((isErrorCorrection && posCorrectFlag[location] == true) || isErrorCorrection == false)
         return;
+
+    if (isErrorCorrection)
+        posCorrectFlag[location] = true;
 
     vector<unsigned int> A_, B_;
     shared_ptr<Container> container = nullptr;
@@ -907,8 +920,6 @@ void ATRI::Sense()
         }
     }
     //更新PosCorrectFlag
-    if (isErrorCorrection)
-        posCorrectFlag[location] = true;
 }
 
 #pragma endregion
@@ -989,15 +1000,15 @@ string Instruction::ToString() const
 ostream &operator<<(ostream &os, const Instruction &instr)
 {
     os << instr.ToString();
-    os << "X:\n";
-    for (auto v : instr.X)
-        os << v;
-    if (instr.isUseY)
-    {
-        os << "Y:\n";
-        for (auto v : instr.Y)
-            os << v;
-    }
+    // os << "X:\n";
+    // for (auto v : instr.X)
+    //     os << v;
+    // if (instr.isUseY)
+    // {
+    //     os << "Y:\n";
+    //     for (auto v : instr.Y)
+    //         os << v;
+    // }
     return os;
 }
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)

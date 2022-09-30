@@ -1,1 +1,1 @@
-occurs(pickup(13), 1).
+occurs(putdown(17), 1).
