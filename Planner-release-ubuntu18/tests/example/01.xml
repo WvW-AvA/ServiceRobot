@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <test>
-<env mis="on" err="off" ans="off">
+<env mis="on" err="on" ans="on">
     <info>
     (hold 13) (plate 20) (at 0 8)
     (sort 1 human) (size 1 big) (at 1 1)
@@ -10,7 +10,7 @@
     (sort 5 bed) (size 5 big) (at 5 5)
     (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container)
     (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7)
-    (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8)
+    (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) 
     (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container)
     (sort 10 sofa) (size 10 big) (at 10 10)
     (sort 11 table) (size 11 big) (at 11 11)
@@ -30,8 +30,8 @@
     (inside 12 6) (inside 16 6) (at 17 11)
     </mis>
     <err>
-        <r>(at 14 2) (at 18 6)</r>
-        <w>(inside 14 7) (inside 18 9)</w>
+        <r>(at 14 2) (at 18 6) (closed 8)</r>
+        <w>(inside 14 7) (inside 18 9) (opened 8)</w>
     </err>
     <extra>
     (closed 6) (opened 9)

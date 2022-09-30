@@ -1,1 +1,1 @@
-occurs(askloc(12), 1).
+occurs(close(8), 1).

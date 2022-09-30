@@ -29,7 +29,6 @@ cupboard(8).obj(8).
 big(8).obj(8).
 obj(8). loc(8).
 container(8).obj(8).
-obj(8). container(8).
 microwave(9).obj(9).
 big(9).obj(9).
 obj(9). loc(9).
@@ -80,5 +79,6 @@ obj(16). obj(6). container(6).
 obj(17). loc(11).
 obj(14). loc(2).
 obj(18). loc(6).
+obj(8). container(8).
 obj(6). container(6).
 obj(9). container(9).

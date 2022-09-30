@@ -13,7 +13,12 @@ ATRI::ATRI() : Plug("ATRI") {}
 
 void ATRI::Init()
 {
+    score = 0;
     objects.push_back(shared_from_this());
+    if (isErrorCorrection)
+        posCorrectFlag.push_back(false);
+    else
+        posCorrectFlag.push_back(true);
 }
 
 void ATRI::Plan()
@@ -118,6 +123,10 @@ bool ATRI::ParseEnvSentence(const string &str)
         while (ind >= last_size)
         {
             objects.push_back(make_shared<Object>(last_size++));
+            if (isErrorCorrection)
+                posCorrectFlag.push_back(false);
+            else
+                posCorrectFlag.push_back(true);
         }
         if (words[0] == "opened")
         {
@@ -329,6 +338,8 @@ bool ATRI::DoBehavious(const string &behavious, unsigned int x)
         return PutDown(x);
     else if (behavious == "AskLoc" || behavious == "askloc")
         return AskLoc(x) == "";
+    else if (behavious == "GetStatus" || behavious == "getstatus")
+        GetSmallObjectStatus(x);
     return false;
 }
 
@@ -425,7 +436,8 @@ void ATRI::Fini()
     not_infoConstrains.clear();
     not_taskConstrains.clear();
     notnot_infoConstrains.clear();
-    objects.push_back(shared_from_this());
+    posCorrectFlag.clear();
+    ATRI::Init();
 }
 
 void ATRI::TestAutoBehave()
@@ -438,10 +450,7 @@ void ATRI::TestAutoBehave()
         vector<string> temp;
         split_string(temp, inp, ' ');
         if (temp.size() == 1 && (temp[0] == "Sense" || temp[0] == "sense"))
-        {
-            auto temp = vector<unsigned int>();
-            Sense(temp);
-        }
+            Sense();
         else if (temp.size() == 2)
             DoBehavious(temp[0], stoi(temp[1]));
         else if (temp.size() == 3)
@@ -459,6 +468,8 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
         if (small->inside == cont->id)
             if (location == objects[b]->location)
             {
+                if (Plug::TakeOut(a, b) == false)
+                    return false;
                 small->inside = false;
                 cont->DeleteObjectInside(small);
                 SetHold(small);
@@ -484,6 +495,8 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
         if (cont->isOpen)
             if (location == cont->location)
             {
+                if (Plug::PutIn(a, b) == false)
+                    return false;
                 small->inside = b;
                 SetHold(nullptr);
                 cont->smallObjectsInside.push_back(small);
@@ -496,12 +509,7 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
         else
             Open(b);
     else
-    {
-        if (plate == small)
-            FromPlate(a);
-        else
-            PickUp(a);
-    }
+        HoldSmallObject(a);
     PutIn(a, b);
 }
 bool ATRI::Close(unsigned int a)
@@ -509,20 +517,30 @@ bool ATRI::Close(unsigned int a)
     shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
     if (container != nullptr)
         if (container->isOpen = true)
-            if (hold == nullptr)
-                if (location == container->location)
+            if (location == container->location)
+                if (hold == nullptr)
                 {
+                    if (Plug::Close(a) == false)
+                    {
+                        if (isErrorCorrection)
+                        {
+                            container->isOpen = false;
+                            LOG("(%d,%s) has closed\n", a, container->sort.c_str());
+                            return true;
+                        }
+                        return false;
+                    }
                     container->isOpen = false;
                     LOG("Close(%d,%s)\n", a, container->sort.c_str());
                     score -= 2;
                     return true;
                 }
                 else
-                    Move(container->location);
+                    PutDown(hold->id);
             else
-                PutDown(hold->id);
+                Move(container->location);
         else
-            Open(a);
+            return true;
     else
     {
         LOG_ERROR("Object (%d,%s) can't cast to Container", objects[a]->id, objects[a]->sort);
@@ -536,21 +554,30 @@ bool ATRI::Open(unsigned int a)
     if (container != nullptr)
     {
         if (container->isOpen == false)
-            if (hold == nullptr)
-                if (location == container->location)
+            if (location == container->location)
+                if (hold == nullptr)
                 {
+                    if (Plug::Open(a) == false)
+                    {
+                        if (isErrorCorrection)
+                        {
+                            container->isOpen = true;
+                            LOG("(%d,%s) has opened\n", a, container->sort.c_str());
+                            return false;
+                        }
+                        return false;
+                    }
                     container->isOpen = true;
-
                     LOG("Open(%d,%s)\n", a, container->sort.c_str());
                     score -= 2;
                     return true;
                 }
                 else
-                    Move(container->location);
+                    PutDown(hold->id);
             else
-                PutDown(hold->id);
+                Move(container->location);
         else
-            Close(a);
+            return true;
     }
     else
     {
@@ -564,6 +591,8 @@ bool ATRI::FromPlate(unsigned int a)
     if (plate && plate->id == a)
         if (hold == nullptr)
         {
+            if (Plug::FromPlate(a) == false)
+                return false;
             SetHold(plate);
             SetPlate(nullptr);
             LOG("FromPlate(%d,%s)\n", a, hold->sort.c_str());
@@ -581,6 +610,8 @@ bool ATRI::ToPlate(unsigned int a)
     if (hold && hold->id == a)
         if (plate == nullptr)
         {
+            if (Plug::ToPlate(a) == false)
+                return false;
             SetPlate(hold);
             SetHold(nullptr);
             LOG("ToPlate(%d,%s)\n", a, objects[a]->sort.c_str());
@@ -590,27 +621,24 @@ bool ATRI::ToPlate(unsigned int a)
         else
             FromPlate(plate->id);
     else
-        PickUp(a);
+        HoldSmallObject(a);
     return ToPlate(a);
 }
 bool ATRI::PutDown(unsigned int a)
 {
     if (hold && hold->id == a)
     {
+        if (Plug::PutDown(a) == false)
+            return false;
         SetHold(nullptr);
         LOG("PutDown(%d,%s)\n", a, objects[a]->sort.c_str());
         score -= 2;
         return true;
     }
-    else if (plate && plate->id == a)
-    {
-        FromPlate(a);
-        return PutDown(a);
-    }
     else
     {
-        LOG_ERROR("PutDown Error hold id != a");
-        return false;
+        HoldSmallObject(a);
+        return PutDown(a);
     }
 }
 bool ATRI::PickUp(unsigned int a)
@@ -620,19 +648,19 @@ bool ATRI::PickUp(unsigned int a)
         if (location == small->location)
             if (small->inside == NONE)
             {
+                if (Plug::PickUp(a) == false)
+                    return false;
                 SetHold(small);
                 LOG("PickUp(%d,%s)\n", small->id, small->sort.c_str());
                 score -= 2;
                 return true;
             }
             else
-            {
                 TakeOut(small->id, small->inside);
-            }
         else
         {
             if (small->location == UNKNOWN)
-                FindObjectLocation(small);
+                GetSmallObjectStatus(small->id);
             Move(small->location);
         }
     else
@@ -641,6 +669,8 @@ bool ATRI::PickUp(unsigned int a)
 }
 bool ATRI::Move(unsigned int a)
 {
+    if (Plug::Move(a) == false)
+        return false;
     location = a;
     if (hold)
         hold->location = a;
@@ -651,22 +681,167 @@ bool ATRI::Move(unsigned int a)
     return true;
 }
 
-std::string ATRI::AskLoc(unsigned int a)
+bool ATRI::HoldSmallObject(unsigned int a)
 {
-    auto str = Plug::AskLoc(a);
-    cout << str << endl;
-    return str;
-}
-void ATRI::Sense(std::vector<unsigned int> &A_)
-{
-    Plug::Sense(A_);
-    cout << "Sense";
-    for (auto a : A_)
-        cout << a << " ";
-    cout << endl;
+    auto small = ObjectPtrCast<SmallObject>(objects[a]);
+    cout << "HoldSmallObject " << a << endl;
+    if (hold && hold->id == a)
+        return true;
+    if (plate && plate->id == a)
+        return FromPlate(a);
+    if (small->location == UNKNOWN)
+    {
+        GetSmallObjectStatus(a);
+        return HoldSmallObject(a);
+    }
+    else
+    {
+        if (small->inside != NONE)
+            return TakeOut(a, small->inside);
+        else
+            return PickUp(a);
+    }
 }
 
-void ATRI::FindObjectLocation(shared_ptr<SmallObject> ptr) {}
+void ATRI::GetSmallObjectStatus(unsigned int a)
+{
+    vector<string> ret;
+    string sureRet;
+    //反复问，直到问出两次相同结果,认为正确。
+    auto checkDouble = [&](const string &str) -> bool
+    {
+        for (const auto &v : ret)
+            if (v == str)
+            {
+                sureRet = str;
+                return true;
+            }
+        ret.push_back(str);
+        return false;
+    };
+    while (checkDouble(AskLoc(a)) == false)
+    {
+    }
+    vector<string> split;
+    regex reg("[a-z 0-9]+");
+    cmatch m;
+    const char *pos = sureRet.data() + 1;
+    const char *end = sureRet.data() + sureRet.size();
+    for (; regex_search(pos, end, m, reg); pos = m.suffix().first)
+    {
+        split.push_back(m.str());
+        cout << m.str() << endl;
+    }
+    auto small = ObjectPtrCast<SmallObject>(objects[stoi(split[2])]);
+    if (split[0] == "inside")
+    {
+        auto cont = ObjectPtrCast<Container>(objects[stoi(split[1])]);
+        small->location = cont->location;
+        small->inside = cont->id;
+        cont->smallObjectsInside.push_back(small);
+    }
+    else if (split[0] == "at")
+    {
+        small->location = stoi(split[1]);
+    }
+}
+
+std::string ATRI::AskLoc(unsigned int a)
+{
+    string str;
+    do
+    {
+        str = Plug::AskLoc(a);
+        score -= 2;
+    } while (str == "not_known");
+    return str;
+}
+
+void ATRI::Sense()
+{
+    vector<unsigned int> A_, B_;
+    shared_ptr<Container> container = nullptr;
+    auto checkSmallObejct = [&A_](unsigned int id) -> bool
+    {
+        for (auto a : A_)
+            if (a == id)
+                return true;
+        return false;
+    };
+    cout << "Sense";
+    if (dynamic_pointer_cast<Container>(objects[location]) != nullptr)
+    {
+        container = dynamic_pointer_cast<Container>(objects[location]);
+        Open(location);
+    }
+    Plug::Sense(A_);
+    score--;
+    //检查当前位置物品正确性
+    for (auto s : smallObjects)
+    {
+        if (s->location == location && checkSmallObejct(s->id) == false)
+        {
+            s->location = UNKNOWN;
+            if (container != nullptr && container->id == s->inside)
+                container->DeleteObjectInside(s);
+            s->inside = UNKNOWN;
+        }
+    }
+    //更新当前位置物品，利用容器合上关闭时返回值不同，确定物品状态。
+    for (auto a : A_)
+    {
+        cout << "Find " << a << "in location " << location << endl;
+        auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
+        if (small == nullptr || small == hold || small == plate)
+            continue;
+        if (small->location != location)
+        {
+            if (small->inside > 0)
+            {
+                ObjectPtrCast<Container>(objects[small->inside])->DeleteObjectInside(small);
+            }
+            small->location = location;
+        }
+        if (container)
+        {
+            small->inside = UNKNOWN;
+            B_.push_back(a);
+        }
+        else
+            small->inside = NONE;
+    }
+    if (container == nullptr || B_.size() == 0)
+        return;
+    Close(location);
+    vector<unsigned int> C_;
+    Plug::Sense(C_);
+    score--;
+    for (auto b : B_)
+    {
+        auto small = dynamic_pointer_cast<SmallObject>(objects[b]);
+        for (auto c : C_)
+        {
+            if (b == c)
+            {
+                cout << "Small object " << b << " is outside container" << endl;
+                small->inside = NONE;
+            }
+        }
+        if (small->inside == UNKNOWN)
+        {
+            cout << "Small object " << b << " is inside container" << endl;
+            if (small->inside != location)
+            {
+                small->inside = location;
+                container->smallObjectsInside.push_back(small);
+            }
+        }
+    }
+    //更新PosCorrectFlag
+    if (isErrorCorrection)
+        posCorrectFlag[location] = true;
+}
+
 #pragma endregion
 
 void split_string(vector<string> &out, const string &str_source, char mark)

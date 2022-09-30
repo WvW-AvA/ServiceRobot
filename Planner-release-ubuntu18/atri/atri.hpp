@@ -193,7 +193,12 @@ namespace _home
         //必须维护的约束list
         vector<Instruction> notnot_infoConstrains;
 
+        // 总分
         int score;
+        //是否开启纠错模式
+        bool isErrorCorrection = 1;
+        // 位置物品正确性标识
+        vector<bool> posCorrectFlag;
 
         //环境解析
         bool ParseEnv(const string &env);
@@ -222,56 +227,56 @@ namespace _home
 
 #pragma region override_ATRI_AtomBehavious
         /**
-         * Atomic action Move
+         * Recursion action Move
          * @param x location number
          * @return if the action is successful or not
          */
         bool virtual Move(unsigned int x) override;
 
         /**
-         * Atomic action PickUp
+         * Recursion action PickUp
          * @param a object number
          * @return if the action is successful or not
          */
         bool virtual PickUp(unsigned int a) override;
 
         /**
-         * Atomic action PutDown
+         * Recursion action PutDown
          * @param a object number
          * @return if the action is successful or not
          */
         bool virtual PutDown(unsigned int a) override;
 
         /**
-         * Atomic action ToPlate
+         * Recursion action ToPlate
          * @param a object number
          * @return if the action is successful or not
          */
         bool virtual ToPlate(unsigned int a) override;
 
         /**
-         * Atomic action FromPlate
+         * Recursion action FromPlate
          * @param a object number
          * @return if the action is successful or not
          */
         bool virtual FromPlate(unsigned int a) override;
 
         /**
-         * Atomic action Open
+         * Recursion action Open
          * @param a object number
          * @return if the action is successful or not
          */
         bool virtual Open(unsigned int a) override;
 
         /**
-         * Atomic action Close
+         * Recursion action Close
          * @param a object number
          * @return if the action is successful or not
          */
         bool virtual Close(unsigned int a) override;
 
         /**
-         * Atomic action PutIn
+         * Recursion action PutIn
          * @param a small object number
          * @param b big object number
          * @return if the action is successful or not
@@ -279,14 +284,14 @@ namespace _home
         bool virtual PutIn(unsigned int a, unsigned int b) override;
 
         /**
-         * Atomic action TakeOut
+         * Recursion action TakeOut
          * @param a small object number
          * @param b big object number
          * @return if the action is successful or not
          */
         bool virtual TakeOut(unsigned int a, unsigned int b) override;
         /**
-         * Atomic action AskLoc
+         * Recursion action AskLoc
          * @param a object number
          * @return "not_known" means don't know where 'a' is
          *  "(on a b)", "(near a b)", or "(inside a b)" means
@@ -294,13 +299,13 @@ namespace _home
          */
         std::string virtual AskLoc(unsigned int a) override;
 
-        /**
-         * Atomic action Sense
-         * @param A_ return set of numbers for the object observed
-         */
-        void virtual Sense(std::vector<unsigned int> &A_) override;
+        // 检测当前位置的准确物品信息，包含检测容器内物品，开销：1，4（检测容器内物品）
+        void Sense();
 
-        void FindObjectLocation(shared_ptr<SmallObject> ptr);
+        bool HoldSmallObject(unsigned int a);
+
+        void GetSmallObjectStatus(unsigned int a);
+
 #pragma endregion
     }; // Plug
 
