@@ -111,6 +111,7 @@ namespace _home
             {
                 this->hold->location = location;
                 hold_id = hold->id;
+                hold->inside = NONE;
             }
             else
                 hold_id = NONE;
@@ -124,6 +125,7 @@ namespace _home
             {
                 this->plate->location = location;
                 plate_id = plate->id;
+                plate->inside = NONE;
             }
             else
                 plate_id = NONE;
@@ -173,6 +175,7 @@ namespace _home
         void Init();
 
         void Plan();
+        shared_ptr<BigObject> human;
         // 场景中所有Object,id为索引
         vector<shared_ptr<Object>> objects;
         //场景中所有SmallObject
@@ -225,7 +228,7 @@ namespace _home
     private:
         bool ParseEnvSentence(const string &str);
 
-#pragma region override_ATRI_AtomBehavious
+#pragma region override_ATRI_Behavious
         /**
          * Recursion action Move
          * @param x location number
@@ -306,6 +309,11 @@ namespace _home
 
         void GetSmallObjectStatus(unsigned int a);
 
+        /// @brief Put a on b
+        /// @param a small object
+        /// @param b big object
+        bool PutOn(unsigned int a, unsigned int b);
+
 #pragma endregion
     }; // Plug
 
@@ -316,6 +324,7 @@ namespace _home
         Condition conditionX, conditionY;
         vector<shared_ptr<Object>> X, Y;
         bool isUseY = false;
+        bool isEnable = true;
         Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<ATRI> &atri);
         void SearchConditionObject(const shared_ptr<ATRI> &atri);
         string ToString() const;
@@ -323,14 +332,4 @@ namespace _home
     private:
     };
 
-    class TaskSolution
-    {
-        shared_ptr<SmallObject> plate;
-        shared_ptr<BigObject> hand;
-
-        int score = 40;
-        //完成一项任务
-        int SolveOneTaskCost(const Instruction &task);
-        TaskSolution(shared_ptr<ATRI> atri) {}
-    };
 } //_home

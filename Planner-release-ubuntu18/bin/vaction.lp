@@ -1,1 +1,1 @@
-occurs(close(8), 1).
+occurs(pickup(13), 1).
