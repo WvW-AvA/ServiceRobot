@@ -162,7 +162,10 @@ namespace _home
         string sort = "";
         string color = "";
 
-        string ToString() const;
+        string ToString() const
+        {
+            return "(Sort:" + sort + ",Color:" + color + ")";
+        }
         bool IsObjectSatisfy(const shared_ptr<Object> &target) const;
     };
 
@@ -199,7 +202,7 @@ namespace _home
         // 总分
         int score;
         //是否开启纠错模式
-        bool isErrorCorrection = 1;
+        bool isErrorCorrection = 0;
         // 位置物品正确性标识
         vector<bool> posCorrectFlag;
 
@@ -207,6 +210,9 @@ namespace _home
         bool ParseEnv(const string &env);
         //指令解析
         bool ParseInstruction(const string &task);
+
+        //优化task
+        bool TaskOptimization();
 
         //根据参数执行动作
         bool DoBehavious(const string &behavious, unsigned int x);
@@ -327,7 +333,12 @@ namespace _home
         bool isEnable = true;
         Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<ATRI> &atri);
         void SearchConditionObject(const shared_ptr<ATRI> &atri);
-        string ToString() const;
+        void TaskSelfOptimization(const shared_ptr<ATRI> &atri);
+
+        string ToString() const
+        {
+            return "Behave:" MAGENTA + behave + RESET "\nConditionX:" MAGENTA + conditionX.ToString() + RESET "\nConditionY:" MAGENTA + conditionY.ToString() + RESET "\n";
+        }
 
     private:
     };

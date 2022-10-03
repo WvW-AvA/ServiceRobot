@@ -4,6 +4,8 @@
 using namespace _home;
 using namespace std;
 
+static int totalScore = 0;
+
 void split_string(vector<string> &out, const string &str_source, char mark);
 ostream &operator<<(ostream &os, shared_ptr<Object> obj);
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn);
@@ -20,6 +22,7 @@ void ATRI::Init()
     else
         posCorrectFlag.push_back(true);
 }
+
 void ATRI::Plan()
 {
 
@@ -35,6 +38,9 @@ void ATRI::Plan()
         cout << v << endl;
         ParseInfo(v);
     }
+
+    TaskOptimization();
+
     //找到human
     for (auto o : objects)
         if (o->sort == "human")
@@ -42,8 +48,13 @@ void ATRI::Plan()
 
     PrintEnv();
     // PrintInstruction();
+
     for (auto t : tasks)
+    {
         SolveTask(t);
+        // PrintEnv();
+        cout << endl;
+    }
     // TestAutoBehave();
 }
 
@@ -328,6 +339,15 @@ void ATRI::ParseInfo(const Instruction &info)
         }
     }
 }
+
+bool ATRI::TaskOptimization()
+{
+    for (auto &t : tasks)
+    {
+        t.TaskSelfOptimization(shared_from_this());
+    }
+}
+
 bool ATRI::DoBehavious(const string &behavious, unsigned int x)
 {
     if (behavious == "move" || behavious == "Move" || behavious == "Goto" || behavious == "goto")
@@ -376,17 +396,28 @@ void ATRI::SolveTask(const Instruction &task)
     cout << task;
     if (task.behave == "puton" || task.behave == "putin" || task.behave == "takeout")
     {
-        for (auto x : task.X)
-            DoBehavious(task.behave, x->id, task.Y[0]->id);
+        if (task.X[0] == nullptr || task.Y[0] == nullptr)
+        {
+            LOG_ERROR("Instruction Error");
+            throw("Abort");
+        }
+        DoBehavious(task.behave, task.X[0]->id, task.Y[0]->id);
     }
     else
     {
+        if (task.X[0] == nullptr)
+        {
+            LOG_ERROR("Instruction Error");
+            throw("Abort");
+        }
         DoBehavious(task.behave, task.X[0]->id);
     }
+    score += 40;
 }
 
 void ATRI::PrintInstruction()
 {
+#ifdef __DUBUG__
     cout << "Task:\n";
     for (auto v : tasks)
         cout << v;
@@ -402,9 +433,11 @@ void ATRI::PrintInstruction()
     cout << "\nNotNot_Info:\n";
     for (auto v : notnot_infoConstrains)
         cout << v;
+#endif
 }
 void ATRI::PrintEnv()
 {
+#ifdef __DEBUG__
     cout << "Current Score:" << score << endl;
     vector<vector<shared_ptr<Object>>> objPos;
     vector<shared_ptr<Object>> unknownPos;
@@ -451,11 +484,14 @@ void ATRI::PrintEnv()
         cout << BLUE << "(" << v->id << " " << v->sort << ")" << RESET;
     }
     cout << endl;
+#endif
 }
 
 void ATRI::Fini()
 {
+    totalScore += score;
     cout << "#(ATRI): Fini" << endl;
+    cout << "Total score: " << totalScore << endl;
     human = nullptr;
     plate = nullptr;
     hold = nullptr;
@@ -755,7 +791,6 @@ bool ATRI::PutOn(unsigned int a, unsigned int b)
 bool ATRI::HoldSmallObject(unsigned int a)
 {
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
-    cout << "HoldSmallObject " << a << endl;
     if (hold && hold->id == a)
         return true;
     if (plate && plate->id == a)
@@ -775,24 +810,30 @@ bool ATRI::HoldSmallObject(unsigned int a)
 }
 void ATRI::GetSmallObjectStatus(unsigned int a)
 {
-    vector<string> ret;
     string sureRet;
-    //反复问，直到问出两次相同结果,认为正确。
-    auto checkDouble = [&](const string &str) -> bool
+    if (isErrorCorrection)
     {
-        for (const auto &v : ret)
-            if (v == str)
-            {
-                sureRet = str;
-                return true;
-            }
-        ret.push_back(str);
-        return false;
-    };
-    while (checkDouble(AskLoc(a)) == false)
-    {
+        vector<string> ret;
+        //纠错模式下反复问，直到问出两次相同结果,认为正确。
+        auto checkDouble = [&](const string &str) -> bool
+        {
+            for (const auto &v : ret)
+                if (v == str)
+                {
+                    sureRet = str;
+                    return true;
+                }
+            ret.push_back(str);
+            return false;
+        };
+        while (checkDouble(AskLoc(a)) == false)
+        {
+        }
     }
-
+    else
+    {
+        sureRet = AskLoc(a);
+    }
     vector<string> split;
     regex reg("[a-z 0-9]+");
     cmatch m;
@@ -939,11 +980,6 @@ void split_string(vector<string> &out, const string &str_source, char mark)
         out.push_back(str_source.substr(last, str_source.size() - 1));
 }
 
-string Condition::ToString() const
-{
-    return "(Sort:" + sort + ",Color:" + color + ")";
-}
-
 bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
 {
     bool ret = true;
@@ -980,7 +1016,6 @@ Instruction::Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<AT
     }
     SearchConditionObject(atri);
 }
-
 void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
 {
     for (auto v : atri->objects)
@@ -992,27 +1027,54 @@ void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
     }
 }
 
-string Instruction::ToString() const
+void Instruction::TaskSelfOptimization(const shared_ptr<ATRI> &atri)
 {
-    return "Behave:" MAGENTA + behave + RESET "\nConditionX:" MAGENTA + conditionX.ToString() + RESET "\nConditionY:" MAGENTA + conditionY.ToString() + RESET "\n";
+    if (X.size() < 2)
+        return;
+    vector<int> evalue(X.size());
+    int temp = -99999, ind = 0;
+    for (int i = 0; i < X.size(); i++)
+    {
+        //禁止行动的约束
+        for (const auto &t : atri->not_taskConstrains)
+        {
+            if (t.behave == behave)
+            {
+                for (auto a : t.X)
+                    if (a == X[i])
+                        evalue[i] -= 20;
+            }
+        }
+        if (evalue[i] > temp)
+        {
+            temp = evalue[i];
+            ind = i;
+        }
+    }
+    shared_ptr<Object> p = X[ind];
+    X.clear();
+    X.push_back(p);
 }
 
 ostream &operator<<(ostream &os, const Instruction &instr)
 {
+#ifdef __DEBUG__
     os << instr.ToString();
-    // os << "X:\n";
-    // for (auto v : instr.X)
-    //     os << v;
-    // if (instr.isUseY)
-    // {
-    //     os << "Y:\n";
-    //     for (auto v : instr.Y)
-    //         os << v;
-    // }
+// os << "X:\n";
+// for (auto v : instr.X)
+//     os << v;
+// if (instr.isUseY)
+// {
+//     os << "Y:\n";
+//     for (auto v : instr.Y)
+//         os << v;
+// }
+#endif
     return os;
 }
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
 {
+#ifdef __DEBUG__
     static int layer = 0;
     for (int i = 0; i < layer; i++)
         os << "-";
@@ -1023,10 +1085,12 @@ ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
         os << sn->sons[i];
     }
     layer--;
+#endif
     return os;
 }
 ostream &operator<<(ostream &os, shared_ptr<Object> obj)
 {
+#ifdef __DEBUG__
     if (dynamic_pointer_cast<SmallObject>(obj) != nullptr)
     {
         os << "SmallObject " << dynamic_pointer_cast<SmallObject>(obj)->ToString();
@@ -1046,5 +1110,6 @@ ostream &operator<<(ostream &os, shared_ptr<Object> obj)
             os << "BigObject  " << dynamic_pointer_cast<BigObject>(obj)->ToString();
         }
     }
+#endif
     return os;
 }

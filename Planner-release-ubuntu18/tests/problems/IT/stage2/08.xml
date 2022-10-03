@@ -14,7 +14,7 @@
 	(sort 9 cup) (size 9 small) (color 9 yellow) (plate 9)
 	(sort 10 book) (size 10 small) (color 10 red) (inside 10 6)
 	(sort 11 remotecontrol) (size 11 small) (color 11 white)
-	(sort 12 can) (size 12 small) (color 12 brack)
+	(sort 12 can) (size 12 small) (color 12 black)
 	(sort 13 cup) (size 13 small) (color 13 black) (at 13 5)
 	(sort 14 can) (size 14 small)
 	(sort 15 bottle) (size 15 small) (color 15 black) (inside 15 5)
