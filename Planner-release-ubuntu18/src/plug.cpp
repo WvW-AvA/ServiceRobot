@@ -43,7 +43,7 @@ public:
                 mPort(7932),
                 mIOService(),
                 mSocket(),
-                mTimeout(0)
+                mTimeout(5000)
     {
     }
 

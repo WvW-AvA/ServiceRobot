@@ -39,7 +39,7 @@ void ATRI::Plan()
         ParseInfo(v);
     }
 
-    TaskOptimization();
+    tasks = TaskOptimization();
 
     //找到human
     for (auto o : objects)
@@ -340,12 +340,28 @@ void ATRI::ParseInfo(const Instruction &info)
     }
 }
 
-bool ATRI::TaskOptimization()
+vector<Instruction> ATRI::TaskOptimization()
 {
-    for (auto &t : tasks)
+    vector<Instruction> temp;
+    auto task_evalue = [](const string &behave) -> int
     {
+        if (behave == "putin" || behave == "puton" || behave == "give")
+            return 0;
+        else if (behave == "takeout" || behave == "pickup")
+            return 1;
+        else if (behave == "open" || behave == "close")
+            return 2;
+        else if (behave == "putdown" || behave == "goto")
+            return 3;
+    };
+    for (auto &t : tasks)
         t.TaskSelfOptimization(shared_from_this());
-    }
+
+    for (int i = 0; i < 4; i++)
+        for (auto &t : tasks)
+            if (task_evalue(t.behave) == i)
+                temp.push_back(t);
+    return temp;
 }
 
 bool ATRI::DoBehavious(const string &behavious, unsigned int x)
@@ -413,6 +429,25 @@ void ATRI::SolveTask(const Instruction &task)
         DoBehavious(task.behave, task.X[0]->id);
     }
     score += 40;
+}
+
+void ATRI::UpdateTaskList(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
+{
+    for (auto &t : tasks)
+        if (t.IsInstructionInvoke(behave, x, y))
+            t.isEnable = false;
+}
+bool ATRI::IsInvokeNot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
+{
+    for (auto &i : not_infoConstrains)
+    {
+    }
+}
+bool ATRI::IsObeyNotnot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
+{
+    for (auto &i : notnot_infoConstrains)
+    {
+    }
 }
 
 void ATRI::PrintInstruction()
@@ -550,6 +585,7 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
                     small->inside = false;
                     cont->DeleteObjectInside(small);
                     SetHold(small);
+                    UpdateTaskList("takeout", objects[a], objects[b]);
                     return true;
                 }
                 else
@@ -582,6 +618,7 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
                 small->inside = b;
                 SetHold(nullptr);
                 cont->smallObjectsInside.push_back(small);
+                UpdateTaskList("putin", objects[a], objects[b]);
                 return true;
             }
             else
@@ -613,6 +650,7 @@ bool ATRI::Close(unsigned int a)
                         return false;
                     }
                     container->isOpen = false;
+                    UpdateTaskList("close", objects[a]);
                     return true;
                 }
                 else
@@ -650,6 +688,7 @@ bool ATRI::Open(unsigned int a)
                         return false;
                     }
                     container->isOpen = true;
+                    UpdateTaskList("Open", objects[a]);
                     return true;
                 }
                 else
@@ -716,6 +755,7 @@ bool ATRI::PutDown(unsigned int a)
         if (Plug::PutDown(a) == false)
             return false;
         SetHold(nullptr);
+        UpdateTaskList("purdown", objects[a]);
         return true;
     }
     else
@@ -744,6 +784,7 @@ bool ATRI::PickUp(unsigned int a)
                         return false;
                 }
                 SetHold(small);
+                UpdateTaskList("pickup", objects[a]);
                 return true;
             }
             else
@@ -771,6 +812,7 @@ bool ATRI::Move(unsigned int a)
         hold->location = a;
     if (plate)
         plate->location = a;
+    UpdateTaskList("goto", objects[a]);
     return true;
 }
 
@@ -780,6 +822,10 @@ bool ATRI::PutOn(unsigned int a, unsigned int b)
         if (location == b)
         {
             PutDown(a);
+
+            UpdateTaskList("puton", objects[a], objects[b]);
+            if (objects[b]->sort == "human")
+                UpdateTaskList("give", objects[a]);
             return true;
         }
         else
@@ -1016,6 +1062,7 @@ Instruction::Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<AT
     }
     SearchConditionObject(atri);
 }
+
 void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
 {
     for (auto v : atri->objects)
@@ -1054,6 +1101,13 @@ void Instruction::TaskSelfOptimization(const shared_ptr<ATRI> &atri)
     shared_ptr<Object> p = X[ind];
     X.clear();
     X.push_back(p);
+}
+
+bool Instruction::IsInstructionInvoke(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
+{
+    if (isEnable && behave == this->behave && x == this->X[0] && y == ((this->Y.size() == 0) ? nullptr : this->Y[0]))
+        return true;
+    return false;
 }
 
 ostream &operator<<(ostream &os, const Instruction &instr)

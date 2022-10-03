@@ -1,1 +1,1 @@
-occurs(putdown(17), 1).
+occurs(close(2), 1).

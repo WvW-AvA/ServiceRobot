@@ -192,7 +192,7 @@ namespace _home
         vector<Instruction> tasks;
         //补充 info list
         vector<Instruction> infos;
-        //禁止行动 约束list
+        //禁止任务 约束list
         vector<Instruction> not_taskConstrains;
         //禁止出现的状态 约束list
         vector<Instruction> not_infoConstrains;
@@ -212,14 +212,24 @@ namespace _home
         bool ParseInstruction(const string &task);
 
         //优化task
-        bool TaskOptimization();
+        vector<Instruction> TaskOptimization();
 
         //根据参数执行动作
         bool DoBehavious(const string &behavious, unsigned int x);
         bool DoBehavious(const string &behavious, unsigned int x, unsigned int y);
 
+        //行动时更新task list
+        void UpdateTaskList(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
+
+        //判断是否触发禁止出现状态约束
+        bool IsInvokeNot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
+
+        //判断是否遵守必须维护约束
+        bool IsObeyNotnot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
+
         //解析补充info list
-        void ParseInfo(const Instruction &info);
+        void
+        ParseInfo(const Instruction &info);
 
         void SolveTask(const Instruction &task);
         //测试原子行为
@@ -334,6 +344,7 @@ namespace _home
         Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<ATRI> &atri);
         void SearchConditionObject(const shared_ptr<ATRI> &atri);
         void TaskSelfOptimization(const shared_ptr<ATRI> &atri);
+        __inline__ __attribute__((__always_inline__)) bool IsInstructionInvoke(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
 
         string ToString() const
         {
