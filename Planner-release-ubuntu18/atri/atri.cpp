@@ -34,10 +34,7 @@ void ATRI::Plan()
     ParseInstruction(GetTaskDes());
     // info补充
     for (auto v : infos)
-    {
-        cout << v << endl;
         ParseInfo(v);
-    }
 
     tasks = TaskOptimization();
 
@@ -49,10 +46,10 @@ void ATRI::Plan()
     PrintEnv();
     // PrintInstruction();
 
-    for (auto t : tasks)
+    for (auto t = 0; t < tasks.size(); t++)
     {
-        SolveTask(t);
-        // PrintEnv();
+        SolveTask(tasks[t]);
+        PrintEnv();
         cout << endl;
     }
     // TestAutoBehave();
@@ -150,7 +147,6 @@ bool ATRI::ParseEnvSentence(const string &str)
             if (p == nullptr)
             {
                 auto p = make_shared<Container>(objects[ind]);
-                containers.push_back(p);
                 objects[ind] = p;
             }
             p->isOpen = true;
@@ -161,7 +157,6 @@ bool ATRI::ParseEnvSentence(const string &str)
             if (p == nullptr)
             {
                 auto p = make_shared<Container>(objects[ind]);
-                containers.push_back(p);
                 objects[ind] = p;
             }
             p->isOpen = false;
@@ -181,7 +176,6 @@ bool ATRI::ParseEnvSentence(const string &str)
                 if (dynamic_pointer_cast<BigObject>(objects[ind]) == nullptr)
                 {
                     auto p = make_shared<BigObject>(objects[ind]);
-                    bigObjects.push_back(p);
                     objects[ind] = p;
                 }
             }
@@ -224,7 +218,6 @@ bool ATRI::ParseEnvSentence(const string &str)
                 if (dynamic_pointer_cast<Container>(objects[ind]) == nullptr)
                 {
                     auto p = make_shared<Container>(objects[ind]);
-                    containers.push_back(p);
                     objects[ind] = p;
                 }
             }
@@ -343,6 +336,11 @@ void ATRI::ParseInfo(const Instruction &info)
 vector<Instruction> ATRI::TaskOptimization()
 {
     vector<Instruction> temp;
+    for (auto &t : tasks)
+    {
+        t.TaskSelfOptimization(shared_from_this());
+    }
+
     auto task_evalue = [](const string &behave) -> int
     {
         if (behave == "putin" || behave == "puton" || behave == "give")
@@ -354,13 +352,11 @@ vector<Instruction> ATRI::TaskOptimization()
         else if (behave == "putdown" || behave == "goto")
             return 3;
     };
-    for (auto &t : tasks)
-        t.TaskSelfOptimization(shared_from_this());
-
     for (int i = 0; i < 4; i++)
         for (auto &t : tasks)
             if (task_evalue(t.behave) == i)
                 temp.push_back(t);
+
     return temp;
 }
 
@@ -417,7 +413,8 @@ void ATRI::SolveTask(const Instruction &task)
             LOG_ERROR("Instruction Error");
             throw("Abort");
         }
-        DoBehavious(task.behave, task.X[0]->id, task.Y[0]->id);
+        for (auto a : task.X)
+            DoBehavious(task.behave, a->id, task.Y[0]->id);
     }
     else
     {
@@ -428,14 +425,16 @@ void ATRI::SolveTask(const Instruction &task)
         }
         DoBehavious(task.behave, task.X[0]->id);
     }
-    score += 40;
 }
 
 void ATRI::UpdateTaskList(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
 {
     for (auto &t : tasks)
         if (t.IsInstructionInvoke(behave, x, y))
+        {
+            score += 40;
             t.isEnable = false;
+        }
 }
 bool ATRI::IsInvokeNot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
 {
@@ -532,8 +531,6 @@ void ATRI::Fini()
     hold = nullptr;
     objects.clear();
     smallObjects.clear();
-    bigObjects.clear();
-    containers.clear();
     tasks.clear();
     infos.clear();
     not_infoConstrains.clear();
@@ -595,9 +592,14 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
                 Move(objects[b]->location);
         else
         {
-            GetSmallObjectStatus(a);
-            LOG("Small Object:(%d,%s) is not in Container (%d,%s)", small->id, small->sort.c_str(), cont->id, cont->sort.c_str());
-            return false;
+            if (isErrorCorrection)
+            {
+                GetSmallObjectStatus(a);
+                if (small->inside != cont->id)
+                    PutIn(a, b);
+            }
+            else
+                PutIn(a, b);
         }
     else
         PutDown(hold->id);
@@ -892,7 +894,9 @@ void ATRI::GetSmallObjectStatus(unsigned int a)
     auto small = ObjectPtrCast<SmallObject>(objects[stoi(split[1])]);
     if (split[0] == "inside")
     {
-        auto cont = ObjectPtrCast<Container>(objects[stoi(split[2])]);
+        auto cont = dynamic_pointer_cast<Container>(objects[stoi(split[2])]);
+        if (cont == nullptr)
+            return;
         small->location = cont->location;
         small->inside = cont->id;
         cont->smallObjectsInside.push_back(small);
@@ -911,6 +915,7 @@ std::string ATRI::AskLoc(unsigned int a)
     do
     {
         str = Plug::AskLoc(a);
+        LOG("AskLoc(%d)", a);
         score -= 2;
         if (str == "")
         {
@@ -1076,10 +1081,12 @@ void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
 
 void Instruction::TaskSelfOptimization(const shared_ptr<ATRI> &atri)
 {
-    if (X.size() < 2)
+    if (X.size() > 3 || Y.size() > 3)
+    {
+        isEnable = false;
         return;
-    vector<int> evalue(X.size());
-    int temp = -99999, ind = 0;
+    }
+    int evalue;
     for (int i = 0; i < X.size(); i++)
     {
         //禁止行动的约束
@@ -1089,18 +1096,10 @@ void Instruction::TaskSelfOptimization(const shared_ptr<ATRI> &atri)
             {
                 for (auto a : t.X)
                     if (a == X[i])
-                        evalue[i] -= 20;
+                        evalue -= 20;
             }
         }
-        if (evalue[i] > temp)
-        {
-            temp = evalue[i];
-            ind = i;
-        }
     }
-    shared_ptr<Object> p = X[ind];
-    X.clear();
-    X.push_back(p);
 }
 
 bool Instruction::IsInstructionInvoke(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)

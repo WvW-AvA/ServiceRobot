@@ -17,6 +17,8 @@
         "sstream": "cpp",
         "future": "cpp",
         "bitset": "cpp",
-        "memory": "cpp"
-    }
+        "memory": "cpp",
+        "vector": "cpp"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
 }

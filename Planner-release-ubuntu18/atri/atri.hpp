@@ -183,10 +183,6 @@ namespace _home
         vector<shared_ptr<Object>> objects;
         //场景中所有SmallObject
         vector<shared_ptr<SmallObject>> smallObjects;
-        //场景中所有Container
-        vector<shared_ptr<Container>> containers;
-        //场景中所有BigObject
-        vector<shared_ptr<BigObject>> bigObjects;
 
         //需完成任务list
         vector<Instruction> tasks;

@@ -1,5 +1,5 @@
 Answer: 1
-value(3,40) value(2,40) value(1,40) value(4,40) true(goal) value(6,20) value(8,20) 
+value(6,40) value(11,40) value(8,40) value(5,40) value(4,40) value(10,40) true(goal) value(2,20) 
 SATISFIABLE
 
 Models      : 1+    
