@@ -14,6 +14,7 @@
 
 using namespace std;
 
+#define __DEBUG__
 #define UNKNOWN -1
 #define NONE 0
 namespace _home
@@ -157,6 +158,7 @@ namespace _home
         string value;
         vector<shared_ptr<SyntaxNode>> sons;
     };
+
     struct Condition
     {
         string sort = "";
@@ -198,7 +200,7 @@ namespace _home
         // 总分
         int score;
         //是否开启纠错模式
-        bool isErrorCorrection = 0;
+        bool isErrorCorrection = 1;
         // 位置物品正确性标识
         vector<bool> posCorrectFlag;
 
@@ -206,6 +208,9 @@ namespace _home
         bool ParseEnv(const string &env);
         //指令解析
         bool ParseInstruction(const string &task);
+        //自然语言解析
+        string ParseNaturalLanguage(const string &src);
+        string ParseNaturalLanguageSentence(const string &src);
 
         //优化task
         vector<Instruction> TaskOptimization();
@@ -350,4 +355,14 @@ namespace _home
     private:
     };
 
+    class NaturalLanguageParser
+    {
+    public:
+        string Parse(const string &Sentence);
+
+    private:
+        vector<string> words;
+        
+        // use Context-Free Garmmar rule
+    };
 } //_home

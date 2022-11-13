@@ -31,7 +31,15 @@ void ATRI::Plan()
         LOG_ERROR("Env Prase Error");
         return;
     }
-    ParseInstruction(GetTaskDes());
+    if (isErrorCorrection)
+    {
+        ParseNaturalLanguage(GetTaskDes());
+        return;
+    }
+    else
+    {
+        ParseInstruction(GetTaskDes());
+    }
     // info补充
     for (auto v : infos)
         ParseInfo(v);
@@ -57,6 +65,10 @@ void ATRI::Plan()
 
 bool ATRI::ParseInstruction(const string &taskDis)
 {
+    if (taskDis == "")
+    {
+        throw("Instruction is null");
+    }
     shared_ptr<SyntaxNode> root = make_shared<SyntaxNode>();
     vector<shared_ptr<SyntaxNode>> leaf_path;
     shared_ptr<SyntaxNode> curr_leaf = root;
@@ -104,6 +116,17 @@ bool ATRI::ParseInstruction(const string &taskDis)
     }
     return true;
 }
+
+string ATRI::ParseNaturalLanguage(const string &src)
+{
+    string res = "";
+    cout << src;
+    return res;
+}
+string ATRI::ParseNaturalLanguageSentence(const string &src)
+{
+}
+
 bool ATRI::ParseEnvSentence(const string &str)
 {
     int pos = 1;
@@ -451,7 +474,7 @@ bool ATRI::IsObeyNotnot_infoConstracts(const string &behave, const shared_ptr<Ob
 
 void ATRI::PrintInstruction()
 {
-#ifdef __DUBUG__
+#ifdef __DEBUG__
     cout << "Task:\n";
     for (auto v : tasks)
         cout << v;
@@ -1013,7 +1036,6 @@ void ATRI::Sense()
     }
     //更新PosCorrectFlag
 }
-
 #pragma endregion
 
 void split_string(vector<string> &out, const string &str_source, char mark)
@@ -1113,15 +1135,6 @@ ostream &operator<<(ostream &os, const Instruction &instr)
 {
 #ifdef __DEBUG__
     os << instr.ToString();
-// os << "X:\n";
-// for (auto v : instr.X)
-//     os << v;
-// if (instr.isUseY)
-// {
-//     os << "Y:\n";
-//     for (auto v : instr.Y)
-//         os << v;
-// }
 #endif
     return os;
 }
