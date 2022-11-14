@@ -24,7 +24,7 @@ bottle
 cup
 plate
 door
-
+me
 
 v:
 do
@@ -72,4 +72,3 @@ up
 down
 from
 of
-which
