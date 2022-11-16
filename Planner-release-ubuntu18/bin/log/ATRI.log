@@ -14,7 +14,7 @@ Grader path: ../lib/libasp
 The door of the refrigerator is closed. The door of the microwave is opened. Do not open the door of the refrigerator. Do not put the book which is green on closet. The green bottle must be on the desk. Put a can on the bed. Put the bottle which is blue on the television. Take out the remotecontrol from the cupboard. Pick up the bottle. Put a book on the table. Give the book which is white for human. Go to the sofa.
 # Results:
 
-# Time: 0.002
+# Time: 0.001
 # Score: 198
 
 <02.xml>
@@ -74,8 +74,8 @@ The green can must not be on plate. There must not be a black can on plate. Ther
 The refrigerator is not opened. The microwave is not closed. Give human a green book. Put a can in the closet. Put a cup in closet. Put the white book on the chair. Put a bottle on bed. Take out the book which is yellow from refrigerator. Pick up a bottle.
 # Results:
 
-# Time: 0.001
-# Score: 98
+# Time: 0
+# Score: 100
 
 <08.xml>
 # Environment Description:
@@ -84,7 +84,7 @@ The refrigerator is not opened. The microwave is not closed. Give human a green 
 There is the yellow book on the plant. There is the red cup in the closet. Close the door of the washmachine. Put the can which is black on the plant. Put a bottle in the refrigerator. Pick up the white remotecontrol. The blue bottle must be not in the refrigerator. The yellow cup must be not on the worktable. The door of the closet must not be opened.
 # Results:
 
-# Time: 0.001
+# Time: 0
 # Score: 0
 
 <09.xml>
@@ -94,8 +94,8 @@ There is the yellow book on the plant. There is the red cup in the closet. Close
 Take out the green book from the closet. Put the remotecontrol which is red in the closet. Go to the plant. Pick up the bottle which is green. Put the green remotecontrol on the airconditioner. The red book is on the sofa. The remotecontrol which is black must be on the couch.
 # Results:
 
-# Time: 0.001
-# Score: 158
+# Time: 0
+# Score: 160
 
 <10.xml>
 # Environment Description:
@@ -124,8 +124,8 @@ Pick up a remotecontrol. Pick up the remotecontrol which is black. Put a can on 
 Do not put the blue bottle down. Do not put the yellow book down. Do not put down the black can. There must be a green can on plant. The white can must is on the teapoy. Close the microwave. Put a bottle in microwave. Put a can on the worktable. Put a book on the plant.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <13.xml>
 # Environment Description:
@@ -164,7 +164,7 @@ There is a bottle in the refrigerator. The door of the closet is closed. Open th
 The door of the closet is opened. There is a yellow cup in the closet. Go to microwave. Take out the cup which is yellow from the closet. Put a cup which is yellow on the desk. Put the bottle which is yellow in the closet. Pick up a red cup. Pick up a can. Give me a book. There is a red cup on the plate. Do not go to the airconditioner.
 # Results:
 
-# Time: 0.001
+# Time: 0.002
 # Score: 98
 
 <17.xml>
@@ -174,8 +174,8 @@ The door of the closet is opened. There is a yellow cup in the closet. Go to mic
 The door of the refrigerator is closed. The microwave is opened. The washmachine is opened. Put the white cup in the refrigerator. Do not go to the human. Do not go to the bed. Do not go to the microwave. Do not go to the cupboard.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <18.xml>
 # Environment Description:
@@ -194,8 +194,8 @@ The door of the refrigerator is closed. The microwave is opened. The washmachine
 The door of the refrigerator is closed. The microwave is opened. The washmachine is opened. Put the red can on the airconditioner. Pick up the blue bottle. Do not go to the microwave. The yellow bottle must be not on the plate.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <20.xml>
 # Environment Description:
@@ -214,8 +214,8 @@ The door of the refrigerator is closed. The microwave is opened. The washmachine
 Do not pick up the red book. Do not pick up the red cup. There must be a black can on the couch. There must be a blue book in the refrigerator. Put the blue cup on table. Put the green cup in refrigerator. Open refrigerator. Put the white can in refrigerator. Put a book on desk.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <22.xml>
 # Environment Description:
@@ -224,8 +224,8 @@ Do not pick up the red book. Do not pick up the red cup. There must be a black c
 The refrigerator is closed. The microwave is opened. The washmachine is opened. Put a can in the cupboard. Put a bottle on the airconditioner. Go to the sofa. Put the remotecontrol on the television. There must be a blue bottle in refrigerator.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <23.xml>
 # Environment Description:
@@ -264,8 +264,8 @@ The green can must not be on plate. There must not be a black can on plate. Ther
 The door of refrigerator is closed. The door of microwave is opened. Do no go to the bed. Put a cup on television. Put a bottle on cupboard. Put a book on the chair. Put the white book in the closet. Pick up a can.
 # Results:
 
-# Time: 0.001
-# Score: 198
+# Time: 0
+# Score: 200
 
 <27.xml>
 # Environment Description:
@@ -284,8 +284,8 @@ The door of refrigerator is closed. The door of microwave is opened. The refrige
 The refrigerator is closed. The microwave is opened. The washmachine is opened. Put a can in the cupboard. Put the red can on the airconditioner. Go to the sofa. Put the remotecontrol on the television. Close door of microwave.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <29.xml>
 # Environment Description:
@@ -294,8 +294,8 @@ The refrigerator is closed. The microwave is opened. The washmachine is opened. 
 There must be a yellow book on plate. The black can must not be on the worktable. Close door of microwave. Put a can on worktable. Put the blue bottle on worktable. Put the white can on worktable. Put the bottle which is red in microwave.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <30.xml>
 # Environment Description:
@@ -314,8 +314,8 @@ Do not go to the table. Do not go to the desk. The book which is red must not be
 The door of refrigerator is closed. The door of microwave is opened. The can must be on plate. The blue bottle must be in closet. There must not be a yellow book in closet. The green book must not be in closet. Put a book in closet. Go to the human. Put a bottle on the microwave. Pickup a remotecontrol.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <32.xml>
 # Environment Description:
@@ -334,8 +334,8 @@ Put green can on sofa. Give human the book which is yellow. Put can which is red
 There must be a yellow book on plate. The green can must not be on the plate. Close door of microwave. Put a black can on worktable. Put the blue bottle on worktable. Put the red bottle in microwave. Pick up a can. Put a book on worktable.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <34.xml>
 # Environment Description:
@@ -354,8 +354,8 @@ The black can must be on couch. The black can must be in refrigerator. Do not go
 The refrigerator is closed. The microwave is opened. The washmachine is opened. Put a can in the cupboard. Put the white cup on the sofa. Go to the sofa. Put a book on sofa. Put the remotecontrol on the television. Put the white book on the sofa. Close door of microwave.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <36.xml>
 # Environment Description:
@@ -394,8 +394,8 @@ Put down the red remotecontrol. Put the white cup on closet. Put a cup in the wa
 The closet must not be opened. Close the door of cupboard. Put a book in microwave. Pick a book up. Put a cup in microwave. Go to the chair.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <40.xml>
 # Environment Description:
@@ -424,8 +424,8 @@ The refrigerator is closed. There is an opened microwave. There is a remotecontr
 Put a cup in washmachine. Put a can in refrigerator. Take out a book from washmachine. Pick up a cup. Go to the refrigerator.
 # Results:
 
-# Time: 0
-# Score: 100
+# Time: 0.001
+# Score: 98
 
 <43.xml>
 # Environment Description:
@@ -434,8 +434,8 @@ Put a cup in washmachine. Put a can in refrigerator. Take out a book from washma
 The refrigerator is closed. The microwave is opened. The remotecontrol is in washmachine. Put a can on bed. Put the book which is white in cupboard. Take out the remotecontrol from washmachine. Give human a book. Put the green book on desk.
 # Results:
 
-# Time: 0.001
-# Score: 98
+# Time: 0
+# Score: 100
 
 <44.xml>
 # Environment Description:
@@ -494,8 +494,8 @@ Pick up the remotecontrol. Pick up the white cup. Open the microwave. The white 
 The refrigerator is closed. The microwave is opened. The washmachine is opened. Put a can in the cupboard. Put the red can on the airconditioner. Go to the sofa. Put a book on sofa. Put the remotecontrol on the television. Close door of microwave. The yellow bottle must be on plate.
 # Results:
 
-# Time: 0.001
-# Score: 98
+# Time: 0
+# Score: 100
 
 <50.xml>
 # Environment Description:
@@ -507,4 +507,4 @@ Go to desk. Pick up the red remotecontrol. Put the bule cup on airconditioner. T
 # Time: 0
 # Score: 100
 
-Total Score: 5686
+Total Score: 5672

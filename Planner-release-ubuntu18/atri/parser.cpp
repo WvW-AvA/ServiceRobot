@@ -72,6 +72,28 @@ parser::parser()
 parser::~parser()
 {
 }
+bool parser::parse(const string &str)
+{
+
+    tokens.clear();
+    stack.clear();
+    root = nullptr;
+    is_must = false;
+    is_not = false;
+    is_last_token = false;
+    to_token(str);
+    push_down_automata();
+    if (root)
+    {
+        cout << root;
+        return true;
+    }
+    else
+    {
+        LOG_ERROR("The garmmar of sentence:(%s) is incorrect!", str.c_str());
+        return false;
+    }
+}
 
 void parser::to_token(string str)
 {
@@ -111,21 +133,43 @@ void parser::push_down_automata()
 {
     for (int i = 0; i < tokens.size(); i++)
     {
+        if (i == tokens.size() - 1)
+            is_last_token = true;
         push_down(tokens[i]);
-
-        /*for (int tem = 0; tem < stack.size(); tem++)
-         {
-             cout << stack[tem] << "----------------------------------------------\n";
-         }
-         cout << "=================================================\n";
-         */
+        /*
+        for (int tem = 0; tem < stack.size(); tem++)
+        {
+            cout << stack[tem] << "----------------------------------------------\n";
+        }
+        cout << "=================================================\n";
+        */
     }
-    if (stack.size() != 0 && stack.back()->token.type == VP)
+    if (stack.size() == 1 && stack.back()->token.type == VP)
     {
         root = make_shared<syntax_node>(S);
         root->sons.push_back(stack.back());
         stack.back()->father = root;
         stack.pop_back();
+    }
+    else if (stack.size() == 2 && (stack[0]->token.type == THERE || stack[0]->token.type == NP) && stack.back()->token.type == VP)
+    {
+        root = make_shared<syntax_node>(S);
+        for (int i = 0; i < 2; i++)
+        {
+            root->sons.push_back(stack.back());
+            stack.back()->father = root;
+            stack.pop_back();
+        }
+    }
+    else if (stack.size() == 3 && stack[0]->token.type == THERE && stack[1]->token.type == VP && stack.back()->token.type == VP)
+    {
+        root = make_shared<syntax_node>(S);
+        for (int i = 0; i < 3; i++)
+        {
+            root->sons.push_back(stack.back());
+            stack.back()->father = root;
+            stack.pop_back();
+        }
     }
 }
 
@@ -221,8 +265,7 @@ void parser::push_back_np(shared_ptr<syntax_node> &np)
 void parser::push_back_vp(shared_ptr<syntax_node> &vp)
 {
     if (!match_rule(vp, NP, WHICH, NP) && !match_rule(vp, VP, NOT, V) &&
-        !match_rule(vp, VP, MUST) && !match_rule(vp, VP, NOT, MUST) &&
-        !match_rule(vp, S, THERE) && !match_rule(vp, S, NP))
+        !match_rule(vp, VP, MUST) && !match_rule(vp, VP, NOT, MUST))
     {
         stack.push_back(vp);
     }
@@ -243,11 +286,6 @@ bool parser::match_rule(shared_ptr<syntax_node> &p, uint8_t match_to, uint8_t la
             push_back_np(temp);
         else if (match_to == VP)
             push_back_vp(temp);
-        else if (match_to == S)
-        {
-            stack.push_back(temp);
-            root = temp;
-        }
 
         return true;
     }
@@ -271,11 +309,6 @@ bool parser::match_rule(shared_ptr<syntax_node> &p, uint8_t match_to, uint8_t la
             push_back_np(temp);
         else if (match_to == VP)
             push_back_vp(temp);
-        else if (match_to == S)
-        {
-            stack.push_back(temp);
-            root = temp;
-        }
         return true;
     }
     return false;
@@ -301,33 +334,9 @@ bool parser::match_rule(shared_ptr<syntax_node> &p, uint8_t match_to, uint8_t la
             push_back_np(temp);
         else if (match_to == VP)
             push_back_vp(temp);
-        else if (match_to == S)
-        {
-            stack.push_back(temp);
-            root = temp;
-        }
         return true;
     }
     return false;
-}
-
-void parser::parse(const string &str)
-{
-    tokens.clear();
-    stack.clear();
-    root = nullptr;
-    is_must = false;
-    is_not = false;
-
-    to_token(str);
-    push_down_automata();
-
-    if (root->token.type != S || root->sons.size() == 0)
-    {
-        LOG_ERROR("parser root error");
-        throw(1);
-    }
-    cout << root;
 }
 
 bool parser::is_task()

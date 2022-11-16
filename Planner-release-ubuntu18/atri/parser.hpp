@@ -52,7 +52,7 @@ public:
     shared_ptr<syntax_node> root;
     unordered_map<string, uint8_t> words_map;
 
-    void parse(const string &str);
+    bool parse(const string &str);
     void words_map_initialize(const string &words_map_path = "../words.txt");
 
     bool is_task();
@@ -64,6 +64,7 @@ public:
     ~parser();
 
 private:
+    bool is_last_token = false;
     void to_token(string str);
     void push_down_automata();
     void push_down(shared_ptr<syntax_node> &p);

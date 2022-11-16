@@ -135,7 +135,8 @@ void ATRI::ParseNaturalLanguage(const string &src)
 }
 void ATRI::ParseNaturalLanguageSentence(const string &s)
 {
-    nlp_parser->parse(s);
+    if (nlp_parser->parse(s) == false)
+        return;
     auto tree = nlp_parser->root;
     shared_ptr<syntax_node> v;
     if (tree->sons.size() == 1)
