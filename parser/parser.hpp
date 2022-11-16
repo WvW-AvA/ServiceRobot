@@ -10,7 +10,6 @@ using namespace std;
 #define S (uint8_t)0  //句
 #define NP (uint8_t)1 //名词部分
 #define VP (uint8_t)2 //动词部分
-#define WS (uint8_t)12
 
 #define N (uint8_t)3    //名词
 #define ADJ (uint8_t)4  //形容词

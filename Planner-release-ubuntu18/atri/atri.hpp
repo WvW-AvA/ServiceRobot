@@ -11,12 +11,13 @@
 #include "string"
 #include "unordered_map"
 #include "debuglog.hpp"
-
 using namespace std;
 
 #define __DEBUG__
 #define UNKNOWN -1
 #define NONE 0
+
+class parser;
 namespace _home
 {
     class Instruction;
@@ -201,6 +202,8 @@ namespace _home
         int score;
         //是否开启纠错模式
         bool isErrorCorrection = 1;
+        //是否开启自然语言处理
+        bool isNaturalParse = 1;
         // 位置物品正确性标识
         vector<bool> posCorrectFlag;
 
@@ -209,8 +212,9 @@ namespace _home
         //指令解析
         bool ParseInstruction(const string &task);
         //自然语言解析
-        string ParseNaturalLanguage(const string &src);
-        string ParseNaturalLanguageSentence(const string &src);
+        void ParseNaturalLanguage(const string &src);
+        void ParseNaturalLanguageSentence(const string &s);
+        parser *nlp_parser;
 
         //优化task
         vector<Instruction> TaskOptimization();
@@ -342,6 +346,7 @@ namespace _home
         vector<shared_ptr<Object>> X, Y;
         bool isUseY = false;
         bool isEnable = true;
+        Instruction();
         Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<ATRI> &atri);
         void SearchConditionObject(const shared_ptr<ATRI> &atri);
         void TaskSelfOptimization(const shared_ptr<ATRI> &atri);
@@ -355,14 +360,4 @@ namespace _home
     private:
     };
 
-    class NaturalLanguageParser
-    {
-    public:
-        string Parse(const string &Sentence);
-
-    private:
-        vector<string> words;
-        
-        // use Context-Free Garmmar rule
-    };
 } //_home

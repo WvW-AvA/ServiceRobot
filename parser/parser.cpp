@@ -84,7 +84,14 @@ void parser::push_down_automata()
         }
         cout << endl;
     }
+    if (stack.size() != 0 && stack.back()->value.type == VP)
+    {
+        root = make_shared<syntax_node>(S);
+        root->sons.push_back(stack.back());
+        stack.pop_back();
+    }
 }
+
 void parser::push_down(token &token)
 {
     auto p = make_shared<syntax_node>(token);
@@ -136,7 +143,6 @@ void parser::push_down(token &token)
         }
     }
 }
-
 void parser::push_back_np(shared_ptr<syntax_node> &np)
 {
     if (!match_rule(np, NP, PREP, NP) && !match_rule(np, VP, V) && !match_rule(np, VP, VP))

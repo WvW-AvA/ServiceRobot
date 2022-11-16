@@ -1,9 +1,9 @@
-#include "atri.hpp"
 #include <iostream>
-#include "regex"
+#include <regex>
+#include "atri.hpp"
+#include "parser.hpp"
 using namespace _home;
 using namespace std;
-
 static int totalScore = 0;
 
 void split_string(vector<string> &out, const string &str_source, char mark);
@@ -21,6 +21,8 @@ void ATRI::Init()
         posCorrectFlag.push_back(false);
     else
         posCorrectFlag.push_back(true);
+    nlp_parser = new parser();
+    nlp_parser->words_map_initialize("../words.txt");
 }
 
 void ATRI::Plan()
@@ -31,7 +33,7 @@ void ATRI::Plan()
         LOG_ERROR("Env Prase Error");
         return;
     }
-    if (isErrorCorrection)
+    if (isNaturalParse)
     {
         ParseNaturalLanguage(GetTaskDes());
         return;
@@ -117,14 +119,33 @@ bool ATRI::ParseInstruction(const string &taskDis)
     return true;
 }
 
-string ATRI::ParseNaturalLanguage(const string &src)
+void ATRI::ParseNaturalLanguage(const string &src)
 {
-    string res = "";
-    cout << src;
-    return res;
+    int lp = 0;
+    for (int i = 0; i < src.size(); i++)
+    {
+        if (src[i] == '.')
+        {
+            string str = src.substr(lp, (i + 1) - lp);
+            LOG(GREEN "%s" RESET, str.c_str());
+            ParseNaturalLanguageSentence(str);
+            lp = i + 2;
+        }
+    }
 }
-string ATRI::ParseNaturalLanguageSentence(const string &src)
+void ATRI::ParseNaturalLanguageSentence(const string &s)
 {
+    nlp_parser->parse(s);
+    auto tree = nlp_parser->root;
+    shared_ptr<syntax_node> v;
+    if (tree->sons.size() == 1)
+        v = nlp_parser->find_v(tree->sons[0]);
+    else if (tree->sons.size() == 2 && tree->sons[0]->token.type == NP && tree->sons[1]->token.type == VP)
+    {
+        v = nlp_parser->find_v(tree->sons[1]);
+    }
+    if (v)
+        LOG(BLUE "%s" RESET, v->token.value.c_str());
 }
 
 bool ATRI::ParseEnvSentence(const string &str)
@@ -1067,6 +1088,9 @@ bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
     return ret;
 }
 
+Instruction::Instruction()
+{
+}
 Instruction::Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<ATRI> &atri)
 {
     vector<string> disc;
