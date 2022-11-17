@@ -215,6 +215,7 @@ namespace _home
         void ParseNaturalLanguage(const string &src);
         void ParseNaturalLanguageSentence(const string &s);
         parser *nlp_parser;
+        vector<string> errorlist;
 
         //优化task
         vector<Instruction> TaskOptimization();

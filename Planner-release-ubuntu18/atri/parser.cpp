@@ -29,10 +29,8 @@ void parser::words_map_initialize(const string &words_map_path)
             mode = ADJ;
         else if (str == "art:")
             mode = ART;
-        else if (str == "prep1:")
-            mode = PREP1;
-        else if (str == "prep2:")
-            mode = PREP2;
+        else if (str == "prep:")
+            mode = PREP;
         else if (str == "be:")
             mode = BE;
         else
@@ -54,8 +52,7 @@ void parser::words_map_initialize(const string &words_map_path)
     define_map.emplace(N, "N");
     define_map.emplace(ADJ, "ADJ");
     define_map.emplace(ART, "ART");
-    define_map.emplace(PREP1, "PREP1");
-    define_map.emplace(PREP2, "PREP2");
+    define_map.emplace(PREP, "PREP");
     define_map.emplace(V, "V");
     define_map.emplace(BE, "BE");
     define_map.emplace(THERE, "THERE");
@@ -74,7 +71,6 @@ parser::~parser()
 }
 bool parser::parse(const string &str)
 {
-
     tokens.clear();
     stack.clear();
     root = nullptr;
@@ -136,13 +132,11 @@ void parser::push_down_automata()
         if (i == tokens.size() - 1)
             is_last_token = true;
         push_down(tokens[i]);
-        /*
         for (int tem = 0; tem < stack.size(); tem++)
         {
             cout << stack[tem] << "----------------------------------------------\n";
         }
         cout << "=================================================\n";
-        */
     }
     if (stack.size() == 1 && stack.back()->token.type == VP)
     {
@@ -156,20 +150,20 @@ void parser::push_down_automata()
         root = make_shared<syntax_node>(S);
         for (int i = 0; i < 2; i++)
         {
-            root->sons.push_back(stack.back());
-            stack.back()->father = root;
-            stack.pop_back();
+            root->sons.push_back(stack[i]);
+            stack[i]->father = root;
         }
+        stack.clear();
     }
-    else if (stack.size() == 3 && stack[0]->token.type == THERE && stack[1]->token.type == VP && stack.back()->token.type == VP)
+    else if (0 && stack.size() == 3 && stack[0]->token.type == THERE && stack[1]->token.type == VP && stack.back()->token.type == VP)
     {
         root = make_shared<syntax_node>(S);
         for (int i = 0; i < 3; i++)
         {
-            root->sons.push_back(stack.back());
-            stack.back()->father = root;
-            stack.pop_back();
+            root->sons.push_back(stack[i]);
+            stack[i]->father = root;
         }
+        stack.clear();
     }
 }
 
@@ -222,17 +216,29 @@ void parser::push_down(shared_ptr<syntax_node> &p)
             push_back_np(np);
         }
     }
-    else if (p->token.type == PREP1)
+    else if (p->token.type == PREP)
     {
-        if (!match_rule(p, VP, VP) && !match_rule(p, VP, V))
+        if (!match_rule(p, VP, V) && !match_rule(p, VP, BE))
         {
-            stack.push_back(p);
+            while (!match_rule(p, VP, NP, V) && !match_rule(p, VP, NP, VP) &&
+                   !match_rule(p, VP, NP, BE) && stack.back()->token.type == VP)
+            {
+                auto p = stack.back();
+                stack.pop_back();
+                for (auto &s : p->sons)
+                    stack.push_back(s);
+            }
+            if (stack.back()->token.type != VP)
+            {
+                auto temp = stack.back();
+                stack.pop_back();
+                if (temp->token.type == NP)
+                    push_back_np(temp);
+                else
+                    push_down(temp);
+                stack.push_back(p);
+            }
         }
-    }
-    else if (p->token.type == PREP2)
-    {
-        if (!match_rule(p, VP, V))
-            stack.push_back(p);
     }
     else if (p->token.type == ADJ)
     {
@@ -255,11 +261,34 @@ void parser::push_down(shared_ptr<syntax_node> &p)
 }
 void parser::push_back_np(shared_ptr<syntax_node> &np)
 {
-    if (!match_rule(np, NP, OF, NP) && !match_rule(np, VP, V) && !match_rule(np, VP, VP) &&
-        !match_rule(np, VP, PREP2, VP) && !match_rule(np, VP, PREP2, BE) && !match_rule(np, VP, BE) &&
-        !match_rule(np, VP, PREP2, NOT, BE))
+    if (!match_rule(np, NP, OF, NP) && !match_rule(np, VP, V) &&
+        !match_rule(np, VP, PREP, BE) && !match_rule(np, VP, BE) &&
+        !match_rule(np, VP, PREP, NOT, BE))
     {
-        stack.push_back(np);
+        if (stack.size() == 0)
+        {
+            stack.push_back(np);
+            return;
+        }
+        while (!match_rule(np, VP, PREP, NP, V) && !match_rule(np, VP, PREP, NP, VP) &&
+               !match_rule(np, VP, PREP, NP, BE) && stack.back()->token.type == VP)
+        {
+            auto p = stack.back();
+            stack.pop_back();
+            for (auto &s : p->sons)
+                stack.push_back(s);
+        }
+        if (stack.back()->token.type != VP)
+        {
+            auto temp = stack.back();
+            stack.pop_back();
+            if (temp->token.type == NP)
+                push_back_np(temp);
+            else
+                push_down(temp);
+            if (!match_rule(np, VP, VP))
+                stack.push_back(np);
+        }
     }
 }
 void parser::push_back_vp(shared_ptr<syntax_node> &vp)
@@ -373,32 +402,27 @@ _home::Instruction parser::get_task_instruction()
 {
     _home::Instruction instr;
     auto v = find_v(root->sons[0]);
-    if (is_match_rule(v->father, V, NP))
+    auto &father = v->father;
+    auto &father_2 = father->father;
+    string behave = "";
+    if (is_match_rule(father, V, NP))
+        behave = v->token.value;
+    else if (is_match_rule(father, V, PREP, NP))
+        behave = father->sons[0]->token.value + father->sons[1]->token.value;
+
+    if (father_2->token.type == S)
     {
-        auto &father = v->father;
-        auto &father_2 = father->father;
-        if (father_2->token.type == S)
-        {
-            instr.behave = v->token.value;
+        instr.behave = behave;
+        instr.conditionX = get_object_condition(father->sons[1]);
+        return instr;
+    }
+    else if (father_2->token.type == VP && is_match_rule(father_2, VP, PREP))
+    {
+        if (behave == "put")
             instr.conditionX = get_object_condition(father->sons[1]);
-            return instr;
-        }
-        else if (father_2->token.type == VP && is_match_rule(father_2, VP, PREP2))
-        {
-            if (v->token.value == "put")
-                instr.behave = v->token.value + father_2->sons[1]->token.value;
-            else
-                instr.behave = v->token.value;
-            instr.conditionX = get_object_condition(father->sons[1]);
-            if (father_2->father->token.type == VP && is_match_rule(father_2->father, VP, NP))
-                instr.conditionY = get_object_condition(father_2->father->sons[1]);
-            return instr;
-        }
-        else
-        {
-            LOG_ERROR("error");
-            throw(1);
-        }
+        if (father_2->father->token.type == VP && is_match_rule(father_2->father, VP, NP))
+            instr.conditionY = get_object_condition(father_2->father->sons[1]);
+        return instr;
     }
     else
     {

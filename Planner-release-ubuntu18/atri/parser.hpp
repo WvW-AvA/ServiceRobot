@@ -13,12 +13,11 @@ using namespace std;
 #define NP (uint8_t)1  //名词部分
 #define VP (uint8_t)2  //动词部分
 
-#define N (uint8_t)3      //名词
-#define ADJ (uint8_t)4    //形容词
-#define ART (uint8_t)5    //冠词
-#define PREP1 (uint8_t)6  //介词后不接名词
-#define PREP2 (uint8_t)14 //介词后接名词
-#define V (uint8_t)7      //动词
+#define N (uint8_t)3    //名词
+#define ADJ (uint8_t)4  //形容词
+#define ART (uint8_t)5  //冠词
+#define PREP (uint8_t)6 //介词
+#define V (uint8_t)7    //动词
 #define BE (uint8_t)15
 
 #define OF (uint8_t)16
@@ -72,6 +71,15 @@ private:
     bool match_rule(shared_ptr<syntax_node> &p, uint8_t match_to, uint8_t last, uint8_t last_last);
     bool match_rule(shared_ptr<syntax_node> &p, uint8_t match_to, uint8_t last, uint8_t last_last, uint8_t last_last_last);
 
+    bool inline is_match_rule(shared_ptr<syntax_node> &p, uint8_t t0, uint8_t t1, uint8_t t2, uint8_t t3)
+    {
+        if (p->sons.size() != 4)
+            return false;
+        auto &sons = p->sons;
+        if (sons[0]->token.type == t0 && sons[1]->token.type == t1 && sons[2]->token.type == t2 && sons[3]->token.type)
+            return true;
+        return false;
+    }
     bool inline is_match_rule(shared_ptr<syntax_node> &p, uint8_t t0, uint8_t t1, uint8_t t2)
     {
         if (p->sons.size() != 3)

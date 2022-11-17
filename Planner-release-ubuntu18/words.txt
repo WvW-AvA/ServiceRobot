@@ -67,12 +67,7 @@ an
 the
 
 
-prep1:
-up
-down
-
-
-prep2:
+prep:
 in
 on
 near
@@ -81,3 +76,5 @@ to
 from
 for
 out
+up
+down
