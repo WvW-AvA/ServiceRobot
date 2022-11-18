@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <memory>
 #include <unordered_map>
+#include <unordered_set>
 #include "atri.hpp"
 using namespace std;
 
@@ -50,6 +51,7 @@ public:
     vector<shared_ptr<syntax_node>> stack;
     shared_ptr<syntax_node> root;
     unordered_map<string, uint8_t> words_map;
+    unordered_set<string> color_set;
 
     bool parse(const string &str);
     void words_map_initialize(const string &words_map_path = "../words.txt");
@@ -59,6 +61,7 @@ public:
     _home::Instruction get_info_instruction();
     _home::Condition get_object_condition(const shared_ptr<syntax_node> &np);
     shared_ptr<syntax_node> find_v(const shared_ptr<syntax_node> &vp);
+    shared_ptr<syntax_node> find_n(const shared_ptr<syntax_node> &np);
     parser();
     ~parser();
 
@@ -71,7 +74,7 @@ private:
     bool match_rule(shared_ptr<syntax_node> &p, uint8_t match_to, uint8_t last, uint8_t last_last);
     bool match_rule(shared_ptr<syntax_node> &p, uint8_t match_to, uint8_t last, uint8_t last_last, uint8_t last_last_last);
 
-    bool inline is_match_rule(shared_ptr<syntax_node> &p, uint8_t t0, uint8_t t1, uint8_t t2, uint8_t t3)
+    bool inline is_match_rule(const shared_ptr<syntax_node> &p, uint8_t t0, uint8_t t1, uint8_t t2, uint8_t t3)
     {
         if (p->sons.size() != 4)
             return false;
@@ -80,7 +83,7 @@ private:
             return true;
         return false;
     }
-    bool inline is_match_rule(shared_ptr<syntax_node> &p, uint8_t t0, uint8_t t1, uint8_t t2)
+    bool inline is_match_rule(const shared_ptr<syntax_node> &p, uint8_t t0, uint8_t t1, uint8_t t2)
     {
         if (p->sons.size() != 3)
             return false;
@@ -89,7 +92,7 @@ private:
             return true;
         return false;
     }
-    bool inline is_match_rule(shared_ptr<syntax_node> &p, uint8_t t0, uint8_t t1)
+    bool inline is_match_rule(const shared_ptr<syntax_node> &p, uint8_t t0, uint8_t t1)
     {
         if (p->sons.size() != 2)
             return false;

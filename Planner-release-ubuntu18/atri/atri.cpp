@@ -143,17 +143,42 @@ void ATRI::ParseNaturalLanguageSentence(const string &s)
         return;
     }
     auto tree = nlp_parser->root;
-    shared_ptr<syntax_node> v;
-    if (tree->sons.size() == 1)
-        v = nlp_parser->find_v(tree->sons[0]);
-    else if (tree->sons.size() == 2 && tree->sons[0]->token.type == NP && tree->sons[1]->token.type == VP)
+    vector<Instruction> *list_p = nullptr;
+    bool is_task = true;
+    if (tree->sons.size() == 1 && tree->sons[0]->token.type == VP)
     {
-        v = nlp_parser->find_v(tree->sons[1]);
+        if (nlp_parser->is_not)
+            list_p = &not_taskConstrains;
+        else
+            list_p = &tasks;
     }
-    if (v)
-        LOG(BLUE "%s" RESET, v->token.value.c_str());
+    else if (tree->sons.size() == 2)
+    {
+        is_task = false;
+        if (nlp_parser->is_must)
+        {
+            if (nlp_parser->is_not)
+                list_p = &not_infoConstrains;
+            else
+                list_p = &notnot_infoConstrains;
+        }
+        else
+            list_p = &infos;
+    }
+    if (list_p == nullptr)
+    {
+        LOG_ERROR("NLP Parse Error");
+        throw(1);
+    }
+    Instruction instr;
+    if (is_task)
+        instr = nlp_parser->get_task_instruction();
+    else
+        instr = nlp_parser->get_info_instruction();
+    list_p->push_back(instr);
+    list_p->back().SearchConditionObject(shared_from_this());
+    cout << list_p->back();
 }
-
 bool ATRI::ParseEnvSentence(const string &str)
 {
     int pos = 1;

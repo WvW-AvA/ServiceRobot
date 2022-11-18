@@ -60,6 +60,14 @@ void parser::words_map_initialize(const string &words_map_path)
     define_map.emplace(MUST, "MUST");
     define_map.emplace(WHICH, "WHICH");
     define_map.emplace(OF, "OF");
+
+    color_set.emplace("white");
+    color_set.emplace("black");
+    color_set.emplace("red");
+    color_set.emplace("green");
+    color_set.emplace("yellow");
+    color_set.emplace("blue");
+    color_set.emplace("bule");
 }
 
 parser::parser()
@@ -132,11 +140,12 @@ void parser::push_down_automata()
         if (i == tokens.size() - 1)
             is_last_token = true;
         push_down(tokens[i]);
-        for (int tem = 0; tem < stack.size(); tem++)
-        {
-            cout << stack[tem] << "----------------------------------------------\n";
-        }
-        cout << "=================================================\n";
+
+        //      for (int tem = 0; tem < stack.size(); tem++)
+        //      {
+        //          cout << stack[tem] << "----------------------------------------------\n";
+        //      }
+        //      cout << "=================================================\n";
     }
     if (stack.size() == 1 && stack.back()->token.type == VP)
     {
@@ -155,16 +164,16 @@ void parser::push_down_automata()
         }
         stack.clear();
     }
-    else if (0 && stack.size() == 3 && stack[0]->token.type == THERE && stack[1]->token.type == VP && stack.back()->token.type == VP)
-    {
-        root = make_shared<syntax_node>(S);
-        for (int i = 0; i < 3; i++)
-        {
-            root->sons.push_back(stack[i]);
-            stack[i]->father = root;
-        }
-        stack.clear();
-    }
+    //    else if (stack.size() == 3 && stack[0]->token.type == THERE && stack[1]->token.type == VP && stack.back()->token.type == VP)
+    //    {
+    //        root = make_shared<syntax_node>(S);
+    //        for (int i = 0; i < 3; i++)
+    //        {
+    //            root->sons.push_back(stack[i]);
+    //            stack[i]->father = root;
+    //        }
+    //        stack.clear();
+    //    }
 }
 
 void parser::push_down(shared_ptr<syntax_node> &p)
@@ -397,44 +406,132 @@ shared_ptr<syntax_node> parser::find_v(const shared_ptr<syntax_node> &vp)
     }
     return nullptr;
 }
+shared_ptr<syntax_node> parser::find_n(const shared_ptr<syntax_node> &np)
+{
+    if (np->sons.size() == 1 && np->sons[0]->token.type == N)
+        return np->sons[0];
+    else if (is_match_rule(np, ART, N) || is_match_rule(np, ADJ, N))
+        return np->sons[1];
+    else if (is_match_rule(np, ART, ADJ, N))
+        return np->sons[2];
+    else if (is_match_rule(np, NP, OF, NP))
+        return find_n(np->sons[2]);
+    else if (is_match_rule(np, NP, WHICH, VP))
+        return find_n(np->sons[0]);
+    else
+    {
+        LOG_ERROR("Find n ERROR");
+        throw(1);
+    }
+}
 
 _home::Instruction parser::get_task_instruction()
 {
     _home::Instruction instr;
     auto v = find_v(root->sons[0]);
-    auto &father = v->father;
-    auto &father_2 = father->father;
     string behave = "";
-    if (is_match_rule(father, V, NP))
-        behave = v->token.value;
-    else if (is_match_rule(father, V, PREP, NP))
-        behave = father->sons[0]->token.value + father->sons[1]->token.value;
-
-    if (father_2->token.type == S)
+    if (is_match_rule(v->father, V, PREP))
     {
-        instr.behave = behave;
-        instr.conditionX = get_object_condition(father->sons[1]);
-        return instr;
-    }
-    else if (father_2->token.type == VP && is_match_rule(father_2, VP, PREP))
-    {
-        if (behave == "put")
-            instr.conditionX = get_object_condition(father->sons[1]);
-        if (father_2->father->token.type == VP && is_match_rule(father_2->father, VP, NP))
-            instr.conditionY = get_object_condition(father_2->father->sons[1]);
-        return instr;
+        behave = v->token.value + v->father->sons[1]->token.value;
+        v = v->father;
     }
     else
+        behave = v->token.value;
+
+    auto father = v->father;
+
+    while (father != nullptr && father->father != nullptr)
     {
-        LOG_ERROR("error");
+        if (behave == "give" && is_match_rule(father, V, NP) && is_match_rule(father->father, VP, NP))
+        {
+            instr.behave = behave;
+            instr.conditionX = get_object_condition(father->sons[1]);
+            instr.conditionY = get_object_condition(father->father->sons[1]);
+            return instr;
+        }
+        else if (is_match_rule(father, V, NP) || is_match_rule(father, VP, NP) || is_match_rule(father, VP, NP, PREP, NP))
+        {
+            break;
+        }
+        else if (is_match_rule(father, V, NP, PREP) || is_match_rule(father, V, NP, PREP, NP))
+        {
+            if (behave == "put" && (father->sons[2]->token.value == "near" || father->sons[2]->token.value == "nextto"))
+                behave = "puton";
+            else if (behave != "give")
+                behave += father->sons[2]->token.value;
+            break;
+        }
+        else
+            father = father->father;
+    }
+    if (father == nullptr)
+    {
+        LOG_ERROR("task parse error");
         throw(1);
     }
+    instr.behave = behave;
+    instr.conditionX = get_object_condition(father->sons[1]);
+    if (father->sons.size() == 4)
+    {
+        instr.isUseY = true;
+        instr.conditionY = get_object_condition(father->sons[3]);
+    }
+    return instr;
 }
 _home::Instruction parser::get_info_instruction()
 {
 }
 _home::Condition parser::get_object_condition(const shared_ptr<syntax_node> &np)
 {
+    _home::Condition cond;
+    if (np->sons.size() == 1 && np->sons[0]->token.type == N)
+        cond.sort = np->sons[0]->token.value;
+    else if (is_match_rule(np, ART, N))
+        cond.sort = np->sons[1]->token.value;
+    else if (is_match_rule(np, ADJ, N))
+    {
+        auto &color = np->sons[0]->token.value;
+        if (color_set.find(color) != color_set.end())
+            cond.color = color;
+        else
+        {
+            LOG_ERROR("%s is not color", color.c_str());
+            throw(1);
+        }
+        cond.sort = np->sons[1]->token.value;
+    }
+    else if (is_match_rule(np, ART, ADJ, N))
+    {
+        auto &color = np->sons[1]->token.value;
+        if (color_set.find(color) != color_set.end())
+            cond.color = color;
+        else
+        {
+            LOG_ERROR("%s is not color", color.c_str());
+            throw(1);
+        }
+        cond.sort = np->sons[2]->token.value;
+    }
+    else if (is_match_rule(np, NP, OF, NP))
+    {
+        auto n = find_n(np->sons[2]);
+        return get_object_condition(n->father);
+    }
+    else if (is_match_rule(np, NP, WHICH, VP))
+    {
+        auto n = find_n(np->sons[0]);
+        auto co = get_object_condition(n->father);
+        if (co.color == "" && is_match_rule(np->sons[2], BE, ADJ))
+        {
+            auto color = np->sons[2]->sons[1]->token.value;
+            if (color_set.find(color) != color_set.end())
+                co.color = color;
+        }
+        return co;
+    }
+    if (cond.sort == "me")
+        cond.sort = "human";
+    return cond;
 }
 
 ostream &operator<<(ostream &os, const token &t)
