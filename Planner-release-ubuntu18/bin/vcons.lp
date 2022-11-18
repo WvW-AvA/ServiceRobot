@@ -1,2 +1,1 @@
-task(1, cons(opened(X))) :- refrigerator(X).
-task(2, cons(goto(X))) :- human(X).
+task(4, ncons(opened(X))) :- container(X), closet(X).

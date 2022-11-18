@@ -54,9 +54,6 @@ blue
 bule
 big
 small
-each
-every
-all
 closed
 opened
 
@@ -65,7 +62,9 @@ art:
 a
 an
 the
-
+each
+every
+all
 
 prep:
 in

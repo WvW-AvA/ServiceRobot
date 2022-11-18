@@ -7,10 +7,10 @@
  */
 #include "atri.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
     auto atri = make_shared<_home::ATRI>();
-    atri->Init();
+    atri->Init(argc, argv);
     atri->Run();
     return 0;
     /*

@@ -1,8 +1,8 @@
 Answer: 1
-value(7,40) true(goal) value(1,20) value(2,20) 
+value(2,40) value(1,40) true(goal) value(4,20) 
 SATISFIABLE
 
-Models      : 1+    
+Models      : 1     
 Time        : 0.000
   Prepare   : 0.000
   Prepro.   : 0.000

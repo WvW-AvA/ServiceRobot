@@ -13,8 +13,33 @@ ostream &operator<<(ostream &os, const Instruction &instr);
 
 ATRI::ATRI() : Plug("ATRI") {}
 
-void ATRI::Init()
+inline bool is_str_equal(char *a, char *b)
 {
+    char *v1 = a;
+    char *v2 = b;
+    while (*v1 != '\0')
+    {
+        if (*v1 != *v2)
+            return false;
+        v1++;
+        v2++;
+    }
+    return true;
+}
+
+void ATRI::Init(int argc, char **argv)
+{
+    if (argc > 1)
+        for (int i = 1; i < argc; i++)
+        {
+            LOG("%s", argv[i]);
+
+            if (is_str_equal(argv[i], "-nlp"))
+                isNaturalParse = stoi(argv[++i]);
+            else if (is_str_equal(argv[i], "-err"))
+                isErrorCorrection = stoi(argv[++i]);
+        }
+    LOG("nlp %d, err %d", isNaturalParse, isErrorCorrection);
     score = 0;
     objects.push_back(shared_from_this());
     if (isErrorCorrection)
@@ -38,7 +63,6 @@ void ATRI::Plan()
         ParseNaturalLanguage(GetTaskDes());
         for (auto e : errorlist)
             LOG_ERROR("The garmmar of sentence:(%s) is incorrect!", e.c_str());
-        return;
     }
     else
     {
@@ -176,9 +200,10 @@ void ATRI::ParseNaturalLanguageSentence(const string &s)
     else
         instr = nlp_parser->get_info_instruction();
     list_p->push_back(instr);
-    list_p->back().SearchConditionObject(shared_from_this());
+    list_p->back().SearchConditionObject(shared_from_this(), nlp_parser->is_every);
     cout << list_p->back();
 }
+
 bool ATRI::ParseEnvSentence(const string &str)
 {
     int pos = 1;
@@ -380,7 +405,7 @@ void ATRI::ParseInfo(const Instruction &info)
             LOG_ERROR("The plate already have small object (%d %s)", plate->id, plate->sort.c_str());
         }
     }
-    else if (info.behave == "inside")
+    else if (info.behave == "inside" || info.behave == "in")
     {
         auto c = ObjectPtrCast<Container>(info.Y[0]);
         for (auto v : info.X)
@@ -483,17 +508,16 @@ void ATRI::SolveTask(const Instruction &task)
     cout << task;
     if (task.behave == "puton" || task.behave == "putin" || task.behave == "takeout")
     {
-        if (task.X[0] == nullptr || task.Y[0] == nullptr)
+        if (task.X.size() == 0 || task.Y.size() == 0)
         {
             LOG_ERROR("Instruction Error");
-            throw("Abort");
         }
         for (auto a : task.X)
             DoBehavious(task.behave, a->id, task.Y[0]->id);
     }
     else
     {
-        if (task.X[0] == nullptr)
+        if (task.X.size() == 0)
         {
             LOG_ERROR("Instruction Error");
             throw("Abort");
@@ -612,7 +636,13 @@ void ATRI::Fini()
     not_taskConstrains.clear();
     notnot_infoConstrains.clear();
     posCorrectFlag.clear();
-    ATRI::Init();
+
+    score = 0;
+    objects.push_back(shared_from_this());
+    if (isErrorCorrection)
+        posCorrectFlag.push_back(false);
+    else
+        posCorrectFlag.push_back(true);
 }
 void ATRI::TestAutoBehave()
 {
@@ -1145,14 +1175,20 @@ Instruction::Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<AT
     SearchConditionObject(atri);
 }
 
-void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri)
+void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri, bool is_every)
 {
     for (auto v : atri->objects)
     {
         if (conditionX.IsObjectSatisfy(v))
-            X.push_back(v);
+        {
+            if (is_every == true || X.size() == 0)
+                X.push_back(v);
+        }
         if (isUseY && conditionY.IsObjectSatisfy(v))
-            Y.push_back(v);
+        {
+            if (is_every == true || Y.size() == 0)
+                Y.push_back(v);
+        }
     }
 }
 
@@ -1181,7 +1217,7 @@ void Instruction::TaskSelfOptimization(const shared_ptr<ATRI> &atri)
 
 bool Instruction::IsInstructionInvoke(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
 {
-    if (isEnable && behave == this->behave && x == this->X[0] && y == ((this->Y.size() == 0) ? nullptr : this->Y[0]))
+    if (isEnable && behave == this->behave && x == ((this->X.size() == 0) ? nullptr : this->X[0]) && y == ((this->Y.size() == 0) ? nullptr : this->Y[0]))
         return true;
     return false;
 }

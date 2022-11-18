@@ -178,7 +178,7 @@ namespace _home
     {
     public:
         ATRI();
-        void Init();
+        void Init(int argc, char **argv);
 
         void Plan();
         shared_ptr<BigObject> human;
@@ -349,7 +349,7 @@ namespace _home
         bool isEnable = true;
         Instruction();
         Instruction(const shared_ptr<SyntaxNode> &node, const shared_ptr<ATRI> &atri);
-        void SearchConditionObject(const shared_ptr<ATRI> &atri);
+        void SearchConditionObject(const shared_ptr<ATRI> &atri, bool is_every = false);
         void TaskSelfOptimization(const shared_ptr<ATRI> &atri);
         __inline__ __attribute__((__always_inline__)) bool IsInstructionInvoke(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
 

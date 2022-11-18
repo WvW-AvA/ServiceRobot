@@ -47,6 +47,7 @@ class parser
 public:
     bool is_must;
     bool is_not;
+    bool is_every;
     vector<shared_ptr<syntax_node>> tokens;
     vector<shared_ptr<syntax_node>> stack;
     shared_ptr<syntax_node> root;
@@ -59,7 +60,7 @@ public:
     bool is_task();
     _home::Instruction get_task_instruction();
     _home::Instruction get_info_instruction();
-    _home::Condition get_object_condition(const shared_ptr<syntax_node> &np);
+    _home::Condition get_object_condition(const shared_ptr<syntax_node> &np, bool is_check_color = true);
     shared_ptr<syntax_node> find_v(const shared_ptr<syntax_node> &vp);
     shared_ptr<syntax_node> find_n(const shared_ptr<syntax_node> &np);
     parser();
