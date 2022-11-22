@@ -69,7 +69,7 @@ static void backtrace()
 #define LOG(fmt, ...) printf("[LOG]:" fmt "\n", ##__VA_ARGS__);
 #define LOG_ERROR(fmt, ...) printf("\033[31m[ERROR]:%s:%d " fmt "\033[0m\n", __FILE__, __LINE__, ##__VA_ARGS__);
 #else
-#define LOG_ERROR(fmt, ...)
+#define LOG_ERROR(fmt, ...) printf("\033[31m[ERROR]:%s:%d " fmt "\033[0m\n", __FILE__, __LINE__, ##__VA_ARGS__);
 #define LOG(fmt, ...)
 #endif
 

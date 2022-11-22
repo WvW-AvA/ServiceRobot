@@ -2,400 +2,211 @@
 TeamName: ATRI
 Mode: NT
 Timeout: 5000
-TestDir: ../tests/example/
-TestSize: 50
+TestDir: ../tests/problems/NT/stage1/
+TestSize: 48
 All tests
 Grader path: ../lib/libasp
 
-<01.xml>
+<50.xml>
 # Environment Description:
-(:domain (hold 13) (plate 20) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 sofa) (size 10 big) (at 10 10) (sort 11 table) (size 11 big) (at 11 11) (sort 12 book) (size 12 small) (color 12 yellow) (sort 13 book) (size 13 small) (color 13 green) (sort 14 book) (size 14 small) (color 14 white) (sort 15 bottle) (size 15 small) (color 15 green) (at 15 2) (sort 16 bottle) (size 16 small) (color 16 blue) (sort 17 cup) (size 17 small) (color 17 black) (sort 18 cup) (size 18 small) (color 18 white) (sort 19 remotecontrol) (size 19 small) (inside 19 7) (sort 20 can) (size 20 small) (color 20 blue) (sort 21 can) (size 21 small) (color 21 yellow) (sort 22 bottle) (size 22 small) (color 22 red) (at 22 9)  (at 14 2) (at 18 6) (closed 8))
+(:domain (hold 14) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
 # Task Description:
-The door of the refrigerator is closed. The door of the microwave is opened. Do not open the door of the refrigerator. Do not put the book which is green on closet. The green bottle must be on the desk. Put a can on the bed. Put the bottle which is blue on the television. Take out the remotecontrol from the cupboard. Pick up the bottle. Put a book on the table. Give the book which is white for human. Go to the sofa.
+Do not put the blue bottle down. Do not put the yellow book down. There must be a green can on plant. The white can must be on the teapoy. Close the microwave. Put a bottle in microwave. Put a can on the worktable. Put a book on the plant. Put the can which is red in the microwave.
 # Results:
-	[PutDown 13|true]
-	[FromPlate 20|true]
-	[Move 5|true]
-	[PutDown 20|true]
-	[AskLoc 16|inside(16,6)]
-	[AskLoc 16|inside(16,6)]
-	[Move 6|true]
-	[Open 6|true]
-	[TakeOut 16 6|true]
-	[Move 3|true]
-	[PutDown 16|true]
-	[AskLoc 12|inside(12,6)]
-	[AskLoc 12|inside(12,6)]
-	[Move 6|true]
-	[TakeOut 12 6|true]
-	[Move 11|true]
-	[PutDown 12|true]
-	[Move 2|true]
-	[PickUp 14|true]
-	[Move 1|true]
+	[AskLoc 12|at(12,1)]
 	[PutDown 14|true]
-	[AskLoc 19|inside(19,7)]
-	[AskLoc 19|inside(19,7)]
-	[Move 7|true]
-	[Open 7|true]
-	[TakeOut 19 7|true]
-	[Move 8|true]
-	[PutDown 19|true]
-	[Open 8|true]
-	[PickUp 19|true]
-	[PutIn 19 8|true]
-	[TakeOut 19 8|true]
-	[PutDown 19|true]
-	[Move 2|true]
-	[PickUp 15|true]
-	[Move 10|true]
-
-# Time: 0.627
-# Score: 212
-
-<02.xml>
-# Environment Description:
-(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
-# Task Description:
-The refrigerator is not opened. The microwave is not closed. Give human a green book. Put a can in the closet. Put a cup in closet. Put the white book on the chair. Put a bottle on bed. Take out the book which is yellow from refrigerator. Pick up a bottle.
-# Results:
 	[Move 1|true]
-	[PutDown 11|true]
-	[FromPlate 18|true]
-	[Move 7|true]
-	[PutDown 18|true]
-	[Open 7|true]
-	[PickUp 18|true]
-	[PutIn 18 7|true]
-	[AskLoc 15|at(15,2)]
-	[AskLoc 15|at(15,2)]
-	[Move 2|true]
-	[PickUp 15|true]
-	[Move 7|true]
-	[PutIn 15 7|true]
-	[Move 8|true]
-	[TakeOut 12 8|true]
-	[Move 4|true]
-	[PutDown 12|true]
-	[Move 2|true]
-	[PickUp 13|true]
-	[Move 5|true]
-	[PutDown 13|true]
-	[AskLoc 10|inside(10,6)]
-	[AskLoc 10|inside(10,6)]
-	[Move 6|true]
-	[Open 6|true]
-	[TakeOut 10 6|true]
-
-# Time: 0.459
-# Score: 178
-
-<03.xml>
-# Environment Description:
-(:domain (hold 0) (plate 17) (at 0 1) (sort 1 human) (size 1 big) (at 1 2) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 2) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small)  (at 21 9) (at 24 1))
-# Task Description:
-There is a closed refrigerator. There is an opened microwave. The remotecontrol is in the washmachine. The red can must be on the chair. Put a can on bed. Put a white book in cupboard. Take out the remotecontrol from washmachine. Give a book to human. Put the green book on the desk. Put the cup in the microwave.
-# Results:
-	[Move 4|true]
-	[PickUp 23|true]
-	[Move 2|true]
-	[PutDown 23|true]
-	[FromPlate 17|true]
-	[Move 12|true]
-	[PutIn 17 12|true]
-	[AskLoc 15|at(15,2)]
-	[AskLoc 15|inside(15,5)]
-	[AskLoc 15|inside(15,5)]
-	[Move 5|true]
-	[Open 5|true]
-	[TakeOut 15 5|true]
-	[Move 2|true]
-	[PutDown 15|true]
-	[AskLoc 16|at(16,2)]
-	[AskLoc 16|at(16,2)]
-	[PickUp 16|true]
-	[Move 3|true]
-	[PutDown 16|true]
-	[Move 9|true]
-	[PickUp 21|false]
-	[Sense | 9]
-	[AskLoc 21|at(21,9)]
-	[AskLoc 21|at(21,1)]
-	[AskLoc 21|at(21,1)]
-	[Move 1|true]
-	[PickUp 21|true]
-	[Move 8|true]
-	[PutIn 21 8|true]
-	[Move 14|true]
-	[TakeOut 22 14|true]
-
-# Time: 0.607
-# Score: 203
-
-<04.xml>
-# Environment Description:
-(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
-# Task Description:
-The door of refrigerator is closed. The door of microwave is opened. The door of the refrigerator must be closed. Do not go to the human. Put a cup on television. Put a bottle on cupboard. Put a book on the chair. Put the white book in the closet. Pick up the can.
-# Results:
-	[AskLoc 15|at(15,2)]
-	[AskLoc 15|at(15,2)]
-	[PutDown 11|true]
-	[Move 2|true]
-	[PickUp 15|true]
-	[Move 3|true]
-	[PutDown 15|true]
-	[Move 2|true]
-	[PickUp 13|true]
-	[Move 8|true]
-	[PutDown 13|true]
-	[AskLoc 10|inside(10,6)]
-	[AskLoc 10|inside(10,6)]
-	[Move 6|true]
-	[Open 6|true]
-	[TakeOut 10 6|true]
-	[Move 4|true]
-	[PutDown 10|true]
-	[Move 8|true]
-	[TakeOut 12 8|true]
-	[Move 7|true]
-	[PutDown 12|true]
-	[Open 7|true]
 	[PickUp 12|true]
-	[PutIn 12 7|true]
-	[PickUp 18|false]
-	[Sense | 7 18 12]
-	[Close 7|true]
-	[Sense | 18 7]
-	[PickUp 18|false]
-
-# Time: 0.58
-# Score: 154
-
-<05.xml>
-# Environment Description:
-(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
-# Task Description:
-The door of refrigerator is closed. The door of microwave is opened. Do not open the refrigerator. Put a book on the bed. Put a bottle in the cupboard. Put the green book on the chair. Pick up the can. Take out remotecontrol from cupboard. Put a cup in microwave.
-# Results:
-	[AskLoc 10|inside(10,6)]
-	[AskLoc 10|inside(10,6)]
-	[PutDown 11|true]
-	[Move 6|true]
-	[Open 6|true]
-	[TakeOut 10 6|true]
+	[Move 3|true]
+	[PutIn 12 3|true]
+	[Move 2|true]
+	[Open 2|true]
+	[TakeOut 8 2|true]
+	[Move 1|true]
+	[PutDown 8|true]
 	[Move 5|true]
-	[PutDown 10|true]
-	[Move 2|true]
-	[PickUp 13|true]
-	[Move 8|true]
-	[PutIn 13 8|true]
-	[PickUp 11|true]
+	[PickUp 14|true]
 	[Move 4|true]
-	[PutDown 11|true]
-	[AskLoc 15|at(15,2)]
-	[AskLoc 15|at(15,2)]
-	[Move 2|true]
-	[PickUp 15|true]
-	[Move 9|true]
-	[PutIn 15 9|true]
-	[PickUp 18|false]
-	[Sense | 18 9 15]
-	[Close 9|true]
-	[Sense | 9 18]
-	[PickUp 18|false]
-	[Move 8|true]
-	[TakeOut 17 8|true]
+	[PutDown 14|true]
+	[Move 1|true]
+	[PickUp 8|true]
+	[Move 3|true]
+	[PutIn 8 3|true]
+	[Close 3|true]
 
-# Time: 0.505
+# Time: 0.297
 # Score: 178
 
-<06.xml>
+<51.xml>
+# Environment Description:
+(:domain (at 0 6) (sort 1 refrigerator) (size 1 big) (at 1 1) (type 1 container) (closed 1) (sort 2 sofa) (size 2 big) (at 2 2) (sort 3 workspace) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 table) (size 5 big) (at 5 5) (sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 closet) (size 8 big) (at 8 8) (type 8 container) (sort 9 human) (size 9 big) (at 9 9) (sort 11 remotecontrol) (size 11 small) (color 11 white) (at 11 7) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 can) (size 13 small) (color 13 red) (sort 14 remotecontrol) (size 14 small) (color 14 yellow) (inside 14 6) (sort 15 cup) (size 15 small) (color 15 blue) (at 15 2) (sort 16 bottle) (size 16 small) (color 16 black) (at 16 3) (sort 17 cup) (size 17 small) (color 17 red) (at 17 5) (sort 18 remotecontrol) (size 18 small) (color 18 blue) (at 18 4) (sort 19 cup) (size 19 small) (color 19 white) (hold 19) (sort 20 can) (size 20 small) (color 20 yellow) (sort 21 can) (size 21 small) (color 21 black) (at 21 5) (sort 22 can) (size 22 small) (color 22 blue) (inside 22 6) (sort 23 can) (size 23 small) (color 23 white) (inside 23 1) (sort 24 can) (size 24 small) (color 24 red) (at 24 9)  (inside 13 8))
+# Task Description:
+Open the closet. Go to workspace. Put the red can in closet. Closet is closed. There is the red bottle on plate. Put down the red bottle. Do not put the remotecontrol on the table.
+# Results:
+	[PutDown 19|true]
+	[Move 8|true]
+	[Open 8|true]
+	[TakeOut 13 8|true]
+	[PutIn 13 8|true]
+	[Move 3|true]
+	[FromPlate 12|true]
+	[PutDown 12|true]
+
+# Time: 0.152
+# Score: 176
+
+<54.xml>
 # Environment Description:
 (:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
 # Task Description:
-The green can must not be on plate. There must not be a black can on plate. There must not be a white can on plate. Give human a can. Put the blue can on worktable. Go to teapoy. Put the green can on teapoy. Put the black can on teapoy.
+Put green can on sofa. Give human the book which is red. Put book which is yellow on worktable. Put a red bottle in the closet. Put the red can in the microwave. Put the can which is black on the plant.
+# Results:
+	[Move 4|true]
+	[PickUp 9|true]
+	[Move 5|true]
+	[PutDown 9|true]
+	[AskLoc 14|at(14,5)]
+	[PickUp 14|true]
+	[Move 6|true]
+	[PutDown 14|true]
+	[FromPlate 15|true]
+	[Move 1|true]
+	[PutDown 15|true]
+	[AskLoc 12|at(12,1)]
+	[PickUp 12|true]
+	[Move 2|true]
+	[PutDown 12|true]
+	[Open 2|true]
+	[PickUp 12|true]
+	[PutIn 12 2|true]
+	[TakeOut 8 2|true]
+	[Move 3|true]
+	[PutIn 8 3|true]
+	[TakeOut 10 3|true]
+	[Move 4|true]
+	[PutDown 10|true]
+
+# Time: 0.394
+# Score: 270
+
+<55.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+There must be a yellow book on plate. The black can must not be on the worktable. Close door of microwave. Put a can on worktable. Put the blue bottle on worktable. Put the red bottle in microwave. Put a book on worktable.
 # Results:
 	[Move 2|true]
 	[Open 2|true]
 	[TakeOut 8 2|true]
-	[Move 6|true]
+	[Move 1|true]
 	[PutDown 8|true]
-	[Move 4|true]
-	[PickUp 9|true]
-	[Move 7|true]
-	[PutDown 9|true]
-	[Move 3|true]
-	[TakeOut 10 3|true]
-	[Move 7|true]
-	[PutDown 10|true]
-
-# Time: 0.198
-# Score: 278
-
-<07.xml>
-# Environment Description:
-(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
-# Task Description:
-The refrigerator is not opened. The microwave is not closed. Give human a green book. Put a can in the closet. Put a cup in closet. Put the white book on the chair. Put a bottle on bed. Take out the book which is yellow from refrigerator. Pick up a bottle.
-# Results:
+	[AskLoc 13|inside(13,2)]
+	[Move 2|true]
+	[TakeOut 13 2|true]
 	[Move 1|true]
-	[PutDown 11|true]
-	[FromPlate 18|true]
-	[Move 7|true]
-	[PutDown 18|true]
-	[Open 7|true]
-	[PickUp 18|true]
-	[PutIn 18 7|true]
-	[AskLoc 15|at(15,2)]
-	[AskLoc 15|at(15,2)]
-	[Move 2|true]
-	[PickUp 15|true]
-	[Move 7|true]
-	[PutIn 15 7|true]
-	[Move 8|true]
-	[TakeOut 12 8|true]
-	[Move 4|true]
-	[PutDown 12|true]
-	[Move 2|true]
-	[PickUp 13|true]
-	[Move 5|true]
 	[PutDown 13|true]
-	[AskLoc 10|inside(10,6)]
-	[AskLoc 10|inside(10,6)]
-	[Move 6|true]
-	[Open 6|true]
-	[TakeOut 10 6|true]
-
-# Time: 0.505
-# Score: 176
-
-<08.xml>
-# Environment Description:
-(:domain (at 0 2) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 plant) (size 2 big) (at 2 2) (sort 3 chair) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 washmachine) (size 7 big) (at 7 7) (type 7 container) (opened 7) (sort 8 book) (size 8 small) (color 8 black) (inside 8 7) (sort 9 cup) (size 9 small) (color 9 yellow) (plate 9) (sort 10 book) (size 10 small) (color 10 red) (inside 10 6) (sort 11 remotecontrol) (size 11 small) (color 11 white) (sort 12 can) (size 12 small) (color 12 black) (sort 13 cup) (size 13 small) (color 13 black) (at 13 5) (sort 14 can) (size 14 small) (sort 15 bottle) (size 15 small) (color 15 black) (inside 15 5) (sort 16 bottle) (size 16 small) (color 16 blue) (at 16 2) (sort 17 book) (size 17 small) (color 17 yellow) (sort 18 bottle) (size 18 small) (color 18 yellow) (at 18 3) (sort 19 can) (size 19 small) (at 19 3) (color 19 blue) (sort 20 can) (size 20 small) (color 20 blue) (inside 20 7) (sort 21 cup) (size 21 small) (color 21 red) (sort 22 remotecontrol) (size 22 small) (color 22 red) (hold 22)  (inside 11 6) (at 14 2))
-# Task Description:
-There is the yellow book on the plant. There is the red cup in the closet. Close the door of the washmachine. Put the can which is black on the plant. Put a bottle in the refrigerator. Pick up the white remotecontrol. The blue bottle must be not in the refrigerator. The yellow cup must be not on the worktable. The door of the closet must not be opened.
-# Results:
-	[AskLoc 12|at(12,3)]
-	[AskLoc 12|at(12,3)]
-	[PutDown 22|true]
+	[AskLoc 12|at(12,1)]
+	[PickUp 12|true]
 	[Move 3|true]
-	[PickUp 12|true]
-	[Move 2|true]
-	[PutDown 12|true]
+	[PutIn 12 3|true]
+	[AskLoc 14|at(14,5)]
 	[Move 5|true]
-	[Open 5|true]
-	[TakeOut 15 5|true]
-	[Move 6|true]
-	[PutDown 15|true]
-	[Open 6|true]
-	[PickUp 15|true]
-	[PutIn 15 6|true]
-	[TakeOut 11 6|true]
-	[PutDown 11|true]
-	[PickUp 11|true]
-	[Move 7|true]
-	[PutDown 11|true]
-	[Close 7|true]
-
-# Time: 0.442
-# Score: 198
-
-<09.xml>
-# Environment Description:
-(:domain (at 0 7) (sort 1 plant) (size 1 big) (at 1 1) (sort 2 couch) (size 2 big) (at 2 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 airconditioner) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 sofa) (size 6 big) (at 6 6) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (opened 7) (sort 8 chair) (size 8 big) (at 8 8) (sort 9 remotecontrol) (size 9 small) (color 9 white) (hold 9) (sort 10 bottle) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 red) (sort 12 bottle) (size 12 small) (color 12 green) (sort 13 can) (size 13 small) (sort 14 book) (size 14 small) (color 14 green) (sort 15 can) (size 15 small) (color 15 green) (inside 15 3) (sort 16 book) (size 16 small) (color 16 black) (plate 16) (sort 17 cup) (size 17 small) (sort 18 remotecontrol) (size 18 small) (color 18 green) (sort 19 can) (size 19 small) (color 19 red) (at 19 5) (sort 20 remotecontrol) (size 20 small) (color 20 black) (at 20 2) (sort 21 cup) (size 21 small) (color 21 yellow) (at 21 4) (sort 22 remotecontrol) (size 22 small) (color 22 red)  (at 10 2) (at 17 1) (at 18 4) (at 22 1))
-# Task Description:
-Take out the green book from the closet. Put the remotecontrol which is red in the closet. Go to the plant. Pick up the bottle which is green. Put the green remotecontrol on the airconditioner. The red book is on the sofa. The remotecontrol which is black must be on the couch.
-# Results:
-	[PutDown 9|true]
-	[Move 1|true]
-	[PickUp 22|true]
-	[Move 7|true]
-	[PutIn 22 7|true]
-	[Move 4|true]
-	[PickUp 18|true]
-	[PutDown 18|true]
-	[AskLoc 14|inside(14,7)]
-	[AskLoc 14|inside(14,7)]
-	[Move 7|true]
-	[TakeOut 14 7|true]
-	[PutDown 14|true]
-	[AskLoc 12|at(12,6)]
-	[AskLoc 12|at(12,6)]
-	[Move 6|true]
-	[PickUp 12|true]
-
-# Time: 0.29
-# Score: 230
-
-<10.xml>
-# Environment Description:
-(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
-# Task Description:
-The door of refrigerator is closed. The door of microwave is opened. Do not open the refrigerator. Put a book on the bed. Put a bottle in the cupboard. Put the green book on the chair. Pick up the can. Take out remotecontrol from cupboard. Put a cup in microwave.
-# Results:
-	[AskLoc 10|inside(10,6)]
-	[AskLoc 10|inside(10,6)]
-	[PutDown 11|true]
-	[Move 6|true]
-	[Open 6|true]
-	[TakeOut 10 6|true]
-	[Move 5|true]
-	[PutDown 10|true]
-	[Move 2|true]
-	[PickUp 13|true]
-	[Move 8|true]
-	[PutIn 13 8|true]
-	[PickUp 11|true]
-	[Move 4|true]
-	[PutDown 11|true]
-	[AskLoc 15|at(15,2)]
-	[AskLoc 15|at(15,2)]
-	[Move 2|true]
-	[PickUp 15|true]
-	[Move 9|true]
-	[PutIn 15 9|true]
-	[PickUp 18|false]
-	[Sense | 18 9 15]
-	[Close 9|true]
-	[Sense | 9 18]
-	[PickUp 18|false]
-	[Move 8|true]
-	[TakeOut 17 8|true]
-
-# Time: 0.506
-# Score: 178
-
-<11.xml>
-# Environment Description:
-(:domain (hold 0) (at 0 3) (sort 1 chair) (size 1 big) (at 1 1) (sort 2 plant) (size 2 big) (at 2 2) (sort 3 sofa) (size 3 big) (at 3 3) (sort 4 worktable) (size 4 big) (at 4 4) (sort 5 couch) (size 5 big) (at 5 5) (sort 6 table) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 airconditioner) (size 8 big) (at 8 8) (sort 9 table) (size 9 big) (at 9 9) (sort 10 television) (size 10 big) (at 10 10) (sort 11 book) (size 11 small) (sort 12 remotecontrol) (size 12 small) (color 12 yellow) (at 12 7) (sort 13 can) (size 13 small) (color 13 green) (plate 13) (sort 14 remotecontrol) (size 14 small) (color 14 black) (sort 15 can) (color 15 blue) (size 15 small) (sort 16 remotecontrol) (size 16 small) (color 16 red) (sort 17 cup) (size 17 small) (at 17 10) (sort 18 can) (size 18 small) (color 18 white) (sort 19 book) (size 19 small) (color 19 blue) (at 19 9)  (at 14 3) (at 15 1) (at 16 2) (at 18 4))
-# Task Description:
-Pick up a remotecontrol. Pick up the remotecontrol which is black. Put a can on the worktable. Put a cup on the worktable. Go to chair. The green can must be on the plate. The remotecontrol which is yellow must be on the teapoy.
-# Results:
-	[FromPlate 13|true]
-	[Move 4|true]
-	[PutDown 13|true]
-	[Move 10|true]
-	[PickUp 17|true]
-	[Move 4|true]
-	[PutDown 17|true]
-	[Move 7|true]
-	[PickUp 12|true]
-	[PutDown 12|true]
-	[Move 3|true]
 	[PickUp 14|true]
 	[Move 1|true]
+	[PutDown 14|true]
+	[Move 3|true]
+	[Close 3|true]
 
-# Time: 0.234
-# Score: 196
+# Time: 0.318
+# Score: 234
 
-<12.xml>
+<56.xml>
+# Environment Description:
+(:domain (hold 0) (plate 14) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (opened 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 cup) (size 8 small) (color 8 yellow) (sort 9 cup) (size 9 small) (color 9 green) (sort 10 cup) (size 10 small) (color 10 black) (sort 11 cup) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+There must be a red book on plate. The black can must not be on the worktable. Close door of microwave. Put a can on worktable. Put the blue bottle on worktable. Put a book on worktable. Put the red bottle in microwave.
+# Results:
+	[AskLoc 13|inside(13,2)]
+	[Move 2|true]
+	[TakeOut 13 2|true]
+	[Move 1|true]
+	[PutDown 13|true]
+	[FromPlate 14|true]
+	[PutDown 14|true]
+	[AskLoc 12|at(12,1)]
+	[PickUp 12|true]
+	[Move 3|true]
+	[PutDown 12|true]
+	[Open 3|true]
+	[PickUp 12|true]
+	[PutIn 12 3|true]
+	[Close 3|true]
+
+# Time: 0.242
+# Score: 158
+
+<57.xml>
 # Environment Description:
 (:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
 # Task Description:
-Do not put the blue bottle down. Do not put the yellow book down. Do not put down the black can. There must be a green can on plant. The white can must is on the teapoy. Close the microwave. Put a bottle in microwave. Put a can on the worktable. Put a book on the plant.
+There must be a yellow book on plate. The black can must not be on the worktable. Close door of microwave. Put a can on worktable. Put the blue bottle on worktable. Put the red bottle in microwave. Put a book on worktable.
 # Results:
+	[Move 2|true]
+	[Open 2|true]
+	[TakeOut 8 2|true]
+	[Move 1|true]
+	[PutDown 8|true]
+	[AskLoc 13|inside(13,2)]
+	[Move 2|true]
+	[TakeOut 13 2|true]
+	[Move 1|true]
+	[PutDown 13|true]
 	[AskLoc 12|at(12,1)]
+	[PickUp 12|true]
+	[Move 3|true]
+	[PutIn 12 3|true]
+	[AskLoc 14|at(14,5)]
+	[Move 5|true]
+	[PickUp 14|true]
+	[Move 1|true]
+	[PutDown 14|true]
+	[Move 3|true]
+	[Close 3|true]
+
+# Time: 0.38
+# Score: 234
+
+<58.xml>
+# Environment Description:
+(:domain (hold 10) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (inside 14 5))
+# Task Description:
+Do not go to the table. Do not go to the desk. Do not take out red book from washmachine. The green book must be in the plate. Pick up a book. Put a cup on the couch. Put a can on bed.
+# Results:
+	[AskLoc 11|at(11,4)]
+	[PutDown 10|true]
+	[PickUp 11|true]
+	[Move 1|true]
+	[PutDown 11|true]
+	[Move 5|true]
+	[Open 5|true]
+	[TakeOut 14 5|true]
+	[Move 2|true]
+	[PutDown 14|true]
+	[AskLoc 8|inside(8,5)]
+	[Move 5|true]
+	[TakeOut 8 5|true]
+	[PutDown 8|true]
+	[PickUp 8|true]
+
+# Time: 0.221
+# Score: 156
+
+<59.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+Do not put the blue bottle down. Do not put the yellow book down. Do not put down the black can. There must be a green can on plant. The white can must on the teapoy. Close the microwave. Put a bottle in microwave. Put a can on the worktable. Put a book on the plant.
+# Results:
 	[AskLoc 12|at(12,1)]
 	[Move 1|true]
 	[PickUp 12|true]
@@ -407,7 +218,6 @@ Do not put the blue bottle down. Do not put the yellow book down. Do not put dow
 	[Move 1|true]
 	[PutDown 8|true]
 	[AskLoc 14|at(14,5)]
-	[AskLoc 14|at(14,5)]
 	[Move 5|true]
 	[PickUp 14|true]
 	[Move 4|true]
@@ -415,14 +225,138 @@ Do not put the blue bottle down. Do not put the yellow book down. Do not put dow
 	[Move 3|true]
 	[Close 3|true]
 
-# Time: 0.304
-# Score: 180
+# Time: 0.244
+# Score: 186
 
-<13.xml>
+<60.xml>
 # Environment Description:
-(:domain (hold 0) (plate 0) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red)  (inside 8 4) (inside 10 3))
+(:domain (hold 0) (plate 15) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black)  (inside 12 6) (inside 14 5) (at 10 2))
 # Task Description:
-Take out the bottle from closet. Put the green book in microwave. Put the blue book in cupboard. Put the red book on couch. Pick up a cup. Go to the microwave.
+Do not go to bed. Do not take out the blue book from refrigerator. The white can must be in washmachine. Pick up a cup. Put a cup on couch. Put a book in refrigerator. Put the blue cup on the desk.
+# Results:
+	[AskLoc 11|at(11,4)]
+	[PickUp 11|true]
+	[Move 1|true]
+	[PutDown 11|true]
+	[AskLoc 8|inside(8,5)]
+	[Move 5|true]
+	[Open 5|true]
+	[TakeOut 8 5|true]
+	[Move 6|true]
+	[PutDown 8|true]
+	[Open 6|true]
+	[PickUp 8|true]
+	[PutIn 8 6|true]
+	[TakeOut 12 6|true]
+	[Move 4|true]
+	[PutDown 12|true]
+
+# Time: 0.327
+# Score: 192
+
+<61.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+Put green can on sofa. Give human the book which is red. Put book which is yellow on worktable. Put a red bottle in the closet. Put the red can in the microwave. Put the can which is black on the plant.
+# Results:
+	[Move 4|true]
+	[PickUp 9|true]
+	[Move 5|true]
+	[PutDown 9|true]
+	[AskLoc 14|at(14,5)]
+	[PickUp 14|true]
+	[Move 6|true]
+	[PutDown 14|true]
+	[FromPlate 15|true]
+	[Move 1|true]
+	[PutDown 15|true]
+	[AskLoc 12|at(12,1)]
+	[PickUp 12|true]
+	[Move 2|true]
+	[PutDown 12|true]
+	[Open 2|true]
+	[PickUp 12|true]
+	[PutIn 12 2|true]
+	[TakeOut 8 2|true]
+	[Move 3|true]
+	[PutIn 8 3|true]
+	[TakeOut 10 3|true]
+	[Move 4|true]
+	[PutDown 10|true]
+
+# Time: 0.381
+# Score: 270
+
+<62.xml>
+# Environment Description:
+(:domain (hold 16) (plate 20) (at 0 20) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8))
+# Task Description:
+The refrigerator is closed. The cupboard is closed. The washmachine is opened. Put a can in the cupboard. Put the red can on the airconditioner. Go to the sofa. Put a book on sofa. Put the remotecontrol on the television. Close door of microwave.
+# Results:
+	[PutDown 16|true]
+	[Move 4|true]
+	[PickUp 23|true]
+	[Move 12|true]
+	[PutDown 23|true]
+	[Open 12|true]
+	[PickUp 23|true]
+	[PutIn 23 12|true]
+	[TakeOut 23 12|true]
+	[Move 13|true]
+	[PutDown 23|true]
+	[AskLoc 15|inside(15,14)]
+	[Move 14|true]
+	[TakeOut 15 14|true]
+	[Move 11|true]
+	[PutDown 15|true]
+	[Move 6|true]
+	[Open 6|true]
+	[TakeOut 22 6|true]
+	[Move 7|true]
+	[PutDown 22|true]
+	[Move 8|true]
+	[Close 8|true]
+
+# Time: 0.436
+# Score: 148
+
+<63.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+There must be a yellow book on plate. The black can must not be on the worktable. Close door of microwave. Put a can on worktable. Put the blue bottle on worktable. Put the red bottle in microwave. Put a book on worktable.
+# Results:
+	[Move 2|true]
+	[Open 2|true]
+	[TakeOut 8 2|true]
+	[Move 1|true]
+	[PutDown 8|true]
+	[AskLoc 13|inside(13,2)]
+	[Move 2|true]
+	[TakeOut 13 2|true]
+	[Move 1|true]
+	[PutDown 13|true]
+	[AskLoc 12|at(12,1)]
+	[PickUp 12|true]
+	[Move 3|true]
+	[PutIn 12 3|true]
+	[AskLoc 14|at(14,5)]
+	[Move 5|true]
+	[PickUp 14|true]
+	[Move 1|true]
+	[PutDown 14|true]
+	[Move 3|true]
+	[Close 3|true]
+
+# Time: 0.335
+# Score: 234
+
+<64.xml>
+# Environment Description:
+(:domain (hold 0) (plate 9) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red)  (inside 8 4) (inside 10 3))
+# Task Description:
+Take out the bottle from closet. Put the green book in microwave. Put the blue book in cupboard. Put a book on couch. Pick up a cup. Go to the microwave.
 # Results:
 	[Move 4|true]
 	[TakeOut 8 4|true]
@@ -432,13 +366,11 @@ Take out the bottle from closet. Put the green book in microwave. Put the blue b
 	[PickUp 8|true]
 	[PutIn 8 5|true]
 	[AskLoc 7|inside(7,3)]
-	[AskLoc 7|inside(7,3)]
 	[Move 3|true]
 	[Open 3|true]
 	[TakeOut 7 3|true]
 	[Move 4|true]
 	[PutIn 7 4|true]
-	[AskLoc 6|at(6,2)]
 	[AskLoc 6|at(6,2)]
 	[Move 2|true]
 	[PickUp 6|true]
@@ -447,173 +379,126 @@ Take out the bottle from closet. Put the green book in microwave. Put the blue b
 	[Move 3|true]
 	[TakeOut 10 3|true]
 	[PutDown 10|true]
-	[AskLoc 9|at(9,1)]
-	[AskLoc 9|at(9,1)]
-	[Move 1|true]
-	[PickUp 9|true]
+	[PickUp 9|false]
 
-# Time: 0.422
-# Score: 220
+# Time: 0.346
+# Score: 234
 
-<14.xml>
+<65.xml>
 # Environment Description:
-(:domain (plate 0) (at 0 4) (sort 1 human) (size 1 big) (at 1 1) (sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (opened 2) (sort 3 chair) (size 3 big) (at 3 3) (sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (sort 5 airconditioner) (size 5 big) (at 5 5) (sort 6 sofa) (size 6 big) (at 6 6) (sort 7 plant) (size 7 big) (at 7 7) (sort 8 television) (size 8 big) (at 8 8) (sort 9 remotecontrol) (size 9 small) (color 9 blue) (sort 10 cup) (size 10 small) (color 10 green) (sort 11 remotecontrol) (size 11 small) (color 11 green) (sort 12 bottle) (color 12 blue) (size 12 small) (sort 13 remotecontrol) (size 13 small) (color 13 black) (at 13 3) (sort 14 book) (size 14 small) (color 14 white) (inside 14 4) (sort 15 book) (size 15 small) (color 15 black) (at 15 7) (sort 16 book) (size 16 small) (color 16 red) (at 16 6) (sort 17 book) (size 17 small) (color 17 blue) (sort 18 cup) (size 18 small) (color 18 yellow) (at 18 8) (sort 19 can) (size 19 small) (color 19 yellow) (sort 20 remotecontrol) (size 20 small) (color 20 white) (sort 21 book) (size 21 small) (color 21 green) (sort 22 remotecontrol) (size 22 small) (color 22 red) (hold 22) (sort 23 book) (size 23 small) (color 23 yellow)  (inside 10 2) (at 11 5) (inside 12 2) (at 23 3))
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
 # Task Description:
-The green book is on the television. The microwave is closed. Put a book in the refrigerator. Put the remotecontrol which is blue in the microwave. Pick up a bottle. The blue remotecontrol must not be on the plate. There is a white book must be in the microwave. Do not pick up the black book.
+There must not be the green can on plate. There must not be a black can on plate. There must not be a white can on plate. Give human a can. Put the blue can on worktable. Go to teapoy. Put the green can on teapoy. Put the black can on teapoy.
 # Results:
-	[PutDown 22|true]
-	[Open 4|true]
-	[TakeOut 14 4|true]
-	[Move 2|true]
-	[PutIn 14 2|true]
-	[AskLoc 9|at(9,7)]
-	[AskLoc 9|at(9,7)]
-	[Move 7|true]
-	[PickUp 9|true]
-	[Move 4|true]
-	[PutIn 9 4|true]
-	[Move 2|true]
-	[TakeOut 12 2|true]
-	[PutDown 12|true]
-	[PickUp 12|true]
-
-# Time: 0.311
-# Score: 214
-
-<15.xml>
-# Environment Description:
-(:domain (at 0 4) (sort 1 refrigerator) (size 1 big) (at 1 1) (type 1 container) (opened 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 human) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (opened 6) (sort 7 couch) (size 7 big) (at 7 7) (sort 8 plant) (size 8 big) (at 8 8) (sort 9 remotecontrol) (size 9 small) (color 9 green) (at 9 5) (sort 10 can) (size 10 small) (color 10 yellow) (sort 11 bottle) (size 11 small) (color 11 white) (sort 12 book) (size 12 small) (color 12 red) (hold 12) (sort 13 book) (size 13 small) (color 13 green) (at 13 8) (sort 14 can) (size 14 small) (color 14 green) (at 14 3) (sort 15 can) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 black) (at 16 7) (sort 17 can) (size 17 small) (plate 17) (sort 18 can) (size 18 small) (color 18 blue) (sort 19 cup) (size 19 small) (color 19 green) (sort 20 book) (size 20 small) (color 20 yellow) (at 20 8) (sort 21 can) (size 21 small) (color 21 red) (sort 22 book) (size 22 small) (color 22 white) (sort 23 cup) (size 23 small) (color 23 blue) (at 23 4)  (inside 10 2) (at 18 3) (at 19 5) (inside 21 6) (inside 22 6))
-# Task Description:
-There is a bottle in the refrigerator. The door of the closet is closed. Open the door of the cupboard. Go to the plant. Pick up a cup. Put the yellow can in the refrigerator. The green can must be in the cupboard. Do not go to the couch.
-# Results:
-	[PutDown 12|true]
 	[Move 2|true]
 	[Open 2|true]
-	[TakeOut 10 2|true]
-	[Move 1|true]
-	[PutIn 10 1|true]
-	[Move 7|true]
-	[PickUp 16|true]
-	[Move 3|true]
-	[PutDown 16|true]
-	[Open 3|true]
-	[Move 8|true]
-
-# Time: 0.223
-# Score: 200
-
-<16.xml>
-# Environment Description:
-(:domain (at 0 2) (sort 1 microwave) (size 1 big) (at 1 1) (type 1 container) (opened 1) (sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 worktable) (size 4 big) (at 4 4) (sort 5 teapoy) (size 5 big) (at 5 5) (sort 6 airconditioner) (size 6 big) (at 6 6) (sort 7 human) (size 7 big) (at 7 7) (sort 8 bed) (size 8 big) (at 8 8) (sort 9 closet) (size 9 big) (at 9 9) (type 9 container) (sort 10 remotecontrol) (size 10 small) (color 10 blue) (at 10 3) (sort 11 bottle) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 black) (sort 13 cup) (size 13 small) (color 13 red) (sort 14 cup) (size 14 small) (color 14 yellow) (sort 15 bottle) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 yellow) (inside 16 9) (sort 17 remotecontrol) (size 17 small) (color 17 green) (at 17 5) (sort 18 can) (size 18 small) (color 18 red) (at 18 6) (sort 19 remotecontrol) (size 19 small) (color 19 white) (at 19 8) (sort 20 book) (size 20 small) (color 20 blue) (plate 20) (sort 21 remotecontrol) (size 21 small) (color 21 red) (at 21 5) (sort 22 bottle) (size 22 small) (color 22 green) (hold 22) (sort 23 can) (size 23 small) (color 23 green) (sort 24 can) (size 24 small) (color 24 yellow) (inside 24 2) (sort 25 cup) (size 25 small) (color 25 black)  (inside 12 1) (at 13 3) (inside 15 2) (at 17 1))
-# Task Description:
-The door of the closet is opened. There is a yellow cup in the closet. Go to microwave. Take out the cup which is yellow from the closet. Put a cup which is yellow on the desk. Put the bottle which is yellow in the closet. Pick up a red cup. Pick up a can. Give me a book. There is a red cup on the plate. Do not go to the airconditioner.
-# Results:
-	[AskLoc 14|inside(14,9)]
-	[AskLoc 14|inside(14,9)]
-	[PutDown 22|true]
-	[Move 9|true]
-	[TakeOut 14 9|true]
-	[Move 3|true]
-	[PutDown 14|true]
-	[Move 2|true]
-	[Open 2|true]
-	[TakeOut 15 2|true]
-	[Move 9|true]
-	[PutIn 15 9|true]
-	[TakeOut 16 9|true]
-	[Move 7|true]
-	[PutDown 16|true]
-	[Move 3|true]
-	[PickUp 13|true]
-	[PutDown 13|true]
+	[TakeOut 8 2|true]
 	[Move 6|true]
-	[PickUp 18|true]
-	[Move 1|true]
-
-# Time: 0.441
-# Score: 212
-
-<17.xml>
-# Environment Description:
-(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (at 21 5))
-# Task Description:
-The door of the refrigerator is closed. The microwave is opened. The washmachine is opened. Put the white cup in the refrigerator. Do not go to the human. Do not go to the bed. Do not go to the microwave. Do not go to the cupboard.
-# Results:
-	[Move 5|true]
-	[PickUp 21|true]
-	[PutDown 21|true]
-	[Open 5|true]
-	[PickUp 21|true]
-	[PutIn 21 5|true]
-
-# Time: 0.083
-# Score: 204
-
-<18.xml>
-# Environment Description:
-(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (color 24 green)  (at 17 3) (inside 21 8) (at 24 4))
-# Task Description:
-The door of the refrigerator is closed. The microwave is opened. The washmachine is opened. Put the can which is green on the television. Put a book on the sofa. Do not go to the human. Do not go to the bed. Do not go to the refrigerator. Do not go to the washmachine.
-# Results:
+	[PutDown 8|true]
 	[Move 4|true]
-	[PickUp 24|true]
+	[PickUp 9|true]
 	[Move 7|true]
-	[PutDown 24|true]
-	[AskLoc 15|inside(15,14)]
-	[AskLoc 15|inside(15,14)]
-	[Move 14|true]
-	[TakeOut 15 14|true]
-	[Move 11|true]
-	[PutDown 15|true]
+	[PutDown 9|true]
+	[Move 3|true]
+	[TakeOut 10 3|true]
+	[Move 7|true]
+	[PutDown 10|true]
 
-# Time: 0.214
-# Score: 206
+# Time: 0.16
+# Score: 278
 
-<19.xml>
+<66.xml>
 # Environment Description:
-(:domain (hold 20) (plate 0) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8) (at 19 1))
+(:domain (hold 0) (plate 18) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (color 22 black) (sort 23 can) (size 23 small) (at 23 4) (sort 24 can) (size 24 small) (inside 24 6) (sort 25 remotecontrol) (size 25 small) (color 25 white)  (inside 17 8) (at 21 1) (at 22 14))
 # Task Description:
-The door of the refrigerator is closed. The microwave is opened. The washmachine is opened. Put the red can on the airconditioner. Pick up the blue bottle. Do not go to the microwave. The yellow bottle must be not on the plate.
+The refrigerator is closed. The microwave is opened. The white remotecontrol which is white is in the washmachine. Put the can on the bed. Put the white book in the cupboard. Take out the white remotecontrol from washmachine. Put the remotecontrol which is black in the cupboard. Put the green book on desk.
 # Results:
-	[PutDown 20|true]
 	[Move 4|true]
 	[PickUp 23|true]
-	[Move 13|true]
-	[PutDown 23|true]
-	[Move 1|true]
-	[PickUp 19|true]
-
-# Time: 0.135
-# Score: 196
-
-<20.xml>
-# Environment Description:
-(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (at 17 7) (sort 18 bottle) (size 18 small) (color 18 green) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (at 18 2) (inside 21 8))
-# Task Description:
-The door of the refrigerator is closed. The microwave is opened. The washmachine is opened. Put the bottle which is green in the closet. Put the green book on the sofa.
-# Results:
 	[Move 2|true]
-	[PickUp 18|true]
-	[Move 6|true]
-	[PutDown 18|true]
-	[Open 6|true]
-	[PickUp 18|true]
-	[PutIn 18 6|true]
-	[AskLoc 16|at(16,2)]
+	[PutDown 23|true]
+	[Move 8|true]
+	[TakeOut 17 8|true]
+	[Move 12|true]
+	[PutIn 17 12|true]
+	[Move 14|true]
+	[PickUp 22|true]
+	[Move 12|true]
+	[PutIn 22 12|true]
 	[AskLoc 16|at(16,2)]
 	[Move 2|true]
 	[PickUp 16|true]
-	[Move 11|true]
+	[Move 3|true]
 	[PutDown 16|true]
+	[Move 14|true]
+	[TakeOut 25 14|true]
 
-# Time: 0.228
-# Score: 140
+# Time: 0.38
+# Score: 196
 
-<21.xml>
+<67.xml>
 # Environment Description:
-(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (at 14 2) (at 10 2))
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
 # Task Description:
-Do not pick up the red book. Do not pick up the red cup. There must be a black can on the couch. There must be a blue book in the refrigerator. Put the blue cup on table. Put the green cup in refrigerator. Open refrigerator. Put the white can in refrigerator. Put a book on desk.
+Do not put the blue bottle down. Do not put the yellow book down. Do not put down the black can. There must be a green can on plant. The white can must on the teapoy. Close the microwave. Put a bottle in microwave. Put a can on the worktable. Put a book on the plant.
+# Results:
+	[AskLoc 12|at(12,1)]
+	[Move 1|true]
+	[PickUp 12|true]
+	[Move 3|true]
+	[PutIn 12 3|true]
+	[Move 2|true]
+	[Open 2|true]
+	[TakeOut 8 2|true]
+	[Move 1|true]
+	[PutDown 8|true]
+	[AskLoc 14|at(14,5)]
+	[Move 5|true]
+	[PickUp 14|true]
+	[Move 4|true]
+	[PutDown 14|true]
+	[Move 3|true]
+	[Close 3|true]
+
+# Time: 0.305
+# Score: 184
+
+<68.xml>
+# Environment Description:
+(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 can) (size 15 small) (color 15 green) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 cup) (size 18 small) (color 18 black)  (inside 12 9) (inside 13 6) (at 16 2) (inside 17 8))
+# Task Description:
+The door of refrigerator is closed. The door of microwave is opened. Do not open the refrigerator. The black cup must be on the plate. Put a book on the bed. Put a bottle in the cupboard. Put the yellow book on the chair. Pick up the can. Take out remotecontrol from cupboard. Put a cup in microwave.
+# Results:
+	[Move 5|true]
+	[PutDown 10|true]
+	[Move 6|true]
+	[Open 6|true]
+	[TakeOut 13 6|true]
+	[Move 8|true]
+	[PutIn 13 8|true]
+	[Move 5|true]
+	[PickUp 10|true]
+	[Move 4|true]
+	[PutDown 10|true]
+	[Move 2|true]
+	[PickUp 16|true]
+	[Move 9|true]
+	[PutIn 16 9|true]
+	[AskLoc 15|at(15,5)]
+	[Move 5|true]
+	[PickUp 15|true]
+	[PutDown 15|true]
+	[Move 8|true]
+	[TakeOut 17 8|true]
+
+# Time: 0.372
+# Score: 132
+
+<69.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (inside 14 5) (at 10 2))
+# Task Description:
+Do not pick up the red book. Do not pick up the blue book. There must be a black can on the couch. Put the blue cup on table. Put the green cup in refrigerator. Pick up a cup. Put the white can in refrigerator. Put a book on desk.
 # Results:
 	[Move 6|true]
 	[Open 6|true]
@@ -623,442 +508,120 @@ Do not pick up the red book. Do not pick up the red cup. There must be a black c
 	[PickUp 13|true]
 	[Move 6|true]
 	[PutIn 13 6|true]
-	[Move 2|true]
-	[PickUp 14|true]
+	[Move 5|true]
+	[Open 5|true]
+	[TakeOut 14 5|true]
 	[Move 6|true]
 	[PutIn 14 6|true]
 	[AskLoc 8|inside(8,5)]
-	[AskLoc 8|inside(8,5)]
 	[Move 5|true]
-	[Open 5|true]
 	[TakeOut 8 5|true]
 	[Move 4|true]
 	[PutDown 8|true]
+	[AskLoc 11|at(11,4)]
+	[Move 4|false]
+	[PickUp 11|true]
 
-# Time: 0.323
-# Score: 300
+# Time: 0.346
+# Score: 234
 
-<22.xml>
+<70.xml>
 # Environment Description:
-(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8))
+(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (closed 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (at 12 2) (inside 13 6) (at 16 2) (inside 17 8))
 # Task Description:
-The refrigerator is closed. The microwave is opened. The washmachine is opened. Put a can in the cupboard. Put a bottle on the airconditioner. Go to the sofa. Put the remotecontrol on the television. There must be a blue bottle in refrigerator.
+The refrigerator is not opened. The microwave is not closed. Give human a book. Put a can in the closet. Put a cup on the closet. Put the white book on the chair. Put a bottle on bed. Take out the book from refrigerator. Pick up a bottle.
 # Results:
-	[Move 4|true]
-	[PickUp 23|true]
-	[Move 12|true]
-	[PutIn 23 12|true]
-	[Move 8|true]
-	[PickUp 18|true]
-	[Move 13|true]
+	[Move 1|true]
+	[PutDown 10|true]
+	[FromPlate 18|true]
+	[Move 7|true]
 	[PutDown 18|true]
-	[Move 6|true]
-	[Open 6|true]
-	[TakeOut 22 6|true]
-	[Move 7|true]
-	[PutDown 22|true]
-	[Move 11|true]
-
-# Time: 0.266
-# Score: 192
-
-<23.xml>
-# Environment Description:
-(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (inside 14 7) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 7) (at 13 1) (at 16 2) (inside 17 8))
-# Task Description:
-The door of refrigerator is closed. The door of microwave is opened. The can must be on plate. The blue bottle must be in closet. There must not be a yellow book in closet. The green book must not be in closet. Put a book in closet. Go to the human. Put a bottle on the chair. Pickup a can.
-# Results:
-	[Move 7|true]
-	[PutDown 10|true]
 	[Open 7|true]
-	[PickUp 10|true]
-	[PutIn 10 7|true]
-	[Move 1|true]
-	[PickUp 13|true]
-	[Move 4|true]
-	[PutDown 13|true]
-	[PickUp 18|false]
-	[Sense | 18 13 4]
-	[PickUp 18|false]
-
-# Time: 0.17
-# Score: 167
-
-<24.xml>
-# Environment Description:
-(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
-# Task Description:
-The green can must not be on plate. There must not be a black can on plate. There must not be a white can on plate. Give human a can. Put the blue can on worktable. Go to teapoy. Put the green can on teapoy. Put the black can on teapoy.
-# Results:
-	[Move 2|true]
-	[Open 2|true]
-	[TakeOut 8 2|true]
-	[Move 6|true]
-	[PutDown 8|true]
-	[Move 4|true]
-	[PickUp 9|true]
-	[Move 7|true]
-	[PutDown 9|true]
-	[Move 3|true]
-	[TakeOut 10 3|true]
-	[Move 7|true]
-	[PutDown 10|true]
-
-# Time: 0.223
-# Score: 276
-
-<25.xml>
-# Environment Description:
-(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (inside 8 2) (sort 9 can) (size 9 small) (color 9 green) (at 9 4) (sort 10 can) (size 10 small) (color 10 black) (inside 10 3) (sort 11 can) (size 11 small) (color 11 white) (at 11 7) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  )
-# Task Description:
-The green can must not be on plate. There must not be a black can on plate. There must not be a white can on plate. Give human a can. Put the can on worktable. Go to teapoy. pick the green can up. pick the black can up.
-# Results:
-	[Move 2|true]
-	[Open 2|true]
-	[TakeOut 8 2|true]
-	[Move 6|true]
-	[PutDown 8|true]
-	[PickUp 8|true]
-	[Move 1|true]
-	[PutDown 8|true]
-	[Move 4|true]
-	[PickUp 9|true]
-	[PutDown 9|true]
-	[Move 3|true]
-	[TakeOut 10 3|true]
-	[PutDown 10|true]
-	[PickUp 10|true]
-	[Move 7|true]
-
-# Time: 0.237
-# Score: 190
-
-<26.xml>
-# Environment Description:
-(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (inside 13 6) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 7) (at 16 2) (inside 17 8))
-# Task Description:
-The door of refrigerator is closed. The door of microwave is opened. Do no go to the bed. Put a cup on television. Put a bottle on cupboard. Put a book on the chair. Put the white book in the closet. Pick up a can.
-# Results:
+	[PickUp 18|true]
+	[PutIn 18 7|true]
 	[AskLoc 15|at(15,5)]
-	[AskLoc 15|at(15,5)]
-	[PutDown 10|true]
 	[Move 5|true]
 	[PickUp 15|true]
-	[Move 3|true]
+	[Move 7|true]
 	[PutDown 15|true]
+	[Move 2|true]
+	[PickUp 12|true]
+	[Move 4|true]
+	[PutDown 12|true]
 	[Move 6|true]
 	[Open 6|true]
 	[TakeOut 13 6|true]
-	[Move 8|true]
-	[PutDown 13|true]
-	[PickUp 10|true]
-	[Move 4|true]
-	[PutDown 10|true]
-	[Move 7|true]
-	[Open 7|true]
-	[TakeOut 12 7|true]
-	[PutIn 12 7|true]
-	[PickUp 18|false]
-	[Sense | 18 7 12]
-	[Close 7|true]
-	[Sense | 7 18]
-	[PickUp 18|false]
-
-# Time: 0.495
-# Score: 152
-
-<27.xml>
-# Environment Description:
-(:domain (hold 0) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (at 10 2) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 7) (at 13 3) (at 16 1) (inside 17 8))
-# Task Description:
-The door of refrigerator is closed. The door of microwave is opened. The refrigerator must not be opened. Do no go to the desk. Put a cup on television. Put a bottle on cupboard. Put a book on the chair.
-# Results:
-	[AskLoc 15|at(15,5)]
-	[AskLoc 15|at(15,5)]
 	[Move 5|true]
-	[PickUp 15|true]
-	[Move 3|true]
-	[PutDown 15|true]
-	[PickUp 13|true]
-	[Move 8|true]
 	[PutDown 13|true]
-	[Move 2|true]
+	[Move 1|true]
 	[PickUp 10|true]
-	[Move 4|true]
+	[Move 6|true]
+	[PutIn 10 6|true]
+	[TakeOut 10 6|true]
 	[PutDown 10|true]
+	[Move 5|true]
+	[PickUp 13|true]
 
-# Time: 0.243
-# Score: 58
+# Time: 0.504
+# Score: 126
 
-<28.xml>
+<71.xml>
 # Environment Description:
-(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8))
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (inside 14 5) (at 10 2))
 # Task Description:
-The refrigerator is closed. The microwave is opened. The washmachine is opened. Put a can in the cupboard. Put the red can on the airconditioner. Go to the sofa. Put the remotecontrol on the television. Close door of microwave.
+Do not pick up the red book. Do not pick up the blue book. There must be a black can on the couch. Put the blue cup on table. Put the green cup in refrigerator. Pick up a cup. Put the white can on in refrigerator. Put a book on desk.
 # Results:
-	[Move 4|true]
-	[PickUp 23|true]
-	[Move 12|true]
-	[PutIn 23 12|true]
-	[TakeOut 23 12|true]
-	[Move 13|true]
-	[PutDown 23|true]
 	[Move 6|true]
 	[Open 6|true]
-	[TakeOut 22 6|true]
-	[Move 7|true]
-	[PutDown 22|true]
-	[Move 8|true]
-	[Close 8|true]
-	[Move 11|true]
-
-# Time: 0.294
-# Score: 210
-
-<29.xml>
-# Environment Description:
-(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 3))
-# Task Description:
-There must be a yellow book on plate. The black can must not be on the worktable. Close door of microwave. Put a can on worktable. Put the blue bottle on worktable. Put the white can on worktable. Put the bottle which is red in microwave.
-# Results:
-	[Move 2|true]
-	[Open 2|true]
-	[TakeOut 8 2|true]
-	[Move 1|true]
-	[PutDown 8|true]
-	[AskLoc 13|inside(13,2)]
-	[AskLoc 13|inside(13,2)]
-	[Move 2|true]
-	[TakeOut 13 2|true]
-	[Move 1|true]
-	[PutDown 13|true]
+	[TakeOut 12 6|true]
 	[Move 3|true]
+	[PutDown 12|true]
+	[PickUp 13|true]
+	[Move 6|true]
+	[PutIn 13 6|true]
+	[AskLoc 8|inside(8,5)]
+	[Move 5|true]
+	[Open 5|true]
+	[TakeOut 8 5|true]
+	[Move 4|true]
+	[PutDown 8|true]
+	[AskLoc 11|at(11,4)]
+	[Move 4|false]
 	[PickUp 11|true]
-	[Move 1|true]
+
+# Time: 0.288
+# Score: 208
+
+<72.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (inside 14 5) (at 10 2))
+# Task Description:
+Do not go to couch. Do not take out the blue book from refrigerator. The white can must be in washmachine. Pick up a can. Put a cup on washmachine. Put a book in refrigerator. Put the blue cup on the desk.
+# Results:
+	[AskLoc 11|at(11,4)]
+	[PickUp 11|true]
+	[Move 5|true]
 	[PutDown 11|true]
-	[AskLoc 12|at(12,1)]
-	[AskLoc 12|at(12,1)]
-	[PickUp 12|true]
-	[Move 3|true]
-	[PutIn 12 3|true]
-	[Close 3|true]
-
-# Time: 0.314
-# Score: 236
-
-<30.xml>
-# Environment Description:
-(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (inside 14 5) (at 10 2))
-# Task Description:
-Do not go to the table. Do not go to the desk. The book which is red must not be on plate. Do not take out red book from washmachine. Pick up a book. Pick up a cup. Put a cup which is green on the couch. Put a can on bed.
-# Results:
-	[Move 3|true]
-	[PickUp 13|true]
-	[Move 1|true]
-	[PutDown 13|true]
-	[Move 5|true]
-	[Open 5|true]
-	[TakeOut 14 5|true]
-	[Move 2|true]
-	[PutDown 14|true]
 	[AskLoc 8|inside(8,5)]
-	[AskLoc 8|inside(8,5)]
-	[Move 5|true]
-	[TakeOut 8 5|true]
-	[PutDown 8|true]
-	[PickUp 8|true]
-	[PutDown 8|true]
-	[AskLoc 11|at(11,4)]
-	[AskLoc 11|at(11,4)]
-	[Move 4|true]
-	[PickUp 11|true]
-
-# Time: 0.32
-# Score: 100
-
-<31.xml>
-# Environment Description:
-(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (inside 14 7) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 9) (at 13 4) (at 16 2) (inside 17 8))
-# Task Description:
-The door of refrigerator is closed. The door of microwave is opened. The can must be on plate. The blue bottle must be in closet. There must not be a yellow book in closet. The green book must not be in closet. Put a book in closet. Go to the human. Put a bottle on the microwave. Pickup a remotecontrol.
-# Results:
-	[Move 7|true]
-	[PutDown 10|true]
-	[Open 7|true]
-	[PickUp 10|true]
-	[PutIn 10 7|true]
-	[Move 4|true]
-	[PickUp 13|true]
-	[Move 9|true]
-	[PutDown 13|true]
-	[Move 8|true]
-	[TakeOut 17 8|true]
-	[PutDown 17|true]
-	[PickUp 17|true]
-	[Move 1|true]
-
-# Time: 0.272
-# Score: 236
-
-<32.xml>
-# Environment Description:
-(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
-# Task Description:
-Put green can on sofa. Give human the book which is yellow. Put can which is red on sofa. Put a red bottle in the closet. Put the red book in the microwave.
-# Results:
-	[Move 4|true]
-	[PickUp 9|true]
-	[Move 5|true]
-	[PutDown 9|true]
-	[FromPlate 15|true]
-	[Move 6|true]
-	[PutDown 15|true]
-	[Move 2|true]
-	[Open 2|true]
-	[TakeOut 8 2|true]
-	[Move 5|true]
-	[PutDown 8|true]
-	[AskLoc 12|at(12,1)]
-	[AskLoc 12|at(12,1)]
-	[Move 1|true]
-	[PickUp 12|true]
-	[Move 2|true]
-	[PutIn 12 2|true]
-	[AskLoc 14|at(14,5)]
-	[AskLoc 14|at(14,5)]
-	[Move 5|true]
-	[PickUp 14|true]
-	[Move 3|true]
-	[PutIn 14 3|true]
-
-# Time: 0.365
-# Score: 226
-
-<33.xml>
-# Environment Description:
-(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (at 9 4) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (inside 10 3) (at 11 7))
-# Task Description:
-There must be a yellow book on plate. The green can must not be on the plate. Close door of microwave. Put a black can on worktable. Put the blue bottle on worktable. Put the red bottle in microwave. Pick up a can. Put a book on worktable.
-# Results:
-	[Move 3|true]
-	[TakeOut 10 3|true]
-	[Move 1|true]
-	[PutDown 10|true]
-	[AskLoc 13|inside(13,2)]
-	[AskLoc 13|inside(13,2)]
-	[Move 2|true]
-	[Open 2|true]
-	[TakeOut 13 2|true]
-	[Move 1|true]
-	[PutDown 13|true]
-	[AskLoc 12|at(12,1)]
-	[AskLoc 12|at(12,1)]
-	[PickUp 12|true]
-	[Move 3|true]
-	[PutIn 12 3|true]
-	[AskLoc 14|at(14,5)]
-	[AskLoc 14|at(14,5)]
-	[Move 5|true]
-	[PickUp 14|true]
-	[Move 1|true]
-	[PutDown 14|true]
-	[Move 2|true]
-	[TakeOut 8 2|true]
-	[PutDown 8|true]
-	[PickUp 8|true]
-	[Move 3|true]
-	[PutDown 8|true]
-	[Close 3|true]
-
-# Time: 0.465
-# Score: 194
-
-<34.xml>
-# Environment Description:
-(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (inside 14 5) (at 10 2))
-# Task Description:
-The black can must be on couch. The black can must be in refrigerator. Do not go to couch. There must be the washmachine is closed. Do not go to the table. Do not pick up the green book. Go to bed. Pick up a cup. Put the book on couch. Put the can on couch.
-# Results:
-	[AskLoc 8|inside(8,5)]
-	[AskLoc 8|inside(8,5)]
-	[Move 5|true]
 	[Open 5|true]
 	[TakeOut 8 5|true]
-	[Move 1|true]
-	[PutDown 8|true]
-	[Move 5|true]
-	[TakeOut 14 5|true]
-	[Move 1|true]
-	[PutDown 14|true]
-	[AskLoc 11|at(11,4)]
-	[AskLoc 11|at(11,4)]
-	[Move 4|true]
-	[PickUp 11|true]
-	[Move 2|true]
-
-# Time: 0.238
-# Score: 230
-
-<35.xml>
-# Environment Description:
-(:domain (hold 0) (plate 20) (at 0 20) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8))
-# Task Description:
-The refrigerator is closed. The microwave is opened. The washmachine is opened. Put a can in the cupboard. Put the white cup on the sofa. Go to the sofa. Put a book on sofa. Put the remotecontrol on the television. Put the white book on the sofa. Close door of microwave.
-# Results:
-	[Move 4|true]
-	[PickUp 23|true]
-	[Move 12|true]
-	[PutIn 23 12|true]
-	[Move 8|true]
-	[TakeOut 21 8|true]
-	[Move 11|true]
-	[PutDown 21|true]
-	[AskLoc 15|inside(15,14)]
-	[AskLoc 15|inside(15,14)]
-	[Move 14|true]
-	[TakeOut 15 14|true]
-	[Move 11|true]
-	[PutDown 15|true]
 	[Move 6|true]
+	[PutDown 8|true]
 	[Open 6|true]
-	[TakeOut 22 6|true]
-	[Move 7|true]
-	[PutDown 22|true]
-	[Move 8|true]
-	[TakeOut 17 8|true]
-	[Move 11|true]
-	[PutDown 17|true]
-	[Move 8|true]
-	[Close 8|true]
-
-# Time: 0.464
-# Score: 178
-
-<36.xml>
-# Environment Description:
-(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (at 12 2) (inside 14 5) (at 10 2))
-# Task Description:
-Do not go to couch. Do not go to the table. Do not pick the red book. Put the can on bed. Pick up a cup. Put the book in washmachine.
-# Results:
-	[Move 5|true]
-	[Open 5|true]
-	[TakeOut 14 5|true]
-	[Move 2|true]
-	[PutDown 14|true]
-	[AskLoc 8|inside(8,5)]
-	[AskLoc 8|inside(8,5)]
-	[Move 5|true]
-	[TakeOut 8 5|true]
-	[PutIn 8 5|true]
-	[AskLoc 11|at(11,4)]
-	[AskLoc 11|at(11,4)]
+	[PickUp 8|true]
+	[PutIn 8 6|true]
+	[TakeOut 12 6|true]
 	[Move 4|true]
-	[PickUp 11|true]
+	[PutDown 12|true]
+	[Move 5|true]
+	[TakeOut 14 5|true]
+	[PutDown 14|true]
+	[PickUp 14|true]
 
-# Time: 0.221
-# Score: 178
+# Time: 0.328
+# Score: 206
 
-<37.xml>
+<73.xml>
 # Environment Description:
 (:domain (hold 0) (plate 0) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red)  (inside 8 4) (inside 10 3))
 # Task Description:
@@ -1072,13 +635,11 @@ Take out the bottle from closet. Put the green book in microwave. Put the blue b
 	[PickUp 8|true]
 	[PutIn 8 5|true]
 	[AskLoc 7|inside(7,3)]
-	[AskLoc 7|inside(7,3)]
 	[Move 3|true]
 	[Open 3|true]
 	[TakeOut 7 3|true]
 	[Move 4|true]
 	[PutIn 7 4|true]
-	[AskLoc 6|at(6,2)]
 	[AskLoc 6|at(6,2)]
 	[Move 2|true]
 	[PickUp 6|true]
@@ -1088,123 +649,19 @@ Take out the bottle from closet. Put the green book in microwave. Put the blue b
 	[TakeOut 10 3|true]
 	[PutDown 10|true]
 	[AskLoc 9|at(9,1)]
-	[AskLoc 9|at(9,1)]
 	[Move 1|true]
 	[PickUp 9|true]
 
-# Time: 0.422
-# Score: 220
+# Time: 0.361
+# Score: 228
 
-<38.xml>
+<74.xml>
 # Environment Description:
-(:domain (hold 0) (at 0 2) (plate 8) (sort 1 cupboard) (size 1 big) (at 1 1) (type 1 container) (closed 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 workspace) (size 3 big) (at 3 3) (sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (opened 5) (sort 6 table) (size 6 big) (at 6 6) (sort 7 cup) (size 7 small) (color 7 white) (at 7 6) (sort 8 remotecontrol) (size 8 small) (color 8 red) (sort 9 cup) (size 9 small) (at 9 6) (sort 10 book) (size 10 small) (color 10 black) (sort 11 remotecontrol) (size 11 small) (color 11 yellow) (sort 12 bottle) (size 12 small) (inside 12 4) (sort 13 can) (size 13 small) (color 13 white) (sort 14 bottle) (size 14 small)  (inside 10 1) (at 13 2) (inside 14 4))
+(:domain (hold 0) (plate 11) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1) (sort 16 bottle) (size 16 small) (color 16 black) (at 16 2) (sort 17 bottle) (size 17 small) (color 17 green) (inside 17 5)  (inside 12 6) (inside 14 5) (at 10 2))
 # Task Description:
-Put down the red remotecontrol. Put the white cup on closet. Put a cup in the washmachine. Go to workspace. Pick up the black book.
+Put a cup in washmachine. Put a can in refrigerator. Put a bottle in refrigerator. Take out a book from washmachine. Pick up a cup. Go to the refrigerator.
 # Results:
-	[Move 6|true]
-	[PickUp 7|true]
-	[Move 5|true]
-	[PutDown 7|true]
-	[PickUp 7|true]
-	[Move 4|true]
-	[PutIn 7 4|true]
-	[Move 1|true]
-	[Open 1|true]
-	[TakeOut 10 1|true]
-	[PutDown 10|true]
-	[PickUp 10|true]
-	[PutDown 10|true]
-	[FromPlate 8|true]
-	[PutDown 8|true]
-	[Move 3|true]
-
-# Time: 0.248
-# Score: 132
-
-<39.xml>
-# Environment Description:
-(:domain (hold 0) (plate 0) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red)  (inside 8 4) (inside 10 3))
-# Task Description:
-The closet must not be opened. Close the door of cupboard. Put a book in microwave. Pick a book up. Put a cup in microwave. Go to the chair.
-# Results:
-	[AskLoc 6|at(6,2)]
-	[AskLoc 6|at(6,2)]
-	[Move 2|true]
-	[PickUp 6|true]
-	[Move 5|true]
-	[PutDown 6|true]
-	[Open 5|true]
-	[PickUp 6|true]
-	[PutIn 6 5|true]
-	[AskLoc 9|at(9,1)]
-	[AskLoc 9|at(9,1)]
-	[Move 1|true]
-	[PickUp 9|true]
-	[Move 5|true]
-	[PutIn 9 5|true]
-	[Move 4|true]
-	[Close 4|true]
-
-# Time: 0.263
-# Score: 190
-
-<40.xml>
-# Environment Description:
-(:domain (plate 0) (hold 0) (at 0 9) (sort 1 cupboard) (size 1 big) (at 1 1) (type 1 container) (opened 1) (sort 2 worktable) (size 2 big) (at 2 2) (sort 3 couch) (size 3 big) (at 3 3) (sort 4 workspace) (size 4 big) (at 4 4) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (opened 6) (sort 7 couch) (size 7 big) (at 7 7) (sort 8 desk) (size 8 big) (at 8 8) (sort 9 bed) (size 9 big) (at 9 9) (sort 10 sofa) (size 10 big) (at 10 10) (sort 11 book) (size 11 small) (color 11 blue) (at 11 8) (sort 12 can) (size 12 small) (color 12 green) (inside 12 1) (sort 13 bottle) (size 13 small) (color 13 red) (at 13 2) (sort 14 remotecontrol) (size 14 small) (color 14 black) (sort 15 can) (size 15 small)(color 15 white) (at 15 7) (sort 16 remotecontrol) (size 16 small) (color 16 red) (sort 17 can) (size 17 small) (color 17 yellow) (sort 18 cup) (size 18 small) (color 18 green) (at 18 3) (sort 19 remotecontrol) (size 19 small) (color 19 white) (sort 20 bottle) (size 20 small) (color 20 black) (at 20 7) (sort 21 can) (size 21 small) (color 21 red) (at 21 10)  (at 14 7) (at 16 6) (at 17 2))
-# Task Description:
-Take out the green can from cupboard. Pick up the red remotecontrol. Put the blue book in cupboard. The red can must be on sofa.
-# Results:
-	[Move 8|true]
-	[PickUp 11|true]
-	[Move 1|true]
-	[PutIn 11 1|true]
-	[TakeOut 12 1|true]
-	[PutDown 12|true]
-	[Move 6|true]
-	[PickUp 16|true]
-
-# Time: 0.147
-# Score: 214
-
-<41.xml>
-# Environment Description:
-(:domain (hold 0) (plate 17) (at 0 1) (sort 1 human) (size 1 big) (at 1 2) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 2) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (sort 23 can) (size 23 small) (at 23 4) (sort 24 can) (size 24 small)  (at 21 1) (inside 24 8))
-# Task Description:
-The refrigerator is closed. There is an opened microwave. There is a remotecontrol in the washmachine. Put a can on bed. Put the white book in cupboard. Take out a remotecontrol from washmachine. Give human a book. Put the green book on the desk. Do not close the microwave.
-# Results:
-	[Move 4|true]
-	[PickUp 23|true]
-	[Move 2|true]
-	[PutDown 23|true]
-	[FromPlate 17|true]
-	[Move 12|true]
-	[PutIn 17 12|true]
-	[AskLoc 15|inside(15,14)]
-	[AskLoc 15|inside(15,14)]
-	[Move 14|true]
-	[TakeOut 15 14|true]
-	[Move 2|true]
-	[PutDown 15|true]
-	[AskLoc 16|at(16,2)]
-	[AskLoc 16|at(16,2)]
-	[PickUp 16|true]
-	[Move 3|true]
-	[PutDown 16|true]
-	[Move 14|true]
-	[TakeOut 22 14|true]
-
-# Time: 0.353
-# Score: 218
-
-<42.xml>
-# Environment Description:
-(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (inside 14 5) (at 10 2))
-# Task Description:
-Put a cup in washmachine. Put a can in refrigerator. Take out a book from washmachine. Pick up a cup. Go to the refrigerator.
-# Results:
-	[AskLoc 11|at(11,4)]
-	[AskLoc 11|at(11,4)]
-	[PickUp 11|true]
+	[FromPlate 11|true]
 	[Move 5|true]
 	[PutDown 11|true]
 	[Open 5|true]
@@ -1216,19 +673,169 @@ Put a cup in washmachine. Put a can in refrigerator. Take out a book from washma
 	[Open 6|true]
 	[PickUp 14|true]
 	[PutIn 14 6|true]
-	[AskLoc 8|inside(8,5)]
+	[Move 2|true]
+	[PickUp 16|true]
+	[Move 6|true]
+	[PutIn 16 6|true]
 	[AskLoc 8|inside(8,5)]
 	[Move 5|true]
 	[TakeOut 8 5|true]
+	[PutIn 8 5|true]
+	[TakeOut 8 5|true]
 
-# Time: 0.366
-# Score: 130
+# Time: 0.329
+# Score: 120
 
-<43.xml>
+<75.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red)  (inside 8 4) (inside 10 3))
+# Task Description:
+The closet must not be opened. Close the door of cupboard. Put a book in microwave. Pick a book up. Put a cup in microwave. Go to the chair.
+# Results:
+	[AskLoc 6|at(6,2)]
+	[Move 2|true]
+	[PickUp 6|true]
+	[Move 5|true]
+	[PutDown 6|true]
+	[Open 5|true]
+	[PickUp 6|true]
+	[PutIn 6 5|true]
+	[AskLoc 9|at(9,1)]
+	[Move 1|true]
+	[PickUp 9|true]
+	[Move 5|true]
+	[PutIn 9 5|true]
+	[Move 4|true]
+	[Close 4|true]
+
+# Time: 0.23
+# Score: 194
+
+<76.xml>
+# Environment Description:
+(:domain (hold 0) (plate 9) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red) (sort 11 can) (size 11 small) (color 11 green)  (inside 8 4) (inside 10 3))
+# Task Description:
+The cup which is red must be on the plate. The closet must not be opened. Close the door of cupboard. Put a book in microwave. Pick a book up. Go to the closet. Put a can in microwave.
+# Results:
+	[AskLoc 6|at(6,2)]
+	[Move 2|true]
+	[PickUp 6|true]
+	[Move 5|true]
+	[PutDown 6|true]
+	[Open 5|true]
+	[PickUp 6|true]
+	[PutIn 6 5|true]
+	[AskLoc 11|at(11,1)]
+	[Move 1|true]
+	[PickUp 11|true]
+	[Move 5|true]
+	[PutIn 11 5|true]
+	[Move 4|true]
+	[Close 4|true]
+	[Move 3|true]
+
+# Time: 0.322
+# Score: 208
+
+<77.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (sort 9 worktable) (size 9 big) (at 9 9) (sort 10 chair) (size 10 big) (at 10 10) (sort 11 book) (size 11 small) (color 11 red) (inside 11 5) (sort 12 book) (size 12 small) (color 12 blue) (inside 12 6) (sort 13 book) (size 13 small) (color 13 green) (sort 14 cup) (size 14 small) (color 14 red) (sort 15 cup) (size 15 small) (color 15 blue) (sort 16 cup) (size 16 small) (color 16 green) (at 16 2) (sort 17 can) (size 17 small) (color 17 white) (sort 18 can) (size 18 small) (color 18 black) (at 18 3) (sort 19 can) (size 19 snall) (color 19 yellow) (sort 20 bottle) (size 20 small) (color 20 red) (sort 21 bottle) (size 21 small) (color 21 green) (inside 21 8) (sort 22 bottle) (size 22 small) (color 22 black) (at 22 1) (sort 23 remotecontrol) (size 23 small) (color 23 red)  (inside 15 7) (inside 17 5) (at 13 2) (inside 19 7) (at 23 2))
+# Task Description:
+Do not go to couch. There must be washmachine is closed. There must not be refrigerator is opened. Do not open refrigerator. Do not open washmachine. Do not go to the table. Do not pick the green book. Go to bed. Pick up the cup which is blue. Pick up a remotecontrol. Put a can in the closet. Close the door of the cupboard. Put a book on the bed.
+# Results:
+	[Move 5|true]
+	[Open 5|true]
+	[TakeOut 17 5|true]
+	[Move 7|true]
+	[PutDown 17|true]
+	[Open 7|true]
+	[PickUp 17|true]
+	[PutIn 17 7|true]
+	[Move 5|true]
+	[TakeOut 11 5|true]
+	[Move 2|true]
+	[PutDown 11|true]
+	[Move 7|true]
+	[TakeOut 15 7|true]
+	[PutDown 15|true]
+	[PickUp 15|true]
+	[PutDown 15|true]
+	[Move 2|true]
+	[PickUp 23|true]
+	[Move 8|true]
+	[PutDown 23|true]
+	[Close 8|true]
+
+# Time: 0.399
+# Score: 194
+
+<78.xml>
+# Environment Description:
+(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
+# Task Description:
+The door of refrigerator is closed. The door of microwave is opened. There must be a green bottle on desk. Do not put the green book on cupboard. Put a book in the cupboard. Put a blue bottle on the cupboard. Put the remotecontrol on the desk. Put a cup in microwave.
+# Results:
+	[AskLoc 10|inside(10,6)]
+	[PutDown 11|true]
+	[Move 6|true]
+	[Open 6|true]
+	[TakeOut 10 6|true]
+	[Move 8|true]
+	[PutIn 10 8|true]
+	[AskLoc 14|inside(14,6)]
+	[Move 6|true]
+	[TakeOut 14 6|true]
+	[Move 8|true]
+	[PutDown 14|true]
+	[TakeOut 17 8|true]
+	[Move 2|true]
+	[PutDown 17|true]
+	[AskLoc 15|at(15,2)]
+	[PickUp 15|true]
+	[Move 9|true]
+	[PutIn 15 9|true]
+
+# Time: 0.381
+# Score: 142
+
+<79.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 20) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 2) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (sort 23 can) (size 23 small) (at 23 4) (sort 24 can) (size 24 small) (inside 24 6)  (inside 17 5) (at 21 1))
+# Task Description:
+The refrigerator is closed. The microwave is opened. The remotecontrol is in the washmachine. Put a can on the bed. Put a cup in the closet. Put the white book in the cupboard. Take out the remotecontrol from washmachine. Put the green book on desk. The yellow book must be in microwave.
+# Results:
+	[Move 4|true]
+	[PickUp 23|true]
+	[Move 2|true]
+	[PutDown 23|true]
+	[Move 1|true]
+	[PickUp 21|true]
+	[Move 6|true]
+	[PutDown 21|true]
+	[Open 6|true]
+	[PickUp 21|true]
+	[PutIn 21 6|true]
+	[Move 5|true]
+	[Open 5|true]
+	[TakeOut 17 5|true]
+	[Move 12|true]
+	[PutIn 17 12|true]
+	[AskLoc 16|at(16,2)]
+	[Move 2|true]
+	[PickUp 16|true]
+	[Move 3|true]
+	[PutDown 16|true]
+	[Move 14|true]
+	[TakeOut 22 14|true]
+
+# Time: 0.434
+# Score: 206
+
+<80.xml>
 # Environment Description:
 (:domain (hold 0) (plate 17) (at 0 1) (sort 1 human) (size 1 big) (at 1 2) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 2) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (sort 23 can) (size 23 small) (at 23 4) (sort 24 can) (size 24 small)  (at 21 1) (inside 24 8))
 # Task Description:
-The refrigerator is closed. The microwave is opened. The remotecontrol is in washmachine. Put a can on bed. Put the book which is white in cupboard. Take out the remotecontrol from washmachine. Give human a book. Put the green book on desk.
+The refrigerator is closed. The microwave is opened. There is a remotecontrol in the washmachine. Put a can on bed. Put the white book in cupboard. Take out a remotecontrol from washmachine. Give human a book. Put the green book on the desk. Do not close the microwave.
 # Results:
 	[Move 4|true]
 	[PickUp 23|true]
@@ -1238,12 +845,10 @@ The refrigerator is closed. The microwave is opened. The remotecontrol is in was
 	[Move 12|true]
 	[PutIn 17 12|true]
 	[AskLoc 15|inside(15,14)]
-	[AskLoc 15|inside(15,14)]
 	[Move 14|true]
 	[TakeOut 15 14|true]
 	[Move 2|true]
 	[PutDown 15|true]
-	[AskLoc 16|at(16,2)]
 	[AskLoc 16|at(16,2)]
 	[PickUp 16|true]
 	[Move 3|true]
@@ -1251,150 +856,479 @@ The refrigerator is closed. The microwave is opened. The remotecontrol is in was
 	[Move 14|true]
 	[TakeOut 22 14|true]
 
-# Time: 0.364
-# Score: 198
+# Time: 0.316
+# Score: 222
 
-<44.xml>
+<81.xml>
 # Environment Description:
-(:domain (at 0 4) (plate 13) (hold 0) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 sofa) (size 3 big) (at 3 3) (sort 4 table) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (opened 5) (sort 8 bottle) (size 8 small) (color 8 red) (at 8 3) (sort 9 remotecontrol) (size 9 small) (color 9 yellow) (sort 10 can) (size 10 small) (color 10 yellow) (inside 10 5) (sort 11 cup) (size 11 small) (color 11 white) (at 11 2) (sort 12 can) (size 12 small) (color 12 white) (inside 12 5) (sort 13 cup) (size 13 small) (color 13 green) (sort 14 can) (size 14 small) (color 14 black) (at 14 3) (sort 15 book) (size 15 small) (color 15 red) (at 15 4) (sort 17 cup) (size 17 small) (color 17 black) (sort 18 bottle) (size 18 small) (color 18 blue) (at 18 3) (sort 20 remotecontrol) (size 20 small) (color 20 white) (sort 21 book) (size 21 small) (color 21 blue) (at 21 2) (sort 22 bottle) (size 22 small) (color 22 red) (at 22 1)  (inside 17 5) (at 18 4))
+(:domain (plate 0) (at 0 1) (sort 1 desk) (size 1 big) (at 1 1) (sort 2 cupboard) (size 2 big) (at 2 2) (type 2 container) (opened 2) (sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 table) (size 4 big) (at 4 4) (sort 5 airconditioner) (size 5 big) (at 5 5) (sort 6 chair) (size 6 big) (at 6 6) (sort 7 worktable) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 closet) (size 9 big) (at 9 9) (type 9 container) (sort 10 bed) (size 10 big) (at 10 10) (sort 11 bottle) (size 11 small) (color 11 black) (sort 12 can) (size 12 small) (color 12 yellow) (hold 12) (sort 13 can) (size 13 small) (color 13 green) (sort 14 remotecontrol) (size 14 small) (color 14 yellow) (at 14 4) (sort 15 remotecontrol) (size 15 small) (color 15 green) (inside 15 3) (sort 16 bottle) (size 16 small) (color 16 red) (sort 17 can) (size 17 small) (color 17 black) (inside 17 8)  (at 11 6))
 # Task Description:
-Put the blue bottle on the table. Put the red bottle on the washmachine. Take out the white can from washmachine. Put the white cup on washmachine.
+Put down the yellow can. Pick up the black bottle. Take out the remotecontrol which is green from the washmachine. Open the door of the microwave. Put the green can on the desk. The door of the closet is opened. The door of microwave is closed. There must be cupboard is opened.
 # Results:
-	[PickUp 18|true]
-	[PutDown 18|true]
+	[AskLoc 13|at(13,1)]
+	[PutDown 12|true]
+	[PickUp 13|true]
+	[PutDown 13|true]
+	[Move 6|true]
+	[PickUp 11|true]
+	[PutDown 11|true]
 	[Move 3|true]
-	[PickUp 8|true]
-	[Move 5|true]
-	[PutDown 8|true]
+	[Open 3|true]
+	[TakeOut 15 3|true]
+	[Move 8|true]
+	[PutDown 15|true]
+	[Open 8|true]
+	[Move 1|true]
+	[PickUp 12|true]
+	[PutDown 12|true]
+
+# Time: 0.311
+# Score: 232
+
+<82.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 3) (sort 1 plant) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 teapoy) (size 5 big) (at 5 5) (sort 6 sofa) (size 6 big) (at 6 6) (sort 7 cupboard) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cup) (size 8 small) (color 8 yellow) (sort 9 bottle) (size 9 small) (color 9 green) (at 9 2) (sort 10 bottle) (size 10 small) (color 10 red) (sort 11 bottle) (size 11 small) (color 11 black) (sort 12 book) (size 12 small) (color 12 yellow) (inside 12 7) (sort 13 book) (size 13 small) (color 13 black) (sort 14 book) (size 14 small) (color 14 red) (sort 15 cup) (size 15 small) (at 15 6) (sort 16 remotecontrol) (size 16 small) (color 16 green) (sort 17 can) (size 17 small) (at 17 3) (sort 18 can) (size 18 small) (color 18 blue) (inside 18 4) (sort 19 can) (size 19 small) (color 19 yellow) (sort 20 can) (size 20 small) (color 20 black) (at 20 3)  (at 16 2) (inside 15 7))
+# Task Description:
+Do not pick up the blue bottle in microwave. Do not pick up the red book. The blue can must in the microwave. There must be a yellow book in cupboard. Close the microwave. Put a book in microwave. Put a can on the desk. Put a green remotecontrol on the plant.
+# Results:
+	[Move 7|true]
+	[Open 7|true]
+	[TakeOut 12 7|true]
+	[Move 4|true]
+	[PutIn 12 4|true]
+	[Move 3|true]
+	[PickUp 17|true]
+	[PutDown 17|true]
 	[Move 2|true]
+	[PickUp 16|true]
+	[Move 1|true]
+	[PutDown 16|true]
+	[Move 4|true]
+	[Close 4|true]
+
+# Time: 0.243
+# Score: 234
+
+<83.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (at 13 6) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 4) (inside 15 2))
+# Task Description:
+Put white can on sofa. Put green can on sofa. Give human the book which is yellow. Put a red can in the microwave. Put the blue bottle in the microwave.
+# Results:
+	[Move 4|true]
 	[PickUp 11|true]
 	[Move 5|true]
 	[PutDown 11|true]
-	[TakeOut 12 5|true]
-
-# Time: 0.236
-# Score: 184
-
-<45.xml>
-# Environment Description:
-(:domain (plate 0) (hold 0) (at 0 13) (sort 2 sofa) (size 2 big) (at 2 2) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 plant) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (opened 6) (sort 8 teapoy) (size 8 big) (at 8 8) (sort 9 human) (size 9 big) (at 9 9) (sort 10 airconditioner) (size 10 big) (at 10 10) (sort 11 washmachine) (size 11 big) (at 11 11) (type 11 container) (closed 11) (sort 12 microwave) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 sofa) (size 13 big) (at 13 13) (sort 14 couch) (size 14 big) (at 14 14) (sort 15 cup) (size 15 small) (color 15 white) (inside 15 12) (sort 16 remotecontrol) (size 16 small) (color 16 white) (at 16 10) (sort 17 cup) (size 17 small) (color 17 yellow) (sort 19 can) (size 19 small) (color 19 green) (at 19 5) (sort 20 can) (size 20 small) (color 20 blue) (inside 20 11) (sort 21 cup) (size 21 small) (color 21 red)  (inside 17 6))
-# Task Description:
-Take out the white cup from microwave. Close the refrigerator. Pick up the blue can.
-# Results:
-	[Move 12|true]
-	[TakeOut 15 12|true]
-	[PutDown 15|true]
-	[Move 11|true]
-	[Open 11|true]
-	[TakeOut 20 11|true]
-	[PutDown 20|true]
-	[PickUp 20|true]
+	[Move 4|true]
+	[PickUp 9|true]
+	[Move 5|true]
+	[PutDown 9|true]
+	[Move 2|true]
+	[Open 2|true]
+	[TakeOut 15 2|true]
 	[Move 6|true]
-	[PutDown 20|true]
+	[PutDown 15|true]
+	[Move 2|true]
+	[TakeOut 8 2|true]
+	[Move 3|true]
+	[PutIn 8 3|true]
+	[Move 6|true]
+	[PickUp 13|true]
+	[Move 3|true]
+	[PutIn 13 3|true]
+
+# Time: 0.369
+# Score: 230
+
+<84.xml>
+# Environment Description:
+(:domain (hold 0) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 9) (inside 13 6) (at 16 2) (inside 17 8) (inside 11 7))
+# Task Description:
+The refrigerator is not opened. The microwave is not closed. There must be a can on plate. Give human a green book. Put the bottle which is blue in the closet. Put the cup which is white in the cupboard.
+# Results:
+	[Move 7|true]
+	[Open 7|true]
+	[TakeOut 11 7|true]
+	[Move 1|true]
+	[PutDown 11|true]
+	[AskLoc 14|at(14,2)]
+	[Move 2|true]
+	[PickUp 14|true]
+	[Move 7|true]
+	[PutIn 14 7|true]
+	[Move 2|true]
+	[PickUp 16|true]
+	[Move 8|true]
+	[PutIn 16 8|true]
+
+# Time: 0.227
+# Score: 194
+
+<85.xml>
+# Environment Description:
+(:domain (at 0 4) (plate 5) (hold 8) (sort 1 airconditioner) (size 1 big) (at 1 1) (sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 closet) (size 4 big) (at 4 4) (type 4 container) (closed 4) (sort 5 can) (size 5 small) (color 5 yellow) (sort 6 remotecontrol) (size 6 small) (sort 7 cup) (size 7 small) (color 7 yellow) (sort 8 book) (size 8 small) (color 8 blue) (sort 9 book) (size 9 small) (color 9 red) (sort 10 book) (size 10 small) (color 10 green) (sort 11 can) (size 11 small) (color 11 green) (sort 12 can) (size 12 small) (color 12 white) (inside 12 4)  (inside 7 2) (inside 9 3))
+# Task Description:
+Put the red book in the refrigerator. Open the door of the refrigerator. Pick up the yellow cup. Go to the closet.
+# Results:
+	[PutDown 8|true]
+	[Move 3|true]
+	[Open 3|true]
+	[TakeOut 9 3|true]
+	[Move 2|true]
+	[PutDown 9|true]
+	[Open 2|true]
+	[PickUp 9|true]
+	[PutIn 9 2|true]
+	[TakeOut 7 2|true]
+	[PutDown 7|true]
+	[PickUp 7|true]
+	[Move 4|true]
+
+# Time: 0.209
+# Score: 222
+
+<86.xml>
+# Environment Description:
+(:domain (plate 0) (at 0 1) (sort 1 airconditioner) (size 1 big) (at 1 1) (sort 2 cupboard) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 refrigerator) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 workspace) (size 5 big) (at 5 5) (sort 6 table) (size 6 big) (at 6 6) (sort 7 sofa) (size 7 big) (at 7 7) (sort 9 television) (size 9 big) (at 9 9) (sort 10 worktable) (size 10 big) (at 10 10) (sort 11 book) (size 11 small) (color 11 green) (hold 11) (sort 12 book) (size 12 small) (color 12 black) (sort 13 book) (size 13 small) (color 13 blue) (sort 14 bottle) (size 14 small) (color 14 white) (sort 15 cup) (size 15 small) (color 15 yellow) (at 15 3) (sort 16 bottle) (size 16 small) (color 16 red) (sort 17 book) (size 17 small) (color 17 green) (at 17 3) (sort 18 bottle) (size 18 small)(color 18 yellow) (at 18 1) (sort 19 cup) (size 19 small) (color 19 green) (at 19 6) (sort 20 bottle) (size 20 small) (color 20 white)  (at 12 10) (at 13 1) (at 14 2))
+# Task Description:
+Go to sofa. Pick up the green can. Pick up white bottle. Close the refrigerator. There is the red bottle on plate. The cupboard is closed. Pick up the green cup. There must be cupboard is closed. Do not put a bottle in refrigerator.
+# Results:
+	[PutDown 11|true]
+	[Move 2|true]
+	[PickUp 14|true]
+	[PutDown 14|true]
+	[Move 6|true]
+	[PickUp 19|true]
+	[Move 4|true]
+	[PutDown 19|true]
+	[Close 4|true]
+	[Move 7|true]
+
+# Time: 0.162
+# Score: 188
+
+<87.xml>
+# Environment Description:
+(:domain (at 0 5) (sort 1 airconditioner) (size 1 big) (at 1 1) (sort 2 cupboard) (size 2 big) (at 2 2) (type 2 container) (opened 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 teapoy) (size 4 big) (at 4 4) (sort 6 remotecontrol) (size 6 small) (color 6 blue) (plate 6) (sort 7 bottle) (size 7 small) (color 7 blue) (at 7 3) (sort 8 remotecontrol) (size 8 small) (color 8 black) (at 8 5) (sort 9 remotecontrol) (size 9 small) (color 9 yellow) (sort 10 remotecontrol) (size 10 small) (color 10 white) (inside 10 2) (sort 11 remotecontrol) (size 11 small) (color 11 blue) (at 11 5) (sort 12 remotecontrol) (size 12 small) (color 12 red) (sort 13 cup) (size 13 small) (color 13 blue) (hold 13) (sort 14 book) (size 14 small) (color 14 white) (at 14 4) (sort 15 book) (size 15 small) (color 15 red) (at 15 4) (sort 16 can) (size 16 small) (color 16 red) (inside 16 2)  (at 9 5) (at 12 5))
+# Task Description:
+Close the cupboard. Put the blue bottle in cupboard. Go to airconditioner. The white book is on television. The cupboard is opened.
+# Results:
+	[PutDown 13|true]
+	[Move 3|true]
+	[PickUp 7|true]
+	[Move 2|true]
+	[PutIn 7 2|true]
+	[Close 2|true]
+	[Move 1|true]
+
+# Time: 0.139
+# Score: 196
+
+<88.xml>
+# Environment Description:
+(:domain (plate 0) (hold 0) (at 0 13) (sort 1 desk) (size 1 big) (at 1 1) (sort 2 couch) (size 2 big) (at 2 2) (sort 3 refrigerator) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 5 workspace) (size 5 big) (at 5 5) (sort 6 plant) (size 6 big) (at 6 6) (sort 7 worktable) (size 7 big) (at 7 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (closed 8) (sort 9 human) (size 9 big) (at 9 9) (sort 10 washmachine) (size 10 big) (at 10 10) (type 10 container) (closed 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 bed) (size 12 big) (at 12 12) (sort 15 bottle) (size 15 small) (sort 16 can) (size 16 small) (color 16 blue) (sort 17 cup) (size 17 small) (color 17 blue) (at 17 14) (sort 18 book) (size 18 small) (color 18 black) (sort 20 cup) (size 20 small) (color 20 yellow)  (inside 18 10) (at 20 5))
+# Task Description:
+Go to worktable. Open the cupboard. Take out the book from the washmachine. Open the washmachine. There must be refrigerator is opened.
+# Results:
+	[Move 10|true]
+	[Open 10|true]
+	[TakeOut 18 10|true]
+	[Move 8|true]
+	[PutDown 18|true]
+	[Open 8|true]
+	[Move 7|true]
+
+# Time: 0.102
+# Score: 256
+
+<89.xml>
+# Environment Description:
+(:domain (plate 0) (at 0 4) (hold 10) (sort 1 plant) (size 1 big) (at 1 1) (color 1 red) (sort 2 plant) (size 2 big) (at 2 2) (color 2 green) (sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 teapoy) (size 4 big) (at 4 4) (sort 5 table) (size 5 big) (at 5 5) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (opened 6) (sort 7 microwave) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 bottle) (size 8 small) (color 8 black) (sort 9 cup) (size 9 small) (color 9 white) (at 9 1) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (inside 11 6) (sort 12 remotecontrol) (size 12 small) (color 12 red) (sort 13 remotecontrol) (size 13 small) (color 13 black) (at 13 1) (sort 14 cup) (size 14 small) (color 14 white) (at 14 4) (sort 15 can) (size 15 small) (color 15 blue) (at 15 2) (sort 16 bottle) (size 16 small) (color 16 white) (inside 16 7) (sort 17 remotecontrol) (size 17 small) (color 17 green) (sort 18 can) (size 18 small)  (at 12 5) (inside 17 3))
+# Task Description:
+Put the green remotecontrol on washmachine. Pick up the white cup. Go to plant. Open the microwave. Close the door of the closet.
+# Results:
+	[PutDown 10|true]
+	[Move 3|true]
+	[TakeOut 17 3|true]
+	[PutDown 17|true]
+	[Move 1|true]
+	[PickUp 9|true]
+	[Move 7|true]
+	[PutDown 9|true]
+	[Open 7|true]
+	[Move 6|true]
 	[Close 6|true]
 
-# Time: 0.238
-# Score: 146
+# Time: 0.208
+# Score: 184
 
-<46.xml>
+<90.xml>
 # Environment Description:
-(:domain (at 0 8) (sort 3 human) (size 3 big) (at 3 3) (sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 teapoy) (size 5 big) (at 5 5) (sort 7 chair) (size 7 big) (at 7 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (closed 8) (sort 9 worktable) (size 9 big) (at 9 9) (sort 10 desk) (size 10 big) (at 10 10) (sort 11 closet) (size 11 big) (at 11 11) (type 11 container) (closed 11) (sort 12 plant) (size 12 big) (at 12 12) (sort 13 remotecontrol) (size 13 small) (color 13 white) (at 13 12) (sort 14 bottle) (size 14 small) (color 14 blue) (at 14 3) (sort 15 can) (size 15 small) (color 15 yellow) (plate 15) (sort 16 can) (size 16 small) (color 16 white) (sort 17 can) (size 17 small) (color 17 red) (inside 17 8) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 12) (sort 19 cup) (size 19 small) (color 19 yellow) (sort 20 cup) (size 20 small) (color 20 red) (at 20 9) (sort 21 cup) (size 21 small) (color 21 green) (hold 21) (sort 22 remotecontrol) (size 22 small) (color 22 red) (inside 22 4)  (inside 16 8))
+(:domain (at 0 8) (sort 1 cupboard) (size 1 big) (at 1 1) (type 1 container) (sort 3 airconditioner) (size 3 big) (at 3 3) (sort 4 refrigerator) (size 4 big) (at 4 4) (type 4 container) (closed 4) (sort 5 plant) (size 5 big) (at 5 5) (sort 6 sofa) (size 6 big) (at 6 6) (sort 7 chair) (size 7 big) (at 7 7) (sort 8 workspace) (size 8 big) (at 8 8) (sort 9 closet) (size 9 big) (at 9 9) (type 9 container) (closed 9) (sort 10 sofa) (size 10 big) (at 10 10) (sort 11 bottle) (size 11 small) (color 11 yellow) (inside 11 1) (sort 12 bottle) (size 12 small) (color 12 white) (at 12 10) (sort 13 remotecontrol) (size 13 small) (color 13 black) (at 13 5) (sort 14 can) (size 14 small) (color 14 white) (at 14 5) (sort 15 remotecontrol) (size 15 small) (color 15 yellow) (inside 15 9) (sort 16 cup) (size 16 small) (color 16 white) (at 16 8) (sort 17 can) (size 17 small) (color 17 yellow) (at 17 6) (sort 18 cup) (size 18 small) (color 18 black) (sort 19 remotecontrol) (size 19 small) (color 19 white) (inside 19 9) (sort 20 remotecontrol) (size 20 small) (color 20 red) (hold 20) (sort 21 can) (size 21 small) (color 21 red) (at 21 10) (sort 22 remotecontrol) (size 22 small) (color 22 blue) (at 22 10) (sort 23 book) (size 23 small) (sort 24 remotecontrol) (size 24 small) (color 24 green) (at 24 3) (sort 25 cup) (size 25 small) (color 25 yellow) (plate 25)  (at 18 7))
 # Task Description:
-Put the white can in washmachine. Open the cupboard. Put down the yellow can. Go to desk. The yellow cup is on chair.
+Put the red can in the cupboard. Put down the red remotecontrol. The cupboard is closed. There is yellow cup on plate. Take out the yellow bottle from the cupboard. The refrigerator must not be opened.
 # Results:
-	[PutDown 21|true]
-	[Open 8|true]
-	[TakeOut 16 8|true]
-	[Move 4|true]
-	[PutIn 16 4|true]
-	[FromPlate 15|true]
-	[PutDown 15|true]
-	[Move 10|true]
-
-# Time: 0.165
-# Score: 236
-
-<47.xml>
-# Environment Description:
-(:domain (hold 0) (at 0 2) (sort 1 sofa) (size 1 big) (at 1 1) (sort 2 plant) (size 2 big) (at 2 2) (sort 7 refrigerator) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 bed) (size 8 big) (at 8 8) (sort 9 table) (size 9 big) (at 9 9) (sort 10 desk) (size 10 big) (at 10 10) (sort 11 human) (size 11 big) (at 11 11) (sort 13 chair) (size 13 big) (at 13 13) (sort 14 microwave) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 bottle) (size 15 small) (color 15 blue) (at 15 9) (sort 16 bottle) (size 16 small) (color 16 blue) (sort 17 can) (size 17 small) (at 17 13) (color 17 white) (sort 19 cup) (size 19 small) (color 19 blue) (sort 20 book) (size 20 small) (color 20 red) (at 20 2) (sort 21 can) (size 21 small) (color 21 green) (at 21 10) (sort 22 remotecontrol) (color 22 white) (size 22 small) (at 22 9) (sort 23 cup) (size 23 small) (color 23 white) (sort 24 can) (size 24 small) (color 24 yellow) (sort 25 remotecontrol) (color 25 blue) (size 25 small) (plate 25) (sort 26 cup) (size 26 small) (color 26 black) (inside 26 7) (sort 27 bottle) (size 27 small) (color 27 yellow) (at 27 2) (sort 28 can) (size 28 small) (color 28 blue) (sort 29 remotecontrol) (color 29 yellow) (size 29 small) (at 29 1) (sort 30 cup) (size 30 small) (color 30 yellow) (at 30 11)  (inside 19 14) (at 24 7))
-# Task Description:
-Put down the green can. Put the yellow bottle on microwave. Pick up the red book. Go to microwave. There is must be the microwave is opened.
-# Results:
-	[PickUp 27|true]
-	[Move 14|true]
-	[PutDown 27|true]
-	[Move 2|true]
-	[PickUp 20|true]
 	[PutDown 20|true]
 	[Move 10|true]
 	[PickUp 21|true]
+	[Move 1|true]
 	[PutDown 21|true]
+	[Open 1|true]
+	[PickUp 21|true]
+	[PutIn 21 1|true]
+	[TakeOut 11 1|true]
+	[PutDown 11|true]
+	[Move 8|true]
+	[PickUp 20|true]
+	[PutDown 20|true]
 
-# Time: 0.16
-# Score: 172
+# Time: 0.261
+# Score: 202
 
-<48.xml>
+<91.xml>
 # Environment Description:
-(:domain (at 0 1) (sort 1 microwave) (size 1 big) (at 1 1) (type 1 container) (closed 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 chair) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 cup) (size 5 small) (color 5 black) (at 5 4) (sort 6 cup) (size 6 small) (color 5 yellow) (sort 7 book) (size 7 small) (color 7 blue) (inside 7 1) (sort 8 can) (size 8 small) (color 8 black) (sort 9 bottle) (size 9 small) (color 9 blue) (plate 9) (sort 10 bottle) (size 10 small) (color 10 yellow) (at 10 3) (sort 11 cup) (size 11 small) (color 11 white) (at 11 4) (sort 12 remotecontrol) (size 12 small) (sort 13 can) (size 13 small) (hold 13) (sort 14 book) (size 14 small) (color 14 yellow)  (inside 6 1) (at 8 2))
+(:domain (hold 0) (plate 0) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red)  (inside 8 4) (inside 10 3))
 # Task Description:
-Pick up the remotecontrol. Pick up the white cup. Open the microwave. The white cup must not be on chair.
+The green book must not be in the microwave. Do not put down the cup which is red. Put a book in the microwave. Put a cup on chair. Put a book on chair.
 # Results:
-	[PutDown 13|true]
-	[AskLoc 12|at(12,4)]
-	[AskLoc 12|at(12,4)]
+	[AskLoc 6|at(6,2)]
+	[Move 2|true]
+	[PickUp 6|true]
+	[Move 5|true]
+	[PutDown 6|true]
+	[Open 5|true]
+	[PickUp 6|true]
+	[PutIn 6 5|true]
+	[AskLoc 9|at(9,1)]
+	[Move 1|true]
+	[PickUp 9|true]
+	[Move 2|true]
+	[PutDown 9|true]
+	[Move 5|true]
+	[TakeOut 6 5|true]
+	[Move 2|true]
+	[PutDown 6|true]
+
+# Time: 0.268
+# Score: 108
+
+<92.xml>
+# Environment Description:
+(:domain (hold 11) (plate 12) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red) (sort 11 can) (size 11 small) (color 11 yellow) (sort 12 bottle) (size 12 small) (color 12 green)  (inside 8 4) (inside 10 3))
+# Task Description:
+Do not pick up the red book. There must be green book on the plate. Put the book which is green on couch. Pick the bottle up. Put a cup in microwave. Go to chair.
+# Results:
+	[PutDown 11|true]
 	[Move 4|true]
+	[TakeOut 8 4|true]
+	[Move 1|true]
+	[PutDown 8|true]
+	[AskLoc 9|at(9,1)]
+	[PickUp 9|true]
+	[Move 5|true]
+	[PutDown 9|true]
+	[Open 5|true]
+	[PickUp 9|true]
+	[PutIn 9 5|true]
+	[Move 3|true]
+	[Open 3|true]
+	[TakeOut 10 3|true]
+	[PutDown 10|true]
+	[PickUp 10|true]
+	[Move 2|true]
+
+# Time: 0.319
+# Score: 246
+
+<93.xml>
+# Environment Description:
+(:domain (hold 0) (plate 14) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+There must not be closet is opened. The black can must be in microwave. Put the white can on the sofa. Give a can to human. Put the yellow book in the microwave. Put a book in microwave. Close the door of microwave. Put a bottle on teapoy.
+# Results:
+	[Move 7|true]
+	[PickUp 11|true]
+	[Move 5|true]
+	[PutDown 11|true]
+	[Move 2|true]
+	[Open 2|true]
+	[TakeOut 8 2|true]
+	[Move 6|true]
+	[PutDown 8|true]
+	[AskLoc 15|at(15,5)]
+	[Move 5|true]
+	[PickUp 15|true]
+	[Move 3|true]
+	[PutIn 15 3|true]
+	[FromPlate 14|true]
+	[PutIn 14 3|true]
+	[AskLoc 12|at(12,1)]
+	[Move 1|true]
+	[PickUp 12|true]
+	[Move 7|true]
+	[PutDown 12|true]
+	[Move 3|true]
+	[Close 3|true]
+
+# Time: 0.348
+# Score: 208
+
+<94.xml>
+# Environment Description:
+(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small) (color 18 red)  (at 12 1) (inside 13 6) (at 16 2) (inside 17 8))
+# Task Description:
+The refrigerator is not opened. The microwave is not closed. The can which is red must be on the plate. Put the can on the bed. Put the blue bottle on the television. Take out the remotecontrol from cupboard. Close cupboard. Give the book which is white to human. Go to the television.
+# Results:
+	[PutDown 10|true]
+	[FromPlate 18|true]
+	[Move 5|true]
+	[PutDown 18|true]
+	[AskLoc 14|at(14,2)]
+	[Move 2|true]
+	[PickUp 14|true]
+	[Move 3|true]
+	[PutDown 14|true]
+	[Move 1|true]
 	[PickUp 12|true]
 	[PutDown 12|true]
+	[Move 8|true]
+	[TakeOut 17 8|true]
+	[PutDown 17|true]
+	[Close 8|true]
+
+# Time: 0.303
+# Score: 250
+
+<95.xml>
+# Environment Description:
+(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small) (color 18 yellow)  (inside 12 9) (inside 13 6) (at 16 2) (inside 17 8))
+# Task Description:
+The door of refrigerator is closed. The door of microwave is opened. A can must be on the plate. Do not open the refrigerator. Put a book on the bed. Put a bottle in the cupboard. Put the yellow book on the chair. Pick up the can. Take out remotecontrol from cupboard. Put a cup in microwave.
+# Results:
+	[Move 5|true]
+	[PutDown 10|true]
+	[Move 6|true]
+	[Open 6|true]
+	[TakeOut 13 6|true]
+	[Move 8|true]
+	[PutIn 13 8|true]
+	[Move 5|true]
+	[PickUp 10|true]
+	[Move 4|true]
+	[PutDown 10|true]
+	[AskLoc 15|at(15,5)]
+	[Move 5|true]
+	[PickUp 15|true]
+	[Move 9|true]
+	[PutIn 15 9|true]
+	[PickUp 18|false]
+	[Move 8|true]
+	[TakeOut 17 8|true]
+
+# Time: 0.362
+# Score: 178
+
+<96.xml>
+# Environment Description:
+(:domain (hold 0) (plate 10) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1) (sort 16 bottle) (size 16 small) (color 16 red) (inside 16 6)  (inside 12 6) (inside 14 5))
+# Task Description:
+Do not go to the table. Do not go to the desk. Do not take out red book from washmachine. Pick up a book. Put a cup on the couch. Put a can on bed. Take the bottle which is red out of the refrigerator.
+# Results:
+	[AskLoc 11|at(11,4)]
 	[PickUp 11|true]
 	[Move 1|true]
 	[PutDown 11|true]
-	[Open 1|true]
+	[Move 5|true]
+	[Open 5|true]
+	[TakeOut 14 5|true]
+	[Move 2|true]
+	[PutDown 14|true]
+	[AskLoc 8|inside(8,5)]
+	[Move 5|true]
+	[TakeOut 8 5|true]
+	[PutDown 8|true]
+	[PickUp 8|true]
 
-# Time: 0.153
-# Score: 132
+# Time: 0.234
+# Score: 158
 
-<49.xml>
+<97.xml>
 # Environment Description:
-(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8))
+(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (at 12 2) (inside 13 6) (at 16 2) (inside 17 8))
 # Task Description:
-The refrigerator is closed. The microwave is opened. The washmachine is opened. Put a can in the cupboard. Put the red can on the airconditioner. Go to the sofa. Put a book on sofa. Put the remotecontrol on the television. Close door of microwave. The yellow bottle must be on plate.
+The door of refrigerator is closed. The door of microwave is opened. There must be can on plate. There must not be a yellow book in closet. The green book must not be in closet. Put a book in closet. Put a bottle on the chair. Put the book which is green on the chair. Pick up the blue bottle.
 # Results:
-	[Move 4|true]
-	[PickUp 23|true]
-	[Move 12|true]
-	[PutIn 23 12|true]
-	[TakeOut 23 12|true]
-	[Move 13|true]
-	[PutDown 23|true]
-	[AskLoc 15|inside(15,14)]
-	[AskLoc 15|inside(15,14)]
-	[Move 14|true]
-	[TakeOut 15 14|true]
-	[Move 11|true]
-	[PutDown 15|true]
+	[Move 7|true]
+	[PutDown 10|true]
+	[Open 7|true]
+	[PickUp 10|true]
+	[PutIn 10 7|true]
 	[Move 6|true]
 	[Open 6|true]
-	[TakeOut 22 6|true]
+	[TakeOut 13 6|true]
+	[Move 4|true]
+	[PutDown 13|true]
+	[AskLoc 11|inside(11,6)]
+	[Move 6|true]
+	[TakeOut 11 6|true]
+	[Move 4|true]
+	[PutDown 11|true]
+	[AskLoc 14|at(14,2)]
+	[Move 2|true]
+	[PickUp 14|true]
+
+# Time: 0.318
+# Score: 204
+
+<98.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+There must not be green can on the plate. There must be the red can in the closet. There must be the can which is black on the microwave. Give human a can. Put the blue can on worktable. Go to teapoy. Put the green can on teapoy. Put the black can on teapoy.
+# Results:
+	[Move 2|true]
+	[Open 2|true]
+	[TakeOut 8 2|true]
+	[Move 6|true]
+	[PutDown 8|true]
+	[Move 4|true]
+	[PickUp 9|true]
 	[Move 7|true]
-	[PutDown 22|true]
+	[PutDown 9|true]
+	[Move 3|true]
+	[TakeOut 10 3|true]
+	[Move 7|true]
+	[PutDown 10|true]
+
+# Time: 0.218
+# Score: 236
+
+<99.xml>
+# Environment Description:
+(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (closed 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small) (color 18 red) (sort 19 can) (size 19 small) (color 19 white) (at 19 1)  (at 12 2) (inside 13 6) (at 16 2) (inside 17 8))
+# Task Description:
+The refrigerator is not opened. The microwave is closed. Put the can on the bed. Put the blue bottle on the television. Take out the remotecontrol from cupboard. Close cupboard. Give the book which is white to human. A can must be on the plate.
+# Results:
+	[PutDown 10|true]
+	[FromPlate 18|true]
+	[Move 5|true]
+	[PutDown 18|true]
+	[AskLoc 14|at(14,2)]
+	[Move 2|true]
+	[PickUp 14|true]
+	[Move 3|true]
+	[PutDown 14|true]
+	[Move 2|true]
+	[PickUp 12|true]
+	[Move 1|true]
+	[PutDown 12|true]
 	[Move 8|true]
+	[Open 8|true]
+	[TakeOut 17 8|true]
+	[PutDown 17|true]
 	[Close 8|true]
 
-# Time: 0.374
-# Score: 216
+# Time: 0.363
+# Score: 204
 
-<50.xml>
-# Environment Description:
-(:domain (plate 0) (at 0 12) (sort 1 sofa) (size 1 big) (at 1 1) (sort 2 teapoy) (size 2 big) (at 2 2) (sort 3 bed) (size 3 big) (at 3 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (sort 5 couch) (size 5 big) (at 5 5) (sort 6 desk) (size 6 big) (at 6 6) (sort 7 chair) (size 7 big) (at 7 7) (sort 8 closet) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 airconditioner) (size 9 big) (at 9 9) (sort 11 plant) (size 11 big) (at 11 11) (sort 12 television) (size 12 big) (at 12 12) (sort 14 table) (size 14 big) (at 14 14) (sort 15 workspace) (size 15 big) (at 15 15) (sort 16 cup) (size 16 small) (color 16 white) (at 16 15) (sort 17 cup) (size 17 small) (color 17 blue) (at 17 14) (sort 18 bottle) (size 18 small) (color 18 yellow) (hold 18) (sort 19 book) (size 19 small) (color 19 blue) (inside 19 4) (sort 20 cup) (size 20 small) (color 20 red) (sort 21 book) (size 21 small) (color 21 black) (at 21 9) (sort 22 book) (size 22 small) (color 22 yellow) (sort 23 can) (size 23 small) (color 23 green) (at 23 15) (sort 24 remotecontrol) (size 24 small) (color 24 red) (sort 25 remotecontrol) (size 25 small) (color 25 white) (at 25 15) (sort 26 can) (size 26 small) (color 26 blue) (sort 27 cup) (size 27 small) (color 27 black) (at 27 5) (sort 28 can) (size 28 small) (color 28 red) (at 28 6)  (at 20 6) (at 24 5))
-# Task Description:
-Go to desk. Pick up the red remotecontrol. Put the bule cup on airconditioner. The red cup is on teapoy. The cupboard is closed. The closet must be opened.
-# Results:
-	[PutDown 18|true]
-	[Move 5|true]
-	[PickUp 24|true]
-	[Move 6|true]
-
-# Time: 0.077
-# Score: 186
-
-Total Score: 9650
+Total Score: 9678

@@ -12,7 +12,7 @@ void parser::words_map_initialize(const string &words_map_path)
     ifstream f(words_map_path);
     if (!f.is_open())
     {
-        LOG_ERROR("%s not found.", words_map_path);
+        LOG_ERROR("%s not found.", words_map_path.c_str());
         throw("Abort");
     }
     string str;
@@ -91,7 +91,6 @@ bool parser::parse(const string &str)
     push_down_automata();
     if (root)
     {
-        cout << root;
         return true;
     }
     else
@@ -129,7 +128,6 @@ void parser::to_token(string str)
                 throw("Abort");
             }
             tokens.push_back(make_shared<syntax_node>(token(words_map[temp], temp)));
-            // cout << tokens.back();
             last = i + 1;
         }
     }

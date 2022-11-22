@@ -13,7 +13,6 @@
 #include "debuglog.hpp"
 using namespace std;
 
-#define __DEBUG__
 #define UNKNOWN -1
 #define NONE 0
 
