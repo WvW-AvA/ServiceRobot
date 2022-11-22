@@ -55,7 +55,6 @@ void ATRI::Plan()
     printf(GREEN "%s\n" RESET, GetTestName().c_str());
     if (ParseEnv(GetEnvDes()) == false)
     {
-        LOG_ERROR("Env Prase Error");
         return;
     }
     if (isNaturalParse)
@@ -66,7 +65,8 @@ void ATRI::Plan()
     }
     else
     {
-        ParseInstruction(GetTaskDes());
+        if (ParseInstruction(GetTaskDes()) == false)
+            return;
     }
     // info补充
     for (auto v : infos)
@@ -79,13 +79,13 @@ void ATRI::Plan()
         if (o->sort == "human")
             human = ObjectPtrCast<BigObject>(o);
 
-    // PrintEnv();
+    PrintEnv();
     //  PrintInstruction();
-
     for (auto t = 0; t < tasks.size(); t++)
     {
-        PrintEnv();
-        cout << tasks[t] << endl;
+        // PrintEnv();
+        // cout << tasks[t] << endl;
+        isPass = false;
         SolveTask(tasks[t]);
     }
     // TestAutoBehave();
@@ -95,7 +95,8 @@ bool ATRI::ParseInstruction(const string &taskDis)
 {
     if (taskDis == "")
     {
-        throw("Instruction is null");
+        LOG_ERROR("Instruction is null");
+        return false;
     }
     shared_ptr<SyntaxNode> root = make_shared<SyntaxNode>();
     vector<shared_ptr<SyntaxNode>> leaf_path;
@@ -217,7 +218,7 @@ bool ATRI::ParseEnvSentence(const string &str)
     }
     if (words.size() != 2 && words.size() != 3)
     {
-        LOG_ERROR("Env Sentence error");
+        LOG_ERROR("Env Sentence (%s) error", str.c_str());
         return false;
     }
     if (words[0] == "hold")
@@ -335,7 +336,7 @@ bool ATRI::ParseEnv(const string &env)
         string str = m.str();
         if (ParseEnvSentence(str) == false)
         {
-            LOG_ERROR("Parse Env Sentence ERROR");
+            LOG_ERROR("Parse Env Sentence ERROR\n %s", env.c_str());
             return false;
         }
     }
@@ -509,6 +510,7 @@ void ATRI::SolveTask(const Instruction &task)
             stringstream ss;
             ss << task;
             LOG_ERROR("Instruction Error\n %s", ss.str().c_str());
+            return;
         }
         for (auto a : task.X)
             DoBehavious(task.behave, a->id, task.Y[0]->id);
@@ -517,7 +519,10 @@ void ATRI::SolveTask(const Instruction &task)
     {
         if (task.X.size() == 0)
         {
-            LOG_ERROR("Instruction Error");
+            stringstream ss;
+            ss << task;
+            LOG_ERROR("Instruction Error\n %s", ss.str().c_str());
+            return;
         }
         else
             DoBehavious(task.behave, task.X[0]->id);
@@ -669,6 +674,9 @@ void ATRI::TestAutoBehave()
 #pragma region override_ATRI_Behavious
 bool ATRI::TakeOut(unsigned int a, unsigned int b)
 {
+    if (isPass)
+        return false;
+
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     auto cont = ObjectPtrCast<Container>(objects[b]);
     if (hold == nullptr)
@@ -687,7 +695,10 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
                             return TakeOut(a, b);
                         }
                         else
+                        {
+                            isPass = true;
                             return false;
+                        }
                     }
                     small->inside = false;
                     cont->DeleteObjectInside(small);
@@ -717,6 +728,8 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
 }
 bool ATRI::PutIn(unsigned int a, unsigned int b)
 {
+    if (isPass)
+        return false;
     auto cont = ObjectPtrCast<Container>(objects[b]);
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     if (hold == small)
@@ -726,7 +739,10 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
                 LOG("PutIn(%d,%s)(%d,%s)", a, cont->sort.c_str(), b, small->sort.c_str());
                 score -= 2;
                 if (Plug::PutIn(a, b) == false)
+                {
+                    isPass = true;
                     return false;
+                }
                 small->inside = b;
                 SetHold(nullptr);
                 cont->smallObjectsInside.push_back(small);
@@ -743,6 +759,8 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
 }
 bool ATRI::Close(unsigned int a)
 {
+    if (isPass)
+        return false;
     shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
     if (container != nullptr)
         if (container->isOpen != false)
@@ -758,7 +776,10 @@ bool ATRI::Close(unsigned int a)
                             LOG("(%d,%s) has closed", a, container->sort.c_str());
                         }
                         else
+                        {
+                            isPass = true;
                             return false;
+                        }
                     }
                     container->isOpen = false;
                     UpdateTaskList("close", objects[a]);
@@ -779,6 +800,8 @@ bool ATRI::Close(unsigned int a)
 }
 bool ATRI::Open(unsigned int a)
 {
+    if (isPass)
+        return false;
     shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
     if (container != nullptr)
     {
@@ -795,7 +818,10 @@ bool ATRI::Open(unsigned int a)
                             LOG("(%d,%s) has opened", a, container->sort.c_str());
                         }
                         else
+                        {
+                            isPass = true;
                             return false;
+                        }
                     }
                     container->isOpen = true;
                     UpdateTaskList("Open", objects[a]);
@@ -817,6 +843,8 @@ bool ATRI::Open(unsigned int a)
 }
 bool ATRI::FromPlate(unsigned int a)
 {
+    if (isPass)
+        return false;
 
     if (hold == nullptr)
     {
@@ -825,7 +853,10 @@ bool ATRI::FromPlate(unsigned int a)
             LOG("FromPlate(%d,%s)", a, plate->sort.c_str());
             score -= 2;
             if (Plug::FromPlate(a) == false)
+            {
+                isPass = true;
                 return false;
+            }
             SetHold(plate);
             SetPlate(nullptr);
             return true;
@@ -839,13 +870,18 @@ bool ATRI::FromPlate(unsigned int a)
 }
 bool ATRI::ToPlate(unsigned int a)
 {
+    if (isPass)
+        return false;
     if (plate == nullptr)
         if (hold && hold->id == a)
         {
             LOG("ToPlate(%d,%s)", a, objects[a]->sort.c_str());
             score -= 2;
             if (Plug::ToPlate(a) == false)
+            {
+                isPass = true;
                 return false;
+            }
             SetPlate(hold);
             SetHold(nullptr);
             return true;
@@ -858,12 +894,17 @@ bool ATRI::ToPlate(unsigned int a)
 }
 bool ATRI::PutDown(unsigned int a)
 {
+    if (isPass)
+        return false;
     if (hold && hold->id == a)
     {
         LOG("PutDown(%d,%s)", a, objects[a]->sort.c_str());
         score -= 2;
         if (Plug::PutDown(a) == false)
+        {
+            isPass = true;
             return false;
+        }
         SetHold(nullptr);
         UpdateTaskList("purdown", objects[a]);
         return true;
@@ -876,6 +917,8 @@ bool ATRI::PutDown(unsigned int a)
 }
 bool ATRI::PickUp(unsigned int a)
 {
+    if (isPass)
+        return false;
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     if (hold == nullptr)
         if (location == small->location)
@@ -891,7 +934,10 @@ bool ATRI::PickUp(unsigned int a)
                         return PickUp(a);
                     }
                     else
+                    {
+                        isPass = true;
                         return false;
+                    }
                 }
                 SetHold(small);
                 UpdateTaskList("pickup", objects[a]);
@@ -913,10 +959,15 @@ bool ATRI::PickUp(unsigned int a)
 }
 bool ATRI::Move(unsigned int a)
 {
+    if (isPass)
+        return false;
     LOG("Move(%d)", a);
     score -= 4;
     if (Plug::Move(a) == false)
+    {
+        isPass = true;
         return false;
+    }
     location = a;
     if (hold)
         hold->location = a;
@@ -925,8 +976,11 @@ bool ATRI::Move(unsigned int a)
     UpdateTaskList("goto", objects[a]);
     return true;
 }
+
 bool ATRI::PutOn(unsigned int a, unsigned int b)
 {
+    if (isPass)
+        return false;
     if (hold && hold->id == a)
         if (location == b)
         {
@@ -944,6 +998,9 @@ bool ATRI::PutOn(unsigned int a, unsigned int b)
 }
 bool ATRI::HoldSmallObject(unsigned int a)
 {
+    if (isPass)
+        return false;
+
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     if (hold && hold->id == a)
         return true;
@@ -964,6 +1021,9 @@ bool ATRI::HoldSmallObject(unsigned int a)
 }
 void ATRI::GetSmallObjectStatus(unsigned int a)
 {
+    if (isPass)
+        return;
+
     string sureRet;
     if (isErrorCorrection)
     {
@@ -987,6 +1047,12 @@ void ATRI::GetSmallObjectStatus(unsigned int a)
     else
     {
         sureRet = AskLoc(a);
+    }
+
+    if (sureRet == "")
+    {
+        isPass = true;
+        return;
     }
     vector<string> split;
     regex reg("[a-z 0-9]+");
@@ -1017,6 +1083,8 @@ void ATRI::GetSmallObjectStatus(unsigned int a)
 }
 std::string ATRI::AskLoc(unsigned int a)
 {
+    if (isPass)
+        return "";
     string str;
     do
     {
@@ -1026,13 +1094,14 @@ std::string ATRI::AskLoc(unsigned int a)
         if (str == "")
         {
             LOG_ERROR("AskLoc return empty string,may object (%d,%s) not exsit!", a, objects[a]->sort.c_str());
-            throw("Abort");
         }
     } while (str == "not_known");
     return str;
 }
 void ATRI::Sense()
 {
+    if (isPass)
+        return;
     //只有纠错模式启动且当前位置未被纠错过才Sense
     if ((isErrorCorrection && posCorrectFlag[location] == true) || isErrorCorrection == false)
         return;
@@ -1138,16 +1207,15 @@ void split_string(vector<string> &out, const string &str_source, char mark)
 
 bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
 {
-    bool ret = true;
     if (sort != "" && sort != target->sort)
-        ret *= false;
+        return false;
     if (color != "")
     {
         auto tem = dynamic_pointer_cast<SmallObject>(target);
         if (tem && tem->color != color)
-            ret *= false;
+            return false;
     }
-    return ret;
+    return true;
 }
 
 Instruction::Instruction()

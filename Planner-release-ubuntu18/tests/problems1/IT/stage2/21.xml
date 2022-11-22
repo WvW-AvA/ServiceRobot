@@ -17,6 +17,7 @@
     (sort 13 cup) (size 13 small) (color 13 green) (at 13 3)
     (sort 14 can) (size 14 small) (color 14 white) 
     (sort 15 can) (size 15 small) (color 15 black) (at 15 1)
+    (sort 16 can) (size 16 small) (color 16 red) (at 16 3)
     </info>
     <mis>
     (inside 8 5) (at 11 4)

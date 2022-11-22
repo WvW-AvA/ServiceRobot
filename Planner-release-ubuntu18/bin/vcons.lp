@@ -1,1 +1,1 @@
-task(6, ncons(plate(X))) :- can(X), red(X).
+task(4, ncons(opened(X))) :- container(X), closet(X).

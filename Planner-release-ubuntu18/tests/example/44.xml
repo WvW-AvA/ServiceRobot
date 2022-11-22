@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <test>
-<env mis="on" err="off" ans="off">
+<env mis="off" err="off" ans="off">
 	<info>
 	(at 0 4) (plate 13) (hold 0)
 	(sort 2 chair) (size 2 big) (at 2 2)

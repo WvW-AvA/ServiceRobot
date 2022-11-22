@@ -203,6 +203,8 @@ namespace _home
         bool isErrorCorrection = 1;
         //是否开启自然语言处理
         bool isNaturalParse = 1;
+
+        bool isPass = false;
         // 位置物品正确性标识
         vector<bool> posCorrectFlag;
 

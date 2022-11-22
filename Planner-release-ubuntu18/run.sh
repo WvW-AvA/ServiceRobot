@@ -2,5 +2,5 @@
 cd build 
 make 
 cd ../bin 
-./atri -nlp 1 -err 0
+./atri -nlp 0 -err 1
 cd ..

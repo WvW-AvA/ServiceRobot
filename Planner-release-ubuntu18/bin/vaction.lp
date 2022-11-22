@@ -1,1 +1,1 @@
-occurs(close(8), 1).
+occurs(move(6), 1).

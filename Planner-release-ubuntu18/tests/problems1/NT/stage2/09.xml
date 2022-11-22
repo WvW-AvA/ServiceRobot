@@ -46,7 +46,7 @@
 	(:task (puton X Y) (:cond (sort X remotecontrol) (color X green) (sort Y airconditioner)))
 	(:info (on X Y) (:cond (sort X book) (color X red) (sort Y sofa)))
 	(:cons_notnot (:info (on X Y) (:cond (color X black) (sort X remotecontrol) (sort Y couch))))
-	(:task (puton X Y) (:cond (sort X can) (color X red) (sort Y desk)))
+	(:task (puton X Y) (:cond (sort X can) (color X red) (sort Y bed)))
 	(:task (puton X Y) (:cond (sort X book) (color X black) (sort Y sofa)))
 )
 </instr>
@@ -58,7 +58,7 @@ Pick up the bottle which is green.
 Put the green remotecontrol on the airconditioner.
 The red book is on the sofa.
 The remotecontrol which is black must be on the couch.
-Put the red can on the desk.
+Put the red can on the bed.
 Put the black book on the sofa.
 </nl>
 </test>

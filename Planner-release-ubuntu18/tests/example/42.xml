@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <test>
-<env mis="on" err="off" ans="off">
+<env mis="off" err="off" ans="off">
     <info>
     (hold 0) (plate 0) (at 0 4)
     (sort 1 couch) (size 1 big) (at 1 1)

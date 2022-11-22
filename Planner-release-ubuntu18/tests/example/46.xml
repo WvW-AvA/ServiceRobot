@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <test>
-<env mis="on" err="off" ans="off">
+<env mis="off" err="off" ans="off">
 	<info>
 	(at 0 8)
 	(sort 3 human) (size 3 big) (at 3 3)

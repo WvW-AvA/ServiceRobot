@@ -27,6 +27,7 @@
     (sort 22 remotecontrol) (size 22 small) (inside 22 6)
     (sort 23 can) (size 23 small) (color 23 red) (at 23 4)
     (sort 24 can) (size 24 small) (inside 24 14)
+    (sort 25 cup) (size 25 small) (color 25 black) (at 25 7)
     </info>
     <mis>
     (inside 15 14) (inside 19 5) (at 16 2) 
