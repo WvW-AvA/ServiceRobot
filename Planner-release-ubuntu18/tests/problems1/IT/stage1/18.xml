@@ -45,12 +45,12 @@
     (:info (opened X) (:cond (sort X microwave)))
     (:info (opened X) (:cond (sort X washmachine)))
     (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y television)))
-    (:task (puton X Y) (:cond (sort X book) (sort Y sofa)))
-    (:cons_not (:task (goto X) (:cond (sort X human))))
+    (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y sofa)))
     (:cons_not (:task (goto X) (:cond (sort X bed))))
     (:cons_not (:task (goto X) (:cond (sort X washmachine))))
     (:task (give human X) (:cond (sort X book) (color X yellow)))
     (:task (putin X Y) (:cond (sort X bottle) (color X green) (sort Y refrigerator)))
+    (:task (putin X Y) (:cond (sort X can) (color X red) (sort Y microwave)))
 )
 </instr>
 <nl>
@@ -58,11 +58,11 @@ The door of the refrigerator is closed.
 The microwave is opened.
 The washmachine is opened.
 Put the can which is green on the television.
-Put a book on the sofa.
-Do not go to the human.
+Put the white book on the sofa.
 Do not go to the bed.
 Do not go to the washmachine.
 Give the yellow book to human.
 Put the green bottle in the refrigerator.
+Put the red can in the microwave.
 </nl>
 </test>

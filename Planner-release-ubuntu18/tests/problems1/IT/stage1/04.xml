@@ -19,8 +19,8 @@
     (sort 14 bottle) (size 14 small) (color 14 blue) 
     (sort 15 cup) (size 15 small) (color 15 black) 
     (sort 16 cup) (size 16 small) (color 16 white) 
-    (sort 17 remotecontrol) (size 17 small) 
-    (sort 18 can) (size 18 small)
+    (sort 17 remotecontrol) (size 17 small) (color 17 white) 
+    (sort 18 can) (size 18 small) (color 18 white) 
     </info>
     <mis> 
     (inside 10 6) (inside 14 6) (at 15 2)
@@ -38,13 +38,12 @@
     (:info (closed X) (:cond (sort X refrigerator)))
     (:info (opened X) (:cond (sort X microwave)))
     (:cons_not (:info (opened X) (:cond (sort X refrigerator))))
-    (:cons_not (:task (goto X) (:cond (sort X human))))
-    (:task (puton X Y) (:cond (sort X cup) (sort Y television)))
-    (:task (puton X Y) (:cond (sort X bottle) (sort Y cupboard)))
-    (:task (puton X Y) (:cond (sort X book) (sort Y chair)))
+    (:task (puton X Y) (:cond (sort X cup) (color X black) (sort Y television)))
+    (:task (puton X Y) (:cond (sort X bottle) (color X green) (sort Y cupboard)))
+    (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair)))
     (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y closet)))
-    (:task (pickup X) (:cond (sort X can)))
-    (:task (give human X) (:cond (sort X bottle)))
+    (:task (pickup X) (:cond (sort X can) (color X white)))
+    (:task (give human X) (:cond (sort X bottle) (color X blue)))
     (:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y cupboard)))
 )
 </instr>
@@ -52,13 +51,12 @@
 The door of refrigerator is closed.
 The door of microwave is opened.
 The door of the refrigerator must be closed.
-Do no go to the human.
-Put a cup on television.
-Put a bottle on cupboard.
-Put a book on the chair.
+Put a black cup on television.
+Put the green bottle on cupboard.
+Put a green book on the chair.
 Put the white book in the closet.
-Pick up the can.
-Give the bottle to human.
+Pick up the white can.
+Give the blue bottle to human.
 Put the white cup in the cupboard.
 </nl>
 </test>

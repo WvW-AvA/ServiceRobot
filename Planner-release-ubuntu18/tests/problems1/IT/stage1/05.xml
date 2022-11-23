@@ -19,8 +19,8 @@
     (sort 14 bottle) (size 14 small) (color 14 blue) 
     (sort 15 cup) (size 15 small) (color 15 black) 
     (sort 16 cup) (size 16 small) (color 16 white) 
-    (sort 17 remotecontrol) (size 17 small) 
-    (sort 18 can) (size 18 small)
+    (sort 17 remotecontrol) (size 17 small) (color 17 white) 
+    (sort 18 can) (size 18 small) (color 18 green) 
     </info>
     <mis>
     (inside 10 6) (inside 14 6) (at 15 2)
@@ -37,28 +37,22 @@
 (:ins
     (:info (closed X) (:cond (sort X refrigerator)))
     (:info (opened X) (:cond (sort X microwave)))
-    (:cons_not (:task (open X) (:cond (sort X refrigerator))))
-    (:task (puton X Y) (:cond (sort X book) (sort Y bed)))
-    (:task (putin X Y) (:cond (sort X bottle) (sort Y cupboard)))
+    (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y bed)))
+    (:task (putin X Y) (:cond (sort X bottle) (color X green) (sort Y cupboard)))
     (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair)))
-    (:task (pickup X) (:cond (sort X can)))
-    (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard)))
-    (:task (putin X Y) (:cond (sort X cup) (sort Y microwave)))
-    (:task (takeout X Y) (:cond (sort X can) (sort Y microwave)))
+    (:task (putin X Y) (:cond (sort X cup) (color X black) (sort Y microwave)))
+    (:task (takeout X Y) (:cond (sort X can) (color X green) (sort Y microwave)))
     (:task (putin X Y) (:cond (sort X cup) (color X black) (sort Y closet)))
 )
 </instr>
 <nl>
 The door of refrigerator is closed.
 The door of microwave is opened.
-Do not open the refrigerator.
-Put a book on the bed.
-Put a bottle in the cupboard.
+Put the white book on the bed.
+Put the green bottle in the cupboard.
 Put the green book on the chair.
-Pick up the can.
-Take out remotecontrol from cupboard.
-Put a cup in microwave.
-Take the can out of the microwave.
+Put the black cup in microwave.
+Take the green can out of the microwave.
 Put the black cup in the closet.
 </nl>
 </test>

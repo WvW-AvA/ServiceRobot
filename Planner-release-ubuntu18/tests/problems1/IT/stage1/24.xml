@@ -34,23 +34,25 @@
     (:cons_not (:info (plate X) (:cond (sort X can) (color X green))))
     (:cons_not (:info (plate X) (:cond (sort X can) (color X black))))
     (:cons_not (:info (plate X) (:cond (sort X can) (color X white))))
-    (:task (give human X) (:cond (sort X can)))
+    (:task (give human X) (:cond (sort X can) (color X red)))
     (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y worktable)))
     (:task (goto X) (:cond (sort X teapoy)))
     (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y teapoy)))
     (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y teapoy)))
     (:task (puton X Y) (:cond (sort X book) (color X yellow) (sort Y worktable)))
+    (:task (puton X Y) (:cond (sort X book) (color X red) (sort Y sofa)))
 )
 </instr>
 <nl>
 The green can must not be on plate.
 There must not be a black can on plate.
 There must not be a white can on plate.
-Give human a can.
+Give human the red can.
 Put the blue can on worktable.
 Go to teapoy.
 Put the green can on teapoy.
 Put the red can on the teapoy.
 Put the yellow book on the worktable.
+Put the red book on the sofa.
 </nl>
 </test>

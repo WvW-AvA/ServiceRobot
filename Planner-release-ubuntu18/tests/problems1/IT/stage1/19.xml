@@ -47,7 +47,6 @@
     (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y airconditioner)))
     (:cons_not (:task (goto X) (:cond (sort X microwave))))
     (:cons_not (:info (plate X) (:cond (sort X bottle) (color X yellow))))
-
     (:task (pickup X) (:cond (sort X book) (color X white)))
     (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y desk)))
 )
@@ -59,7 +58,6 @@ The washmachine is opened.
 Put the red can on the airconditioner.
 Do not go to the microwave.
 The yellow bottle must be not on the plate.
-
 Pick the white book up.
 Put the green book on the desk.
 </nl>
