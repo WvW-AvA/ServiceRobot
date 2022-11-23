@@ -38,8 +38,13 @@ void ATRI::Init(int argc, char **argv)
                 isNaturalParse = stoi(argv[++i]);
             else if (is_str_equal(argv[i], "-err"))
                 isErrorCorrection = stoi(argv[++i]);
+            else if (is_str_equal(argv[i], "-ask_2"))
+                isAskTwice = stoi(argv[++i]);
+            else if (is_str_equal(argv[i], "-cons"))
+                isKeepConstrain = stoi(argv[++i]);
         }
     LOG("nlp %d, err %d", isNaturalParse, isErrorCorrection);
+
     score = 0;
     objects.push_back(shared_from_this());
     if (isErrorCorrection)
@@ -536,19 +541,42 @@ void ATRI::UpdateTaskList(const string &behave, const shared_ptr<Object> &x, con
             t.isEnable = false;
         }
 }
+
+bool ATRI::IsInvokeNot_TaskConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
+{
+    for (auto &t : not_taskConstrains)
+        if (t.IsInstructionInvoke(behave, x, y))
+        {
+            stringstream ss;
+            ss << t;
+            LOG_ERROR("%s \n is Invoke", ss.str().c_str());
+            return true;
+        }
+    return false;
+}
 bool ATRI::IsInvokeNot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
 {
     for (auto &i : not_infoConstrains)
-    {
-    }
-    return true;
+        if (i.IsInstructionInvoke(behave, x, y))
+        {
+            stringstream ss;
+            ss << i;
+            LOG_ERROR("%s \n is Invoke", ss.str().c_str());
+            return true;
+        }
+    return false;
 }
-bool ATRI::IsObeyNotnot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
+bool ATRI::IsInvokeNotnot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
 {
     for (auto &i : notnot_infoConstrains)
-    {
-    }
-    return true;
+        if (i.IsInstructionInvoke(behave, x, y))
+        {
+            stringstream ss;
+            ss << i;
+            LOG_ERROR("%s \n is Invoke", ss.str().c_str());
+            return true;
+        }
+    return false;
 }
 
 void ATRI::PrintInstruction()
@@ -674,6 +702,12 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
 {
     if (isPass)
         return false;
+    if (isKeepConstrain && (IsInvokeNot_TaskConstracts("takeout", objects[a], objects[b]) ||
+                            IsInvokeNotnot_infoConstracts("inside", objects[a])))
+    {
+        isPass = true;
+        return false;
+    }
 
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     auto cont = ObjectPtrCast<Container>(objects[b]);
@@ -728,6 +762,14 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
 {
     if (isPass)
         return false;
+
+    if (isKeepConstrain && (IsInvokeNot_TaskConstracts("putin", objects[a], objects[b]) ||
+                            IsInvokeNot_infoConstracts("inside", objects[a])))
+    {
+        isPass = true;
+        return false;
+    }
+
     auto cont = ObjectPtrCast<Container>(objects[b]);
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     if (hold == small)
@@ -759,6 +801,14 @@ bool ATRI::Close(unsigned int a)
 {
     if (isPass)
         return false;
+    if (isKeepConstrain && (IsInvokeNot_TaskConstracts("close", objects[a]) ||
+                            IsInvokeNot_infoConstracts("closed", objects[a]) ||
+                            IsInvokeNotnot_infoConstracts("opened", objects[a])))
+    {
+        isPass = true;
+        return false;
+    }
+
     shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
     if (container != nullptr)
         if (container->isOpen != false)
@@ -800,6 +850,13 @@ bool ATRI::Open(unsigned int a)
 {
     if (isPass)
         return false;
+    if (isKeepConstrain && (IsInvokeNot_TaskConstracts("open", objects[a]) ||
+                            IsInvokeNot_infoConstracts("opened", objects[a]) ||
+                            IsInvokeNotnot_infoConstracts("closed", objects[a])))
+    {
+        isPass = true;
+        return false;
+    }
     shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
     if (container != nullptr)
     {
@@ -843,7 +900,11 @@ bool ATRI::FromPlate(unsigned int a)
 {
     if (isPass)
         return false;
-
+    if (isKeepConstrain && (IsInvokeNotnot_infoConstracts("plate", objects[a])))
+    {
+        isPass = true;
+        return false;
+    }
     if (hold == nullptr)
     {
         if (plate && plate->id == a)
@@ -870,6 +931,11 @@ bool ATRI::ToPlate(unsigned int a)
 {
     if (isPass)
         return false;
+    if (isKeepConstrain && (IsInvokeNot_infoConstracts("plate", objects[a])))
+    {
+        isPass = true;
+        return false;
+    }
     if (plate == nullptr)
         if (hold && hold->id == a)
         {
@@ -894,6 +960,14 @@ bool ATRI::PutDown(unsigned int a)
 {
     if (isPass)
         return false;
+    if (isKeepConstrain && (IsInvokeNot_TaskConstracts("putdown", objects[a]) ||
+                            IsInvokeNot_infoConstracts("on", objects[a], objects[location]) ||
+                            IsInvokeNot_infoConstracts("near", objects[a], objects[location])))
+    {
+        isPass = true;
+        return false;
+    }
+
     if (hold && hold->id == a)
     {
         LOG("PutDown(%d,%s)", a, objects[a]->sort.c_str());
@@ -917,6 +991,12 @@ bool ATRI::PickUp(unsigned int a)
 {
     if (isPass)
         return false;
+    if (isKeepConstrain && (IsInvokeNot_TaskConstracts("pickup", objects[a])))
+    {
+        isPass = true;
+        return false;
+    }
+
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     if (hold == nullptr)
         if (location == small->location)
@@ -959,6 +1039,12 @@ bool ATRI::Move(unsigned int a)
 {
     if (isPass)
         return false;
+    if (isKeepConstrain && (IsInvokeNot_TaskConstracts("goto", objects[a])))
+    {
+        isPass = true;
+        return false;
+    }
+
     LOG("Move(%d)", a);
     score -= 4;
     if (Plug::Move(a) == false)
@@ -979,6 +1065,13 @@ bool ATRI::PutOn(unsigned int a, unsigned int b)
 {
     if (isPass)
         return false;
+    if (isKeepConstrain && (IsInvokeNot_TaskConstracts("puton", objects[a], objects[b]) ||
+                            IsInvokeNot_infoConstracts("on", objects[a], objects[b]) ||
+                            IsInvokeNot_infoConstracts("near", objects[a], objects[b])))
+    {
+        isPass = true;
+        return false;
+    }
     if (hold && hold->id == a)
         if (location == b)
         {
@@ -1023,7 +1116,7 @@ void ATRI::GetSmallObjectStatus(unsigned int a)
         return;
 
     string sureRet;
-    if (isErrorCorrection)
+    if (isErrorCorrection && isAskTwice)
     {
         vector<string> ret;
         //纠错模式下反复问，直到问出两次相同结果,认为正确。
@@ -1261,24 +1354,10 @@ void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri, bool is_ev
 
 void Instruction::TaskSelfOptimization(const shared_ptr<ATRI> &atri)
 {
-    if (X.size() > 2 || Y.size() > 2)
+    if (X.size() > 3 || Y.size() > 3)
     {
         isEnable = false;
         return;
-    }
-    int evalue;
-    for (int i = 0; i < X.size(); i++)
-    {
-        //禁止行动的约束
-        for (const auto &t : atri->not_taskConstrains)
-        {
-            if (t.behave == behave)
-            {
-                for (auto a : t.X)
-                    if (a == X[i])
-                        evalue -= 20;
-            }
-        }
     }
 }
 
