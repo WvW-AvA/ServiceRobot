@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+	<info>
+	(plate 0) (at 0 1)
+	(sort 1 desk) (size 1 big) (at 1 1)
+	(sort 2 cupboard) (size 2 big) (at 2 2) (type 2 container) (opened 2)
+	(sort 3 washmachine) (size 3 big) (at 3 3) (type 3 container) (closed 3)
+	(sort 4 table) (size 4 big) (at 4 4)
+	(sort 5 airconditioner) (size 5 big) (at 5 5)
+	(sort 6 chair) (size 6 big) (at 6 6)
+	(sort 7 worktable) (size 7 big) (at 7 7)
+	(sort 8 microwave) (size 8 big) (at 8 8) (type 8 container)
+	(sort 9 closet) (size 9 big) (at 9 9) (type 9 container)
+	(sort 10 bed) (size 10 big) (at 10 10)
+	(sort 11 bottle) (size 11 small) (color 11 black)
+	(sort 12 can) (size 12 small) (color 12 yellow) (hold 12)
+	(sort 13 can) (size 13 small) (color 13 green)
+	(sort 14 remotecontrol) (size 14 small) (color 14 yellow) (at 14 4)
+	(sort 15 remotecontrol) (size 15 small) (color 15 green) (inside 15 3)
+	(sort 16 bottle) (size 16 small) (color 16 red)
+	(sort 17 can) (size 17 small) (color 17 black) (inside 17 8)
+	</info>
+	<mis>
+	(at 13 1) (inside 16 9)
+	</mis>
+	<err>
+		<r>(at 11 6)</r>
+		<w>(at 11 10)</w>
+	</err>
+	<extra>
+	(opened 9) (closed 8)
+	</extra>
+</env>
+<instr>
+(:ins 
+	(:task (putdown X) (:cond (color X yellow) (sort X can)))
+	(:task (pickup X) (:cond (sort X bottle) (color X black)))
+	(:task (takeout X Y) (:cond (sort X remotecontrol) (color X green) (sort Y washmachine)))
+	(:task (open X) (:cond (sort X microwave)))
+	(:task (puton X Y) (:cond (color X green) (sort X can) (sort Y desk)))
+	(:info (opened X) (:cond (sort X closet)))
+	(:info (closed X) (:cond (sort X microwave)))
+	(:cons_notnot (:info (opened X) (:cond (sort X cupboard))))
+)
+</instr>
+<nl>
+Put down the yellow can.
+Pick up the black bottle.
+Take out the remotecontrol which is green from the washmachine.
+Open the door of the microwave.
+Put the green can on the desk.
+The door of the closet is opened.
+The door of microwave is closed.
+There must be cupboard is opened.
+</nl>
+</test>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="off" err="off" ans="off">
+	<info>
+	(at 0 8)
+	(sort 3 human) (size 3 big) (at 3 3)
+	(sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+	(sort 5 teapoy) (size 5 big) (at 5 5)
+	(sort 7 chair) (size 7 big) (at 7 7)
+	(sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (closed 8)
+	(sort 9 worktable) (size 9 big) (at 9 9)
+	(sort 10 desk) (size 10 big) (at 10 10)
+	(sort 11 closet) (size 11 big) (at 11 11) (type 11 container) (closed 11)
+	(sort 12 plant) (size 12 big) (at 12 12)
+	(sort 13 remotecontrol) (size 13 small) (color 13 white) (at 13 12)
+	(sort 14 bottle) (size 14 small) (color 14 blue) (at 14 3)
+	(sort 15 can) (size 15 small) (color 15 yellow) (plate 15)
+	(sort 16 can) (size 16 small) (color 16 white)
+	(sort 17 can) (size 17 small) (color 17 red) (inside 17 8)
+	(sort 18 bottle) (size 18 small) (color 18 green) (at 18 12)
+	(sort 19 cup) (size 19 small) (color 19 yellow)
+	(sort 20 cup) (size 20 small) (color 20 red) (at 20 9)
+	(sort 21 cup) (size 21 small) (color 21 green) (hold 21)
+	(sort 22 remotecontrol) (size 22 small) (color 22 red) (inside 22 4)
+	</info>
+	<mis>
+	(inside 19 4)
+	</mis>
+	<err>
+	<r>
+	(inside 16 8)
+	</r>
+	<w>
+	(at 16 3)
+	</w>
+	</err>
+	<extra>
+	(at 19 7)
+    </extra>
+</env>
+<instr>(:ins 
+	(:task (putin X Y) (:cond (sort X can) (color X white) (type Y container) (sort Y washmachine)))
+	(:task (open X) (:cond (sort X cupboard) (type X container)))
+	(:task (putdown X) (:cond (sort X can) (color X yellow)))
+	(:task (goto X) (:cond (sort X desk)))
+	(:info (on X Y) (:cond (sort X cup) (color X yellow) (sort Y chair)))
+	)
+</instr>
+<nl>
+Put the white can in washmachine.
+Open the cupboard.
+Put down the yellow can.
+Go to desk.
+The yellow cup is on chair.
+</nl>
+</test>

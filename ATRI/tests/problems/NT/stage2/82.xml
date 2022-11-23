@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+    <info>
+    (hold 0) (plate 0) (at 0 3)
+    (sort 1 plant) (size 1 big) (at 1 1)
+    (sort 2 bed) (size 2 big) (at 2 2)
+    (sort 3 desk) (size 3 big) (at 3 3)
+    (sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (opened 4)
+    (sort 5 teapoy) (size 5 big) (at 5 5)
+    (sort 6 sofa) (size 6 big) (at 6 6)
+    (sort 7 cupboard) (size 7 big) (at 7 7) (type 7 container) (closed 7)
+    (sort 8 cup) (size 8 small) (color 8 yellow)
+    (sort 9 bottle) (size 9 small) (color 9 green) (at 9 2)
+    (sort 10 bottle) (size 10 small) (color 10 red)
+    (sort 11 bottle) (size 11 small) (color 11 black)
+    (sort 12 book) (size 12 small) (color 12 yellow) (inside 12 7)
+    (sort 13 book) (size 13 small) (color 13 black)
+    (sort 14 book) (size 14 small) (color 14 red)
+    (sort 15 cup) (size 15 small) (at 15 6)
+    (sort 16 remotecontrol) (size 16 small) (color 16 green)
+    (sort 17 can) (size 17 small) (at 17 3)
+    (sort 18 can) (size 18 small) (color 18 blue) (inside 18 4)
+    (sort 19 can) (size 19 small) (color 19 yellow)
+    (sort 20 can) (size 20 small) (color 20 black) (at 20 3)
+    </info>
+    <mis>
+    (at 8 5) (at 14 3) (at 13 3) (inside 19 4)
+    </mis>
+    <err>
+    <r>(at 16 2) (inside 15 7)</r>
+    <w>(at 16 6) (inside 15 4)</w>
+</err>
+    <extra>
+    </extra>
+</env>
+<instr>
+(:ins
+    (:cons_not (:task (pickup X Y) (:cond (sort X can) (color X yellow) (sort Y microwave))))
+    (:cons_not (:task (pickup X) (:cond (sort X book) (color X red))))
+    (:cons_notnot (:info (inside X Y) (:cond (sort X can) (color X blue) (sort Y microwave))))
+    (:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X yellow) (sort Y cupboard))))
+    (:task (close X) (:cond (sort X microwave)))
+    (:task (putin X Y) (:cond (sort X book) (sort Y microwave)))
+    (:task (puton X Y) (:cond (sort X can) (sort Y desk)))
+    (:task (puton X Y) (:cond (sort X remotecontrol) (color X green) (sort Y plant)))
+)
+</instr>
+<nl>
+Do not pick up the blue bottle in microwave.
+Do not pick up the red book.
+The blue can must in the microwave.
+There must be a yellow book in cupboard.
+Close the microwave.
+Put a book in microwave.
+Put a can on the desk.
+Put a green remotecontrol on the plant.
+</nl>
+</test>

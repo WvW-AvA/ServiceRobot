@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="off" ans="off">
+    <info>
+    (hold 13) (plate 20) (at 0 8)
+    (sort 1 human) (size 1 big) (at 1 1)
+    (sort 2 desk) (size 2 big) (at 2 2)
+    (sort 3 television) (size 3 big) (at 3 3)
+    (sort 4 chair) (size 4 big) (at 4 4)
+    (sort 5 bed) (size 5 big) (at 5 5)
+    (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container)
+    (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7)
+    (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8)
+    (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container)
+    (sort 10 sofa) (size 10 big) (at 10 10)
+    (sort 11 table) (size 11 big) (at 11 11)
+    (sort 12 book) (size 12 small) (color 12 yellow) 
+    (sort 13 book) (size 13 small) (color 13 green)
+    (sort 14 book) (size 14 small) (color 14 white) 
+    (sort 15 bottle) (size 15 small) (color 15 green) (at 15 2)
+    (sort 16 bottle) (size 16 small) (color 16 blue) 
+    (sort 17 cup) (size 17 small) (color 17 black) 
+    (sort 18 cup) (size 18 small) (color 18 white) 
+    (sort 19 remotecontrol) (size 19 small) (inside 19 7)
+    (sort 20 can) (size 20 small) (color 20 blue)
+    (sort 21 can) (size 21 small) (color 21 yellow)
+    (sort 22 bottle) (size 22 small) (color 22 red) (at 22 9)
+    </info>
+    <mis>
+    (inside 12 6) (inside 16 6) (at 17 11) (at 21 3)
+    </mis>
+    <err>
+        <r>(at 14 2) (at 18 6)</r>
+        <w>(inside 14 7) (inside 18 9)</w>
+    </err>
+    <extra>
+    (closed 6) (opened 9)
+    </extra>
+</env>
+<instr>
+(:ins
+    (:info (closed X) (:cond (sort X refrigerator)))
+    (:info (opened X) (:cond (sort X microwave)))
+    (:cons_not (:info (opened X) (:cond (sort X refrigerator))))
+    (:cons_not (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y closet))))
+    (:cons_notnot (:info (on X Y) (:cond (sort X bottle) (color X green) (sort Y desk))))
+    (:task (puton X Y) (:cond (sort X can) (sort Y bed)))
+    (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y television)))
+    (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard)))
+    (:task (pickup X) (:cond (sort X bottle)))
+    (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y table)))
+    (:task (puton X Y) (:cond (sort X book) (sort Y table)))
+    (:task (give human X) (:cond (sort X book) (color X white)))
+    (:task (goto X) (:cond (sort X sofa)))
+)
+</instr>
+<nl>
+The door of the refrigerator is closed.
+The door of the microwave is opened.
+Do not open the door of the refrigerator.
+Do not put the book which is green on closet.
+The green bottle must be on the desk.
+Put a can on the bed.
+Put the bottle which is blue on the television.
+Take out the remotecontrol from the cupboard.
+Pick up the bottle.
+Put a book on the table.
+Give the book which is white for human.
+Go to the sofa.   
+</nl>
+</test>

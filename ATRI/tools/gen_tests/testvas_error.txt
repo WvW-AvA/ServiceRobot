@@ -1,0 +1,23 @@
+testDevil.lp:8:1-6: error: lexer error, unexpected #base
+
+testDevil.lp:8:1-7: error: syntax error, unexpected .
+
+testDevil.lp:30:1-12: error: lexer error, unexpected #cumulative
+
+testDevil.lp:204:1-10: error: lexer error, unexpected #volatile
+
+testDevil.lp:217:1-6: error: lexer error, unexpected #base
+
+testDevil.lp:217:1-7: error: syntax error, unexpected .
+
+testvtask.lp:2:40-41: error: syntax error, unexpected :, expecting } or ;
+
+testshow.lp:7:1-6: error: lexer error, unexpected #base
+
+testshow.lp:7:1-7: error: syntax error, unexpected .
+
+testshow.lp:9:1-6: error: lexer error, unexpected #hide
+
+testshow.lp:9:1-7: error: syntax error, unexpected .
+
+*** ERROR: (clingo): parsing failed

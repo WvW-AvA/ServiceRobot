@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="off" err="off" ans="off">
+    <info>
+    (hold 0) (plate 0) (at 0 4)
+    (sort 1 couch) (size 1 big) (at 1 1)
+    (sort 2 bed) (size 2 big) (at 2 2)
+    (sort 3 table) (size 3 big) (at 3 3)
+    (sort 4 desk) (size 4 big) (at 4 4)
+    (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5)
+    (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+    (sort 8 book) (size 8 small) (color 8 red) 
+    (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6)
+    (sort 10 book) (size 10 small) (color 10 green) 
+    (sort 11 cup) (size 11 small) (color 11 red) 
+    (sort 12 cup) (size 12 small) (color 12 blue) 
+    (sort 13 cup) (size 13 small) (color 13 green) (at 13 3)
+    (sort 14 can) (size 14 small) (color 14 white) 
+    (sort 15 can) (size 15 small) (color 15 black) (at 15 1)
+    (sort 16 can) (size 16 small) (color 16 red) (at 16 3)
+    </info>
+    <mis>
+    (inside 8 5) (at 11 4)
+    </mis>
+    <err>
+        <r>(inside 12 6) (at 14 2) (at 10 2)</r>
+        <w>(at 12 2) (at 14 1) (inside 10 6)</w>
+    </err>
+    <extra>
+    </extra>
+</env>
+<instr>
+(:ins
+    (:cons_not (:task (pickup X) (:cond (sort X book) (color X red))))
+    (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X black) (sort Y couch))))
+    (:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X blue) (sort Y refrigerator))))
+    (:task (puton X Y) (:cond (sort X cup) (color X blue) (sort Y table)))
+    (:task (putin X Y) (:cond (sort X cup) (color X green) (sort Y refrigerator)))
+    (:task (open X) (:cond (sort X refrigerator)))
+    (:task (putin X Y) (:cond (sort X can) (color X white) (sort Y refrigerator)))
+    (:task (puton X Y) (:cond (sort X cup) (color X red) (sort Y table)))
+    (:task (putin X Y) (:cond (sort X can) (color X red) (sort Y refrigerator)))
+)
+</instr>
+<nl>
+Do not pick up the red book.
+There must be a black can on the couch.
+There must be a blue book in the refrigerator.
+Put the blue cup on table.
+Put the green cup in refrigerator.
+Open refrigerator.
+Put the white can in refrigerator.
+Put the red cup on the table.
+Put the red can in the refrigerator.
+</nl>
+</test>

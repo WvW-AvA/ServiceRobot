@@ -1,0 +1,510 @@
+<configuration info>
+TeamName: Validator
+Mode: IT
+Timeout: 5000
+TestDir: ../tests/example/
+TestSize: 50
+All tests
+Grader path: ../lib/libasp
+
+<01.xml>
+# Environment Description:
+(:domain (hold 13) (plate 20) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 sofa) (size 10 big) (at 10 10) (sort 11 table) (size 11 big) (at 11 11) (sort 12 book) (size 12 small) (color 12 yellow) (sort 13 book) (size 13 small) (color 13 green) (sort 14 book) (size 14 small) (color 14 white) (sort 15 bottle) (size 15 small) (color 15 green) (at 15 2) (sort 16 bottle) (size 16 small) (color 16 blue) (sort 17 cup) (size 17 small) (color 17 black) (sort 18 cup) (size 18 small) (color 18 white) (sort 19 remotecontrol) (size 19 small) (inside 19 7) (sort 20 can) (size 20 small) (color 20 blue) (sort 21 can) (size 21 small) (color 21 yellow) (sort 22 bottle) (size 22 small) (color 22 red) (at 22 9)  (at 14 2) (at 18 6))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:info (opened X) (:cond (sort X refrigerator)))) (:cons_not (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y closet)))) (:cons_notnot (:info (on X Y) (:cond (sort X bottle) (color X green) (sort Y desk)))) (:task (puton X Y) (:cond (sort X can) (sort Y bed))) (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y television))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard))) (:task (pickup X) (:cond (sort X bottle))) (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y table))) (:task (puton X Y) (:cond (sort X book) (sort Y table))) (:task (give human X) (:cond (sort X book) (color X white))) (:task (goto X) (:cond (sort X sofa))) )
+# Results:
+
+# Time: 0.025
+# Score: 0
+
+<02.xml>
+# Environment Description:
+(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:task (give human X) (:cond (sort X book) (color X green))) (:task (putin X Y) (:cond (sort X can) (sort Y closet))) (:task (putin X Y) (:cond (sort X cup) (sort Y closet))) (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y chair))) (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y bed))) (:task (takeout X Y) (:cond (sort X book) (color X yellow) (sort Y refrigerator))) (:task (pickup X) (:cond (sort X bottle) (color X green))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+<03.xml>
+# Environment Description:
+(:domain (hold 0) (plate 17) (at 0 1) (sort 1 human) (size 1 big) (at 1 2) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 2) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small)  (at 21 1) (inside 24 5))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (inside X Y) (:cond (sort X remotecontrol) (sort Y washmachine))) (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X red) (sort Y chair)))) (:task (puton X Y) (:cond (sort X can) (sort Y bed))) (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y cupboard))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y washmachine))) (:task (give human X) (:cond (sort X book))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y desk))) (:task (putin X Y) (:cond (sort X cup) (sort Y microwave))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+<04.xml>
+# Environment Description:
+(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:info (opened X) (:cond (sort X refrigerator)))) (:cons_not (:task (goto X) (:cond (sort X human)))) (:task (puton X Y) (:cond (sort X cup) (sort Y television))) (:task (puton X Y) (:cond (sort X bottle) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X book) (sort Y chair))) (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y closet))) (:task (pickup X) (:cond (sort X can))) )
+# Results:
+
+# Time: 0.009
+# Score: 178
+
+<05.xml>
+# Environment Description:
+(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:task (open X) (:cond (sort X refrigerator)))) (:task (puton X Y) (:cond (sort X book) (sort Y bed))) (:task (putin X Y) (:cond (sort X bottle) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair))) (:task (pickup X) (:cond (sort X can))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard))) (:task (putin X Y) (:cond (sort X cup) (sort Y microwave))) )
+# Results:
+
+# Time: 0.008
+# Score: 158
+
+<06.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+(:ins (:cons_not (:info (plate X) (:cond (sort X can) (color X green)))) (:cons_not (:info (plate X) (:cond (sort X can) (color X black)))) (:cons_not (:info (plate X) (:cond (sort X can) (color X white)))) (:task (give human X) (:cond (sort X can))) (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y worktable))) (:task (goto X) (:cond (sort X teapoy))) (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y teapoy))) (:task (puton X Y) (:cond (sort X can) (color X black) (sort Y teapoy))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<07.xml>
+# Environment Description:
+(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:task (give human X) (:cond (sort X book) (color X green))) (:task (putin X Y) (:cond (sort X can) (sort Y closet))) (:task (putin X Y) (:cond (sort X cup) (sort Y closet))) (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y chair))) (:task (puton X Y) (:cond (sort X bottle) (sort Y bed))) (:task (takeout X Y) (:cond (sort X book) (color X yellow) (sort Y refrigerator))) (:task (pickup X) (:cond (sort X bottle))))
+# Results:
+
+# Time: 0.009
+# Score: 98
+
+<08.xml>
+# Environment Description:
+(:domain (at 0 2) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 plant) (size 2 big) (at 2 2) (sort 3 chair) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 washmachine) (size 7 big) (at 7 7) (type 7 container) (opened 7) (sort 8 book) (size 8 small) (color 8 black) (inside 8 7) (sort 9 cup) (size 9 small) (color 9 yellow) (plate 9) (sort 10 book) (size 10 small) (color 10 red) (inside 10 6) (sort 11 remotecontrol) (size 11 small) (color 11 white) (sort 12 can) (size 12 small) (color 12 brack) (sort 13 cup) (size 13 small) (color 13 black) (at 13 5) (sort 14 can) (size 14 small) (sort 15 bottle) (size 15 small) (color 15 black) (inside 15 5) (sort 16 bottle) (size 16 small) (color 16 blue) (at 16 2) (sort 17 book) (size 17 small) (color 17 yellow) (sort 18 bottle) (size 18 small) (color 18 yellow) (at 18 3) (sort 19 can) (size 19 small) (at 19 3) (color 19 blue) (sort 20 can) (size 20 small) (color 20 blue) (inside 20 7) (sort 21 cup) (size 21 small) (color 21 red) (sort 22 remotecontrol) (size 22 small) (color 22 red) (hold 22)  (inside 11 6) (at 14 2))
+# Task Description:
+(:ins (:info (on X Y) (:cond (sort X book) (color X yellow) (sort Y plant))) (:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y closet))) (:task (close X) (:cond (sort X washmachine))) (:task (puton X Y) (:cond (sort X can) (color X black) (sort Y plant))) (:task (putin X Y) (:cond (sort X bottle) (sort Y refrigerator))) (:task (pickup X) (:cond (sort X remotecontrol) (color X white))) (:cons_not (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator)))) (:cons_not (:info (on X Y) (:cond (color X yellow) (sort X cup) (sort Y worktable)))) (:cons_not (:info (opened X) (:cond (sort X closet)))) )
+# Results:
+
+# Time: 0.008
+# Score: 0
+
+<09.xml>
+# Environment Description:
+(:domain (at 0 7) (sort 1 plant) (size 1 big) (at 1 1) (sort 2 couch) (size 2 big) (at 2 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 airconditioner) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 sofa) (size 6 big) (at 6 6) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (opened 7) (sort 8 chair) (size 8 big) (at 8 8) (sort 9 remotecontrol) (size 9 small) (color 9 white) (hold 9) (sort 10 bottle) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 red) (sort 12 bottle) (size 12 small) (color 12 green) (sort 13 can) (size 13 small) (sort 14 book) (size 14 small) (color 14 green) (sort 15 can) (size 15 small) (color 15 green) (inside 15 3) (sort 16 book) (size 16 small) (color 16 black) (plate 16) (sort 17 cup) (size 17 small) (sort 18 remotecontrol) (size 18 small) (color 18 green) (sort 19 can) (size 19 small) (color 19 red) (at 19 5) (sort 20 remotecontrol) (size 20 small) (color 20 black) (at 20 2) (sort 21 cup) (size 21 small) (color 21 yellow) (at 21 4) (sort 22 remotecontrol) (size 22 small) (color 22 red)  (at 10 2) (at 17 1) (at 18 4) (at 22 1))
+# Task Description:
+(:ins (:task (takeout X Y) (:cond (sort X book) (color X green) (sort Y closet))) (:task (putin X Y) (:cond (sort X remotecontrol) (color X red) (sort Y closet))) (:task (goto X) (:cond (sort X plant))) (:task (pickup X) (:cond (sort X bottle) (color X green))) (:task (puton X Y) (:cond (sort X remotecontrol) (color X green) (sort Y airconditioner))) (:info (on X Y) (:cond (sort X book) (color X red) (sort Y sofa))) (:cons_notnot (:info (on X Y) (:cond (color X black) (sort X remotecontrol) (sort Y couch)))) )
+# Results:
+
+# Time: 0.007
+# Score: 0
+
+<10.xml>
+# Environment Description:
+(:domain (hold 11) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 8) (at 16 1) (inside 17 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:task (open X) (:cond (sort X refrigerator)))) (:task (puton X Y) (:cond (sort X book) (sort Y bed))) (:task (putin X Y) (:cond (sort X bottle) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair))) (:task (pickup X) (:cond (sort X can))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard))) (:task (putin X Y) (:cond (sort X cup) (sort Y microwave))) )
+# Results:
+
+# Time: 0.009
+# Score: 158
+
+<11.xml>
+# Environment Description:
+(:domain (hold 0) (at 0 3) (sort 1 chair) (size 1 big) (at 1 1) (sort 2 plant) (size 2 big) (at 2 2) (sort 3 sofa) (size 3 big) (at 3 3) (sort 4 worktable) (size 4 big) (at 4 4) (sort 5 couch) (size 5 big) (at 5 5) (sort 6 table) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 airconditioner) (size 8 big) (at 8 8) (sort 9 table) (size 9 big) (at 9 9) (sort 10 television) (size 10 big) (at 10 10) (sort 11 book) (size 11 small) (sort 12 remotecontrol) (size 12 small) (color 12 yellow) (at 12 7) (sort 13 can) (size 13 small) (color 13 green) (plate 13) (sort 14 remotecontrol) (size 14 small) (color 14 black) (sort 15 can) (color 15 blue) (size 15 small) (sort 16 remotecontrol) (size 16 small) (color 16 red) (sort 17 cup) (size 17 small) (at 17 10) (sort 18 can) (size 18 small) (color 18 white) (sort 19 book) (size 19 small) (color 19 blue) (at 19 9)  (at 14 3) (at 15 1) (at 16 2) (at 18 4))
+# Task Description:
+(:ins (:task (pickup X) (:cond (sort X remotecontrol))) (:task (pickup X) (:cond (color X black) (sort X remotecontrol))) (:task (puton X Y) (:cond (sort X can) (sort Y worktable))) (:task (puton X Y) (:cond (sort X cup) (sort Y worktable))) (:task (goto X) (:cond (sort X chair))) (:cons_notnot (:info (on X Y) (:cond (sort X remotecontrol) (color X yellow) (sort Y teapoy)))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+<12.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+(:ins (:cons_not (:task (putdown X) (:cond (sort X bottle) (color X blue)))) (:cons_not (:task (putdown X) (:cond (sort X book) (color X yellow)))) (:cons_not (:task (putdown X) (:cond (sort X can) (color X black)))) (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X green) (sort Y plant)))) (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X white) (sort Y teapoy)))) (:task (close X) (:cond (sort X microwave))) (:task (putin X Y) (:cond (sort X bottle) (sort Y microwave))) (:task (puton X Y) (:cond (sort X can) (sort Y worktable))) (:task (puton X Y) (:cond (sort X book) (sort Y plant))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<13.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red)  (inside 8 4) (inside 10 3))
+# Task Description:
+(:ins (:task (takeout X Y) (:cond (sort X bottle) (sort Y closet))) (:task (putin X Y) (:cond (sort X book) (color X green) (sort Y microwave))) (:task (putin X Y) (:cond (sort X book) (color X blue) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X book) (color X red) (sort Y couch))) (:task (pickup X) (:cond (sort X cup))) (:task (goto X) (:cond (sort X microwave))) )
+# Results:
+
+# Time: 0.006
+# Score: 98
+
+<14.xml>
+# Environment Description:
+(:domain (plate 0) (at 0 4) (sort 1 human) (size 1 big) (at 1 1) (sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (opened 2) (sort 3 chair) (size 3 big) (at 3 3) (sort 4 microwave) (size 4 big) (at 4 4) (type 4 container) (sort 5 airconditioner) (size 5 big) (at 5 5) (sort 6 sofa) (size 6 big) (at 6 6) (sort 7 plant) (size 7 big) (at 7 7) (sort 8 television) (size 8 big) (at 8 8) (sort 9 remotecontrol) (size 9 small) (color 9 blue) (sort 10 cup) (size 10 small) (color 10 green) (sort 11 remotecontrol) (size 11 small) (color 11 green) (sort 12 bottle) (color 12 blue) (size 12 small) (sort 13 remotecontrol) (size 13 small) (color 13 black) (at 13 3) (sort 14 book) (size 14 small) (color 14 white) (inside 14 4) (sort 15 book) (size 15 small) (color 15 black) (at 15 7) (sort 16 book) (size 16 small) (color 16 red) (at 16 6) (sort 17 book) (size 17 small) (color 17 blue) (sort 18 cup) (size 18 small) (color 18 yellow) (at 18 8) (sort 19 can) (size 19 small) (color 19 yellow) (sort 20 remotecontrol) (size 20 small) (color 20 white) (sort 21 book) (size 21 small) (color 21 green) (sort 22 remotecontrol) (size 22 small) (color 22 red) (hold 22) (sort 23 book) (size 23 small) (color 23 yellow)  (inside 10 2) (at 11 5) (inside 12 2) (at 23 3))
+# Task Description:
+(:ins (:info (on X Y) (:cond (sort X book) (color X green) (sort Y television))) (:info (closed X) (:cond (sort X microwave))) (:task (close X) (:cond (sort X refrigerator))) (:task (putin X Y) (:cond (sort X book) (sort Y refrigerator))) (:task (putin X Y) (:cond (color X blue) (sort X remotecontrol) (sort Y microwave))) (:task (puton X Y) (:cond (sort X cup) (color X green) (sort Y chair))) (:task (pickup X) (:cond (sort X bottle))) (:cons_not (:info (plate X) (:cond (color X blue) (sort X remotecontrol)))) (:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X white) (sort Y microwave)))) (:cons_not (:task (pickup X) (:cond (sort X book) (color X black)))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<15.xml>
+# Environment Description:
+(:domain (at 0 4) (sort 1 refrigerator) (size 1 big) (at 1 1) (type 1 container) (opened 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (sort 3 cupboard) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 human) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 microwave) (size 6 big) (at 6 6) (type 6 container) (opened 6) (sort 7 couch) (size 7 big) (at 7 7) (sort 8 plant) (size 8 big) (at 8 8) (sort 9 remotecontrol) (size 9 small) (color 9 green) (at 9 5) (sort 10 can) (size 10 small) (color 10 yellow) (sort 11 bottle) (size 11 small) (color 11 white) (sort 12 book) (size 12 small) (color 12 red) (hold 12) (sort 13 book) (size 13 small) (color 13 green) (at 13 8) (sort 14 can) (size 14 small) (color 14 green) (at 14 3) (sort 15 can) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 black) (at 16 7) (sort 17 can) (size 17 small) (plate 17) (sort 18 can) (size 18 small) (color 18 blue) (sort 19 cup) (size 19 small) (color 19 green) (sort 20 book) (size 20 small) (color 20 yellow) (at 20 8) (sort 21 can) (size 21 small) (color 21 red) (sort 22 book) (size 22 small) (color 22 white) (sort 23 cup) (size 23 small) (color 23 blue) (at 23 4)  (inside 10 2) (at 18 3) (at 19 5) (inside 21 6) (inside 22 6))
+# Task Description:
+(:ins (:info (inside X Y) (:cond (sort X bottle) (sort Y refrigerator))) (:info (closed X) (:cond (sort X closet))) (:task (open X) (:cond (sort X cupboard))) (:task (goto X) (:cond (sort X plant))) (:task (pickup X) (:cond (sort X cup))) (:task (putin X Y) (:cond (sort X can) (color X yellow) (sort Y refrigerator))) (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X green) (sort Y cupboard)))) (:cons_not (:task (goto X) (:cond (sort X couch)))) )
+# Results:
+
+# Time: 0.006
+# Score: 98
+
+<16.xml>
+# Environment Description:
+(:domain (at 0 2) (sort 1 microwave) (size 1 big) (at 1 1) (type 1 container) (opened 1) (sort 2 refrigerator) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 worktable) (size 4 big) (at 4 4) (sort 5 teapoy) (size 5 big) (at 5 5) (sort 6 airconditioner) (size 6 big) (at 6 6) (sort 7 human) (size 7 big) (at 7 7) (sort 8 bed) (size 8 big) (at 8 8) (sort 9 closet) (size 9 big) (at 9 9) (type 9 container) (sort 10 remotecontrol) (size 10 small) (color 10 blue) (at 10 3) (sort 11 bottle) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 black) (sort 13 cup) (size 13 small) (color 13 red) (sort 14 cup) (size 14 small) (color 14 yellow) (sort 15 bottle) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 yellow) (inside 16 9) (sort 17 remotecontrol) (size 17 small) (color 17 green) (at 17 5) (sort 18 can) (size 18 small) (color 18 red) (at 18 6) (sort 19 remotecontrol) (size 19 small) (color 19 white) (at 19 8) (sort 20 book) (size 20 small) (color 20 blue) (plate 20) (sort 21 remotecontrol) (size 21 small) (color 21 red) (at 21 5) (sort 22 bottle) (size 22 small) (color 22 green) (hold 22) (sort 23 can) (size 23 small) (color 23 green) (sort 24 can) (size 24 small) (color 24 yellow) (inside 24 2) (sort 25 cup) (size 25 small) (color 25 black)  (inside 12 1) (at 13 3) (inside 15 2) (at 17 1))
+# Task Description:
+(:ins (:info (opened X) (:cond (sort X closet))) (:info (inside X Y) (:cond (sort X cup) (color X yellow) (sort Y closet))) (:task (goto X) (:cond (sort X microwave))) (:task (takeout X Y) (:cond (color X yellow) (sort X cup) (sort Y closet))) (:task (puton X Y) (:cond (sort X cup) (color X yellow) (sort Y desk))) (:task (putin X Y) (:cond (color X yellow) (sort X bottle) (sort Y closet))) (:task (pickup X) (:cond (sort X cup) (color X red))) (:task (pickup X) (:cond (sort X can))) (:task (give human X) (:cond (sort X book))) (:cons_not (:info (plate X) (:cond (color X red) (sort X cup)))) (:cons_not (:task (goto X) (:cond (sort X airconditioner)))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<17.xml>
+# Environment Description:
+(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (at 21 5))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y refrigerator))) (:cons_not (:task (goto X) (:cond (sort X human)))) (:cons_not (:task (goto X) (:cond (sort X bed)))) (:cons_not (:task (goto X) (:cond (sort X microwave)))) (:cons_not (:task (goto X) (:cond (sort X cupboard)))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+<18.xml>
+# Environment Description:
+(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (color 24 green)  (at 17 3) (inside 21 8) (at 24 4))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y television))) (:task (puton X Y) (:cond (sort X book) (sort Y sofa))) (:cons_not (:task (goto X) (:cond (sort X human)))) (:cons_not (:task (goto X) (:cond (sort X bed)))) (:cons_not (:task (goto X) (:cond (sort X refrigerator)))) (:cons_not (:task (goto X) (:cond (sort X washmachine)))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<19.xml>
+# Environment Description:
+(:domain (hold 20) (plate 0) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8) (at 19 1))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y airconditioner))) (:task (pickup X) (:cond (sort X bottle) (color X blue))) (:cons_not (:task (goto X) (:cond (sort X microwave)))) (:cons_not (:info (plate X) (:cond (sort X bottle) (color X yellow)))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<20.xml>
+# Environment Description:
+(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (at 17 7) (sort 18 bottle) (size 18 small) (color 18 green) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (at 18 2) (inside 21 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (putin X Y) (:cond (sort X bottle) (color X green) (sort Y closet))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y sofa))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<21.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (at 14 2) (at 10 2))
+# Task Description:
+(:ins (:cons_not (:task (pickup X) (:cond (sort X book) (color X red)))) (:cons_not (:task (pickup X) (:cond (sort X cup) (color X red)))) (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X black) (sort Y couch)))) (:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X blue) (sort Y refrigerator)))) (:task (puton X Y) (:cond (sort X cup) (color X blue) (sort Y table))) (:task (putin X Y) (:cond (sort X cup) (color X green) (sort Y refrigerator))) (:task (open X) (:cond (sort X refrigerator))) (:task (putin X Y) (:cond (sort X can) (color X white) (sort Y refrigerator))) (:task (puton X Y) (:cond (sort X book) (sort Y desk))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<22.xml>
+# Environment Description:
+(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (putin X Y) (:cond (sort X can) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X bottle) (sort Y airconditioner))) (:task (goto X) (:cond (sort X sofa))) (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y television))) (:cons_notnot (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator)))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<23.xml>
+# Environment Description:
+(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (inside 14 7) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 7) (at 13 1) (at 16 2) (inside 17 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_notnot (:info (plate X) (:cond (sort X can)))) (:cons_notnot (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y closet)))) (:cons_not (:info (inside X Y) (:cond (sort X book) (color X yellow) (sort Y closet)))) (:cons_not (:info (inside X Y) (:cond (sort X book) (color X green) (sort Y closet)))) (:task (putin X Y) (:cond (sort X book) (sort Y closet))) (:task (goto X) (:cond (sort X human))) (:task (puton X Y) (:cond (sort X bottle) (sort Y chair))) (:task (pickup X) (:cond (sort X can))) )
+# Results:
+
+# Time: 0.007
+# Score: 218
+
+<24.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+(:ins (:cons_not (:info (plate X) (:cond (sort X can) (color X green)))) (:cons_not (:info (plate X) (:cond (sort X can) (color X black)))) (:cons_not (:info (plate X) (:cond (sort X can) (color X white)))) (:task (give human X) (:cond (sort X can))) (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y worktable))) (:task (goto X) (:cond (sort X teapoy))) (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y teapoy))) (:task (puton X Y) (:cond (sort X can) (color X black) (sort Y teapoy))) )
+# Results:
+
+# Time: 0.006
+# Score: 98
+
+<25.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (inside 8 2) (sort 9 can) (size 9 small) (color 9 green) (at 9 4) (sort 10 can) (size 10 small) (color 10 black) (inside 10 3) (sort 11 can) (size 11 small) (color 11 white) (at 11 7) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  )
+# Task Description:
+(:ins (:cons_not (:info (plate X) (:cond (sort X can) (color X red)))) (:cons_not (:info (plate X) (:cond (sort X can) (color X black)))) (:cons_not (:info (plate X) (:cond (sort X can) (color X white)))) (:task (give human X) (:cond (sort X can))) (:task (puton X Y) (:cond (sort X can) (sort Y worktable))) (:task (goto X) (:cond (sort X teapoy))) (:task (pickup X Y) (:cond (sort X can) (color X green) (sort Y teapoy))) (:task (pickup X Y) (:cond (sort X can) (color X white) (sort Y teapoy))) )
+# Results:
+
+# Time: 0.006
+# Score: 98
+
+<26.xml>
+# Environment Description:
+(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (inside 13 6) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 7) (at 16 2) (inside 17 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:task (goto X) (:cond (sort X bed)))) (:task (puton X Y) (:cond (sort X cup) (sort Y television))) (:task (puton X Y) (:cond (sort X bottle) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X book) (sort Y chair))) (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y closet))) (:task (pickup X) (:cond (sort X can))) )
+# Results:
+
+# Time: 0.007
+# Score: 198
+
+<27.xml>
+# Environment Description:
+(:domain (hold 0) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (at 10 2) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 7) (at 13 3) (at 16 1) (inside 17 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_not (:info (opened X) (:cond (sort X refrigerator)))) (:cons_not (:task (goto X) (:cond (sort X desk)))) (:task (puton X Y) (:cond (sort X cup) (sort Y television))) (:task (puton X Y) (:cond (sort X bottle) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X book) (sort Y chair))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+<28.xml>
+# Environment Description:
+(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (putin X Y) (:cond (sort X can) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y airconditioner))) (:task (goto X) (:cond (sort X sofa))) (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y television))) (:task (close X) (:cond (sort X microwave))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+<29.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 3))
+# Task Description:
+(:ins (:cons_notnot (:info (plate X) (:cond (sort X book) (color X yellow)))) (:cons_not (:info (on X Y) (:cond (sort X can) (color X black) (sort Y worktable)))) (:task (close X) (:cond (sort X microwave))) (:task (puton X Y) (:cond (sort X can) (sort Y microwave))) (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y worktable))) (:task (puton X Y) (:cond (sort X can) (color X white) (sort Y worktable))) (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y microwave))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<30.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (inside 14 5) (at 10 2))
+# Task Description:
+(:ins (:cons_not (:task (goto X) (:cond (sort X table)))) (:cons_not (:task (goto X) (:cond (sort X desk)))) (:cons_not (:info (plate X) (:cond (sort X book) (color X red)))) (:cons_not (:task (takeout X Y) (:cond (sort X book) (color X red) (sort Y washmachine)))) (:task (pickup X) (:cond (sort X book))) (:task (pickup X) (:cond (sort X cup))) (:task (puton X Y) (:cond (sort X cup) (color X green) (sort Y couch))) (:task (puton X Y) (:cond (sort X can) (sort Y bed))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<31.xml>
+# Environment Description:
+(:domain (hold 10) (plate 18) (at 0 8) (sort 1 human) (size 1 big) (at 1 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 television) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 bed) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (sort 7 closet) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container) (sort 10 book) (size 10 small) (color 10 yellow) (sort 11 book) (size 11 small) (color 11 green) (sort 12 book) (size 12 small) (color 12 white) (sort 13 bottle) (size 13 small) (color 13 green) (sort 14 bottle) (size 14 small) (color 14 blue) (inside 14 7) (sort 15 cup) (size 15 small) (color 15 black) (sort 16 cup) (size 16 small) (color 16 white) (sort 17 remotecontrol) (size 17 small) (sort 18 can) (size 18 small)  (inside 12 9) (at 13 4) (at 16 2) (inside 17 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:cons_notnot (:info (plate X) (:cond (sort X can)))) (:cons_notnot (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y closet)))) (:cons_not (:info (inside X Y) (:cond (sort X book) (color X yellow) (sort Y closet)))) (:cons_not (:info (inside X Y) (:cond (sort X book) (color X green) (sort Y closet)))) (:task (putin X Y) (:cond (sort X book) (sort Y closet))) (:task (goto X) (:cond (sort X human))) (:task (puton X Y) (:cond (sort X bottle) (sort Y microwave))) (:task (pickup X) (:cond (sort X remotecontrol))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<32.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (at 9 4) (inside 10 3) (at 11 7))
+# Task Description:
+(:ins (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y sofa))) (:task (give human X) (:cond (sort X book) (color X yellow))) (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y sofa))) (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y closet))) (:task (putin X Y) (:cond (sort X book) (color X red) (sort Y microwave))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<33.xml>
+# Environment Description:
+(:domain (hold 0) (plate 15) (at 0 5) (sort 1 worktable) (size 1 big) (at 1 1) (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2) (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3) (sort 4 plant) (size 4 big) (at 4 4) (sort 5 sofa) (size 5 big) (at 5 5) (sort 6 human) (size 6 big) (at 6 6) (sort 7 teapoy) (size 7 big) (at 7 7) (sort 8 can) (size 8 small) (color 8 red) (sort 9 can) (size 9 small) (color 9 green) (at 9 4) (sort 10 can) (size 10 small) (color 10 black) (sort 11 can) (size 11 small) (color 11 white) (sort 12 bottle) (size 12 small) (color 12 red) (sort 13 bottle) (size 13 small) (color 13 blue) (sort 14 book) (size 14 small) (color 14 red) (sort 15 book) (size 15 small) (color 15 yellow)  (inside 8 2) (inside 10 3) (at 11 7))
+# Task Description:
+(:ins (:cons_notnot (:info (plate X) (:cond (sort X book) (color X yellow)))) (:cons_not (:info (on X Y) (:cond (sort X can) (color X green) (sort Y plate)))) (:task (close X) (:cond (sort X microwave))) (:task (puton X Y) (:cond (sort X can) (color X black) (sort Y worktable))) (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y worktable))) (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y microwave))) (:task (pickup X) (:cond (sort X can))) (:task (puton X Y) (:cond (sort X book) (sort Y worktable))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<34.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (inside 14 5) (at 10 2))
+# Task Description:
+(:ins (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X black) (sort Y couch)))) (:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X black) (sort Y refrigerator)))) (:cons_not (:task (goto X) (:cond (sort X couch)))) (:cons_notnot (:info (closed X) (:cond (sort X washmachine)))) (:cons_not (:task (goto X) (:cond (sort X table)))) (:cons_not (:task (pickup X) (:cond (sort X book) (color X green)))) (:task (goto X) (:cond (sort X bed))) (:task (pickup X) (:cond (sort X cup))) (:task (puton X Y) (:cond (sort X book) (sort Y couch))) (:task (puton X Y) (:cond (sort X can) (sort Y couch))) )
+# Results:
+
+# Time: 0.007
+# Score: 238
+
+<35.xml>
+# Environment Description:
+(:domain (hold 0) (plate 20) (at 0 20) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (putin X Y) (:cond (sort X can) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y sofa))) (:task (goto X) (:cond (sort X sofa))) (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y television))) (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y sofa))) (:task (close X) (:cond (sort X microwave))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+<36.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (at 12 2) (inside 14 5) (at 10 2))
+# Task Description:
+(:ins (:cons_not (:task (goto X) (:cond (sort X couch)))) (:cons_not (:task (goto X) (:cond (sort X table)))) (:cons_not (:task (pickup X) (:cond (sort X book) (color X red)))) (:task (puton X Y) (:cond (sort X can) (sort Y bed))) (:task (pickup X) (:cond (sort X cup))) (:task (putin X Y) (:cond (sort X book) (sort Y washmachine))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<37.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red)  (inside 8 4) (inside 10 3))
+# Task Description:
+(:ins (:task (takeout X Y) (:cond (sort X bottle) (sort Y closet))) (:task (putin X Y) (:cond (sort X book) (color X green) (sort Y microwave))) (:task (putin X Y) (:cond (sort X book) (color X blue) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X book) (color X red) (sort Y couch))) (:task (pickup X) (:cond (sort X cup))) (:task (goto X) (:cond (sort X microwave))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<38.xml>
+# Environment Description:
+(:domain (hold 0) (at 0 2) (plate 8) (sort 1 cupboard) (size 1 big) (at 1 1) (type 1 container) (closed 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 workspace) (size 3 big) (at 3 3) (sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 closet) (size 5 big) (at 5 5) (type 5 container) (opened 5) (sort 6 table) (size 6 big) (at 6 6) (sort 7 cup) (size 7 small) (color 7 white) (at 7 6) (sort 8 remotecontrol) (size 8 small) (color 8 red) (sort 9 cup) (size 9 small) (at 9 6) (sort 10 book) (size 10 small) (color 10 black) (sort 11 remotecontrol) (size 11 small) (color 11 yellow) (sort 12 bottle) (size 12 small) (inside 12 4) (sort 13 can) (size 13 small) (color 13 white) (sort 14 bottle) (size 14 small)  (inside 10 1) (at 13 2) (inside 14 4))
+# Task Description:
+(:ins (:task (putdown X) (:cond (sort X remotecontrol) (color X red))) (:task (puton X Y) (:cond (sort X cup) (color X white) (type Y container) (sort Y closet))) (:task (putin X Y) (:cond (sort X cup) (sort Y washmachine) (type Y container))) (:task (goto X) (:cond (sort X workspace))) (:task (pickup X) (:cond (sort X book) (color X black))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+<39.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 1) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 closet) (size 3 big) (at 3 3) (type 3 container) (closed 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 microwave) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 book) (size 6 small) (color 6 red) (sort 7 book) (size 7 small) (color 7 blue) (sort 8 book) (size 8 small) (color 8 green) (sort 9 cup) (size 9 small) (color 9 red) (sort 10 bottle) (size 10 small) (color 10 red)  (inside 8 4) (inside 10 3))
+# Task Description:
+(:ins (:cons_not (:info (opened X) (:cond (sort X closet)))) (:task (close X) (:cond (sort X cupboard))) (:task (putin X Y) (:cond (sort X book) (sort Y microwave))) (:task (pickup X) (:cond (sort X book))) (:task (putin X Y) (:cond (sort X cup) (sort Y microwave))) (:task (goto X) (:cond (sort X chair))) )
+# Results:
+
+# Time: 0.006
+# Score: 98
+
+<40.xml>
+# Environment Description:
+(:domain (plate 0) (hold 0) (at 0 9) (sort 1 cupboard) (size 1 big) (at 1 1) (type 1 container) (opened 1) (sort 2 worktable) (size 2 big) (at 2 2) (sort 3 couch) (size 3 big) (at 3 3) (sort 4 workspace) (size 4 big) (at 4 4) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (opened 6) (sort 7 couch) (size 7 big) (at 7 7) (sort 8 desk) (size 8 big) (at 8 8) (sort 9 bed) (size 9 big) (at 9 9) (sort 10 sofa) (size 10 big) (at 10 10) (sort 11 book) (size 11 small) (color 11 blue) (at 11 8) (sort 12 can) (size 12 small) (color 12 green) (inside 12 1) (sort 13 bottle) (size 13 small) (color 13 red) (at 13 2) (sort 14 remotecontrol) (size 14 small) (color 14 black) (sort 15 can) (size 15 small)(color 15 white) (at 15 7) (sort 16 remotecontrol) (size 16 small) (color 16 red) (sort 17 can) (size 17 small) (color 17 yellow) (sort 18 cup) (size 18 small) (color 18 green) (at 18 3) (sort 19 remotecontrol) (size 19 small) (color 19 white) (sort 20 bottle) (size 20 small) (color 20 black) (at 20 7) (sort 21 can) (size 21 small) (color 21 red) (at 21 10)  (at 14 7) (at 16 6) (at 17 2))
+# Task Description:
+(:ins (:task (takeout X Y) (:cond (color X green) (sort X can) (type Y container) (sort Y cupboard))) (:task (pickup X) (:cond (color X red) (sort X remotecontrol))) (:task (putin X Y) (:cond (color X blue) (sort X book) (sort Y cupboard))) (:cons_notnot (:info (on X Y) (:cond (color X red) (sort X can) (sort Y sofa)))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<41.xml>
+# Environment Description:
+(:domain (hold 0) (plate 17) (at 0 1) (sort 1 human) (size 1 big) (at 1 2) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 2) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (sort 23 can) (size 23 small) (at 23 4) (sort 24 can) (size 24 small)  (at 21 1) (inside 24 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (inside X Y) (:cond (sort X remotecontrol) (sort Y washmachine))) (:task (puton X Y) (:cond (sort X can) (sort Y bed))) (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y cupboard))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y washmachine))) (:task (give human X) (:cond (sort X book))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y desk))) (:cons_not (:task (close X) (:cond (sort X microwave)))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+<42.xml>
+# Environment Description:
+(:domain (hold 0) (plate 0) (at 0 4) (sort 1 couch) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 table) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 8 book) (size 8 small) (color 8 red) (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6) (sort 10 book) (size 10 small) (color 10 green) (sort 11 cup) (size 11 small) (color 11 red) (sort 12 cup) (size 12 small) (color 12 blue) (sort 13 cup) (size 13 small) (color 13 green) (at 13 3) (sort 14 can) (size 14 small) (color 14 white) (sort 15 can) (size 15 small) (color 15 black) (at 15 1)  (inside 12 6) (inside 14 5) (at 10 2))
+# Task Description:
+(:ins (:task (putin X Y) (:cond (sort X cup) (sort Y washmachine))) (:task (putin X Y) (:cond (sort X can) (sort Y refrigerator))) (:task (takeout X Y) (:cond (sort X book) (sort Y washmachine))) (:task (pickup X) (:cond (sort X cup))) (:task (goto X) (:cond (sort X refrigerator))) )
+# Results:
+
+# Time: 0.006
+# Score: 98
+
+<43.xml>
+# Environment Description:
+(:domain (hold 0) (plate 17) (at 0 1) (sort 1 human) (size 1 big) (at 1 2) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 2) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (sort 23 can) (size 23 small) (at 23 4) (sort 24 can) (size 24 small)  (at 21 1) (inside 24 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (inside X Y) (:cond (sort X remotecontrol) (sort Y washmachine))) (:task (puton X Y) (:cond (sort X can) (sort Y bed))) (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y cupboard))) (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y washmachine))) (:task (give human X) (:cond (sort X book))) (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y desk))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<44.xml>
+# Environment Description:
+(:domain (at 0 4) (plate 13) (hold 0) (sort 2 chair) (size 2 big) (at 2 2) (sort 3 sofa) (size 3 big) (at 3 3) (sort 4 table) (size 4 big) (at 4 4) (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (opened 5) (sort 8 bottle) (size 8 small) (color 8 red) (at 8 3) (sort 9 remotecontrol) (size 9 small) (color 9 yellow) (sort 10 can) (size 10 small) (color 10 yellow) (inside 10 5) (sort 11 cup) (size 11 small) (color 11 white) (at 11 2) (sort 12 can) (size 12 small) (color 12 white) (inside 12 5) (sort 13 cup) (size 13 small) (color 13 green) (sort 14 can) (size 14 small) (color 14 black) (at 14 3) (sort 15 book) (size 15 small) (color 15 red) (at 15 4) (sort 17 cup) (size 17 small) (color 17 black) (sort 18 bottle) (size 18 small) (color 18 blue) (at 18 3) (sort 20 remotecontrol) (size 20 small) (color 20 white) (sort 21 book) (size 21 small) (color 21 blue) (at 21 2) (sort 22 bottle) (size 22 small) (color 22 red) (at 22 1)  (inside 17 5) (at 18 4))
+# Task Description:
+(:ins (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y table))) (:task (puton X Y) (:cond (sort X bottle) (color X red) (sort Y washmachine) (type Y container))) (:task (takeout X Y) (:cond (color X white) (sort X can) (sort Y washmachine) (type Y container))) (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y washmachine) (type Y container))) )
+# Results:
+
+# Time: 0.007
+# Score: 138
+
+<45.xml>
+# Environment Description:
+(:domain (plate 0) (hold 0) (at 0 13) (sort 2 sofa) (size 2 big) (at 2 2) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 plant) (size 5 big) (at 5 5) (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (opened 6) (sort 8 teapoy) (size 8 big) (at 8 8) (sort 9 human) (size 9 big) (at 9 9) (sort 10 airconditioner) (size 10 big) (at 10 10) (sort 11 washmachine) (size 11 big) (at 11 11) (type 11 container) (closed 11) (sort 12 microwave) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 sofa) (size 13 big) (at 13 13) (sort 14 couch) (size 14 big) (at 14 14) (sort 15 cup) (size 15 small) (color 15 white) (inside 15 12) (sort 16 remotecontrol) (size 16 small) (color 16 white) (at 16 10) (sort 17 cup) (size 17 small) (color 17 yellow) (sort 19 can) (size 19 small) (color 19 green) (at 19 5) (sort 20 can) (size 20 small) (color 20 blue) (inside 20 11) (sort 21 cup) (size 21 small) (color 21 red)  (inside 17 6))
+# Task Description:
+(:ins (:task (takeout X Y) (:cond (sort X cup) (color X white) (sort Y microwave) (type Y container))) (:task (close X) (:cond (type X container) (sort X refrigerator))) (:task (pickup X) (:cond (sort X can) (color X blue))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<46.xml>
+# Environment Description:
+(:domain (at 0 8) (sort 3 human) (size 3 big) (at 3 3) (sort 4 washmachine) (size 4 big) (at 4 4) (type 4 container) (opened 4) (sort 5 teapoy) (size 5 big) (at 5 5) (sort 7 chair) (size 7 big) (at 7 7) (sort 8 cupboard) (size 8 big) (at 8 8) (type 8 container) (closed 8) (sort 9 worktable) (size 9 big) (at 9 9) (sort 10 desk) (size 10 big) (at 10 10) (sort 11 closet) (size 11 big) (at 11 11) (type 11 container) (closed 11) (sort 12 plant) (size 12 big) (at 12 12) (sort 13 remotecontrol) (size 13 small) (color 13 white) (at 13 12) (sort 14 bottle) (size 14 small) (color 14 blue) (at 14 3) (sort 15 can) (size 15 small) (color 15 yellow) (plate 15) (sort 16 can) (size 16 small) (color 16 white) (sort 17 can) (size 17 small) (color 17 red) (inside 17 8) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 12) (sort 19 cup) (size 19 small) (color 19 yellow) (sort 20 cup) (size 20 small) (color 20 red) (at 20 9) (sort 21 cup) (size 21 small) (color 21 green) (hold 21) (sort 22 remotecontrol) (size 22 small) (color 22 red) (inside 22 4)  (inside 16 8))
+# Task Description:
+(:ins (:task (putin X Y) (:cond (sort X can) (color X white) (type Y container) (sort Y washmachine))) (:task (open X) (:cond (sort X cupboard) (type X container))) (:task (putdown X) (:cond (sort X can) (color X yellow))) (:task (goto X) (:cond (sort X desk))) (:info (on X Y) (:cond (sort X cup) (color X yellow) (sort Y chair))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+<47.xml>
+# Environment Description:
+(:domain (hold 0) (at 0 2) (sort 1 sofa) (size 1 big) (at 1 1) (sort 2 plant) (size 2 big) (at 2 2) (sort 7 refrigerator) (size 7 big) (at 7 7) (type 7 container) (closed 7) (sort 8 bed) (size 8 big) (at 8 8) (sort 9 table) (size 9 big) (at 9 9) (sort 10 desk) (size 10 big) (at 10 10) (sort 11 human) (size 11 big) (at 11 11) (sort 13 chair) (size 13 big) (at 13 13) (sort 14 microwave) (size 14 big) (at 14 14) (type 14 container) (opened 14) (sort 15 bottle) (size 15 small) (color 15 blue) (at 15 9) (sort 16 bottle) (size 16 small) (color 16 blue) (sort 17 can) (size 17 small) (at 17 13) (color 17 white) (sort 19 cup) (size 19 small) (color 19 blue) (sort 20 book) (size 20 small) (color 20 red) (at 20 2) (sort 21 can) (size 21 small) (color 21 green) (at 21 10) (sort 22 remotecontrol) (color 22 white) (size 22 small) (at 22 9) (sort 23 cup) (size 23 small) (color 23 white) (sort 24 can) (size 24 small) (color 24 yellow) (sort 25 remotecontrol) (color 25 blue) (size 25 small) (plate 25) (sort 26 cup) (size 26 small) (color 26 black) (inside 26 7) (sort 27 bottle) (size 27 small) (color 27 yellow) (at 27 2) (sort 28 can) (size 28 small) (color 28 blue) (sort 29 remotecontrol) (color 29 yellow) (size 29 small) (at 29 1) (sort 30 cup) (size 30 small) (color 30 yellow) (at 30 11)  (inside 19 14) (at 24 7))
+# Task Description:
+(:ins (:task (putdown X) (:cond (color X green) (sort X can))) (:task (puton X Y) (:cond (color X yellow) (sort X bottle) (type Y container) (sort Y microwave))) (:task (pickup X) (:cond (sort X book) (color X red))) (:task (goto X) (:cond (sort X microwave) (type X container))) (:cons_notnot (:info (opened X) (:cond (sort X microwave)))) )
+# Results:
+
+# Time: 0.008
+# Score: 158
+
+<48.xml>
+# Environment Description:
+(:domain (at 0 1) (sort 1 microwave) (size 1 big) (at 1 1) (type 1 container) (closed 1) (sort 2 desk) (size 2 big) (at 2 2) (sort 3 chair) (size 3 big) (at 3 3) (sort 4 desk) (size 4 big) (at 4 4) (sort 5 cup) (size 5 small) (color 5 black) (at 5 4) (sort 6 cup) (size 6 small) (color 5 yellow) (sort 7 book) (size 7 small) (color 7 blue) (inside 7 1) (sort 8 can) (size 8 small) (color 8 black) (sort 9 bottle) (size 9 small) (color 9 blue) (plate 9) (sort 10 bottle) (size 10 small) (color 10 yellow) (at 10 3) (sort 11 cup) (size 11 small) (color 11 white) (at 11 4) (sort 12 remotecontrol) (size 12 small) (sort 13 can) (size 13 small) (hold 13) (sort 14 book) (size 14 small) (color 14 yellow)  (inside 6 1) (at 8 2))
+# Task Description:
+(:ins (:task (pickup X) (:cond (sort X remotecontrol))) (:task (pickup X) (:cond (color X white) (sort X cup))) (:task (open X) (:cond (type X container) (sort X microwave))) (:cons_not (:info (on X Y) (:cond (color X white) (sort X cup) (sort Y chair)))) )
+# Results:
+
+# Time: 0.006
+# Score: 98
+
+<49.xml>
+# Environment Description:
+(:domain (hold 0) (plate 20) (at 0 10) (sort 1 human) (size 1 big) (at 1 1) (sort 2 bed) (size 2 big) (at 2 2) (sort 3 desk) (size 3 big) (at 3 3) (sort 4 chair) (size 4 big) (at 4 4) (sort 5 refrigerator) (size 5 big) (at 5 5) (type 5 container) (sort 6 closet) (size 6 big) (at 6 6) (type 6 container) (closed 6) (sort 7 television) (size 7 big) (at 7 7) (sort 8 microwave) (size 8 big) (at 8 8) (type 8 container) (sort 9 teapoy) (size 9 big) (at 9 9) (sort 10 couch) (size 10 big) (at 10 10) (sort 11 sofa) (size 11 big) (at 11 11) (sort 12 cupboard) (size 12 big) (at 12 12) (type 12 container) (opened 12) (sort 13 airconditioner) (size 13 big) (at 13 13) (sort 14 washmachine) (size 14 big) (at 14 14) (type 14 container) (sort 15 book) (size 15 small) (color 15 yellow) (sort 16 book) (size 16 small) (color 16 green) (sort 17 book) (size 17 small) (color 17 white) (sort 18 bottle) (size 18 small) (color 18 green) (at 18 8) (sort 19 bottle) (size 19 small) (color 19 blue) (sort 20 bottle) (size 20 small) (color 20 yellow) (sort 21 cup) (size 21 small) (color 21 white) (sort 22 remotecontrol) (size 22 small) (inside 22 6) (sort 23 can) (size 23 small) (color 23 red) (at 23 4) (sort 24 can) (size 24 small) (inside 24 14)  (inside 17 8) (inside 21 8))
+# Task Description:
+(:ins (:info (closed X) (:cond (sort X refrigerator))) (:info (opened X) (:cond (sort X microwave))) (:info (opened X) (:cond (sort X washmachine))) (:task (putin X Y) (:cond (sort X can) (sort Y cupboard))) (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y airconditioner))) (:task (goto X) (:cond (sort X sofa))) (:task (puton X Y) (:cond (sort X book) (sort Y sofa))) (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y television))) (:task (close X) (:cond (sort X microwave))) (:cons_notnot (:info (plate X) (:cond (sort X bottle) (color X yellow)))) )
+# Results:
+
+# Time: 0.007
+# Score: 98
+
+<50.xml>
+# Environment Description:
+(:domain (plate 0) (at 0 12) (sort 1 sofa) (size 1 big) (at 1 1) (sort 2 teapoy) (size 2 big) (at 2 2) (sort 3 bed) (size 3 big) (at 3 3) (sort 4 cupboard) (size 4 big) (at 4 4) (type 4 container) (sort 5 couch) (size 5 big) (at 5 5) (sort 6 desk) (size 6 big) (at 6 6) (sort 7 chair) (size 7 big) (at 7 7) (sort 8 closet) (size 8 big) (at 8 8) (type 8 container) (opened 8) (sort 9 airconditioner) (size 9 big) (at 9 9) (sort 11 plant) (size 11 big) (at 11 11) (sort 12 television) (size 12 big) (at 12 12) (sort 14 table) (size 14 big) (at 14 14) (sort 15 workspace) (size 15 big) (at 15 15) (sort 16 cup) (size 16 small) (color 16 white) (at 16 15) (sort 17 cup) (size 17 small) (color 17 blue) (at 17 14) (sort 18 bottle) (size 18 small) (color 18 yellow) (hold 18) (sort 19 book) (size 19 small) (color 19 blue) (inside 19 4) (sort 20 cup) (size 20 small) (color 20 red) (sort 21 book) (size 21 small) (color 21 black) (at 21 9) (sort 22 book) (size 22 small) (color 22 yellow) (sort 23 can) (size 23 small) (color 23 green) (at 23 15) (sort 24 remotecontrol) (size 24 small) (color 24 red) (sort 25 remotecontrol) (size 25 small) (color 25 white) (at 25 15) (sort 26 can) (size 26 small) (color 26 blue) (sort 27 cup) (size 27 small) (color 27 black) (at 27 5) (sort 28 can) (size 28 small) (color 28 red) (at 28 6)  (at 20 6) (at 24 5))
+# Task Description:
+(:ins (:task (goto X) (:cond (sort X desk))) (:task (pickup X) (:cond (color X red) (sort X remotecontrol))) (:task (puton X Y) (:cond (color X blue) (sort X cup) (sort Y airconditioner))) (:info (on X Y) (:cond (color X red) (sort X cup) (sort Y teapoy))) (:info (closed X) (:cond (type X container) (sort X cupboard))) (:cons_notnot (:info (opened X) (:cond (type X container) (sort X closet)))) )
+# Results:
+
+# Time: 0.008
+# Score: 98
+
+Total Score: 5266

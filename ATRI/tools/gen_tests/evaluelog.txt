@@ -1,0 +1,45 @@
+Start for a new team: Validator
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+Validator's score is : 98
+Start for a new team: Validator
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Start for a new team: Validator
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Start for a new team: Validator
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is value(1,40) true(goal) 
+Validator's score is : 138
+Start for a new team: Validator
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Start for a new team: Validator
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+Validator's score is : 98
+Start for a new team: Validator
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+Validator's score is : 98
+Start for a new team: Validator
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Start for a new team: Validator
+The initial score is 0.
+running the batch for asp: ./vruntask.sh
+Execution success!
+Computed answer set is 
+Validator's score is : 98
+Start for a new team: Validator
+The initial score is 0.
+running the batch for asp: ./vruntask.sh

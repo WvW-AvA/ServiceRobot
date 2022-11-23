@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+	<info>
+	(at 0 4) (plate 13) (hold 0)
+	(sort 2 chair) (size 2 big) (at 2 2)
+	(sort 3 sofa) (size 3 big) (at 3 3)
+	(sort 4 table) (size 4 big) (at 4 4)
+	(sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (opened 5)
+	(sort 8 bottle) (size 8 small) (color 8 red) (at 8 3)
+	(sort 9 remotecontrol) (size 9 small) (color 9 yellow)
+	(sort 10 can) (size 10 small) (color 10 yellow) (inside 10 5)
+	(sort 11 cup) (size 11 small) (color 11 white) (at 11 2)
+	(sort 12 can) (size 12 small) (color 12 white) (inside 12 5)
+	(sort 13 cup) (size 13 small) (color 13 green) 
+	(sort 14 can) (size 14 small) (color 14 black) (at 14 3)
+	(sort 15 book) (size 15 small) (color 15 red) (at 15 4)
+	(sort 17 cup) (size 17 small) (color 17 black)
+	(sort 18 bottle) (size 18 small) (color 18 blue) (at 18 3)
+	(sort 20 remotecontrol) (size 20 small) (color 20 white)
+	(sort 21 book) (size 21 small) (color 21 blue) (at 21 2)
+	(sort 22 bottle) (size 22 small) (color 22 red) (at 22 1)
+	</info>
+	<mis>
+	(at 9 2)
+	(inside 20 5)
+	</mis>
+	<err>
+	<r>
+	(inside 17 5)
+	(at 18 4)
+	</r>
+	<w>
+	(inside 17 4)
+	(at 18 5)
+	</w>
+	</err>
+</env>
+<instr>(:ins 
+	(:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y table)))
+	(:task (puton X Y) (:cond (sort X bottle) (color X red) (sort Y washmachine) (type Y container)))
+	(:task (takeout X Y) (:cond (color X white) (sort X can) (sort Y washmachine) (type Y container)))
+	(:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y washmachine) (type Y container)))
+	(:task (goto X) (:cond (sort X sofa)))
+	(:task (puton X Y) (:cond (sort X can) (color X yellow) (sort Y table)))
+	(:task (pickup X) (:cond (sort X remotecontrol) (color X white)))
+	)
+</instr>
+<nl>
+Put the blue bottle on the table.
+Put the red bottle on the washmachine.
+Take out the white can from washmachine.
+Put the white cup on washmachine.
+
+Go to the sofa.
+Put the yellow can on the table.
+Pick the white remotecontrol up.
+</nl>
+</test>
