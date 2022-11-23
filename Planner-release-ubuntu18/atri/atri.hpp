@@ -199,6 +199,9 @@ namespace _home
 
         // 总分
         int score;
+
+        bool isKeepConstrain = 1;
+        bool isAskTwice = 1;
         //是否开启纠错模式
         bool isErrorCorrection = 1;
         //是否开启自然语言处理
@@ -228,15 +231,15 @@ namespace _home
         //行动时更新task list
         void UpdateTaskList(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
 
+        //判断是否触发禁止的行动约束
+        bool IsInvokeNot_TaskConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
         //判断是否触发禁止出现状态约束
         bool IsInvokeNot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
-
-        //判断是否遵守必须维护约束
-        bool IsObeyNotnot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
+        //判断是否触发必须维护约束
+        bool IsInvokeNotnot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
 
         //解析补充info list
-        void
-        ParseInfo(const Instruction &info);
+        void ParseInfo(const Instruction &info);
 
         void SolveTask(const Instruction &task);
         //测试原子行为
