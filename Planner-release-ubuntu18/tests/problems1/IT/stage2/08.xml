@@ -42,7 +42,7 @@
 	(:info (on X Y) (:cond (sort X book) (color X yellow) (sort Y plant)))
 	(:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y closet)))
 	(:task (close X) (:cond (sort X washmachine)))
-	(:task (putin X Y) (:cond (sort X bottle) (sort X yellow) (sort Y refrigerator)))
+	(:task (putin X Y) (:cond (sort X bottle) (color X yellow) (sort Y refrigerator)))
 	(:task (pickup X) (:cond (sort X remotecontrol) (color X white)))
 	(:cons_not (:info (on X Y) (:cond (sort X cup) (color X yellow) (sort Y worktable))))
 	(:cons_not (:info (opened X) (:cond (sort X closet))))
