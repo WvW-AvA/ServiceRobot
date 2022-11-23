@@ -9,6 +9,7 @@
     (sort 4 desk) (size 4 big) (at 4 4)
     (sort 5 washmachine) (size 5 big) (at 5 5) (type 5 container) (closed 5)
     (sort 6 refrigerator) (size 6 big) (at 6 6) (type 6 container) (closed 6)
+    (sort 7 human) (size 7 big) (at 7 7)
     (sort 8 book) (size 8 small) (color 8 red) 
     (sort 9 book) (size 9 small) (color 9 blue) (inside 9 6)
     (sort 10 book) (size 10 small) (color 10 green) 

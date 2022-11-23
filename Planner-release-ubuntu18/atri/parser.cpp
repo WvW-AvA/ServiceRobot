@@ -2,6 +2,7 @@
 #include "fstream"
 #include "debuglog.hpp"
 #include "atri.hpp"
+#include "sstream"
 
 ostream &operator<<(ostream &os, const token &t);
 ostream &operator<<(ostream &os, const shared_ptr<syntax_node> &p);
@@ -95,7 +96,10 @@ bool parser::parse(const string &str)
     }
     else
     {
-        LOG_ERROR("The garmmar of sentence:(%s) is incorrect!", str.c_str());
+        stringstream ss;
+        for (auto &a : stack)
+            ss << a;
+        LOG_ERROR("The garmmar of sentence:(%s) is incorrect!\n %s", str.c_str(), ss.str().c_str());
         return false;
     }
 }
@@ -164,16 +168,17 @@ void parser::push_down_automata()
         }
         stack.clear();
     }
-    //    else if (stack.size() == 3 && stack[0]->token.type == THERE && stack[1]->token.type == VP && stack.back()->token.type == VP)
-    //    {
-    //        root = make_shared<syntax_node>(S);
-    //        for (int i = 0; i < 3; i++)
-    //        {
-    //            root->sons.push_back(stack[i]);
-    //            stack[i]->father = root;
-    //        }
-    //        stack.clear();
-    //    }
+    else if (stack.size() == 3 && stack[0]->token.type == THERE && stack[1]->token.type == VP &&
+             (stack.back()->token.type == ADJ || (stack.back()->token.type == VP && is_match_rule(stack.back(), BE, ADJ))))
+    {
+        root = make_shared<syntax_node>(S);
+        for (int i = 0; i < 3; i++)
+        {
+            root->sons.push_back(stack[i]);
+            stack[i]->father = root;
+        }
+        stack.clear();
+    }
 }
 
 void parser::push_down(shared_ptr<syntax_node> &p)
@@ -515,7 +520,7 @@ _home::Instruction parser::get_info_instruction()
             instr.conditionY = get_object_condition(father->sons[3]);
         }
     }
-    else if (is_match_rule(root, THERE, VP))
+    else if (is_match_rule(root, THERE, VP) || is_match_rule(root, THERE, VP, ADJ) || is_match_rule(root, THERE, VP, VP))
     {
         auto be = find_v(root->sons[1]);
         if (be == nullptr)
@@ -542,7 +547,16 @@ _home::Instruction parser::get_info_instruction()
             instr.isUseY = true;
             instr.conditionY = get_object_condition(father->sons[3]);
         }
+        if (root->sons.size() >= 3)
+        {
+            auto thr = root->sons[2];
+            if (thr->token.type == ADJ)
+                instr.behave = thr->token.value;
+            else if (thr->token.type == VP && is_match_rule(thr, BE, ADJ))
+                instr.behave = thr->sons[1]->token.value;
+        }
     }
+
     if (instr.behave == "on" && instr.isUseY && instr.conditionY.sort == "plate")
     {
         instr.behave = "plate";

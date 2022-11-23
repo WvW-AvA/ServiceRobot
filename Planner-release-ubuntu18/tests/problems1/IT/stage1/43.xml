@@ -25,8 +25,8 @@
     (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3)  
     (sort 21 cup) (size 21 small) (color 21 white) 
     (sort 22 remotecontrol) (size 22 small) 
-    (sort 23 can) (size 23 small) (color 19 blue) (inside 23 5)
-    (sort 24 can) (size 24 small) (color 20 yellow)
+    (sort 23 can) (size 23 small) (color 23 blue) (inside 23 5)
+    (sort 24 can) (size 24 small) (color 24 yellow)
     </info>
     <mis>
     (inside 15 14) (inside 19 5) (at 16 2) 

@@ -60,8 +60,6 @@ void ATRI::Plan()
     if (isNaturalParse)
     {
         ParseNaturalLanguage(GetTaskDes());
-        for (auto e : errorlist)
-            LOG_ERROR("The garmmar of sentence:(%s) is incorrect!", e.c_str());
     }
     else
     {
@@ -177,7 +175,7 @@ void ATRI::ParseNaturalLanguageSentence(const string &s)
         else
             list_p = &tasks;
     }
-    else if (tree->sons.size() == 2)
+    else if (tree->sons.size() == 2 || tree->sons.size() == 3)
     {
         is_task = false;
         if (nlp_parser->is_must)
