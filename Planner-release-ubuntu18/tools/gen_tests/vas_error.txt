@@ -1,6 +1,0 @@
-% warning: false/2 is never defined
-
-ERROR: unsafe variables in:
-vcons.lp:1:1: task(4,cons(give(Human,X))):-green(X),remotecontrol(X).
-	vcons.lp:1:19: Human
-
