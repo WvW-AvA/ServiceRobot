@@ -44,7 +44,7 @@
     (:task (puton X Y) (:cond (sort X book) (sort Y chair)))
     (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y closet)))
     (:task (pickup X) (:cond (sort X can)))
-    (:task (give human X) (:cond (sort X chair)))
+    (:task (give human X) (:cond (sort X bottle)))
     (:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y cupboard)))
 )
 </instr>
@@ -58,7 +58,7 @@ Put a bottle on cupboard.
 Put a book on the chair.
 Put the white book in the closet.
 Pick up the can.
-Give the chair to human.
+Give the bottle to human.
 Put the white cup in the cupboard.
 </nl>
 </test>

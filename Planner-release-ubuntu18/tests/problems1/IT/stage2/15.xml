@@ -26,6 +26,7 @@
 (sort 21 can) (size 21 small) (color 21 red)
 (sort 22 book) (size 22 small) (color 22 white)
 (sort 23 cup) (size 23 small) (color 23 blue) (at 23 4)
+(sort 24 book) (size 24 small) (color 24 blue) (at 24 7)
 </info>
 <mis>
 (at 15 1)

@@ -14,7 +14,7 @@
     (sort 9 microwave) (size 9 big) (at 9 9) (type 9 container)
     (sort 10 book) (size 10 small) (color 10 yellow) 
     (sort 11 book) (size 11 small) (color 11 green)
-    (sort 12 book) ( size 12 small) (color 12 white) 
+    (sort 12 book) (size 12 small) (color 12 white) 
     (sort 13 bottle) (size 13 small) (color 13 green) (at 13 2)
     (sort 14 bottle) (size 14 small) (color 14 blue) 
     (sort 15 cup) (size 15 small) (color 15 black) 

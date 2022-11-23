@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <test>
-<env mis="on" err="off" ans="off">
+<env mis="off" err="off" ans="off">
     <info>
     (hold 13) (plate 20) (at 0 8)
     (sort 1 human) (size 1 big) (at 1 1)
@@ -58,7 +58,7 @@
 The door of the refrigerator is closed.
 The door of the microwave is opened.
 Do not open the door of the refrigerator.
-Do not put the book which is green on closet.
+Do not put the bo$#%ok which is green on closet.
 The green bottle must be on the desk.
 Put a can on the bed.
 Put the bottle which is blue on the television.

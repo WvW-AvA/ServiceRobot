@@ -13,10 +13,10 @@ ostream &operator<<(ostream &os, const Instruction &instr);
 
 ATRI::ATRI() : Plug("ATRI") {}
 
-inline bool is_str_equal(char *a, char *b)
+inline bool is_str_equal(char *a, const char *b)
 {
     char *v1 = a;
-    char *v2 = b;
+    const char *v2 = b;
     while (*v1 != '\0')
     {
         if (*v1 != *v2)
@@ -52,10 +52,9 @@ void ATRI::Init(int argc, char **argv)
 
 void ATRI::Plan()
 {
-
+    printf(GREEN "%s\n" RESET, GetTestName().c_str());
     if (ParseEnv(GetEnvDes()) == false)
     {
-        LOG_ERROR("Env Prase Error");
         return;
     }
     if (isNaturalParse)
@@ -66,7 +65,8 @@ void ATRI::Plan()
     }
     else
     {
-        ParseInstruction(GetTaskDes());
+        if (ParseInstruction(GetTaskDes()) == false)
+            return;
     }
     // info补充
     for (auto v : infos)
@@ -80,13 +80,13 @@ void ATRI::Plan()
             human = ObjectPtrCast<BigObject>(o);
 
     PrintEnv();
-    // PrintInstruction();
-
+    //  PrintInstruction();
     for (auto t = 0; t < tasks.size(); t++)
     {
+        // PrintEnv();
+        // cout << tasks[t] << endl;
+        isPass = false;
         SolveTask(tasks[t]);
-        PrintEnv();
-        cout << endl;
     }
     // TestAutoBehave();
 }
@@ -95,7 +95,8 @@ bool ATRI::ParseInstruction(const string &taskDis)
 {
     if (taskDis == "")
     {
-        throw("Instruction is null");
+        LOG_ERROR("Instruction is null");
+        return false;
     }
     shared_ptr<SyntaxNode> root = make_shared<SyntaxNode>();
     vector<shared_ptr<SyntaxNode>> leaf_path;
@@ -153,7 +154,7 @@ void ATRI::ParseNaturalLanguage(const string &src)
         if (src[i] == '.')
         {
             string str = src.substr(lp, (i + 1) - lp);
-            LOG(GREEN "%s" RESET, str.c_str());
+            // LOG(GREEN "%s" RESET, str.c_str());
             ParseNaturalLanguageSentence(str);
             lp = i + 2;
         }
@@ -201,7 +202,6 @@ void ATRI::ParseNaturalLanguageSentence(const string &s)
         instr = nlp_parser->get_info_instruction();
     list_p->push_back(instr);
     list_p->back().SearchConditionObject(shared_from_this(), nlp_parser->is_every);
-    cout << list_p->back();
 }
 
 bool ATRI::ParseEnvSentence(const string &str)
@@ -218,7 +218,7 @@ bool ATRI::ParseEnvSentence(const string &str)
     }
     if (words.size() != 2 && words.size() != 3)
     {
-        LOG_ERROR("Env Sentence error");
+        LOG_ERROR("Env Sentence (%s) error", str.c_str());
         return false;
     }
     if (words[0] == "hold")
@@ -336,7 +336,7 @@ bool ATRI::ParseEnv(const string &env)
         string str = m.str();
         if (ParseEnvSentence(str) == false)
         {
-            LOG_ERROR("Parse Env Sentence ERROR");
+            LOG_ERROR("Parse Env Sentence ERROR\n %s", env.c_str());
             return false;
         }
     }
@@ -396,10 +396,7 @@ void ATRI::ParseInfo(const Instruction &info)
     else if (info.behave == "plate")
     {
         if (plate == nullptr)
-        {
-            plate = ObjectPtrCast<SmallObject>(info.X[0]);
-            plate_id = info.X[0]->id;
-        }
+            SetPlate(ObjectPtrCast<SmallObject>(info.X[0]));
         else
         {
             LOG_ERROR("The plate already have small object (%d %s)", plate->id, plate->sort.c_str());
@@ -451,6 +448,7 @@ vector<Instruction> ATRI::TaskOptimization()
             return 2;
         else if (behave == "putdown" || behave == "goto")
             return 3;
+        return 4;
     };
     for (int i = 0; i < 4; i++)
         for (auto &t : tasks)
@@ -505,12 +503,14 @@ void ATRI::SolveTask(const Instruction &task)
 {
     if (task.isEnable == false)
         return;
-    cout << task;
     if (task.behave == "puton" || task.behave == "putin" || task.behave == "takeout")
     {
         if (task.X.size() == 0 || task.Y.size() == 0)
         {
-            LOG_ERROR("Instruction Error");
+            stringstream ss;
+            ss << task;
+            LOG_ERROR("Instruction Error\n %s", ss.str().c_str());
+            return;
         }
         for (auto a : task.X)
             DoBehavious(task.behave, a->id, task.Y[0]->id);
@@ -519,10 +519,13 @@ void ATRI::SolveTask(const Instruction &task)
     {
         if (task.X.size() == 0)
         {
-            LOG_ERROR("Instruction Error");
-            throw("Abort");
+            stringstream ss;
+            ss << task;
+            LOG_ERROR("Instruction Error\n %s", ss.str().c_str());
+            return;
         }
-        DoBehavious(task.behave, task.X[0]->id);
+        else
+            DoBehavious(task.behave, task.X[0]->id);
     }
 }
 
@@ -540,12 +543,14 @@ bool ATRI::IsInvokeNot_infoConstracts(const string &behave, const shared_ptr<Obj
     for (auto &i : not_infoConstrains)
     {
     }
+    return true;
 }
 bool ATRI::IsObeyNotnot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y)
 {
     for (auto &i : notnot_infoConstrains)
     {
     }
+    return true;
 }
 
 void ATRI::PrintInstruction()
@@ -627,7 +632,9 @@ void ATRI::Fini()
     cout << "Total score: " << totalScore << endl;
     human = nullptr;
     plate = nullptr;
+    plate_id = 0;
     hold = nullptr;
+    hold_id = 0;
     objects.clear();
     smallObjects.clear();
     tasks.clear();
@@ -636,6 +643,7 @@ void ATRI::Fini()
     not_taskConstrains.clear();
     notnot_infoConstrains.clear();
     posCorrectFlag.clear();
+    errorlist.clear();
 
     score = 0;
     objects.push_back(shared_from_this());
@@ -666,15 +674,18 @@ void ATRI::TestAutoBehave()
 #pragma region override_ATRI_Behavious
 bool ATRI::TakeOut(unsigned int a, unsigned int b)
 {
+    if (isPass)
+        return false;
+
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     auto cont = ObjectPtrCast<Container>(objects[b]);
     if (hold == nullptr)
         if (small->inside == cont->id)
             if (location == objects[b]->location)
             {
-                if (cont->isOpen)
+                if (cont->isOpen == 1)
                 {
-                    LOG("TakeOut(%d,%s)(%d,%s)", a, cont->sort.c_str(), b, small->sort.c_str());
+                    LOG("TakeOut(%d,%s)(%d,%s)", a, small->sort.c_str(), b, cont->sort.c_str());
                     score -= 2;
                     if (Plug::TakeOut(a, b) == false)
                     {
@@ -682,6 +693,11 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
                         {
                             Sense();
                             return TakeOut(a, b);
+                        }
+                        else
+                        {
+                            isPass = true;
+                            return false;
                         }
                     }
                     small->inside = false;
@@ -708,20 +724,25 @@ bool ATRI::TakeOut(unsigned int a, unsigned int b)
         }
     else
         PutDown(hold->id);
-    TakeOut(a, b);
+    return TakeOut(a, b);
 }
 bool ATRI::PutIn(unsigned int a, unsigned int b)
 {
+    if (isPass)
+        return false;
     auto cont = ObjectPtrCast<Container>(objects[b]);
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     if (hold == small)
-        if (cont->isOpen)
-            if (location == cont->location)
+        if (location == cont->location)
+            if (cont->isOpen == 1)
             {
                 LOG("PutIn(%d,%s)(%d,%s)", a, cont->sort.c_str(), b, small->sort.c_str());
                 score -= 2;
                 if (Plug::PutIn(a, b) == false)
+                {
+                    isPass = true;
                     return false;
+                }
                 small->inside = b;
                 SetHold(nullptr);
                 cont->smallObjectsInside.push_back(small);
@@ -729,18 +750,20 @@ bool ATRI::PutIn(unsigned int a, unsigned int b)
                 return true;
             }
             else
-                Move(b);
+                Open(b);
         else
-            Open(b);
+            Move(b);
     else
         HoldSmallObject(a);
-    PutIn(a, b);
+    return PutIn(a, b);
 }
 bool ATRI::Close(unsigned int a)
 {
+    if (isPass)
+        return false;
     shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
     if (container != nullptr)
-        if (container->isOpen = true)
+        if (container->isOpen != false)
             if (location == container->location)
                 if (hold == nullptr)
                 {
@@ -750,11 +773,13 @@ bool ATRI::Close(unsigned int a)
                     {
                         if (isErrorCorrection)
                         {
-                            container->isOpen = false;
                             LOG("(%d,%s) has closed", a, container->sort.c_str());
-                            return true;
                         }
-                        return false;
+                        else
+                        {
+                            isPass = true;
+                            return false;
+                        }
                     }
                     container->isOpen = false;
                     UpdateTaskList("close", objects[a]);
@@ -768,17 +793,19 @@ bool ATRI::Close(unsigned int a)
             return true;
     else
     {
-        LOG_ERROR("Object (%d,%s) can't cast to Container", objects[a]->id, objects[a]->sort);
+        LOG_ERROR("Object (%d,%s) can't cast to Container", objects[a]->id, objects[a]->sort.c_str());
         return false;
     }
-    Close(a);
+    return Close(a);
 }
 bool ATRI::Open(unsigned int a)
 {
+    if (isPass)
+        return false;
     shared_ptr<Container> container = ObjectPtrCast<Container>(objects[a]);
     if (container != nullptr)
     {
-        if (container->isOpen == false)
+        if (container->isOpen != true)
             if (location == container->location)
                 if (hold == nullptr)
                 {
@@ -788,11 +815,13 @@ bool ATRI::Open(unsigned int a)
                     {
                         if (isErrorCorrection)
                         {
-                            container->isOpen = true;
                             LOG("(%d,%s) has opened", a, container->sort.c_str());
+                        }
+                        else
+                        {
+                            isPass = true;
                             return false;
                         }
-                        return false;
                     }
                     container->isOpen = true;
                     UpdateTaskList("Open", objects[a]);
@@ -807,13 +836,15 @@ bool ATRI::Open(unsigned int a)
     }
     else
     {
-        LOG_ERROR("Object (%d,%s) can't cast to Container", objects[a]->id, objects[a]->sort);
+        LOG_ERROR("Object (%d,%s) can't cast to Container", objects[a]->id, objects[a]->sort.c_str());
         return false;
     }
-    Open(a);
+    return Open(a);
 }
 bool ATRI::FromPlate(unsigned int a)
 {
+    if (isPass)
+        return false;
 
     if (hold == nullptr)
     {
@@ -822,7 +853,10 @@ bool ATRI::FromPlate(unsigned int a)
             LOG("FromPlate(%d,%s)", a, plate->sort.c_str());
             score -= 2;
             if (Plug::FromPlate(a) == false)
+            {
+                isPass = true;
                 return false;
+            }
             SetHold(plate);
             SetPlate(nullptr);
             return true;
@@ -836,13 +870,18 @@ bool ATRI::FromPlate(unsigned int a)
 }
 bool ATRI::ToPlate(unsigned int a)
 {
+    if (isPass)
+        return false;
     if (plate == nullptr)
         if (hold && hold->id == a)
         {
             LOG("ToPlate(%d,%s)", a, objects[a]->sort.c_str());
             score -= 2;
             if (Plug::ToPlate(a) == false)
+            {
+                isPass = true;
                 return false;
+            }
             SetPlate(hold);
             SetHold(nullptr);
             return true;
@@ -855,12 +894,17 @@ bool ATRI::ToPlate(unsigned int a)
 }
 bool ATRI::PutDown(unsigned int a)
 {
+    if (isPass)
+        return false;
     if (hold && hold->id == a)
     {
         LOG("PutDown(%d,%s)", a, objects[a]->sort.c_str());
         score -= 2;
         if (Plug::PutDown(a) == false)
+        {
+            isPass = true;
             return false;
+        }
         SetHold(nullptr);
         UpdateTaskList("purdown", objects[a]);
         return true;
@@ -873,6 +917,8 @@ bool ATRI::PutDown(unsigned int a)
 }
 bool ATRI::PickUp(unsigned int a)
 {
+    if (isPass)
+        return false;
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     if (hold == nullptr)
         if (location == small->location)
@@ -888,7 +934,10 @@ bool ATRI::PickUp(unsigned int a)
                         return PickUp(a);
                     }
                     else
+                    {
+                        isPass = true;
                         return false;
+                    }
                 }
                 SetHold(small);
                 UpdateTaskList("pickup", objects[a]);
@@ -910,10 +959,15 @@ bool ATRI::PickUp(unsigned int a)
 }
 bool ATRI::Move(unsigned int a)
 {
+    if (isPass)
+        return false;
     LOG("Move(%d)", a);
     score -= 4;
     if (Plug::Move(a) == false)
+    {
+        isPass = true;
         return false;
+    }
     location = a;
     if (hold)
         hold->location = a;
@@ -925,11 +979,12 @@ bool ATRI::Move(unsigned int a)
 
 bool ATRI::PutOn(unsigned int a, unsigned int b)
 {
+    if (isPass)
+        return false;
     if (hold && hold->id == a)
         if (location == b)
         {
             PutDown(a);
-
             UpdateTaskList("puton", objects[a], objects[b]);
             if (objects[b]->sort == "human")
                 UpdateTaskList("give", objects[a]);
@@ -939,10 +994,13 @@ bool ATRI::PutOn(unsigned int a, unsigned int b)
             Move(b);
     else
         HoldSmallObject(a);
-    PutOn(a, b);
+    return PutOn(a, b);
 }
 bool ATRI::HoldSmallObject(unsigned int a)
 {
+    if (isPass)
+        return false;
+
     auto small = ObjectPtrCast<SmallObject>(objects[a]);
     if (hold && hold->id == a)
         return true;
@@ -963,6 +1021,9 @@ bool ATRI::HoldSmallObject(unsigned int a)
 }
 void ATRI::GetSmallObjectStatus(unsigned int a)
 {
+    if (isPass)
+        return;
+
     string sureRet;
     if (isErrorCorrection)
     {
@@ -986,6 +1047,12 @@ void ATRI::GetSmallObjectStatus(unsigned int a)
     else
     {
         sureRet = AskLoc(a);
+    }
+
+    if (sureRet == "")
+    {
+        isPass = true;
+        return;
     }
     vector<string> split;
     regex reg("[a-z 0-9]+");
@@ -1016,6 +1083,8 @@ void ATRI::GetSmallObjectStatus(unsigned int a)
 }
 std::string ATRI::AskLoc(unsigned int a)
 {
+    if (isPass)
+        return "";
     string str;
     do
     {
@@ -1025,13 +1094,14 @@ std::string ATRI::AskLoc(unsigned int a)
         if (str == "")
         {
             LOG_ERROR("AskLoc return empty string,may object (%d,%s) not exsit!", a, objects[a]->sort.c_str());
-            throw("Abort");
         }
     } while (str == "not_known");
     return str;
 }
 void ATRI::Sense()
 {
+    if (isPass)
+        return;
     //只有纠错模式启动且当前位置未被纠错过才Sense
     if ((isErrorCorrection && posCorrectFlag[location] == true) || isErrorCorrection == false)
         return;
@@ -1137,16 +1207,15 @@ void split_string(vector<string> &out, const string &str_source, char mark)
 
 bool Condition::IsObjectSatisfy(const shared_ptr<Object> &target) const
 {
-    bool ret = true;
     if (sort != "" && sort != target->sort)
-        ret *= false;
+        return false;
     if (color != "")
     {
         auto tem = dynamic_pointer_cast<SmallObject>(target);
         if (tem && tem->color != color)
-            ret *= false;
+            return false;
     }
-    return ret;
+    return true;
 }
 
 Instruction::Instruction()
@@ -1194,7 +1263,7 @@ void Instruction::SearchConditionObject(const shared_ptr<ATRI> &atri, bool is_ev
 
 void Instruction::TaskSelfOptimization(const shared_ptr<ATRI> &atri)
 {
-    if (X.size() > 3 || Y.size() > 3)
+    if (X.size() > 2 || Y.size() > 2)
     {
         isEnable = false;
         return;
@@ -1224,14 +1293,11 @@ bool Instruction::IsInstructionInvoke(const string &behave, const shared_ptr<Obj
 
 ostream &operator<<(ostream &os, const Instruction &instr)
 {
-#ifdef __DEBUG__
     os << instr.ToString();
-#endif
     return os;
 }
 ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
 {
-#ifdef __DEBUG__
     static int layer = 0;
     for (int i = 0; i < layer; i++)
         os << "-";
@@ -1242,12 +1308,10 @@ ostream &operator<<(ostream &os, shared_ptr<SyntaxNode> sn)
         os << sn->sons[i];
     }
     layer--;
-#endif
     return os;
 }
 ostream &operator<<(ostream &os, shared_ptr<Object> obj)
 {
-#ifdef __DEBUG__
     if (dynamic_pointer_cast<SmallObject>(obj) != nullptr)
     {
         os << "SmallObject " << dynamic_pointer_cast<SmallObject>(obj)->ToString();
@@ -1267,6 +1331,5 @@ ostream &operator<<(ostream &os, shared_ptr<Object> obj)
             os << "BigObject  " << dynamic_pointer_cast<BigObject>(obj)->ToString();
         }
     }
-#endif
     return os;
 }

@@ -48,7 +48,7 @@
 	(:cons_not (:info (on X Y) (:cond (color X yellow) (sort X cup) (sort Y worktable))))
 	(:cons_not (:info (opened X) (:cond (sort X closet))))
 	(:task (puton X Y) (:cond (sort X can) (color X blue) (sort Y chair)))
-	(:task (puton X Y) (:cond (sort X remotecontrol) (color X red) (sort Y sofa)))
+	(:task (puton X Y) (:cond (sort X remotecontrol) (color X red) (sort Y chair)))
 	(:task (puton X Y) (:cond (sort X cup) (color X red) (sort Y desk)))
 )
 </instr>
@@ -62,7 +62,7 @@ The blue bottle must be not in the refrigerator.
 The yellow cup must be not on the worktable.
 The door of the closet must not be opened.
 Put the blue can on the chair.
-Put the black can on the sofa.
+Put the black can on the chair.
 Put the red cup on the desk.
 </nl>
 </test>
