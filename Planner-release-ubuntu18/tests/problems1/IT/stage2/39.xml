@@ -29,22 +29,22 @@
 (:ins
     (:cons_not (:info (opened X) (:cond (sort X closet))))
     (:task (close X) (:cond (sort X cupboard)))
-    (:task (putin X Y) (:cond (sort X book) (sort Y microwave)))
-    (:task (pickup X) (:cond (sort X book)))
-    (:task (putin X Y) (:cond (sort X cup) (sort Y microwave)))
+    (:task (putin X Y) (:cond (sort X book) (color X green) (sort Y microwave)))
+    (:task (pickup X) (:cond (sort X book) (color X blue)))
+    (:task (putin X Y) (:cond (sort X cup) (color X red) (sort Y microwave)))
     (:task (goto X) (:cond (sort X chair)))
+    (:task (puton X Y) (:cond (sort X book) (color X blue) (sort Y bed)))
+    (:task (give human X) (:cond (sort X book) (color X red)))
 )
 </instr>
 <nl>
 The closet must not be opened.
 Close the door of cupboard.
-Put a book in microwave.
-Pick a book up.
-Put a cup in microwave.
+Put the green book in microwave.
+Pick the blue book up.
+Put the red cup in microwave.
 Go to the chair.
-
-Put the blue book in the closet.
-Pick the red cup up.
+Put the blue book on the couch.
 Give the red book to human.
 </nl>
 </test>

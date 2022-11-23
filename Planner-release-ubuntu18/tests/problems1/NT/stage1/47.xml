@@ -50,6 +50,7 @@
 	(:task (pickup X) (:cond (sort X book) (color X red)))
 	(:task (goto X) (:cond (sort X microwave) (type X container)))
 	(:cons_notnot (:info (opened X) (:cond (sort X microwave))))
+	(:task (puton X Y) (:cond (sort X remotecontrol) (color X yellow) (sort Y table)))
 	)
 </instr>
 <nl>
@@ -58,7 +59,6 @@ Put the yellow bottle on microwave.
 Pick up the red book.
 Go to microwave.
 There must be the microwave opened.
-
 Put the yellow remotecontrol on the table.
 </nl>
 </test>

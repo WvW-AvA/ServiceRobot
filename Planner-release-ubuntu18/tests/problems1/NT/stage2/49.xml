@@ -24,9 +24,9 @@
     (sort 19 bottle) (size 19 small) (color 19 blue)
     (sort 20 bottle) (size 20 small) (color 20 yellow)
     (sort 21 cup) (size 21 small) (color 21 white) 
-    (sort 22 remotecontrol) (size 22 small) (inside 22 6)
+    (sort 22 remotecontrol) (color 22 white) (size 22 small) (inside 22 6)
     (sort 23 can) (size 23 small) (color 23 red) (at 23 4)
-    (sort 24 can) (size 24 small) (inside 24 14)
+    (sort 24 can) (size 24 small) (color 24 green) (inside 24 14)
     </info>
     <mis>
     (inside 15 14) (inside 19 5) (at 16 2) 
@@ -44,29 +44,30 @@
     (:info (closed X) (:cond (sort X refrigerator)))
     (:info (opened X) (:cond (sort X microwave)))
     (:info (opened X) (:cond (sort X washmachine)))
-    (:task (putin X Y) (:cond (sort X can) (sort Y cupboard)))
+    (:task (putin X Y) (:cond (sort X can) (color X green) (sort Y cupboard)))
     (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y airconditioner)))
     (:task (goto X) (:cond (sort X sofa)))
-    (:task (puton X Y) (:cond (sort X book) (sort Y sofa)))
-    (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y television)))
+    (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y sofa)))
+    (:task (puton X Y) (:cond (sort X remotecontrol) (color X white) (sort Y television)))
     (:task (close X) (:cond (sort X microwave))) 
     (:cons_notnot (:info (plate X) (:cond (sort X bottle) (color X yellow))))  
+    (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y desk)))
+    (:task (putin X Y) (:cond (sort X can) (color X red) (sort Y refrigerator)))
 )
 </instr>
 <nl>
 The refrigerator is closed.
 The microwave is opened.
 The washmachine is opened.
-Put a can in the cupboard.
+Put the green can in the cupboard.
 Put the red can on the airconditioner.
 Go to the sofa.
-Put a book on sofa.
-Put the remotecontrol on the television.
+Put the white book on sofa.
+Put the white remotecontrol on the television.
 Close door of microwave.
 The yellow bottle must be on plate.
 
 Put the green book on the desk.
-Pick up the green bottle which is on the desk.
 Put the red can in the refrigerator. 
 </nl>
 </test>

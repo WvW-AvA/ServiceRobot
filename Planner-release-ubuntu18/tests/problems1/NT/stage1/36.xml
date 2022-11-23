@@ -34,21 +34,19 @@
     (:cons_not (:task (goto X) (:cond (sort X couch))))
     (:cons_not (:task (goto X) (:cond (sort X table))))
     (:cons_not (:task (pickup X) (:cond (sort X book) (color X red))))
-    (:task (puton X Y) (:cond (sort X can) (sort Y bed)))
-    (:task (pickup X) (:cond (sort X cup)))
+    (:task (puton X Y) (:cond (sort X book) (color X blue) (sort Y bed)))
+    (:task (pickup X) (:cond (sort X cup) (color X green)))
     (:task (putin X Y) (:cond (sort X book) (sort Y washmachine)))
+    (:task (give human X) (:cond (sort X cup) (color X blue)))
 )
 </instr>
 <nl>
 Do not go to couch.
 Do not go to the table.
-Do not pick the red book.
-Put the can on bed.
-Pick up a cup.
-Put the book in washmachine.
-
-Go to table.
+Do not pick up the red book.
+Put the blue book on bed.
+Pick up the green cup.
+Put the black can in washmachine.
 Give the blue cup to human.
-Take the black can out of the refrigerator.
 </nl>
 </test>

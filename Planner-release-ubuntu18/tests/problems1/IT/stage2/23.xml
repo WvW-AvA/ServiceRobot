@@ -19,8 +19,8 @@
     (sort 14 bottle) (size 14 small) (color 14 blue) (inside 14 7)
     (sort 15 cup) (size 15 small) (color 15 black) 
     (sort 16 cup) (size 16 small) (color 16 white) 
-    (sort 17 remotecontrol) (size 17 small) 
-    (sort 18 can) (size 18 small)
+    (sort 17 remotecontrol) (size 17 small) (color 17 white) 
+    (sort 18 can) (size 18 small) (color 18 white) 
     </info>
     <mis>
     (inside 11 6) (at 15 5)
@@ -37,14 +37,11 @@
 (:ins
     (:info (closed X) (:cond (sort X refrigerator)))
     (:info (opened X) (:cond (sort X microwave)))
-    (:cons_notnot (:info (plate X) (:cond (sort X can))))
-    (:cons_notnot (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y closet))))
-    (:cons_not (:info (inside X Y) (:cond (sort X book) (color X yellow) (sort Y closet))))
-    (:cons_not (:info (inside X Y) (:cond (sort X book) (color X green) (sort Y closet))))
-    (:task (putin X Y) (:cond (sort X book) (sort Y closet)))
+    (:cons_not (:info (inside X Y) (:cond (sort X book) (color X white) (sort Y closet))))
+    (:task (putin X Y) (:cond (sort X book) (color X green) (sort Y closet)))
     (:task (goto X) (:cond (sort X human)))
-    (:task (puton X Y) (:cond (sort X bottle) (sort Y chair)))
-    (:task (pickup X) (:cond (sort X can)))
+    (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y chair)))
+    (:task (pickup X) (:cond (sort X can) (color X white)))
     (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y television)))
     (:task (putin X Y) (:cond (sort X cup) (color X black) (sort Y cupboard)))
 )
@@ -52,14 +49,11 @@
 <nl>
 The door of refrigerator is closed.
 The door of microwave is opened.
-The can must be on plate.
-The blue bottle must be in closet.
 There must not be a yellow book in closet.
-The green book must not be in closet.
-Put a book in closet.
+Put the white book in closet.
 Go to the human.
-Put a bottle on the chair.
-Pickup a can.
+Put the blue bottle on the chair.
+Pick up the white can.
 Put the green book on the television.
 Put the black cup in the cupboard.
 </nl>

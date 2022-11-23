@@ -31,30 +31,26 @@
 </env>
 <instr>
 (:ins
-    (:cons_not (:task (putdown X) (:cond (sort X bottle) (color X blue))))
     (:cons_not (:task (putdown X) (:cond (sort X book) (color X yellow))))
-    (:cons_not (:task (putdown X) (:cond (sort X can) (color X black))))
     (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X green) (sort Y plant))))
     (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X white) (sort Y teapoy))))
     (:task (close X) (:cond (sort X microwave)))
-    (:task (putin X Y) (:cond (sort X bottle) (sort Y microwave)))
-    (:task (puton X Y) (:cond (sort X book) (sort Y plant)))
+    (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y microwave)))
+    (:task (puton X Y) (:cond (sort X book) (color X red) (sort Y plant)))
     (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y worktable)))
     (:task (putin X Y) (:cond (sort X can) (color X black) (sort Y closet)))
     (:task (takeout X Y) (:cond (sort X bottle) (color X blue) (sort Y microwave)))
 )
 </instr>
 <nl>
-Do not put the blue bottle down.
 Do not put the yellow book down.
-Do not put down the black can.
 There must be a green can on plant.
 The white can must be on the teapoy.
 Close the microwave.
-Put a bottle in microwave.
-Put a book on the plant.
+Put the red bottle in microwave.
+Put the red book on the plant.
 Put the green can on the worktable.
 Put the black can in the closet.
-Take the blue bottle out of the microwave.
+Take the blue bottle out of the closet.
 </nl>
 </test>

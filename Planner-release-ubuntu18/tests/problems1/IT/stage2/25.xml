@@ -17,10 +17,10 @@
     (sort 12 bottle) (size 12 small) (color 12 red) 
     (sort 13 bottle) (size 13 small) (color 13 blue) 
     (sort 14 book) (size 14 small) (color 14 red) 
-    (sort 15 book) (size 15 small) (color 15 yellow)
+    (sort 15 book) (size 15 small) (color 15 yellow) (at 15 7)
     </info>
     <mis>
-    (at 12 1) (inside 12 3) (at 14 5)
+    (at 12 1) (inside 13 3) (at 14 5)
     </mis>
     <err>
         <r></r>

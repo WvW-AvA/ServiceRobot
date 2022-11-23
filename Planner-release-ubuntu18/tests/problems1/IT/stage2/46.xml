@@ -39,11 +39,14 @@
     </extra>
 </env>
 <instr>(:ins 
-	(:task (putin X Y) (:cond (sort X can) (color X white) (type Y container) (sort Y washmachine)))
+	(:task (putin X Y) (:cond (sort X can) (color X white) (sort Y washmachine)))
 	(:task (open X) (:cond (sort X cupboard) (type X container)))
 	(:task (putdown X) (:cond (sort X can) (color X yellow)))
 	(:task (goto X) (:cond (sort X desk)))
 	(:info (on X Y) (:cond (sort X cup) (color X yellow) (sort Y chair)))
+	(:task (puton X Y) (:cond (sort X bottle) (color X green) (sort Y desk)))
+	(:task (putin X Y) (:cond (sort X cup) (color X yellow) (sort Y cupboard)))
+	(:task (pickup X) (:cond (sort X remotecontrol) (color X red)))
 	)
 </instr>
 <nl>
@@ -52,10 +55,8 @@ Open the cupboard.
 Put down the yellow can.
 Go to desk.
 The yellow cup is on chair.
-
 Put the green bottle on the desk.
 Put the yellow cup in the cupboard.
-Give the yellow cup to human.
 Pick the red remotecontrol up.
 </nl>
 </test>

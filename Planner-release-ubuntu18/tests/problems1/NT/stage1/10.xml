@@ -19,15 +19,15 @@
     (sort 14 bottle) (size 14 small) (color 14 blue) 
     (sort 15 cup) (size 15 small) (color 15 black) 
     (sort 16 cup) (size 16 small) (color 16 white) 
-    (sort 17 remotecontrol) (size 17 small) 
-    (sort 18 can) (size 18 small)
+    (sort 17 remotecontrol) (size 17 small) (color 17 white) (inside 17 8)
+    (sort 18 can) (size 18 small) (color 18 white)
     </info>
     <mis>
     (inside 10 6) (inside 14 6) (at 15 2)
     </mis>
     <err>
-        <r>(inside 12 8) (at 16 1) (inside 17 8)</r>
-        <w>(inside 12 7) (inside 16 9) (at 17 1)</w>
+        <r>(inside 12 8) (at 16 1)</r>
+        <w>(inside 12 7) (inside 16 9)</w>
     </err>
     <extra>
     (closed 6) (opened 9)
@@ -38,27 +38,25 @@
     (:info (closed X) (:cond (sort X refrigerator)))
     (:info (opened X) (:cond (sort X microwave)))
     (:cons_not (:task (open X) (:cond (sort X refrigerator))))
-    (:task (puton X Y) (:cond (sort X book) (sort Y bed)))
-    (:task (putin X Y) (:cond (sort X bottle) (sort Y cupboard)))
+    (:task (puton X Y) (:cond (sort X book) (color X yellow) (sort Y bed)))
+    (:task (putin X Y) (:cond (sort X bottle) (color X blue) (sort Y cupboard)))
     (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair)))
-    (:task (pickup X) (:cond (sort X can)))
-    (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard)))
-    (:task (putin X Y) (:cond (sort X cup) (sort Y microwave)))
+    (:task (takeout X Y) (:cond (sort X remotecontrol) (color X white) (sort Y cupboard)))
+    (:task (putin X Y) (:cond (sort X cup) (color X black) (sort Y microwave)))
     (:task (putin X Y) (:cond (sort X bottle) (color X green) (sort Y closet)))
-    (:task (give human X) (:cond (sort X remotecontrol)))
+    (:task (give human X) (:cond (sort X remotecontrol) (color X white)))
 )
 </instr>
 <nl>
 The door of refrigerator is closed.
 The door of microwave is opened.
 Do not open the refrigerator.
-Put a book on the bed.
-Put a bottle in the cupboard.
+Put the yellow book on the bed.
+Put the blue bottle in the cupboard.
 Put the green book on the chair.
-Pick up the can.
-Take out remotecontrol from cupboard.
-Put a cup in microwave.
+Take out the white remotecontrol from cupboard.
+Put the black cup in microwave.
 Put the green bottle in the closet.
-Give the remotecontrol to human.
+Give the white remotecontrol to human.
 </nl>
 </test>

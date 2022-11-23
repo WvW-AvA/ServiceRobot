@@ -22,7 +22,7 @@
 	(sort 17 book) (size 17 small) (color 17 yellow)
 	(sort 18 bottle) (size 18 small) (color 18 yellow) (at 18 3)
 	(sort 19 can) (size 19 small) (at 19 3) (color 19 blue)
-	(sort 20 can) (size 20 small) (color 20 blue) (inside 20 7)
+	(sort 20 cup) (size 20 small) (color 20 blue) (inside 20 7)
 	(sort 21 cup) (size 21 small) (color 21 red)
 	(sort 22 remotecontrol) (size 22 small) (color 22 red) (hold 22)
 	</info>
@@ -42,10 +42,9 @@
 	(:info (on X Y) (:cond (sort X book) (color X yellow) (sort Y plant)))
 	(:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y closet)))
 	(:task (close X) (:cond (sort X washmachine)))
-	(:task (putin X Y) (:cond (sort X bottle) (sort Y refrigerator)))
+	(:task (putin X Y) (:cond (sort X bottle) (sort X yellow) (sort Y refrigerator)))
 	(:task (pickup X) (:cond (sort X remotecontrol) (color X white)))
-	(:cons_not (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator))))
-	(:cons_not (:info (on X Y) (:cond (color X yellow) (sort X cup) (sort Y worktable))))
+	(:cons_not (:info (on X Y) (:cond (sort X cup) (color X yellow) (sort Y worktable))))
 	(:cons_not (:info (opened X) (:cond (sort X closet))))
 	(:task (puton X Y) (:cond (sort X can) (color X blue) (sort Y chair)))
 	(:task (puton X Y) (:cond (sort X remotecontrol) (color X red) (sort Y chair)))
@@ -56,9 +55,8 @@
 There is the yellow book on the plant.
 There is the red cup in the closet.
 Close the door of the washmachine.
-Put a bottle in the refrigerator.
+Put the yellow bottle in the refrigerator.
 Pick up the white remotecontrol.
-The blue bottle must be not in the refrigerator.
 The yellow cup must be not on the worktable.
 The door of the closet must not be opened.
 Put the blue can on the chair.

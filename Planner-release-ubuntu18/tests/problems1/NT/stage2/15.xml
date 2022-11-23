@@ -41,10 +41,9 @@
 </env>
 <instr>
 (:ins 
-(:info (inside X Y) (:cond (sort X bottle) (sort Y refrigerator)))
+(:info (inside X Y) (:cond (sort X bottle) (color X white) (sort Y refrigerator)))
 (:info (closed X) (:cond (sort X closet)))
 (:task (open X) (:cond (sort X cupboard)))
-(:task (pickup X) (:cond (sort X cup)))
 (:task (putin X Y) (:cond (sort X can) (color X yellow) (sort Y refrigerator)))
 (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X green) (sort Y cupboard))))
 (:cons_not (:task (goto X) (:cond (sort X couch))))
@@ -54,10 +53,9 @@
 )
 </instr>
 <nl>
-There is a bottle in the refrigerator.
+There is a white bottle in the refrigerator.
 The door of the closet is closed.
 Open the door of the cupboard.
-Pick up a cup.
 Put the yellow can in the refrigerator.
 The green can must be in the cupboard.
 Do not go to the couch.  

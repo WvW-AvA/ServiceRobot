@@ -37,15 +37,15 @@
 	(:task (takeout X Y) (:cond (sort X cup) (color X white) (sort Y microwave) (type Y container)))
 	(:task (close X) (:cond (type X container) (sort X refrigerator)))
 	(:task (pickup X) (:cond (sort X can) (color X blue)))
+	(:task (puton X Y) (:cond (sort X cup) (color X yellow) (sort Y teapoy)))
+	(:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y microwave)))
 	)
 </instr>
 <nl>
 Take out the white cup from microwave.
 Close the refrigerator.
 Pick up the blue can.
-
 Put the yellow cup on the teapoy.
 Put the white cup in the microwave.
-Take the red cup out of the refrigerator.
 </nl>
 </test>

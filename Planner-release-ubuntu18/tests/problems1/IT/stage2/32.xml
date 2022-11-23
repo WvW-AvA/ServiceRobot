@@ -33,21 +33,19 @@
 <instr>
 (:ins
     (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y sofa)))
-    (:task (give human X) (:cond (sort X book) (color X yellow)))
     (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y sofa)))
     (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y closet)))
     (:task (putin X Y) (:cond (sort X book) (color X red) (sort Y microwave)))
+    (:task (goto X) (:cond (sort X can) (color X black)))
+    (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y sofa)))
 )
 </instr>
 <nl>
-Put green can on sofa.
-Give human the book which is yellow.
-Put can which is red on sofa.
-Put a red bottle in the closet.
+Put the green can on sofa.
+Put the can which is red on sofa.
+Put the red bottle in the closet.
 Put the red book in the microwave.
-
-Go to worktable.
-Put the green can on the worktable.
-Pick the white can up which is on the sofa.
+Go to the black can.
+Put the blue bottle on the sofa.
 </nl>
 </test>

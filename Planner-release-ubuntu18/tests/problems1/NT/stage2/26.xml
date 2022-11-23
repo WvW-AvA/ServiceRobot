@@ -19,8 +19,8 @@
     (sort 14 bottle) (size 14 small) (color 14 blue) 
     (sort 15 cup) (size 15 small) (color 15 black) 
     (sort 16 cup) (size 16 small) (color 16 white) 
-    (sort 17 remotecontrol) (size 17 small) 
-    (sort 18 can) (size 18 small)
+    (sort 17 remotecontrol) (size 17 small) (color 17 white) 
+    (sort 18 can) (size 18 small) (color 18 white) 
     </info>
     <mis>
     (inside 11 6) (at 14 2) (at 15 5)
@@ -39,10 +39,10 @@
     (:info (opened X) (:cond (sort X microwave)))
     (:cons_not (:task (goto X) (:cond (sort X bed))))
     (:task (puton X Y) (:cond (sort X cup) (sort Y television)))
-    (:task (puton X Y) (:cond (sort X bottle) (sort Y cupboard)))
-    (:task (puton X Y) (:cond (sort X book) (sort Y chair)))
+    (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y cupboard)))
+    (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y chair)))
     (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y closet)))
-    (:task (pickup X) (:cond (sort X can)))
+    (:task (pickup X) (:cond (sort X can) (color X white)))
     (:task (goto X) (:cond (sort X desk)))
     (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y microwave)))
 )
@@ -51,11 +51,11 @@
 The door of refrigerator is closed.
 The door of microwave is opened.
 Do no go to the bed.
-Put a cup on television.
-Put a bottle on cupboard.
-Put a book on the chair.
+Put the white cup on television.
+Put the blue bottle on cupboard.
+Put the yellow book on the chair.
 Put the white book in the closet.
-Pick up a can.
+Pick up the white can.
 Go to the desk.
 Put the green book on the microwave.
 </nl>

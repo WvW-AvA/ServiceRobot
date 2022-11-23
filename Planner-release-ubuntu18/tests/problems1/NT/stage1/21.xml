@@ -32,7 +32,6 @@
 <instr>
 (:ins
     (:cons_not (:task (pickup X) (:cond (sort X book) (color X red))))
-    (:cons_not (:task (pickup X) (:cond (sort X cup) (color X red))))
     (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X black) (sort Y couch))))
     (:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X blue) (sort Y refrigerator))))
     (:task (puton X Y) (:cond (sort X cup) (color X blue) (sort Y table)))
@@ -45,7 +44,6 @@
 </instr>
 <nl>
 Do not pick up the red book.
-Do not pick up the red cup.
 There must be a black can on the couch.
 There must be a blue book in the refrigerator.
 Put the blue cup on table.

@@ -19,7 +19,7 @@
 	(sort 15 can) (size 15 small)(color 15 white) (at 15 7)
 	(sort 16 remotecontrol) (size 16 small) (color 16 red)
 	(sort 17 can) (size 17 small) (color 17 yellow)
-	(sort 18 cup) (size 18 small) (color 18 green) (at 18 3)
+	(sort 18 cup) (size 18 small) (color 18 green) (inside 18 1)
 	(sort 19 remotecontrol) (size 19 small) (color 19 white)
 	(sort 20 bottle) (size 20 small) (color 20 black) (at 20 7)
 	(sort 21 can) (size 21 small) (color 21 red) (at 21 10)
@@ -42,10 +42,12 @@
 	
 </env>
 <instr>(:ins 
-(:task (takeout X Y) (:cond (color X green) (sort X can) (type Y container) (sort Y cupboard)))
-(:task (pickup X) (:cond (color X red) (sort X remotecontrol)))
-(:task (putin X Y) (:cond (color X blue) (sort X book) (sort Y cupboard)))
+(:task (takeout X Y) (:cond (sort X can) (color X green) (sort Y cupboard)))
+(:task (pickup X) (:cond (sort X remotecontrol) (color X red)))
+(:task (putin X Y) (:cond (sort X book) (color X blue) (sort Y cupboard)))
 (:cons_notnot (:info (on X Y) (:cond (color X red) (sort X can) (sort Y sofa))))
+(:task (putin X Y) (:cond (sort X cup) (color X green) (sort Y refrigerator)))
+(:task (puton X Y) (:cond (sort X remotecontrol) (color X white) (sort Y bed)))
 )
 </instr>
 <nl>
@@ -53,8 +55,7 @@ Take out the green can from cupboard.
 Pick up the red remotecontrol.
 Put the blue book in cupboard.
 The red can must be on sofa.
-
-Put the green cup in the cupboard.
+Put the green cup in the refrigerator.
 Put the white remotecontrol on the sofa.
 </nl>
 </test>

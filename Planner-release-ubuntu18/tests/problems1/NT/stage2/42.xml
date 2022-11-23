@@ -30,20 +30,20 @@
 </env>
 <instr>
 (:ins
-    (:task (putin X Y) (:cond (sort X cup) (sort Y washmachine)))
-    (:task (putin X Y) (:cond (sort X can) (sort Y refrigerator)))
-    (:task (takeout X Y) (:cond (sort X book) (sort Y washmachine)))
-    (:task (pickup X) (:cond (sort X cup)))
+    (:task (putin X Y) (:cond (sort X cup) (color X green) (sort Y washmachine)))
+    (:task (putin X Y) (:cond (sort X can) (color X black) (sort Y refrigerator)))
+    (:task (takeout X Y) (:cond (sort X book) (color X blue) (sort Y washmachine)))
+    (:task (pickup X) (:cond (sort X cup) (color X blue)))
     (:task (goto X) (:cond (sort X refrigerator)))
+    (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y bed)))
 )
 </instr>
 <nl>
-Put a cup in washmachine.
-Put a can in refrigerator.
-Take out a book from washmachine.
-Pick up a cup.
+Put the green cup in washmachine.
+Put the black can in refrigerator.
+Take out the blue book from refrigerator.
+Pick up the blue cup.
 Go to the refrigerator.
-Take the black can out of the couch.
 Put the green book on the bed.
 </nl>
 </test>

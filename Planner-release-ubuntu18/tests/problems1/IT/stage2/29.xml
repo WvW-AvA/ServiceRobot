@@ -31,26 +31,24 @@
 </env>
 <instr>
 (:ins
-    (:cons_notnot (:info (plate X) (:cond (sort X book) (color X yellow))))
     (:cons_not (:info (on X Y) (:cond (sort X can) (color X black) (sort Y worktable))))
     (:task (close X) (:cond (sort X microwave)))
-    (:task (puton X Y) (:cond (sort X can) (sort Y microwave)))
+    (:task (puton X Y) (:cond (sort X can) (color X black) (sort Y sofa)))
     (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y worktable)))
     (:task (puton X Y) (:cond (sort X can) (color X white) (sort Y worktable)))
     (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y microwave)))
+    (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y teapoy)))
+    (:task (pickup X) (:cond (sort X book) (color X red)))
 )
 </instr>
 <nl>
-There must be a yellow book on plate.
 The black can must not be on the worktable.
 Close door of microwave.
-Put a can on worktable.
+Put the black can on sofa.
 Put the blue bottle on worktable.
 Put the white can on worktable.
 Put the bottle which is red in microwave.
-
-Put the red can on the microwave.
-Pick the red book up which is on the sofa.
-Take out the blue bottle from the closet.
+Put the red can on the teapoy.
+Pick the book up which is red.
 </nl>
 </test>

@@ -26,22 +26,19 @@
 </env>
 <instr>
 (:ins
-    (:task (takeout X Y) (:cond (sort X bottle) (sort Y closet)))
     (:task (putin X Y) (:cond (sort X book) (color X green) (sort Y microwave)))
     (:task (putin X Y) (:cond (sort X book) (color X blue) (sort Y cupboard)))
     (:task (puton X Y) (:cond (sort X book) (color X red) (sort Y couch)))
-    (:task (pickup X) (:cond (sort X cup)))
     (:task (goto X) (:cond (sort X microwave)))
+    (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y microwave)))
+    (:task (puton X Y) (:cond (sort X cup) (color X red) (sort Y chair)))
 )
 </instr>
 <nl>
-Take out the bottle from closet.
 Put the green book in microwave.
 Put the blue book in cupboard.
 Put the red book on couch.
-Pick up a cup.
 Go to the microwave.
-
 Put the red bottle in the microwave.
 Put the red cup on the chair.
 </nl>

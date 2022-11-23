@@ -24,7 +24,7 @@
     (sort 19 bottle) (size 19 small) (color 19 blue)
     (sort 20 bottle) (size 20 small) (color 20 yellow) (at 20 3)  
     (sort 21 cup) (size 21 small) (color 21 white) 
-    (sort 22 remotecontrol) (size 22 small) 
+    (sort 22 remotecontrol) (size 22 small) (color 22 white) 
     (sort 23 can) (size 23 small) (color 23 blue) (inside 23 5)
     (sort 24 can) (size 24 small) (color 24 yellow)
     </info>
@@ -43,25 +43,21 @@
 (:ins
     (:info (closed X) (:cond (sort X refrigerator)))
     (:info (opened X) (:cond (sort X microwave)))
-    (:info (inside X Y) (:cond (sort X remotecontrol) (sort Y washmachine)))
-    (:task (puton X Y) (:cond (sort X can) (sort Y bed)))
+    (:task (puton X Y) (:cond (sort X can) (color X blue) (sort Y bed)))
     (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y cupboard)))
-    (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y washmachine)))
-    (:task (give human X) (:cond (sort X book)))
+    (:task (give human X) (:cond (sort X book) (color X white)))
     (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y desk)))
+    (:task (putin X Y) (:cond (sort X book) (color X yellow) (sort Y cupboard)))
+    (:task (puton X Y) (:cond (sort X can) (color X yellow) (sort Y desk)))
 )
 </instr>
 <nl>
 The refrigerator is closed.
 The microwave is opened.
-The remotecontrol is in washmachine.
-Put a can on bed.
+Put the blue can on bed.
 Put the book which is white in cupboard.
-Take out the remotecontrol from washmachine.
-Give human a book.
+Give human the white book.
 Put the green book on desk.
-
-Take out the blue can from the refrigerator.
 Put the yellow book in the cupboard.
 Put the yellow can on the desk.
 </nl>

@@ -35,7 +35,9 @@
     (:cons_not (:info (plate X) (:cond (sort X book) (color X red))))
     (:cons_not (:task (takeout X Y) (:cond (sort X book) (color X red) (sort Y washmachine))))
     (:task (puton X Y) (:cond (sort X cup) (color X green) (sort Y couch)))
-    (:task (puton X Y) (:cond (sort X can) (sort Y bed)))
+    (:task (puton X Y) (:cond (sort X can) (color X white) (sort Y bed)))
+    (:task (putin X Y) (:cond (sort X can) (color X blue) (sort Y refrigerator)))
+    (:task (pickup X) (:cond (sort X cup) (color X red)))
 )
 </instr>
 <nl>
@@ -44,9 +46,8 @@ Do not go to the desk.
 The book which is red must not be on plate.
 Do not take out red book from washmachine.
 Put a cup which is green on the couch.
-Put a can on bed.
+Put the white can on bed.
 Put the blue cup in the refrigerator.
-Go to table.
 Pick the red cup up.
 </nl>
 </test>

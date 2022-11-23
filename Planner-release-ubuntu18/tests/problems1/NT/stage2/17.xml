@@ -45,7 +45,6 @@
     (:info (opened X) (:cond (sort X microwave)))
     (:info (opened X) (:cond (sort X washmachine)))
     (:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y refrigerator)))
-    (:cons_not (:task (goto X) (:cond (sort X human))))
     (:cons_not (:task (goto X) (:cond (sort X bed))))
     (:task (goto X) (:cond (sort X couch)))
     (:task (takeout X Y) (:cond (sort X bottle) (color X yellow) (sort Y closet)))
@@ -58,7 +57,6 @@ The door of the refrigerator is closed.
 The microwave is opened.
 The washmachine is opened.
 Put the white cup in the refrigerator.
-Do not go to the human.
 Do not go to the bed.
 Go to couch.
 Take the yellow bottle out of the closet.

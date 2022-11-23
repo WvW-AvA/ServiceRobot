@@ -41,9 +41,9 @@
 (:info (on X Y) (:cond (sort X book) (color X green) (sort Y television)))
 (:info (closed X) (:cond (sort X microwave)))
 (:task (putin X Y) (:cond (sort X book) (color X red) (sort Y refrigerator)))
-(:task (putin X Y) (:cond (color X blue) (sort X remotecontrol) (sort Y microwave)))
-(:task (pickup X) (:cond (sort X bottle)))
-(:cons_not (:info (plate X) (:cond (color X blue) (sort X remotecontrol))))
+(:task (putin X Y) (:cond (sort X remotecontrol) (color X blue) (sort Y microwave)))
+(:task (pickup X) (:cond (sort X bottle) (color X blue)))
+(:cons_not (:info (plate X) (:cond (sort X remotecontrol) (color X blue))))
 (:cons_not (:task (pickup X) (:cond (sort X book) (color X black))))
 (:task (takeout X Y) (:cond (sort X can) (color X yellow) (sort Y refrigerator)))
 (:task (give human X) (:cond (sort X book) (color X white)))
@@ -55,7 +55,7 @@ The green book is on the television.
 The microwave is closed.
 Put the red book in the refrigerator.
 Put the remotecontrol which is blue in the microwave.
-Pick up a bottle.
+Pick up the blue bottle.
 The blue remotecontrol must not be on the plate.
 Do not pick up the black book.
 Take out the yellow can from the refrigerator.

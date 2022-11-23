@@ -15,11 +15,11 @@
 	(sort 10 bottle) (size 10 small) (color 10 yellow)
 	(sort 11 book) (size 11 small) (color 11 red)
 	(sort 12 bottle) (size 12 small) (color 12 green)
-	(sort 13 can) (size 13 small)
+	(sort 13 can) (size 13 small) (color 13 white)
 	(sort 14 book) (size 14 small) (color 14 green) 
 	(sort 15 can) (size 15 small) (color 15 green) (inside 15 3)
 	(sort 16 book) (size 16 small) (color 16 black) (plate 16)
-	(sort 17 cup) (size 17 small)
+	(sort 17 cup) (size 17 small) (color 17 black)
 	(sort 18 remotecontrol) (size 18 small) (color 18 green)
 	(sort 19 can) (size 19 small) (color 19 red) (at 19 5)
 	(sort 20 remotecontrol) (size 20 small) (color 20 black) (at 20 2)
@@ -41,11 +41,10 @@
 (:ins 
 	(:task (takeout X Y) (:cond (sort X book) (color X green) (sort Y closet)))
 	(:task (putin X Y) (:cond (sort X remotecontrol) (color X red) (sort Y closet)))
-	(:task (goto X) (:cond (sort X plant)))
 	(:task (pickup X) (:cond (sort X bottle) (color X green)))
 	(:task (puton X Y) (:cond (sort X remotecontrol) (color X green) (sort Y airconditioner)))
 	(:info (on X Y) (:cond (sort X book) (color X red) (sort Y sofa)))
-	(:cons_notnot (:info (on X Y) (:cond (color X black) (sort X remotecontrol) (sort Y couch))))
+	(:cons_notnot (:info (on X Y) (:cond (sort X remotecontrol) (color X black) (sort Y couch))))
 	(:task (puton X Y) (:cond (sort X can) (color X red) (sort Y bed)))
 	(:task (puton X Y) (:cond (sort X book) (color X black) (sort Y sofa)))
 )
@@ -53,7 +52,6 @@
 <nl>
 Take out the green book from the closet.
 Put the remotecontrol which is red in the closet.
-Go to the plant.
 Pick up the bottle which is green.
 Put the green remotecontrol on the airconditioner.
 The red book is on the sofa.
