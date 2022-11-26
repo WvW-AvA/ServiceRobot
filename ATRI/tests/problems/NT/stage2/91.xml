@@ -26,9 +26,9 @@
 </env>
 <instr>
 (:ins
-    (:cons_not (:info (inside X Y) (:cond (sort X book) (color X green) (sort Y microwave))))
+    (:cons_not (:info (inside X Y) (:cond (sort X book) (color X green) (sort Y microwave) (type Y container))))
     (:cons_not (:task (putdown X) (:cond (sort X cup) (color X red))))
-    (:task (putin X Y) (:cond (sort X book) (sort Y microwave)))
+    (:task (putin X Y) (:cond (sort X book) (sort Y microwave) (type Y container)))
     (:task (puton X Y) (:cond (sort X cup) (sort Y chair)))
     (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair)))
 )

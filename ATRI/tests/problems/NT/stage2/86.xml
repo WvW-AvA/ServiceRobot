@@ -40,11 +40,11 @@
 	(:task (goto X) (:cond (sort X sofa)))
 	(:task (pickup X) (:cond (color X green) (sort X cup)))
 	(:task (pickup X) (:cond (color X white) (sort X bottle)))
-	(:task (close X) (:cond (sort X refrigerator)))
+	(:task (close X) (:cond (sort X refrigerator) (type X container)))
 	(:info (plate X) (:cond (sort X bottle) (color X red))) 
-	(:info (closed X) (:cond (sort X cupboard) (type X container)))
-	(:cons_notnot (:info (closed X) (:cond (type X container) (sort X cupboard))))
-	(:cons_not (:task (putin X Y) (:cond (sort X bottle) (type Y container) (sort Y refrigerator))))
+	(:info (closed X) (:cond (sort X cupboard) (type X container) (type X container)))
+	(:cons_notnot (:info (closed X) (:cond (type X container) (sort X cupboard) (type X container))))
+	(:cons_not (:task (putin X Y) (:cond (sort X bottle) (type Y container) (sort Y refrigerator) (type Y container))))
 	)
 </instr>
 <nl>

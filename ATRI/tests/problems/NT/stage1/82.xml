@@ -36,12 +36,12 @@
 </env>
 <instr>
 (:ins
-    (:cons_not (:task (pickup X Y) (:cond (sort X can) (color X yellow) (sort Y microwave))))
+    (:cons_not (:task (pickup X Y) (:cond (sort X can) (color X yellow) (sort Y microwave) (type Y container))))
     (:cons_not (:task (pickup X) (:cond (sort X book) (color X red))))
-    (:cons_notnot (:info (inside X Y) (:cond (sort X can) (color X blue) (sort Y microwave))))
-    (:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X yellow) (sort Y cupboard))))
-    (:task (close X) (:cond (sort X microwave)))
-    (:task (putin X Y) (:cond (sort X book) (sort Y microwave)))
+    (:cons_notnot (:info (inside X Y) (:cond (sort X can) (color X blue) (sort Y microwave) (type Y container))))
+    (:cons_notnot (:info (inside X Y) (:cond (sort X book) (color X yellow) (sort Y cupboard) (type Y container))))
+    (:task (close X) (:cond (sort X microwave) (type X container)))
+    (:task (putin X Y) (:cond (sort X book) (sort Y microwave) (type Y container)))
     (:task (puton X Y) (:cond (sort X can) (sort Y desk)))
     (:task (puton X Y) (:cond (sort X remotecontrol) (color X green) (sort Y plant)))
 )

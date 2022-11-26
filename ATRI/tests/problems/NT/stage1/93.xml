@@ -31,13 +31,13 @@
 </env>
 <instr>
 (:ins
-    (:cons_not (:info (opened X) (:cond (sort X closet))))
-    (:cons_notnot (:info (inside X Y) (:cond (sort X can) (color X black) (sort Y microwave))))
+    (:cons_not (:info (opened X) (:cond (sort X closet) (type X container))))
+    (:cons_notnot (:info (inside X Y) (:cond (sort X can) (color X black) (sort Y microwave) (type Y container))))
     (:task (puton X Y) (:cond (sort X can) (color X white) (sort Y sofa)))
     (:task (give human X) (:cond (sort X can)))
-    (:task (puton X Y) (:cond (sort X book) (color X yellow) (sort Y microwave)))
-    (:task (putin X Y) (:cond (sort X book) (sort Y microwave)))
-    (:task (close X) (:cond (sort X microwave)))
+    (:task (puton X Y) (:cond (sort X book) (color X yellow) (sort Y microwave) (type Y container)))
+    (:task (putin X Y) (:cond (sort X book) (sort Y microwave) (type Y container)))
+    (:task (close X) (:cond (sort X microwave) (type X container)))
     (:task (puton X Y) (:cond (sort X bottle) (sort Y teapoy)))
 )
 </instr>

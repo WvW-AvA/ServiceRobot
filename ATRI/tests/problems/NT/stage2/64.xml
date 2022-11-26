@@ -26,12 +26,12 @@
 </env>
 <instr>
 (:ins
-    (:task (takeout X Y) (:cond (sort X bottle) (sort Y closet)))
-    (:task (putin X Y) (:cond (sort X book) (color X green) (sort Y microwave)))
-    (:task (putin X Y) (:cond (sort X book) (color X blue) (sort Y cupboard)))
+    (:task (takeout X Y) (:cond (sort X bottle) (sort Y closet) (type Y container)))
+    (:task (putin X Y) (:cond (sort X book) (color X green) (sort Y microwave) (type Y container)))
+    (:task (putin X Y) (:cond (sort X book) (color X blue) (sort Y cupboard) (type Y container)))
     (:task (puton X Y) (:cond (sort X book) (sort Y couch)))
     (:task (pickup X) (:cond (sort X cup)))
-    (:task (goto X) (:cond (sort X microwave)))
+    (:task (goto X) (:cond (sort X microwave) (type X container)))
 )
 </instr>
 <nl>

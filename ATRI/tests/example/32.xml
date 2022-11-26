@@ -34,8 +34,8 @@
     (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y sofa)))
     (:task (give human X) (:cond (sort X book) (color X yellow)))
     (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y sofa)))
-    (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y closet)))
-    (:task (putin X Y) (:cond (sort X book) (color X red) (sort Y microwave)))
+    (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y closet) (type Y container)))
+    (:task (putin X Y) (:cond (sort X book) (color X red) (sort Y microwave) (type Y container)))
 )
 </instr>
 <nl>

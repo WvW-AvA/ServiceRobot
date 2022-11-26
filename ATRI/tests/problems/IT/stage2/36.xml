@@ -35,7 +35,7 @@
     (:cons_not (:task (pickup X) (:cond (sort X book) (color X red))))
     (:task (puton X Y) (:cond (sort X can) (sort Y bed)))
     (:task (pickup X) (:cond (sort X cup)))
-    (:task (putin X Y) (:cond (sort X book) (sort Y washmachine)))
+    (:task (putin X Y) (:cond (sort X book) (sort Y washmachine) (type Y container)))
 )
 </instr>
 <nl>

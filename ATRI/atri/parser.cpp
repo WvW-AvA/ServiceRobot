@@ -14,7 +14,6 @@ void parser::words_map_initialize(const string &words_map_path)
     if (!f.is_open())
     {
         LOG_ERROR("%s not found.", words_map_path.c_str());
-        throw("Abort");
     }
     string str;
     uint8_t mode;
@@ -92,6 +91,9 @@ bool parser::parse(const string &str)
     push_down_automata();
     if (root)
     {
+        stringstream ss;
+        ss << root;
+        LOG("%s", ss.str().c_str());
         return true;
     }
     else
@@ -121,6 +123,9 @@ void parser::to_token(string str)
         if (str[i] == ' ' || str[i] == '.')
         {
             string temp = str.substr(last, i - last);
+            last = i + 1;
+            if (temp == "please")
+                continue;
             if (temp == "to" && tokens.back()->token.value == "next")
             {
                 temp = tokens.back()->token.value + temp;
@@ -129,10 +134,11 @@ void parser::to_token(string str)
             if (words_map.find(temp) == words_map.end())
             {
                 LOG_ERROR("%s is unknown type word\n", temp.c_str());
-                throw("Abort");
             }
-            tokens.push_back(make_shared<syntax_node>(token(words_map[temp], temp)));
-            last = i + 1;
+            else
+            {
+                tokens.push_back(make_shared<syntax_node>(token(words_map[temp], temp)));
+            }
         }
     }
 }
@@ -178,6 +184,13 @@ void parser::push_down_automata()
             stack[i]->father = root;
         }
         stack.clear();
+    }
+    else if (stack.size() > 1 && stack[0]->token.type == VP)
+    {
+        root = make_shared<syntax_node>(S);
+        root->sons.push_back(stack[0]);
+        stack.back()->father = root;
+        stack.pop_back();
     }
 }
 
@@ -383,21 +396,6 @@ bool parser::match_rule(shared_ptr<syntax_node> &p, uint8_t match_to, uint8_t la
     }
     return false;
 }
-
-bool parser::is_task()
-{
-    auto &sons = root->sons;
-    if (sons.size() == 1 && sons[0]->token.type == VP)
-        return true;
-    else if (sons.size() == 2 && (sons[0]->token.type == THERE || (sons[0]->token.type == NP) && sons[0]->token.type == VP))
-        return false;
-    else
-    {
-        LOG_ERROR("parser tree garmmar error");
-        throw(1);
-    }
-}
-
 shared_ptr<syntax_node> parser::find_v(const shared_ptr<syntax_node> &vp)
 {
     for (auto &son : vp->sons)
@@ -428,7 +426,6 @@ shared_ptr<syntax_node> parser::find_n(const shared_ptr<syntax_node> &np)
     else
     {
         LOG_ERROR("Find n ERROR");
-        throw(1);
     }
 }
 
@@ -476,7 +473,6 @@ _home::Instruction parser::get_task_instruction()
     if (father == nullptr)
     {
         LOG_ERROR("task parse error");
-        throw(1);
     }
     instr.behave = behave;
     instr.conditionX = get_object_condition(father->sons[1]);
@@ -497,7 +493,6 @@ _home::Instruction parser::get_info_instruction()
         if (be == nullptr || be->token.type != BE)
         {
             LOG_ERROR("Info should contain be verb");
-            throw(1);
             return instr;
         }
         auto father = be->father;
@@ -526,7 +521,6 @@ _home::Instruction parser::get_info_instruction()
         if (be == nullptr)
         {
             LOG_ERROR("Info should contain be verb");
-            throw(1);
             return instr;
         }
         auto father = be->father;
@@ -605,7 +599,6 @@ _home::Condition parser::get_object_condition(const shared_ptr<syntax_node> &np,
     if (is_check_color && color != "" && color_set.find(color) == color_set.end())
     {
         LOG_ERROR("%s color do not regist", color.c_str());
-        throw(1);
     }
     cond.color = color;
     if (cond.sort == "me")

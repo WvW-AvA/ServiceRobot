@@ -47,8 +47,8 @@
 	(:task (pickup X) (:cond (color X red) (sort X remotecontrol)))
 	(:task (puton X Y) (:cond (color X blue) (sort X cup) (sort Y airconditioner)))
 	(:info (on X Y) (:cond (color X red) (sort X cup) (sort Y teapoy)))
-	(:info (closed X) (:cond (type X container) (sort X cupboard)))
-	(:cons_notnot (:info (opened X) (:cond (type X container) (sort X closet))))
+	(:info (closed X) (:cond (type X container) (sort X cupboard) (type X container)))
+	(:cons_notnot (:info (opened X) (:cond (type X container) (sort X closet) (type X container))))
 	)
 </instr>
 <nl>

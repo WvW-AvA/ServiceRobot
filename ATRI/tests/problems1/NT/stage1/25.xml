@@ -37,7 +37,7 @@
     (:task (give human X) (:cond (sort X can)))
     (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y worktable)))
     (:task (goto X) (:cond (sort X teapoy)))
-    (:task (takeout X Y) (:cond (sort X bottle) (color X red) (sort Y microwave)))
+    (:task (takeout X Y) (:cond (sort X bottle) (color X red) (sort Y microwave) (type Y container)))
     (:task (pickup X) (:cond (sort X can) (color X white)))
 )
 </instr>

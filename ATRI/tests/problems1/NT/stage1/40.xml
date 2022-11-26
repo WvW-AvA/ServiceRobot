@@ -42,11 +42,11 @@
 	
 </env>
 <instr>(:ins 
-(:task (takeout X Y) (:cond (sort X can) (color X green) (sort Y cupboard)))
+(:task (takeout X Y) (:cond (sort X can) (color X green) (sort Y cupboard) (type Y container)))
 (:task (pickup X) (:cond (sort X remotecontrol) (color X red)))
-(:task (putin X Y) (:cond (sort X book) (color X blue) (sort Y cupboard)))
+(:task (putin X Y) (:cond (sort X book) (color X blue) (sort Y cupboard) (type Y container)))
 (:cons_notnot (:info (on X Y) (:cond (color X red) (sort X can) (sort Y sofa))))
-(:task (putin X Y) (:cond (sort X cup) (color X green) (sort Y refrigerator)))
+(:task (putin X Y) (:cond (sort X cup) (color X green) (sort Y refrigerator) (type Y container)))
 (:task (puton X Y) (:cond (sort X remotecontrol) (color X white) (sort Y bed)))
 )
 </instr>

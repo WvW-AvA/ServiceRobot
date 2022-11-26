@@ -33,10 +33,10 @@
 (:ins
     (:cons_notnot (:info (plate X) (:cond (sort X book) (color X yellow))))
     (:cons_not (:info (on X Y) (:cond (sort X can) (color X green) (sort Y plate))))
-    (:task (close X) (:cond (sort X microwave)))
+    (:task (close X) (:cond (sort X microwave) (type X container)))
     (:task (puton X Y) (:cond (sort X can) (color X black) (sort Y worktable)))
     (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y worktable)))
-    (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y microwave)))
+    (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y microwave) (type Y container)))
     (:task (pickup X) (:cond (sort X can)))
     (:task (puton X Y) (:cond (sort X book) (sort Y worktable)))
 )

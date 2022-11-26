@@ -41,15 +41,15 @@
 </env>
 <instr>
 (:ins
-    (:info (closed X) (:cond (sort X refrigerator)))
-    (:info (opened X) (:cond (sort X microwave)))
-    (:info (opened X) (:cond (sort X washmachine)))
-    (:task (putin X Y) (:cond (sort X can) (sort Y cupboard)))
+    (:info (closed X) (:cond (sort X refrigerator) (type X container)))
+    (:info (opened X) (:cond (sort X microwave) (type X container)))
+    (:info (opened X) (:cond (sort X washmachine) (type X container)))
+    (:task (putin X Y) (:cond (sort X can) (sort Y cupboard) (type Y container)))
     (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y sofa)))
     (:task (goto X) (:cond (sort X sofa)))
     (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y television)))
     (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y sofa)))
-    (:task (close X) (:cond (sort X microwave)))   
+    (:task (close X) (:cond (sort X microwave) (type X container)))   
 )
 </instr>
 <nl>

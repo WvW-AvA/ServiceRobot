@@ -91,6 +91,10 @@ void ATRI::Plan()
         isPass = false;
         SolveTask(tasks[t]);
     }
+    if (tasks.size() == 0)
+    {
+        Move(1);
+    }
     // TestAutoBehave();
 }
 
@@ -157,18 +161,18 @@ void ATRI::ParseNaturalLanguage(const string &src)
         if (src[i] == '.')
         {
             string str = src.substr(lp, (i + 1) - lp);
-            // LOG(GREEN "%s" RESET, str.c_str());
+            LOG(GREEN "%s" RESET, str.c_str());
             ParseNaturalLanguageSentence(str);
             lp = i + 2;
         }
     }
 }
-void ATRI::ParseNaturalLanguageSentence(const string &s)
+bool ATRI::ParseNaturalLanguageSentence(const string &s)
 {
     if (nlp_parser->parse(s) == false)
     {
         errorlist.push_back(s);
-        return;
+        return false;
     }
     auto tree = nlp_parser->root;
     vector<Instruction> *list_p = nullptr;
@@ -196,15 +200,18 @@ void ATRI::ParseNaturalLanguageSentence(const string &s)
     if (list_p == nullptr)
     {
         LOG_ERROR("NLP Parse Error");
-        throw(1);
     }
-    Instruction instr;
-    if (is_task)
-        instr = nlp_parser->get_task_instruction();
     else
-        instr = nlp_parser->get_info_instruction();
-    list_p->push_back(instr);
-    list_p->back().SearchConditionObject(shared_from_this(), nlp_parser->is_every);
+    {
+        Instruction instr;
+        if (is_task)
+            instr = nlp_parser->get_task_instruction();
+        else
+            instr = nlp_parser->get_info_instruction();
+        list_p->push_back(instr);
+        list_p->back().SearchConditionObject(shared_from_this(), nlp_parser->is_every);
+    }
+    return true;
 }
 
 bool ATRI::ParseEnvSentence(const string &str)

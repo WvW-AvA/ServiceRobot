@@ -2,7 +2,7 @@
 #define __DEBUGLOG_H__
 
 //#define __BACKTRACE__
-//#define __DEBUG__
+#define __DEBUG__
 
 #include <iostream>
 #ifdef __BACKTRACE__

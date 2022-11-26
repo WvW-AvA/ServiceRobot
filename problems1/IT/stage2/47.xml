@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="on" err="on" ans="on">
+	<info>
+	(hold 0) (at 0 2)
+	(sort 1 sofa) (size 1 big) (at 1 1)
+	(sort 2 plant) (size 2 big) (at 2 2)
+	(sort 7 refrigerator) (size 7 big) (at 7 7) (type 7 container) (closed 7)
+	(sort 8 bed) (size 8 big) (at 8 8)
+	(sort 9 table) (size 9 big) (at 9 9)
+	(sort 10 desk) (size 10 big) (at 10 10)
+	(sort 11 human) (size 11 big) (at 11 11)
+	(sort 13 chair) (size 13 big) (at 13 13)
+	(sort 14 microwave) (size 14 big) (at 14 14) (type 14 container) (opened 14)
+	(sort 15 bottle) (size 15 small) (color 15 blue) (at 15 9)
+	(sort 16 bottle) (size 16 small) (color 16 blue)
+	(sort 17 can) (size 17 small) (at 17 13) (color 17 white)
+	(sort 19 cup) (size 19 small) (color 19 blue)
+	(sort 20 book) (size 20 small) (color 20 red) (at 20 2)
+	(sort 21 can) (size 21 small) (color 21 green) (at 21 10)
+	(sort 22 remotecontrol) (color 22 white) (size 22 small) (at 22 9)
+	(sort 23 cup) (size 23 small) (color 23 white)
+	(sort 24 can) (size 24 small) (color 24 yellow)
+	(sort 25 remotecontrol) (color 25 blue) (size 25 small) (plate 25)
+	(sort 26 cup) (size 26 small) (color 26 black) (inside 26 7)
+	(sort 27 bottle) (size 27 small) (color 27 yellow) (at 27 2)
+	(sort 28 can) (size 28 small) (color 28 blue)
+	(sort 29 remotecontrol) (color 29 yellow) (size 29 small) (at 29 1)
+	(sort 30 cup) (size 30 small) (color 30 yellow) (at 30 11)
+	</info>
+	<mis>
+	(inside 16 14)
+	(at 23 2)
+	(at 28 2)
+	</mis>
+	<err>
+	<r>
+	(inside 19 14)
+	(at 24 7)
+	</r>
+	<w>
+	(inside 19 8)
+	(at 24 10)
+	</w>
+	</err>
+</env>
+<instr>(:ins 
+	(:task (putdown X) (:cond (color X green) (sort X can)))
+	(:task (puton X Y) (:cond (color X yellow) (sort X bottle) (type Y container) (sort Y microwave)))
+	(:task (pickup X) (:cond (sort X book) (color X red)))
+	(:task (goto X) (:cond (sort X microwave) (type X container)))
+	(:cons_notnot (:info (opened X) (:cond (sort X microwave))))
+	(:task (puton X Y) (:cond (sort X remotecontrol) (color X yellow) (sort Y table)))
+	)
+</instr>
+<nl>
+Put down the green can.
+Put the yellow bottle on microwave.
+Pick up the red book.
+Go to microwave.
+There must be the microwave opened.
+Put the yellow remotecontrol on the table.
+</nl>
+</test>

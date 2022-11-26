@@ -32,11 +32,11 @@
 </env>
 <instr>
 (:ins 
-	(:task (close X) (:cond (sort X cupboard) (type X container)))
-	(:task (putin X Y) (:cond (sort X bottle) (color X blue) (sort Y cupboard) (type Y container)))
+	(:task (close X) (:cond (sort X cupboard) (type X container) (type X container)))
+	(:task (putin X Y) (:cond (sort X bottle) (color X blue) (sort Y cupboard) (type Y container) (type Y container)))
 	(:task (goto X) (:cond (sort X airconditioner)))
 	(:info (on X Y) (:cond (sort X book) (color X white) (sort Y television)))
-	(:info (opened X) (:cond (type X container) (sort X cupboard)))
+	(:info (opened X) (:cond (type X container) (sort X cupboard) (type X container)))
 	)
 </instr>
 <nl>

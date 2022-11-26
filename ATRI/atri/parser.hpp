@@ -56,8 +56,6 @@ public:
 
     bool parse(const string &str);
     void words_map_initialize(const string &words_map_path = "../words.txt");
-
-    bool is_task();
     _home::Instruction get_task_instruction();
     _home::Instruction get_info_instruction();
     _home::Condition get_object_condition(const shared_ptr<syntax_node> &np, bool is_check_color = true);

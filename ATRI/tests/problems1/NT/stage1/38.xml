@@ -38,11 +38,11 @@
 </env>
 <instr>(:ins 
 (:task (putdown X) (:cond (sort X remotecontrol) (color X red)))
-(:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y closet)))
-(:task (putin X Y) (:cond (sort X cup) (color X red) (sort Y washmachine)))
+(:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y closet) (type Y container)))
+(:task (putin X Y) (:cond (sort X cup) (color X red) (sort Y washmachine) (type Y container)))
 (:task (goto X) (:cond (sort X workspace)))
 (:task (pickup X) (:cond (sort X book) (color X black)))
-(:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y closet)))
+(:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y closet) (type Y container)))
 )
 </instr>
 <nl>

@@ -32,7 +32,7 @@
     (:cons_notnot (:info (plate X) (:cond (sort X bottle) (color X green))))
     (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y couch)))
     (:task (pickup X) (:cond (sort X bottle)))
-    (:task (putin X Y) (:cond (sort X cup) (sort Y microwave)))
+    (:task (putin X Y) (:cond (sort X cup) (sort Y microwave) (type Y container)))
     (:task (goto X) (:cond (sort X chair)))
 )
 </instr>

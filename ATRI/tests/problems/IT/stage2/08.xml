@@ -40,14 +40,14 @@
 <instr>
 (:ins 
 	(:info (on X Y) (:cond (sort X book) (color X yellow) (sort Y plant)))
-	(:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y closet)))
-	(:task (close X) (:cond (sort X washmachine)))
+	(:info (inside X Y) (:cond (sort X cup) (color X red) (sort Y closet) (type Y container)))
+	(:task (close X) (:cond (sort X washmachine) (type X container)))
 	(:task (puton X Y) (:cond (sort X can) (color X black) (sort Y plant)))
-	(:task (putin X Y) (:cond (sort X bottle) (sort Y refrigerator)))
+	(:task (putin X Y) (:cond (sort X bottle) (sort Y refrigerator) (type Y container)))
 	(:task (pickup X) (:cond (sort X remotecontrol) (color X white)))
-	(:cons_not (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator))))
+	(:cons_not (:info (inside X Y) (:cond (sort X bottle) (color X blue) (sort Y refrigerator) (type Y container))))
 	(:cons_not (:info (on X Y) (:cond (color X yellow) (sort X cup) (sort Y worktable))))
-	(:cons_not (:info (opened X) (:cond (sort X closet))))
+	(:cons_not (:info (opened X) (:cond (sort X closet) (type X container))))
 )
 </instr>
 <nl>

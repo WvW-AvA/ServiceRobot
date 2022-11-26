@@ -33,10 +33,10 @@
 <instr>
 (:ins 
 	(:task (goto X) (:cond (sort X worktable)))
-	(:task (open X) (:cond (sort X cupboard)))
-	(:task (takeout X Y) (:cond (sort X book) (sort Y washmachine)))
-	(:task (open X) (:cond (sort X washmachine)))
-	(:cons_notnot (:info (opened X) (:cond (sort X refrigerator))))
+	(:task (open X) (:cond (sort X cupboard) (type X container)))
+	(:task (takeout X Y) (:cond (sort X book) (sort Y washmachine) (type Y container)))
+	(:task (open X) (:cond (sort X washmachine) (type X container)))
+	(:cons_notnot (:info (opened X) (:cond (sort X refrigerator) (type X container))))
 )
 </instr>
 <nl>

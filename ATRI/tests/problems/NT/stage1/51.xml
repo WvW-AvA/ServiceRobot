@@ -44,10 +44,10 @@
 </env>
 <instr>
 (:ins 
-	(:task (open X) (:cond (sort X closet)))
+	(:task (open X) (:cond (sort X closet) (type X container)))
 	(:task (goto X) (:cond (sort X workspace)))
-	(:task (putin X Y) (:cond (color X red) (type Y container) (sort Y closet)))
-	(:info (closed X) (:cond (sort X closet)))
+	(:task (putin X Y) (:cond (color X red) (type Y container) (sort Y closet) (type Y container)))
+	(:info (closed X) (:cond (sort X closet) (type X container)))
 	(:info (plate X) (:cond (color X red) (sort X bottle)))
 	(:cons_not (:task (putdown X) (:cond (color X red) (sort X bottle))))
 	(:cons_not (:task (puton X Y) (:cond (sort X remotecontrol) (sort Y table))))

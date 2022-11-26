@@ -46,10 +46,10 @@
 </env>
 <instr>(:ins 
 	(:task (putdown X) (:cond (color X green) (sort X can)))
-	(:task (puton X Y) (:cond (color X yellow) (sort X bottle) (type Y container) (sort Y microwave)))
+	(:task (puton X Y) (:cond (color X yellow) (sort X bottle) (type Y container) (sort Y microwave) (type Y container)))
 	(:task (pickup X) (:cond (sort X book) (color X red)))
-	(:task (goto X) (:cond (sort X microwave) (type X container)))
-	(:cons_notnot (:info (opened X) (:cond (sort X microwave))))
+	(:task (goto X) (:cond (sort X microwave) (type X container) (type X container)))
+	(:cons_notnot (:info (opened X) (:cond (sort X microwave) (type X container))))
 	)
 </instr>
 <nl>

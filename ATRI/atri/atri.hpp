@@ -200,12 +200,12 @@ namespace _home
         // 总分
         int score;
 
-        bool isKeepConstrain = 1;
-        bool isAskTwice = 1;
+        bool isKeepConstrain = 0;
+        bool isAskTwice = 0;
         //是否开启纠错模式
-        bool isErrorCorrection = 1;
+        bool isErrorCorrection = 0;
         //是否开启自然语言处理
-        bool isNaturalParse = 1;
+        bool isNaturalParse = 0;
 
         bool isPass = false;
         // 位置物品正确性标识
@@ -217,7 +217,7 @@ namespace _home
         bool ParseInstruction(const string &task);
         //自然语言解析
         void ParseNaturalLanguage(const string &src);
-        void ParseNaturalLanguageSentence(const string &s);
+        bool ParseNaturalLanguageSentence(const string &s);
         parser *nlp_parser;
         vector<string> errorlist;
 

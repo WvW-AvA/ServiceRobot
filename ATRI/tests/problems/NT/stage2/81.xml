@@ -36,12 +36,12 @@
 (:ins 
 	(:task (putdown X) (:cond (color X yellow) (sort X can)))
 	(:task (pickup X) (:cond (sort X bottle) (color X black)))
-	(:task (takeout X Y) (:cond (sort X remotecontrol) (color X green) (sort Y washmachine)))
-	(:task (open X) (:cond (sort X microwave)))
+	(:task (takeout X Y) (:cond (sort X remotecontrol) (color X green) (sort Y washmachine) (type Y container)))
+	(:task (open X) (:cond (sort X microwave) (type X container)))
 	(:task (puton X Y) (:cond (color X green) (sort X can) (sort Y desk)))
-	(:info (opened X) (:cond (sort X closet)))
-	(:info (closed X) (:cond (sort X microwave)))
-	(:cons_notnot (:info (opened X) (:cond (sort X cupboard))))
+	(:info (opened X) (:cond (sort X closet) (type X container)))
+	(:info (closed X) (:cond (sort X microwave) (type X container)))
+	(:cons_notnot (:info (opened X) (:cond (sort X cupboard) (type X container))))
 )
 </instr>
 <nl>

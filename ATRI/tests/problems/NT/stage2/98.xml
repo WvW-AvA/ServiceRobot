@@ -32,8 +32,8 @@
 <instr>
 (:ins
     (:cons_not (:info (plate X) (:cond (sort X can) (color X green))))
-    (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X black) (sort Y microwave))))
-    (:cons_notnot (:info (inside X Y) (:cond (sort X can) (color X red) (sort Y closet))))
+    (:cons_notnot (:info (on X Y) (:cond (sort X can) (color X black) (sort Y microwave) (type Y container))))
+    (:cons_notnot (:info (inside X Y) (:cond (sort X can) (color X red) (sort Y closet) (type Y container))))
     (:task (give human X) (:cond (sort X can)))
     (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y worktable)))
     (:task (goto X) (:cond (sort X teapoy)))

@@ -34,8 +34,8 @@
 	</err>
 </env>
 <instr>(:ins 
-	(:task (takeout X Y) (:cond (sort X cup) (color X white) (sort Y microwave) (type Y container)))
-	(:task (close X) (:cond (type X container) (sort X refrigerator)))
+	(:task (takeout X Y) (:cond (sort X cup) (color X white) (sort Y microwave) (type Y container) (type Y container)))
+	(:task (close X) (:cond (type X container) (sort X refrigerator) (type X container)))
 	(:task (pickup X) (:cond (sort X can) (color X blue)))
 	)
 </instr>

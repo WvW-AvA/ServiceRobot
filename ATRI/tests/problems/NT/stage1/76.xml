@@ -28,12 +28,12 @@
 <instr>
 (:ins
     (:cons_notnot (:info (plate X) (:cond (sort X cup) (color X red))))
-    (:cons_not (:info (opened X) (:cond (sort X closet))))
-    (:task (close X) (:cond (sort X cupboard)))
-    (:task (putin X Y) (:cond (sort X book) (sort Y microwave)))
+    (:cons_not (:info (opened X) (:cond (sort X closet) (type X container))))
+    (:task (close X) (:cond (sort X cupboard) (type X container)))
+    (:task (putin X Y) (:cond (sort X book) (sort Y microwave) (type Y container)))
     (:task (pickup X) (:cond (sort X book)))
     (:task (goto X) (:cond (sort X chair)))
-    (:task (putin X Y) (:cond (sort X can) (sort Y microwave)))
+    (:task (putin X Y) (:cond (sort X can) (sort Y microwave) (type Y container)))
     
 )
 </instr>

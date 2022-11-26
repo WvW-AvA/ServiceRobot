@@ -41,12 +41,12 @@
 </env>
 <instr>
 (:ins 
-(:info (opened X) (:cond (sort X closet)))
-(:info (inside X Y) (:cond (sort X cup) (color X yellow) (sort Y closet)))
-(:task (goto X) (:cond (sort X microwave)))
-(:task (takeout X Y) (:cond (color X yellow) (sort X cup) (sort Y closet)))
+(:info (opened X) (:cond (sort X closet) (type X container)))
+(:info (inside X Y) (:cond (sort X cup) (color X yellow) (sort Y closet) (type Y container)))
+(:task (goto X) (:cond (sort X microwave) (type X container)))
+(:task (takeout X Y) (:cond (color X yellow) (sort X cup) (sort Y closet) (type Y container)))
 (:task (puton X Y) (:cond (sort X cup) (color X yellow) (sort Y desk)))
-(:task (putin X Y) (:cond (color X yellow) (sort X bottle) (sort Y closet)))
+(:task (putin X Y) (:cond (color X yellow) (sort X bottle) (sort Y closet) (type Y container)))
 (:task (pickup X) (:cond (sort X cup) (color X red)))
 (:task (pickup X) (:cond (sort X can)))
 (:task (give human X) (:cond (sort X book)))

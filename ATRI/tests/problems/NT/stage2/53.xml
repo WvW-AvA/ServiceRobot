@@ -37,13 +37,13 @@
     </extra>
 </env>
 <instr>(:ins 
-	(:task (putin X Y) (:cond (sort X cup) (color X red) (sort Y washmachine) (type Y container)))
+	(:task (putin X Y) (:cond (sort X cup) (color X red) (sort Y washmachine) (type Y container) (type Y container)))
 	(:task (putdown X) (:cond (sort X remotecontrol) ( color X black)))
-	(:task (puton X Y) (:cond (color X green) (sort X book) (sort Y refrigerator)))
-	(:task (close X) (:cond (sort X refrigerator)))
-	(:info (opened X) (:cond (type X container) (sort X refrigerator)))
-	(:info (opened X) (:cond (sort X washmachine) (type X container)))
-	(:info (on X Y) (:cond (sort X cup) (color X red) (sort Y washmachine)))
+	(:task (puton X Y) (:cond (color X green) (sort X book) (sort Y refrigerator) (type Y container)))
+	(:task (close X) (:cond (sort X refrigerator) (type X container)))
+	(:info (opened X) (:cond (type X container) (sort X refrigerator) (type X container)))
+	(:info (opened X) (:cond (sort X washmachine) (type X container) (type X container)))
+	(:info (on X Y) (:cond (sort X cup) (color X red) (sort Y washmachine) (type Y container)))
 	(:cons_not (:info (plate X) (:cond (color X black) (sort X can))))
 	)
 </instr>

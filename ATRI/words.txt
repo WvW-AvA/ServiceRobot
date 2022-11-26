@@ -36,7 +36,7 @@ put
 take
 go
 pickup
-
+goto
 
 be:
 is
@@ -77,3 +77,4 @@ for
 out
 up
 down
+inside

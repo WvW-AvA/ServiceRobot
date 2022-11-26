@@ -1,6 +1,6 @@
 #!/bin/bash
 cd build 
-make 
+make -j
 cd ../bin 
-./atri -nlp 1 -err 1 -ask_2 0 -cons 0
+./atri -nlp 1 -err 0 -ask_2 0 -cons 0
 cd ..

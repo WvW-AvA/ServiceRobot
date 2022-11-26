@@ -34,8 +34,8 @@
 (:ins
     (:task (puton X Y) (:cond (sort X can) (color X green) (sort Y sofa)))
     (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y sofa)))
-    (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y closet)))
-    (:task (putin X Y) (:cond (sort X book) (color X red) (sort Y microwave)))
+    (:task (putin X Y) (:cond (sort X bottle) (color X red) (sort Y closet) (type Y container)))
+    (:task (putin X Y) (:cond (sort X book) (color X red) (sort Y microwave) (type Y container)))
     (:task (goto X) (:cond (sort X can) (color X black)))
     (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y sofa)))
 )

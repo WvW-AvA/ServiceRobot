@@ -35,16 +35,16 @@
 </env>
 <instr>
 (:ins
-    (:info (closed X) (:cond (sort X refrigerator)))
-    (:info (opened X) (:cond (sort X microwave)))
-    (:cons_not (:info (opened X) (:cond (sort X refrigerator))))
+    (:info (closed X) (:cond (sort X refrigerator) (type X container)))
+    (:info (opened X) (:cond (sort X microwave) (type X container)))
+    (:cons_not (:info (opened X) (:cond (sort X refrigerator) (type X container))))
     (:task (puton X Y) (:cond (sort X cup) (color X black) (sort Y television)))
-    (:task (puton X Y) (:cond (sort X bottle) (color X green) (sort Y cupboard)))
+    (:task (puton X Y) (:cond (sort X bottle) (color X green) (sort Y cupboard) (type Y container)))
     (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y chair)))
-    (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y closet)))
+    (:task (putin X Y) (:cond (sort X book) (color X white) (sort Y closet) (type Y container)))
     (:task (pickup X) (:cond (sort X can) (color X white)))
     (:task (give human X) (:cond (sort X bottle) (color X blue)))
-    (:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y cupboard)))
+    (:task (putin X Y) (:cond (sort X cup) (color X white) (sort Y cupboard) (type Y container)))
 )
 </instr>
 <nl>

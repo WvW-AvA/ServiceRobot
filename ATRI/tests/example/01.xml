@@ -39,14 +39,14 @@
 </env>
 <instr>
 (:ins
-    (:info (closed X) (:cond (sort X refrigerator)))
-    (:info (opened X) (:cond (sort X microwave)))
-    (:cons_not (:info (opened X) (:cond (sort X refrigerator))))
-    (:cons_not (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y closet))))
+    (:info (closed X) (:cond (sort X refrigerator) (type X container)))
+    (:info (opened X) (:cond (sort X microwave) (type X container)))
+    (:cons_not (:info (opened X) (:cond (sort X refrigerator) (type X container))))
+    (:cons_not (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y closet) (type Y container))))
     (:cons_notnot (:info (on X Y) (:cond (sort X bottle) (color X green) (sort Y desk))))
     (:task (puton X Y) (:cond (sort X can) (sort Y bed)))
     (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y television)))
-    (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard)))
+    (:task (takeout X Y) (:cond (sort X remotecontrol) (sort Y cupboard) (type Y container)))
     (:task (pickup X) (:cond (sort X bottle)))
     (:task (puton X Y) (:cond (sort X cup) (color X white) (sort Y table)))
     (:task (puton X Y) (:cond (sort X book) (sort Y table)))
@@ -57,15 +57,15 @@
 <nl>
 The door of the refrigerator is closed.
 The door of the microwave is opened.
-Do not open the door of the refrigerator.
-Do not put the bo$#%ok which is green on closet.
+please Do not open the door of the refrigerator.
+Do not put the book which is green on closet.
 The green bottle must be on the desk.
 Put a can on the bed.
 Put the bottle which is blue on the television.
-Take out the remotecontrol from the cupboard.
+Take the remotecontrol out of the cupboard.
 Pick up the bottle.
 Put a book on the table.
 Give the book which is white for human.
-Go to the sofa.   
+Goto the sofa.
 </nl>
 </test>

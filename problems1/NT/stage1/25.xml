@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test>
+<env mis="off" err="off" ans="off">
+    <info>
+    (hold 0) (plate 15) (at 0 5)
+    (sort 1 worktable) (size 1 big) (at 1 1)
+    (sort 2 closet) (size 2 big) (at 2 2) (type 2 container) (closed 2)
+    (sort 3 microwave) (size 3 big) (at 3 3) (type 3 container) (opened 3)
+    (sort 4 plant) (size 4 big) (at 4 4)
+    (sort 5 sofa) (size 5 big) (at 5 5)
+    (sort 6 human) (size 6 big) (at 6 6)
+    (sort 7 teapoy) (size 7 big) (at 7 7)
+    (sort 8 can) (size 8 small) (color 8 red) (inside 8 2)
+    (sort 9 can) (size 9 small) (color 9 green) (at 9 4)
+    (sort 10 can) (size 10 small) (color 10 black) (inside 10 3)
+    (sort 11 can) (size 11 small) (color 11 white) (at 11 7)
+    (sort 12 bottle) (size 12 small) (color 12 red) 
+    (sort 13 bottle) (size 13 small) (color 13 blue) 
+    (sort 14 book) (size 14 small) (color 14 red) 
+    (sort 15 book) (size 15 small) (color 15 yellow) (at 15 7)
+    </info>
+    <mis>
+    (at 12 1) (inside 13 3) (at 14 5)
+    </mis>
+    <err>
+        <r></r>
+        <w></w>
+    </err>
+    <extra>
+    </extra>
+</env>
+<instr>
+(:ins
+    (:cons_not (:info (plate X) (:cond (sort X can) (color X red))))
+    (:cons_not (:info (plate X) (:cond (sort X can) (color X black))))
+    (:cons_not (:info (plate X) (:cond (sort X can) (color X white))))
+    (:task (give human X) (:cond (sort X can)))
+    (:task (puton X Y) (:cond (sort X can) (color X red) (sort Y worktable)))
+    (:task (goto X) (:cond (sort X teapoy)))
+    (:task (takeout X Y) (:cond (sort X bottle) (color X red) (sort Y microwave)))
+    (:task (pickup X) (:cond (sort X can) (color X white)))
+)
+</instr>
+<nl>
+The green can must not be on plate.
+There must not be a black can on plate.
+There must not be a white can on plate.
+Give human a can.
+Put the black can on worktable.
+Go to teapoy.
+Take out the red bottle from microwave.
+Pick the white can up.
+</nl>
+</test>
