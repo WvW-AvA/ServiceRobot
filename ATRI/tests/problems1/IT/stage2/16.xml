@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <test>
-<env mis="on" err="on" ans="on">
+<env mis="off" err="off" ans="off">
 <info>
 (at 0 2)
 (sort 1 microwave) (size 1 big) (at 1 1) (type 1 container) (opened 1)
@@ -18,7 +18,7 @@
 (sort 13 cup) (size 13 small) (color 13 red)
 (sort 14 cup) (size 14 small) (color 14 yellow) (inside 14 9)
 (sort 15 bottle) (size 15 small) (color 15 yellow)
-(sort 16 book) (size 16 small) (color 16 yellow) (inside 16 1)
+(sort 16 book) (size 16 small) (color 16 yellow) (inside 16 9)
 (sort 17 remotecontrol) (size 17 small) (color 17 green) (at 17 5)
 (sort 18 can) (size 18 small) (color 18 red) (at 18 6)
 (sort 19 remotecontrol) (size 19 small) (color 19 white) (at 19 8)
@@ -52,12 +52,12 @@
 </instr>
 <nl>
 Go to microwave.
-Put a book which is yellow on the desk.
-Put the bottle which is yellow in the closet.
+Please put a book which is yellow on the desk.
+Please put the bottle which is yellow in the closet.
 Pick up a red cup.
 Give me the blue book.
 There must not be a red cup on the plate.
 Do not go to the airconditioner.
-Put the black cup on the desk.
+Please put the black cup on the desk.
 </nl>
 </test>

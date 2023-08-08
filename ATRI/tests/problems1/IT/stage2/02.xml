@@ -42,17 +42,17 @@
     (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y chair)))
     (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y bed)))
     (:task (takeout X Y) (:cond (sort X book) (color X yellow) (sort Y refrigerator) (type Y container)))
-    (:task (pickup X) (:cond (sort X bottle) (color X green))
+    (:task (pickup X) (:cond (sort X bottle) (color X green)))
     (:task (give human X) (:cond (sort X cup) (color X black)))
 )
 </instr>
 <nl>
 The refrigerator is not opened.
 The microwave is not closed.
-Put the white can in the closet.
-Put the white cup in the closet.
-Put the white book on the chair.
-Put the blue bottle on bed.
+Please put the white can in the closet.
+Please put the white cup in the closet.
+Please put the white book on the chair.
+Please put the blue bottle on bed.
 Take out the book which is yellow from refrigerator.
 Pick up the green bottle.
 Give the black cup to human.

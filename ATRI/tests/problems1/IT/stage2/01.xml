@@ -42,10 +42,10 @@
     (:info (closed X) (:cond (sort X refrigerator) (type X container)))
     (:info (opened X) (:cond (sort X microwave) (type X container)))
     (:cons_notnot (:info (on X Y) (:cond (sort X bottle) (color X green) (sort Y desk))))
-    (:task (puton X Y) (:cond (sort X can) (sort Y bed)))
+    (:task (puton X Y) (:cond (sort X can) (color X blue) (sort Y bed)))
     (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y television)))
     (:task (takeout X Y) (:cond (sort X remotecontrol) (color X white) (sort Y cupboard) (type Y container)))
-    (:task (puton X Y) (:cond (sort X book) (sort Y table)))
+    (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y table)))
     (:task (goto X) (:cond (sort X sofa)))
     (:task (puton X Y) (:cond (sort X cup) (color X black) (sort Y desk)))
     (:task (give human X) (:cond (sort X can) (color X yellow)))
@@ -57,14 +57,14 @@
 The door of the refrigerator is closed.
 The door of the microwave is opened.
 The green bottle must be on the desk.
-Put a can on the bed.
-Put the bottle which is blue on the television.
+Please put a can on the bed.
+Please put the bottle which is blue on the television.
 Take out the remotecontrol from the cupboard.
-Put a book on the table.
+Please put a book on the table.
 Go to the sofa.   
-Put the black cup on the desk.
+Please put the black cup on the desk.
 Give the human a yellow can.
 Pick up the green bottle.
-Put the blue can in the refrigerator.
+Please put the blue can in the refrigerator.
 </nl>
 </test>

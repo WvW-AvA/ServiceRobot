@@ -50,6 +50,7 @@
     (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y sofa)))
     (:task (puton X Y) (:cond (sort X remotecontrol) (color X white) (sort Y television)))
     (:task (close X) (:cond (sort X microwave) (type X container))) 
+    (:task (open X) (:cond (sort X refrigerator) (type X container))) 
     (:cons_notnot (:info (plate X) (:cond (sort X bottle) (color X yellow))))  
     (:task (puton X Y) (:cond (sort X book) (color X green) (sort Y desk)))
     (:task (putin X Y) (:cond (sort X can) (color X red) (sort Y refrigerator) (type Y container)))
@@ -59,15 +60,15 @@
 The refrigerator is closed.
 The microwave is opened.
 The washmachine is opened.
-Put the green can in the cupboard.
-Put the red can on the airconditioner.
+Please put the green can in the cupboard.
+Please put the red can on the airconditioner.
 Go to the sofa.
-Put the white book on sofa.
-Put the white remotecontrol on the television.
+Please put the white book on sofa.
+Please put the white remotecontrol on the television.
 Close door of microwave.
 The yellow bottle must be on plate.
 
-Put the green book on the desk.
-Put the red can in the refrigerator. 
+Please put the green book on the desk.
+Please put the red can in the refrigerator. 
 </nl>
 </test>

@@ -1,1 +1,1 @@
-occurs(putdown(13), 1).
+occurs(move(6), 1).
