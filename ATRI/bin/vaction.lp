@@ -1,1 +1,1 @@
-occurs(move(6), 1).
+occurs(move(1), 1).

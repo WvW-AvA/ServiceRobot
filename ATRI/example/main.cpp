@@ -1,9 +1,7 @@
 /*
- * Simulation@Home Competition
  * File: main.cpp
- * Author: Jiongkun Xie
- * Affiliation: Multi-Agent Systems Lab.
- *              University of Science and Technology of China
+ * Author : ShiQiao Chen(陈世侨)
+ * Affiliation: WuHan University of Technology
  */
 #include "atri.hpp"
 

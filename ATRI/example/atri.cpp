@@ -1,3 +1,9 @@
+/*
+ * File: atri.cpp
+ * Author : ShiQiao Chen(陈世侨)
+ * Affiliation: WuHan University of Technology
+ */
+
 #include <iostream>
 #include <regex>
 #include "atri.hpp"
@@ -97,7 +103,7 @@ void ATRI::Plan()
 
     tasks = TaskOptimization();
 
-    //找到human
+    // 找到human
     for (auto o : objects)
         if (o->sort == "human")
             human = ObjectPtrCast<BigObject>(o);
@@ -1157,7 +1163,7 @@ void ATRI::GetSmallObjectStatus(unsigned int a)
     if (isErrorCorrection && isAskTwice)
     {
         vector<string> ret;
-        //纠错模式下反复问，直到问出两次相同结果,认为正确。
+        // 纠错模式下反复问，直到问出两次相同结果,认为正确。
         auto checkDouble = [&](const string &str) -> bool
         {
             for (const auto &v : ret)
@@ -1230,7 +1236,7 @@ void ATRI::Sense()
 {
     if (isPass)
         return;
-    //只有纠错模式启动且当前位置未被纠错过才Sense
+    // 只有纠错模式启动且当前位置未被纠错过才Sense
     if ((isErrorCorrection && posCorrectFlag[location] == true) || isErrorCorrection == false)
         return;
 
@@ -1253,7 +1259,7 @@ void ATRI::Sense()
     }
     Plug::Sense(A_);
     LOG("Sense");
-    //检查当前位置物品正确性
+    // 检查当前位置物品正确性
     for (auto s : smallObjects)
     {
         if (s->location == location && checkSmallObejct(s->id) == false)
@@ -1264,7 +1270,7 @@ void ATRI::Sense()
             s->inside = UNKNOWN;
         }
     }
-    //更新当前位置物品，利用容器合上关闭时返回值不同，确定物品状态。
+    // 更新当前位置物品，利用容器合上关闭时返回值不同，确定物品状态。
     for (auto a : A_)
     {
         auto small = dynamic_pointer_cast<SmallObject>(objects[a]);
@@ -1312,7 +1318,7 @@ void ATRI::Sense()
             }
         }
     }
-    //更新PosCorrectFlag
+    // 更新PosCorrectFlag
 }
 #pragma endregion
 

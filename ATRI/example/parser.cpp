@@ -1,3 +1,9 @@
+/*
+ * File: parser.cpp
+ * Author : ShiQiao Chen(陈世侨)
+ * Affiliation: WuHan University of Technology
+ */
+#
 #include "parser.hpp"
 #include "fstream"
 #include "debuglog.hpp"

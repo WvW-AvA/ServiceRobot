@@ -1,9 +1,7 @@
 /*
- * Simulation@Home Competition
  * File: atri.hpp
- * Author: Jiongkun Xie
- * Affiliation: Multi-Agent Systems Lab.
- *              University of Science and Technology of China
+ * Author : ShiQiao Chen(陈世侨)
+ * Affiliation: WuHan University of Technology
  */
 #pragma once
 
@@ -39,7 +37,7 @@ namespace _home
     {
     public:
         string color = "";
-        //小物品所在容器id
+        // 小物品所在容器id
         int inside = UNKNOWN;
         SmallObject(int id, int location = UNKNOWN, const string &sort = "", const string &color = "") : Object(location, sort, id), color(color) {}
         SmallObject(shared_ptr<Object> obj) : Object(*obj) {}
@@ -136,7 +134,7 @@ namespace _home
         ~Robot() {}
     };
 
-    //安全的Object转换，保证返回不为nullptr
+    // 安全的Object转换，保证返回不为nullptr
     template <class T>
     __inline__ __attribute__((always_inline)) shared_ptr<T> ObjectPtrCast(const shared_ptr<Object> &obj)
     {
@@ -180,27 +178,27 @@ namespace _home
         shared_ptr<BigObject> human;
         // 场景中所有Object,id为索引
         vector<shared_ptr<Object>> objects;
-        //场景中所有SmallObject
+        // 场景中所有SmallObject
         vector<shared_ptr<SmallObject>> smallObjects;
 
-        //需完成任务list
+        // 需完成任务list
         vector<Instruction> tasks;
-        //补充 info list
+        // 补充 info list
         vector<Instruction> infos;
-        //禁止任务 约束list
+        // 禁止任务 约束list
         vector<Instruction> not_taskConstrains;
-        //禁止出现的状态 约束list
+        // 禁止出现的状态 约束list
         vector<Instruction> not_infoConstrains;
-        //必须维护的约束list
+        // 必须维护的约束list
         vector<Instruction> notnot_infoConstrains;
 
         // 总分
         bool isKeepConstrain = 0;
         bool isAutoConstrain = 0;
         bool isAskTwice = 0;
-        //是否开启纠错模式
+        // 是否开启纠错模式
         bool isErrorCorrection = 0;
-        //是否开启自然语言处理
+        // 是否开启自然语言处理
         bool isNaturalParse = 0;
 
         bool isPass = false;
@@ -226,42 +224,42 @@ namespace _home
         // 位置物品正确性标识
         vector<bool> posCorrectFlag;
 
-        //环境解析
+        // 环境解析
         bool ParseEnv(const string &env);
-        //指令解析
+        // 指令解析
         bool ParseInstruction(const string &task);
-        //自然语言解析
+        // 自然语言解析
         void ParseNaturalLanguage(const string &src);
         bool ParseNaturalLanguageSentence(const string &s);
         parser *nlp_parser;
         vector<string> errorlist;
 
-        //优化task
+        // 优化task
         vector<Instruction> TaskOptimization();
 
-        //根据参数执行动作
+        // 根据参数执行动作
         bool DoBehavious(const string &behavious, unsigned int x);
         bool DoBehavious(const string &behavious, unsigned int x, unsigned int y);
 
-        //行动时更新task list
+        // 行动时更新task list
         void UpdateTaskList(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
 
-        //判断是否触发禁止的行动约束
+        // 判断是否触发禁止的行动约束
         bool IsInvokeNot_TaskConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
-        //判断是否触发禁止出现状态约束
+        // 判断是否触发禁止出现状态约束
         bool IsInvokeNot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
-        //判断是否触发必须维护约束
+        // 判断是否触发必须维护约束
         bool IsInvokeNotnot_infoConstracts(const string &behave, const shared_ptr<Object> &x, const shared_ptr<Object> &y = nullptr);
 
-        //解析补充info list
+        // 解析补充info list
         void ParseInfo(const Instruction &info);
 
         bool SolveTask(const Instruction &task);
-        //测试原子行为
+        // 测试原子行为
         void TestAutoBehave();
-        //输出所有指令
+        // 输出所有指令
         void PrintInstruction();
-        //输出场景信息
+        // 输出场景信息
         void PrintEnv();
 
         void Fini();

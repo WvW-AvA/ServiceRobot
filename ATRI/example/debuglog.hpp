@@ -1,7 +1,12 @@
+/*
+ * File: debuglog.hpp
+ * Author : ShiQiao Chen(陈世侨)
+ * Affiliation: WuHan University of Technology
+ */
 #ifndef __DEBUGLOG_H__
 #define __DEBUGLOG_H__
 
-//#define __BACKTRACE__
+// #define __BACKTRACE__
 #define __DEBUG__
 
 #include <iostream>

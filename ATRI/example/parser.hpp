@@ -1,3 +1,9 @@
+/*
+ * File: parser.hpp
+ * Author : ShiQiao Chen(陈世侨)
+ * Affiliation: WuHan University of Technology
+ */
+#
 #pragma once
 
 #include <string>
@@ -10,15 +16,15 @@
 #include "atri.hpp"
 using namespace std;
 
-#define S (uint8_t)255 //句
-#define NP (uint8_t)1  //名词部分
-#define VP (uint8_t)2  //动词部分
+#define S (uint8_t)255 // 句
+#define NP (uint8_t)1  // 名词部分
+#define VP (uint8_t)2  // 动词部分
 
-#define N (uint8_t)3    //名词
-#define ADJ (uint8_t)4  //形容词
-#define ART (uint8_t)5  //冠词
-#define PREP (uint8_t)6 //介词
-#define V (uint8_t)7    //动词
+#define N (uint8_t)3    // 名词
+#define ADJ (uint8_t)4  // 形容词
+#define ART (uint8_t)5  // 冠词
+#define PREP (uint8_t)6 // 介词
+#define V (uint8_t)7    // 动词
 #define BE (uint8_t)15
 
 #define OF (uint8_t)16

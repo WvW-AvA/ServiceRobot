@@ -1,5 +1,6 @@
-1{ task(1, goto(X)) : desk(X) }1.
-1{ task(2, pickup(X)) : remotecontrol(X) : red(X) }1.
-1{ task(3, puton(X, Y)) : cup(X) : blue(X) : airconditioner(Y) }1.
-1{ task(5, puton(X, Y)) : cup(X) : red(X) : chair(Y) }1.
-1{ task(6, puton(X, Y)) : cup(X) : black(X) : teapoy(Y) }1.
+1{ task(2, puton(X, Y)) : can(X) : white(X) : bed(Y) }1.
+1{ task(3, putin(X, Y)) : book(X) : white(X) : cupboard(Y) : container(Y) }1.
+1{ task(4, give(human, X)) : book(X) : yellow(X) }1.
+1{ task(5, puton(X, Y)) : book(X) : green(X) : desk(Y) }1.
+1{ task(6, putin(X, Y)) : cup(X) : white(X) : microwave(Y) : container(Y) }1.
+1{ task(7, puton(X, Y)) : bottle(X) : yellow(X) : teapoy(Y) }1.
