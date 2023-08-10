@@ -10,7 +10,7 @@ Affiliation: WuHan University of Technology
 
 
 ### 如何食用本代码
-0. 首先要有Linux下C++13，CMAKE的基础，了解面向对象编程。
+0. 首先要有Linux下C++11，CMAKE的基础，了解面向对象编程。
 1. 先看官方给出的[build过程](ATRI/doc/2013/build.pdf)，尝试先build一遍，搞清楚这个项目分为服务端和客户端，我们只需要写客户端就好。
 2. 客户端的代码在[这个路径下](ATRI/example)。
 3. 代码架构可以大致分成两个模块，语句/指令解析模块 和 规划模块。
