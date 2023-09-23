@@ -3,7 +3,6 @@
  * Author : ShiQiao Chen(陈世侨)
  * Affiliation: WuHan University of Technology
  */
-#
 #include "parser.hpp"
 #include "fstream"
 #include "debuglog.hpp"
@@ -432,6 +431,7 @@ shared_ptr<syntax_node> parser::find_n(const shared_ptr<syntax_node> &np)
     else
     {
         LOG_ERROR("Find n ERROR");
+        return nullptr;
     }
 }
 

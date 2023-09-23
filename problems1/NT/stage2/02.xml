@@ -42,7 +42,7 @@
     (:task (puton X Y) (:cond (sort X book) (color X white) (sort Y chair)))
     (:task (puton X Y) (:cond (sort X bottle) (color X blue) (sort Y bed)))
     (:task (takeout X Y) (:cond (sort X book) (color X yellow) (sort Y refrigerator)))
-    (:task (pickup X) (:cond (sort X bottle) (color X green))
+    (:task (pickup X) (:cond (sort X bottle) (color X green)))
     (:task (give human X) (:cond (sort X cup) (color X black)))
 )
 </instr>

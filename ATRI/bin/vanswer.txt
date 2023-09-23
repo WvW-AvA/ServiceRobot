@@ -1,6 +1,8 @@
-UNSATISFIABLE
+Answer: 1
+value(4,40) value(10,40) value(5,40) value(3,40) value(7,40) value(8,40) true(goal) value(1,20) 
+SATISFIABLE
 
-Models      : 0     
+Models      : 1+    
 Time        : 0.000
   Prepare   : 0.000
   Prepro.   : 0.000

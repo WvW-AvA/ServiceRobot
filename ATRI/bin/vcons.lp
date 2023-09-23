@@ -1,1 +1,1 @@
-task(1, ncons(on(X, Y))) :- can(X), red(X), chair(Y).
+task(1, ncons(on(X, Y))) :- bottle(X), green(X), desk(Y).

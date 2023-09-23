@@ -17,9 +17,8 @@ using namespace boost;
 using namespace std;
 
 //////////////////////////////////////////////////////////////////////////
-Message::MsgHead::MsgHead() :
-root(new TiXmlElement(XmlLabel::Message)),
-curPtr(root)
+Message::MsgHead::MsgHead() : root(new TiXmlElement(XmlLabel::Message)),
+                              curPtr(root)
 {
 }
 
@@ -29,9 +28,8 @@ Message::MsgHead::~MsgHead()
 }
 
 //////////////////////////////////////////////////////////////////////////
-Message::MsgBody::MsgBody() :
-size(0),
-capability(1 << 10)
+Message::MsgBody::MsgBody() : size(0),
+                              capability(1 << 10)
 {
     data.reset(new uint8_t[capability]);
     memset(data.get(), 0, capability);
@@ -45,40 +43,42 @@ void Message::MsgBody::expand()
     data.swap(tmp);
 }
 
-void Message::MsgBody::copy(const void* src, unsigned int _size)
+void Message::MsgBody::copy(const void *src, unsigned int _size)
 {
-    if (size + _size > capability) expand();
+    if (size + _size > capability)
+        expand();
     memcpy(data.get() + size, src, _size);
     size += _size;
 }
 
 //////////////////////////////////////////////////////////////////////////
-void Message::serialze(const ParamListPtr& params)
+void Message::serialze(const ParamListPtr &params)
 {
     for (ParamList::const_iterator iter = params->begin();
-        iter != params->end();
-        ++iter)
+         iter != params->end();
+         ++iter)
     {
         MessagePtr self = shared_from_this();
         (*iter)->serialize(self);
     }
 }
 
-bool Message::deserialize(ParamListPtr& params_) const
+bool Message::deserialize(ParamListPtr &params_) const
 {
     if (!params_)
     {
         params_.reset(new ParamList);
     }
-    
-    for (TiXmlElement* iter = mHead.root->FirstChildElement();
-        iter;
-        iter = iter->NextSiblingElement())
+
+    for (TiXmlElement *iter = mHead.root->FirstChildElement();
+         iter;
+         iter = iter->NextSiblingElement())
     {
         mHead.curPtr = iter;
 
-        const char* xml_label = iter->Value();
-        if (strcmp(xml_label, XmlLabel::MsgAtt) == 0) continue;
+        const char *xml_label = iter->Value();
+        if (strcmp(xml_label, XmlLabel::MsgAtt) == 0)
+            continue;
 
         bool success = false;
         if (strcmp(xml_label, XmlLabel::PVoid) == 0)
@@ -137,22 +137,23 @@ bool Message::deserialize(ParamListPtr& params_) const
         }
 
         mHead.curPtr = mHead.root;
-        if (!success) return false;
+        if (!success)
+            return false;
     }
 
     return true;
 }
 
-void Message::setAttribute(const std::string& att_name, const ParamPtr& att_value)
+void Message::setAttribute(const std::string &att_name, const ParamPtr &att_value)
 {
-    TiXmlElement* section = mHead.root->FirstChildElement(XmlLabel::MsgAtt);
+    TiXmlElement *section = mHead.root->FirstChildElement(XmlLabel::MsgAtt);
     if (section == NULL)
     {
         section = new TiXmlElement(XmlLabel::MsgAtt);
         mHead.root->LinkEndChild(section);
     }
 
-    TiXmlElement* attribute = new TiXmlElement(att_name);
+    TiXmlElement *attribute = new TiXmlElement(att_name);
     section->LinkEndChild(attribute);
 
     mHead.curPtr = attribute;
@@ -161,19 +162,20 @@ void Message::setAttribute(const std::string& att_name, const ParamPtr& att_valu
     mHead.curPtr = mHead.root;
 }
 
-ParamPtr Message::getAttribute(const std::string& att_name) const
+ParamPtr Message::getAttribute(const std::string &att_name) const
 {
-    TiXmlElement* section = mHead.root->FirstChildElement(XmlLabel::MsgAtt);
+    TiXmlElement *section = mHead.root->FirstChildElement(XmlLabel::MsgAtt);
     if (section)
     {
-        TiXmlElement* att = section->FirstChildElement(att_name);
+        TiXmlElement *att = section->FirstChildElement(att_name);
         if (att)
         {
             att = att->FirstChildElement();
-            if (att == NULL) return ParamPtr();
+            if (att == NULL)
+                return ParamPtr();
 
             mHead.curPtr = att;
-            const char* xml_label = att->Value();
+            const char *xml_label = att->Value();
             bool success = false;
             ParamPtr att_value;
             if (strcmp(xml_label, XmlLabel::PVoid) == 0)
@@ -232,7 +234,8 @@ ParamPtr Message::getAttribute(const std::string& att_name) const
             }
             mHead.curPtr = mHead.root;
 
-            if (success) return att_value;
+            if (success)
+                return att_value;
         }
     }
 
@@ -242,16 +245,16 @@ ParamPtr Message::getAttribute(const std::string& att_name) const
 Message::AttributeMapPtr Message::getAttributes() const
 {
     AttributeMapPtr atts;
-    TiXmlElement* section = mHead.root->FirstChildElement(XmlLabel::MsgAtt);
+    TiXmlElement *section = mHead.root->FirstChildElement(XmlLabel::MsgAtt);
     if (section)
     {
         atts.reset(new AttributeMap);
-        for (TiXmlElement* iter = section->FirstChildElement();
-            iter;
-            iter = iter->NextSiblingElement())
+        for (TiXmlElement *iter = section->FirstChildElement();
+             iter;
+             iter = iter->NextSiblingElement())
         {
             mHead.curPtr = iter;
-            const char* xml_label = iter->Value();
+            const char *xml_label = iter->Value();
             bool success = false;
             ParamPtr att_value;
             if (strcmp(xml_label, XmlLabel::PVoid) == 0)
@@ -310,18 +313,18 @@ Message::AttributeMapPtr Message::getAttributes() const
             }
             mHead.curPtr = mHead.root;
 
-            if (success) 
+            if (success)
                 atts->insert(make_pair(string(iter->Value()), att_value));
             else
                 return AttributeMapPtr();
         }
         return atts;
     }
-    
+
     return AttributeMapPtr();
 }
 
-bool Message::parse(const boost::shared_array<boost::uint8_t>& data, boost::uint32_t size)
+bool Message::parse(const boost::shared_array<boost::uint8_t> &data, boost::uint32_t size)
 {
     uint32_t null_pos = size;
     for (uint32_t i = 0; i < size; ++i)
@@ -332,26 +335,28 @@ bool Message::parse(const boost::shared_array<boost::uint8_t>& data, boost::uint
             break;
         }
     }
-    if (null_pos >= size) return false;
+    if (null_pos >= size)
+        return false;
 
     TiXmlDocument doc;
-    doc.Parse((char*)data.get());
+    doc.Parse((char *)data.get());
     if (doc.Error())
     {
         cout << "Failed to parse the head of message\n\tMessage='"
-            << doc.ErrorDesc() << "'\n";
+             << doc.ErrorDesc() << "'\n";
         return false;
     }
 
     if (doc.FirstChildElement(XmlLabel::Message) == NULL)
     {
         cout << "Failed to locate the message XML label '"
-            << XmlLabel::Message << "'\n";
+             << XmlLabel::Message << "'\n";
         return false;
     }
 
-    if (mHead.root) delete mHead.root;
-    mHead.root = dynamic_cast<TiXmlElement*>(
+    if (mHead.root)
+        delete mHead.root;
+    mHead.root = dynamic_cast<TiXmlElement *>(
         (doc.FirstChildElement(XmlLabel::Message))->Clone());
     mHead.curPtr = mHead.root;
 
@@ -366,7 +371,7 @@ bool Message::parse(const boost::shared_array<boost::uint8_t>& data, boost::uint
     return true;
 }
 
-boost::uint32_t Message::getHead(boost::shared_array<boost::uint8_t>& data) const
+boost::uint32_t Message::getHead(boost::shared_array<boost::uint8_t> &data) const
 {
     TiXmlPrinter printer;
     printer.SetStreamPrinting();
@@ -374,21 +379,21 @@ boost::uint32_t Message::getHead(boost::shared_array<boost::uint8_t>& data) cons
 
     unsigned int size = printer.Size();
     data.reset(new uint8_t[size + 5]);
-    *((uint32_t*)data.get()) = size + mBody.size + 1;
+    *((uint32_t *)data.get()) = size + mBody.size + 1;
     memcpy(data.get() + 4, printer.CStr(), size);
     data.get()[size + 4] = 0;
 
     return size + 5;
 }
 
-boost::uint32_t Message::getBody(boost::shared_array<boost::uint8_t>& data_) const
+boost::uint32_t Message::getBody(boost::shared_array<boost::uint8_t> &data_) const
 {
     data_ = mBody.data;
     return mBody.size;
 }
 
 //////////////////////////////////////////////////////////////////////////
-ostream& _home::operator<<(ostream& _os_, const Message& msg)
+ostream &_home::operator<<(ostream &_os_, const Message &msg)
 {
     TiXmlPrinter printer;
     msg.mHead.root->Accept(&printer);
